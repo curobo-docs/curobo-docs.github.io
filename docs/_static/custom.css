@@ -65,11 +65,11 @@ h1, h2, .rst-content .toctree-wrapper p.caption, h3, h4, h5, h6, legend, p.capti
 
 @media screen and (max-width: 768px) {
     .wy-nav-content-wrap.shift {
-        left: 30%;
+        left: 50%;
     }
     .wy-nav-side.shift {
         left: 0;
-        width: 30%;
+        width: 50%;
     }
 }
 

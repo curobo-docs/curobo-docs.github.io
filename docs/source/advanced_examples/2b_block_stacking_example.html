@@ -123,10 +123,9 @@
 <p>A long horizon manipulation task leveraging CuRobo is implemented as an
 example in this library. The block stacking task starts with 9 cubes in front of the robot,
 with the goal being to stack all the cubes into a tower as seen below.</p>
-<video autoplay="True" loop="True" preload="auto" width="690"><source src="../../videos/cube_stacking.mp4" type="video/mp4"></video><div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>The key componenet in this task is to design a Pick Place Sequence as shown in the graph below,
+<p>
+<video autoplay="True" loop="True" muted="True" preload="auto" width="100%"><source src="../../videos/cube_stacking.mp4" type="video/mp4"></video>
+</p><p>The key componenet in this task is to design a Pick Place Sequence as shown in the graph below,
 which consists of moving the robot to a grasp pose, followed by closing the gripper, attaching the
 grasped object to CuRobo’s robot model, moving the object to a location on top of another cube,
 opening the gripper, and deleting the object from CuRobo’s robot model. Once this sequence is designed

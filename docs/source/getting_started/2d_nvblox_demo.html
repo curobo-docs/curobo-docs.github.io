@@ -147,32 +147,27 @@
 <section id="collision-checking">
 <h3><a class="toc-backref" href="#id5" role="doc-backlink">Collision Checking</a><a class="headerlink" href="#collision-checking" title="Link to this heading"></a></h3>
 <p>Launching <code class="docutils literal notranslate"><span class="pre">omni_python</span> <span class="pre">collision_checker.py</span> <span class="pre">--nvblox</span></code> will load an existing nvblox map and a sphere. Drag the sphere around to visualize collisions. When the sphere is green, it’s not in collision. When it’s blue, it’s within activation distance of a collision, and when red, it’s in collision. A red vector indicates the gradient of the distance.</p>
-<video autoplay="True" loop="True" preload="auto" width="690"><source src="../../videos/collision_vector_nvblox.mp4" type="video/mp4"></video><div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>You can insert cubes and the collision checker will now sum the cost across nvblox and primitives,</p>
-<video autoplay="True" loop="True" preload="auto" width="690"><source src="../../videos/collision_vector_cuboid.mp4" type="video/mp4"></video><div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p>You can also add meshes through the drag and drop interface (<a class="reference internal" href="2b_isaacsim_examples.html#basics-isaacsim"><span class="std std-ref">Isaac Sim Basics</span></a>),</p>
-<video autoplay="True" loop="True" preload="auto" width="690"><source src="../../videos/collision_vector_mesh.mp4" type="video/mp4"></video><div class="line-block">
-<div class="line"><br /></div>
-</div>
-</section>
+<p>
+<video autoplay="True" loop="True" muted="True" preload="auto" width="100%"><source src="../../videos/collision_vector_nvblox.mp4" type="video/mp4"></video>
+</p><p>You can insert cubes and the collision checker will now sum the cost across nvblox and primitives,</p>
+<p>
+<video autoplay="True" loop="True" muted="True" preload="auto" width="100%"><source src="../../videos/collision_vector_cuboid.mp4" type="video/mp4"></video>
+</p><p>You can also add meshes through the drag and drop interface (<a class="reference internal" href="2b_isaacsim_examples.html#basics-isaacsim"><span class="std std-ref">Isaac Sim Basics</span></a>),</p>
+<p>
+<video autoplay="True" loop="True" muted="True" preload="auto" width="100%"><source src="../../videos/collision_vector_mesh.mp4" type="video/mp4"></video>
+</p></section>
 <section id="motion-generation">
 <h3><a class="toc-backref" href="#id6" role="doc-backlink">Motion Generation</a><a class="headerlink" href="#motion-generation" title="Link to this heading"></a></h3>
 <p>Motion generation with a static nvblox map can be run with <code class="docutils literal notranslate"><span class="pre">omni_python</span> <span class="pre">motion_gen_reacher_nvblox.py</span></code></p>
-<video autoplay="True" loop="True" preload="auto" width="690"><source src="../../videos/motion_gen_nvblox.mp4" type="video/mp4"></video><div class="line-block">
-<div class="line"><br /></div>
-</div>
-</section>
+<p>
+<video autoplay="True" loop="True" muted="True" preload="auto" width="100%"><source src="../../videos/motion_gen_nvblox.mp4" type="video/mp4"></video>
+</p></section>
 <section id="model-predictive-control">
 <h3><a class="toc-backref" href="#id7" role="doc-backlink">Model Predictive Control</a><a class="headerlink" href="#model-predictive-control" title="Link to this heading"></a></h3>
 <p>Reactive control with a static nvblox map can be run with <code class="docutils literal notranslate"><span class="pre">omni_python</span> <span class="pre">mpc_nvblox_example.py</span></code></p>
-<video autoplay="True" loop="True" preload="auto" width="690"><source src="../../videos/mpc_nvblox.mp4" type="video/mp4"></video><div class="line-block">
-<div class="line"><br /></div>
-</div>
-</section>
+<p>
+<video autoplay="True" loop="True" muted="True" preload="auto" width="100%"><source src="../../videos/mpc_nvblox.mp4" type="video/mp4"></video>
+</p></section>
 </section>
 <section id="demos-with-online-mapping">
 <h2><a class="toc-backref" href="#id8" role="doc-backlink">Demos with online mapping</a><a class="headerlink" href="#demos-with-online-mapping" title="Link to this heading"></a></h2>
@@ -210,27 +205,24 @@ The collision class will integrate the depth images into nvblox’s ESDF represe
 <p>We will first run a collision checking example by launching <code class="docutils literal notranslate"><span class="pre">omni_python</span> <span class="pre">realsense_collision.py</span></code>, which will open a isaac sim window with a sphere. Click Play and the sphere will
 turn red when in collision with the voxels from the camera. You can also move the sphere to different locations by clicking it. You can change the pose of the camera by
 moving the blue cube.</p>
-<video controls="True" preload="auto" width="690"><source src="../../videos/collision_realsense.mp4" type="video/mp4"></video><div class="line-block">
-<div class="line"><br /></div>
-</div>
-</section>
+<p>
+<video autoplay="True" loop="True" muted="True" preload="auto" width="100%"><source src="../../videos/collision_realsense.mp4" type="video/mp4"></video>
+</p></section>
 <section id="id2">
 <h3><a class="toc-backref" href="#id10" role="doc-backlink">Motion Generation</a><a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
 <p>Next, we will run a motion generation demo where the the robot is moving between two poses. In this demo, the world is only updated between motion planning queries so the robot
 can collide with objects that appear during motion as you will see in the demo. Launch <code class="docutils literal notranslate"><span class="pre">omni_python</span> <span class="pre">realsense_reacher.py</span> <span class="pre">--hq_voxels</span></code> to run the demo. If your machine is
 running at a framerate less than 60, don’t use the argument <code class="docutils literal notranslate"><span class="pre">--hq_voxels</span></code>.</p>
-<video controls="True" preload="auto" width="690"><source src="../../videos/reacher_voxel_clip.mp4" type="video/mp4"></video><div class="line-block">
-<div class="line"><br /></div>
-</div>
-</section>
+<p>
+<video autoplay="True" loop="True" muted="True" preload="auto" width="100%"><source src="../../videos/reacher_voxel_clip.mp4" type="video/mp4"></video>
+</p></section>
 <section id="id3">
 <h3><a class="toc-backref" href="#id11" role="doc-backlink">Model Predictive Control</a><a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
 <p>NVBLOX world representation can be used for dynamic collision avoidance with a reactive controller such as MPC (with MPPI). Launch <code class="docutils literal notranslate"><span class="pre">omni_python</span> <span class="pre">realsense_mpc.py</span></code> to start this demo, where
 the robot will reach a target and try to stay there. When an obstacle appears in the scene, the robot will try to avoid the obstacle while trying to be as close as possible to the target.</p>
-<video controls="True" preload="auto" width="690"><source src="../../videos/mpc_realsense_clip.mp4" type="video/mp4"></video><div class="line-block">
-<div class="line"><br /></div>
-</div>
-</section>
+<p>
+<video autoplay="True" loop="True" muted="True" preload="auto" width="100%"><source src="../../videos/mpc_realsense_clip.mp4" type="video/mp4"></video>
+</p></section>
 </section>
 </section>
 
