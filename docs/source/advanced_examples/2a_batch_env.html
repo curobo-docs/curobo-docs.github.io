@@ -134,10 +134,9 @@ environment having it’s own set of obstacles.</p>
 <p>Launch <code class="docutils literal notranslate"><span class="pre">omni_python</span> <span class="pre">examples/isaac_sim/batch_collision_checker</span></code> which will create two worlds with
 two spheres. Moving the spheres will change color based on collision. These collision calls are made
 in a tensorized fashion where each sphere is checked with the world it is instanced in.</p>
-<video autoplay="True" controls="True" loop="True" preload="auto" width="690"><source src="../../videos/batch_collision.mp4" type="video/mp4"></video><div class="line-block">
-<div class="line"><br /></div>
-</div>
-<div class="admonition note">
+<p>
+<video autoplay="True" loop="True" muted="True" preload="auto" width="100%"><source src="../../videos/batch_collision.mp4" type="video/mp4"></video>
+</p><div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Only mesh and cuboids are supported. nvblox is currently not supported in batched environments mode.</p>
 </div>
@@ -147,10 +146,9 @@ in a tensorized fashion where each sphere is checked with the world it is instan
 <p>Launch <code class="docutils literal notranslate"><span class="pre">omni_python</span> <span class="pre">examples/isaac_sim/batch_motion_gen_reacher.py</span></code> which will launch two Franka Panda
 robots in two environments. Moving the target cube will trigger a motion generation query in a tensorized
 setup, resulting in motions being generated for both the robots.</p>
-<video autoplay="True" loop="True" preload="auto" width="690"><source src="../../videos/batch_motion_gen_demo.mp4" type="video/mp4"></video><div class="line-block">
-<div class="line"><br /></div>
-</div>
-<div class="admonition note">
+<p>
+<video autoplay="True" loop="True" muted="True" preload="auto" width="100%"><source src="../../videos/batch_motion_gen_demo.mp4" type="video/mp4"></video>
+</p><div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Graph planner is not supported in batched environments mode. Also the finetuning optimization that
 is done in single query mode is not yet implemented for batched environment mode, as such the solutions

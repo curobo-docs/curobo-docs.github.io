@@ -356,14 +356,15 @@ duplicate to build your robot configuration file. The template is displayed belo
 </section>
 <section id="robot-collision-representation">
 <h3><a class="toc-backref" href="#id6" role="doc-backlink">Robot Collision Representation</a><a class="headerlink" href="#robot-collision-representation" title="Link to this heading"></a></h3>
-<ol class="arabic">
+<ol class="arabic simple">
 <li><p>Install CuRobo in Isaac sim’s python environment by running <code class="docutils literal notranslate"><span class="pre">omni_python</span> <span class="pre">-m</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">.</span> <span class="pre">--no-build-isolation</span></code> where <code class="docutils literal notranslate"><span class="pre">omni_python</span></code> is the python script from isaac sim (usually found in <code class="docutils literal notranslate"><span class="pre">ISAAC_SIM_PATH/python.sh</span></code>).</p></li>
 <li><p>Convert the urdf of the robot to usd using: <code class="docutils literal notranslate"><span class="pre">omni_python</span> <span class="pre">curobo/examples/isaac_sim/convert_urdf_to_usd.py</span> <span class="pre">--robot</span> <span class="pre">ur5e.yml</span> <span class="pre">--save_usd</span></code></p></li>
 <li><p>Launch NVIDIA Isaac Sim and open the converted usd file.</p></li>
-<li><p>Launch Isaac Utils -&gt; Lula Robot Description Editor and follow the video below:</p>
-<blockquote>
-<div><video controls="True" preload="auto" width="600"><source src="../../videos/sphere_generation_tutorial.mp4" type="video/mp4"></video></div></blockquote>
-</li>
+<li><p>Launch Isaac Utils -&gt; Lula Robot Description Editor and follow the video below:</p></li>
+</ol>
+<p>
+<video autoplay="False" controls="True" loop="False" preload="auto" width="100%"><source src="../../videos/sphere_generation_tutorial.mp4" type="video/mp4"></video>
+</p><ol class="arabic simple" start="5">
 <li><p>Once you have the yaml file, copy the <code class="docutils literal notranslate"><span class="pre">collision_spheres:</span></code> section into your <code class="docutils literal notranslate"><span class="pre">ur5e.yml</span></code> file. Remove <code class="docutils literal notranslate"><span class="pre">-</span></code> before each link name as the generated configuration file treats it as a list while CuRobo requires it to be a dictionary.</p></li>
 </ol>
 <p>Your configuration file should look like below,</p>
