@@ -1,24 +1,14 @@
-<!--
--- Copyright (c) 2023 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
---
--- NVIDIA CORPORATION, its affiliates and licensors retain all intellectual
--- property and proprietary rights in and to this material, related
--- documentation and any modifications thereto. Any use, reproduction,
--- disclosure or distribution of this material and related documentation
--- without an express license agreement from NVIDIA CORPORATION or
--- its affiliates is strictly prohibited.
--->
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CuRobo: CUDA Accelerated Robot Library &mdash; CuRobo  documentation</title>
+  <title>Search &mdash; CuRobo  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
       <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -29,9 +19,10 @@
         <script src="_static/doctools.js?v=888ff710"></script>
         <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Technical Report" href="source/research/research.html" /> 
+    <link rel="search" title="Search" href="#" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -42,12 +33,12 @@
 
           
           
-          <a href="#" class="icon icon-home">
+          <a href="index.html" class="icon icon-home">
             CuRobo
               <img src="_static/nvidia_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
-  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+  <form id="rtd-search-form" class="wy-form" action="#" method="get">
     <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -99,17 +90,16 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="#">CuRobo</a>
+          <a href="index.html">CuRobo</a>
       </nav>
 
       <div class="wy-nav-content">
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">CuRobo: CUDA Accelerated Robot Library</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Search</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -117,45 +107,22 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="curobo-cuda-accelerated-robot-library">
-<h1>CuRobo: CUDA Accelerated Robot Library<a class="headerlink" href="#curobo-cuda-accelerated-robot-library" title="Link to this heading"></a></h1>
-<p>[<a class="reference internal" href="source/research/research.html#research-page"><span class="std std-ref">Research</span></a>] [<a class="reference external" href="https://github.com/nvlabs/curobo">Code</a>] [<a class="reference external" href="reports/curobo_report.pdf">PDF</a>]</p>
-<p><em>This is a Preview Release highlighting the results obtained in our</em> <a class="reference internal" href="source/research/research.html#research-page"><span class="std std-ref">Technical Report</span></a></p>
-<section id="updates">
-<h2>Updates<a class="headerlink" href="#updates" title="Link to this heading"></a></h2>
-<ul class="simple">
-<li><p>Oct 2023: Released CuRobo Technical Report and Source Code.</p></li>
-</ul>
-</section>
-<section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
-<p>CuRobo is a CUDA accelerated library containing a suite of robotics algorithms that run significantly faster than existing implementations leveraging parallel compute. CuRobo currently provides the following algorithms: (1) forward and inverse kinematics,
-(2) collision checking between robot and world, with the world represented as Cuboids, Meshes, and Depth images, (3) numerical optimization with gradient descent, L-BFGS, and MPPI, (4) geometric planning, (5) trajectory optimization, (6) motion generation that combines inverse kinematics, geometric planning, and trajectory optimization to generate global motions within 30ms.</p>
-<video autoplay="True" controls="True" loop="True" preload="auto" width="690"><source src="videos/ur10_real_timer.mp4" type="video/mp4"></video><p>CuRobo generates motions for a UR10 within 100ms on a NVIDIA Jetson Orin.</p>
-<p>CuRobo performs trajectory optimization across many seeds in parallle to find a solution. CuRobo’s trajectory optimization penalizes jerk and accelerations, encouraging smoother and shorter trajectories.</p>
-<video autoplay="True" controls="True" loop="True" preload="auto" width="690"><source src="videos/rrt_compare.mp4" type="video/mp4"></video><p>Comparison of CuRobo’s motion generation on the left to a BiRRT planner on a pick and place task.</p>
-<video autoplay="True" controls="True" loop="True" preload="auto" width="690"><source src="videos/benchmark_curobo.mp4" type="video/mp4"></video><p>Example motions generated by CuRobo on the motionbenchmaker and motion policy networks datasets.</p>
-<div class="toctree-wrapper compound">
-</div>
-<div class="toctree-wrapper compound">
-</div>
-<div class="toctree-wrapper compound">
-</div>
-<div class="toctree-wrapper compound">
-</div>
-<div class="toctree-wrapper compound">
-</div>
-<div class="toctree-wrapper compound">
-</div>
-</section>
-</section>
+  <noscript>
+  <div id="fallback" class="admonition warning">
+    <p class="last">
+      Please activate JavaScript to enable the search functionality.
+    </p>
+  </div>
+  </noscript>
 
+  
+  <div id="search-results">
+  
+  </div>
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="source/research/research.html" class="btn btn-neutral float-right" title="Technical Report" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+          <footer>
 
   <hr/>
 
@@ -178,16 +145,12 @@
           SphinxRtdTheme.Navigation.enable(false);
       });
   </script>
- <script type="text/javascript">
-    $(document).ready(function() {
-        $(".toggle > *").hide();
-        $(".toggle .header").show();
-        $(".toggle .header").click(function() {
-            $(this).parent().children().not(".header").toggle(250);
-            $(this).parent().children(".header").toggleClass("open");
-        })
-    });
-</script>
+  <script>
+    jQuery(function() { Search.loadIndex("searchindex.js"); });
+  </script>
+  
+  <script id="searchindexloader"></script>
+   
 
 
 </body>

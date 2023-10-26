@@ -1,0 +1,460 @@
+<!--
+-- Copyright (c) 2023 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+--
+-- NVIDIA CORPORATION, its affiliates and licensors retain all intellectual
+-- property and proprietary rights in and to this material, related
+-- documentation and any modifications thereto. Any use, reproduction,
+-- disclosure or distribution of this material and related documentation
+-- without an express license agreement from NVIDIA CORPORATION or
+-- its affiliates is strictly prohibited.
+-->
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Using in Python &mdash; CuRobo  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Using with Isaac Sim" href="2b_isaacsim_examples.html" />
+    <link rel="prev" title="Basics" href="1a_quick_overview.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            CuRobo
+              <img src="../../_static/nvidia_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Research</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../research/research.html">Technical Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../research/research_using_curobo.html">Research using CuRobo</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Library Overview</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="1_install_instructions.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1a_quick_overview.html">Basics</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Using in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2b_isaacsim_examples.html">Using with Isaac Sim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2c_world_collision.html">Collision World Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2d_nvblox_demo.html">Using with Depth Camera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2e_torch_layer_example.html">Using in a Neural Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_benchmarks.html">Benchmarks &amp; Profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_docker_development.html">Docker Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_known_issues.html">Known Issues</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Advanced Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_examples/2a_batch_env.html">Batched Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_examples/2b_block_stacking_example.html">Block Stacking</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/1_robot_configuration.html">Configuring a New Robot</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../notes/01_robot_list.html">Supported Robots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/02_numerical_optimization.html">Numerical Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/04_cuda_kernels.html">CUDA Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/05_usd_api.html">USD for Robot and World Representation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">Python API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">CuRobo</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Using in Python</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/source/getting_started/2a_python_examples.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="using-in-python">
+<span id="python-examples"></span><h1>Using in Python<a class="headerlink" href="#using-in-python" title="Link to this heading"></a></h1>
+<p>We will go over some python snippets to access some of the core functionalities in CuRobo.</p>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#forward-kinematics" id="id1">Forward Kinematics</a></p></li>
+<li><p><a class="reference internal" href="#collision-checking" id="id2">Collision Checking</a></p></li>
+<li><p><a class="reference internal" href="#inverse-kinematics" id="id3">Inverse Kinematics</a></p></li>
+<li><p><a class="reference internal" href="#motion-generation" id="id4">Motion Generation</a></p></li>
+</ul>
+</nav>
+<section id="forward-kinematics">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Forward Kinematics</a><a class="headerlink" href="#forward-kinematics" title="Link to this heading"></a></h2>
+<p>Forward kinematics maps a robot’s joint configuration to the Cartesian pose of the robot’s links and also the
+position of the collision spheres. To compute Forward kinematics from a urdf file of a robot use the below snippet,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Third Party</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+
+<span class="c1"># CuRobo</span>
+<span class="kn">from</span> <span class="nn">curobo.cuda_robot_model.cuda_robot_model</span> <span class="kn">import</span> <span class="n">CudaRobotModel</span><span class="p">,</span> <span class="n">CudaRobotModelConfig</span>
+<span class="kn">from</span> <span class="nn">curobo.types.base</span> <span class="kn">import</span> <span class="n">TensorDeviceType</span>
+<span class="kn">from</span> <span class="nn">curobo.types.robot</span> <span class="kn">import</span> <span class="n">RobotConfig</span>
+<span class="kn">from</span> <span class="nn">curobo.util_file</span> <span class="kn">import</span> <span class="n">get_robot_path</span><span class="p">,</span> <span class="n">join_path</span><span class="p">,</span> <span class="n">load_yaml</span>
+
+<span class="c1"># convenience function to store tensor type and device</span>
+<span class="n">tensor_args</span> <span class="o">=</span> <span class="n">TensorDeviceType</span><span class="p">()</span>
+
+<span class="c1"># this example loads urdf from a configuration file, you can also load from path directly</span>
+<span class="c1"># load a urdf, the base frame and the end-effector frame:</span>
+<span class="n">config_file</span> <span class="o">=</span> <span class="n">load_yaml</span><span class="p">(</span><span class="n">join_path</span><span class="p">(</span><span class="n">get_robot_path</span><span class="p">(),</span> <span class="s2">&quot;franka.yml&quot;</span><span class="p">))</span>
+
+<span class="n">urdf_file</span> <span class="o">=</span> <span class="n">config_file</span><span class="p">[</span><span class="s2">&quot;robot_cfg&quot;</span><span class="p">][</span><span class="s2">&quot;kinematics&quot;</span><span class="p">][</span>
+    <span class="s2">&quot;urdf_path&quot;</span>
+<span class="p">]</span>  <span class="c1"># Send global path starting with &quot;/&quot;</span>
+<span class="n">base_link</span> <span class="o">=</span> <span class="n">config_file</span><span class="p">[</span><span class="s2">&quot;robot_cfg&quot;</span><span class="p">][</span><span class="s2">&quot;kinematics&quot;</span><span class="p">][</span><span class="s2">&quot;base_link&quot;</span><span class="p">]</span>
+<span class="n">ee_link</span> <span class="o">=</span> <span class="n">config_file</span><span class="p">[</span><span class="s2">&quot;robot_cfg&quot;</span><span class="p">][</span><span class="s2">&quot;kinematics&quot;</span><span class="p">][</span><span class="s2">&quot;ee_link&quot;</span><span class="p">]</span>
+
+<span class="c1"># Generate robot configuration from  urdf path, base frame, end effector frame</span>
+
+<span class="n">robot_cfg</span> <span class="o">=</span> <span class="n">RobotConfig</span><span class="o">.</span><span class="n">from_basic</span><span class="p">(</span><span class="n">urdf_file</span><span class="p">,</span> <span class="n">base_link</span><span class="p">,</span> <span class="n">ee_link</span><span class="p">,</span> <span class="n">tensor_args</span><span class="p">)</span>
+
+<span class="n">kin_model</span> <span class="o">=</span> <span class="n">CudaRobotModel</span><span class="p">(</span><span class="n">robot_cfg</span><span class="o">.</span><span class="n">kinematics</span><span class="p">)</span>
+
+<span class="c1"># compute forward kinematics:</span>
+<span class="c1"># torch random sampling might give values out of joint limits</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span> <span class="n">kin_model</span><span class="o">.</span><span class="n">get_dof</span><span class="p">()),</span> <span class="o">**</span><span class="nb">vars</span><span class="p">(</span><span class="n">tensor_args</span><span class="p">))</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">kin_model</span><span class="o">.</span><span class="n">get_state</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>When loading a robot from a urdf file, we do not have any collision sphere information and hence collision checking
+is not possible. To load collision spheres for a robot, convert your robot urdf to a CuRobo robot configuration file
+following <a class="reference internal" href="../tutorials/1_robot_configuration.html#tut-robot-configuration"><span class="std std-ref">Configuring a New Robot</span></a>.</p>
+<p>You can load forward kinematics from a robot configuration file as below,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Third Party</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+
+<span class="c1"># CuRobo</span>
+<span class="kn">from</span> <span class="nn">curobo.cuda_robot_model.cuda_robot_model</span> <span class="kn">import</span> <span class="n">CudaRobotModel</span><span class="p">,</span> <span class="n">CudaRobotModelConfig</span>
+<span class="kn">from</span> <span class="nn">curobo.types.base</span> <span class="kn">import</span> <span class="n">TensorDeviceType</span>
+<span class="kn">from</span> <span class="nn">curobo.types.robot</span> <span class="kn">import</span> <span class="n">RobotConfig</span>
+<span class="kn">from</span> <span class="nn">curobo.util_file</span> <span class="kn">import</span> <span class="n">get_robot_path</span><span class="p">,</span> <span class="n">join_path</span><span class="p">,</span> <span class="n">load_yaml</span>
+
+
+<span class="n">tensor_args</span> <span class="o">=</span> <span class="n">TensorDeviceType</span><span class="p">()</span>
+
+<span class="n">config_file</span> <span class="o">=</span> <span class="n">load_yaml</span><span class="p">(</span><span class="n">join_path</span><span class="p">(</span><span class="n">get_robot_path</span><span class="p">(),</span> <span class="s2">&quot;franka.yml&quot;</span><span class="p">))[</span><span class="s2">&quot;robot_cfg&quot;</span><span class="p">]</span>
+<span class="n">robot_cfg</span> <span class="o">=</span> <span class="n">RobotConfig</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">config_file</span><span class="p">,</span> <span class="n">tensor_args</span><span class="p">)</span>
+
+<span class="n">kin_model</span> <span class="o">=</span> <span class="n">CudaRobotModel</span><span class="p">(</span><span class="n">robot_cfg</span><span class="o">.</span><span class="n">kinematics</span><span class="p">)</span>
+
+<span class="c1"># compute forward kinematics:</span>
+<span class="c1"># torch random sampling might give values out of joint limits</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span> <span class="n">kin_model</span><span class="o">.</span><span class="n">get_dof</span><span class="p">()),</span> <span class="o">**</span><span class="nb">vars</span><span class="p">(</span><span class="n">tensor_args</span><span class="p">))</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">kin_model</span><span class="o">.</span><span class="n">get_state</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="collision-checking">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Collision Checking</a><a class="headerlink" href="#collision-checking" title="Link to this heading"></a></h2>
+<p>CuRobo provides a convenience class <a class="reference internal" href="../../_api/curobo.wrap.model.robot_world.html#curobo.wrap.model.robot_world.RobotWorld" title="curobo.wrap.model.robot_world.RobotWorld"><code class="xref py py-class docutils literal notranslate"><span class="pre">curobo.wrap.model.robot_world.RobotWorld</span></code></a> for computing
+signed distance between a robot and the world. It can also be used to query signed distance for
+arbitrary spheres, robot self-collision distance, and robot kinematics functions.
+We explain the different components of this class and also how to use in a learning pipeline in
+<a class="reference internal" href="2e_torch_layer_example.html#curobo-torch-layer"><span class="std std-ref">Using in a Neural Network</span></a> page. We dive into more details on how to build the world model, including having
+tensorized world models for querying signed distance for robots working in different worlds and the
+available collision checkers in <a class="reference internal" href="2c_world_collision.html#world-collision"><span class="std std-ref">Collision World Representation</span></a>. We provide some quick examples
+here for collision checking.</p>
+<p>Create an instance of <a class="reference internal" href="../../_api/curobo.wrap.model.robot_world.html#curobo.wrap.model.robot_world.RobotWorld" title="curobo.wrap.model.robot_world.RobotWorld"><code class="xref py py-class docutils literal notranslate"><span class="pre">curobo.wrap.model.robot_world.RobotWorld</span></code></a> with a Franka Panda robot and
+a world built from a dictionary,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Third Party</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="c1"># CuRobo</span>
+<span class="kn">from</span> <span class="nn">curobo.types.base</span> <span class="kn">import</span> <span class="n">TensorDeviceType</span>
+<span class="kn">from</span> <span class="nn">curobo.wrap.model.robot_world</span> <span class="kn">import</span> <span class="n">RobotWorld</span><span class="p">,</span> <span class="n">RobotWorldConfig</span>
+
+<span class="n">robot_file</span> <span class="o">=</span> <span class="s2">&quot;franka.yml&quot;</span>
+
+<span class="c1"># create a world from a dictionary of objects</span>
+<span class="c1"># cuboid: {} # dictionary of objects that are cuboids</span>
+<span class="c1"># mesh: {} # dictionary of objects that are meshes</span>
+<span class="n">world_config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;cuboid&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;table&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;dims&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">],</span> <span class="s2">&quot;pose&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]},</span>
+        <span class="s2">&quot;cube_1&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;dims&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">],</span> <span class="s2">&quot;pose&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]},</span>
+    <span class="p">},</span>
+    <span class="s2">&quot;mesh&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;scene&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;pose&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">0.080</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">,</span> <span class="mf">0.043</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.471</span><span class="p">,</span> <span class="mf">0.284</span><span class="p">,</span> <span class="mf">0.834</span><span class="p">],</span>
+            <span class="s2">&quot;file_path&quot;</span><span class="p">:</span> <span class="s2">&quot;scene/nvblox/srl_ur10_bins.obj&quot;</span><span class="p">,</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+<span class="p">}</span>
+<span class="n">tensor_args</span> <span class="o">=</span> <span class="n">TensorDeviceType</span><span class="p">()</span>
+<span class="n">config</span> <span class="o">=</span> <span class="n">RobotWorldConfig</span><span class="o">.</span><span class="n">load_from_config</span><span class="p">(</span><span class="n">robot_file</span><span class="p">,</span> <span class="n">world_file</span><span class="p">,</span>
+                                          <span class="n">collision_activation_distance</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+<span class="n">curobo_fn</span> <span class="o">=</span> <span class="n">RobotWorld</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>query signed distance for arbitrary spheres,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># create spheres with shape batch, horizon, n_spheres, 4.</span>
+<span class="n">q_sph</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">device</span><span class="o">=</span><span class="n">tensor_args</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tensor_args</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+<span class="n">q_sph</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.2</span> <span class="c1"># radius of spheres</span>
+
+<span class="n">d</span> <span class="o">=</span> <span class="n">curobo_fn</span><span class="o">.</span><span class="n">get_collision_distance</span><span class="p">(</span><span class="n">q_sph</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>compute signed distance between robot and world with,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">q_s</span> <span class="o">=</span> <span class="n">curobo_fn</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">mask_valid</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">d_world</span><span class="p">,</span> <span class="n">d_self</span> <span class="o">=</span> <span class="n">curobo_fn</span><span class="o">.</span><span class="n">get_world_self_collision_distance_from_joints</span><span class="p">(</span><span class="n">q_s</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This robot world instance also provides kinematics queries, outputting <a class="reference internal" href="../../_api/curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.CudaRobotModelState" title="curobo.cuda_robot_model.types.CudaRobotModelState"><code class="xref py py-class docutils literal notranslate"><span class="pre">curobo.cuda_robot_model.types.CudaRobotModelState</span></code></a></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">state</span> <span class="o">=</span> <span class="n">curobo_fn</span><span class="o">.</span><span class="n">get_kinematics</span><span class="p">(</span><span class="n">q_s</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>CuRobo computes signed distance as penetration depth, so a positive distance means that there
+is collision. CuRobo currently does not provide distance outside of collision, however if you
+want to add a buffer for safety, you can make <code class="docutils literal notranslate"><span class="pre">collision_activation_distance</span></code> greater than
+zero, which will return distance upto the specified distance outside collision.</p>
+</div>
+</section>
+<section id="inverse-kinematics">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Inverse Kinematics</a><a class="headerlink" href="#inverse-kinematics" title="Link to this heading"></a></h2>
+<p>To run inverse kinematics, given a urdf,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Third Party</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+
+<span class="c1"># CuRobo</span>
+<span class="kn">from</span> <span class="nn">curobo.types.base</span> <span class="kn">import</span> <span class="n">TensorDeviceType</span>
+<span class="kn">from</span> <span class="nn">curobo.types.math</span> <span class="kn">import</span> <span class="n">Pose</span>
+<span class="kn">from</span> <span class="nn">curobo.types.robot</span> <span class="kn">import</span> <span class="n">RobotConfig</span>
+<span class="kn">from</span> <span class="nn">curobo.util_file</span> <span class="kn">import</span> <span class="n">get_robot_configs_path</span><span class="p">,</span> <span class="n">join_path</span><span class="p">,</span> <span class="n">load_yaml</span>
+<span class="kn">from</span> <span class="nn">curobo.wrap.reacher.ik_solver</span> <span class="kn">import</span> <span class="n">IKSolver</span><span class="p">,</span> <span class="n">IKSolverConfig</span>
+
+
+<span class="n">tensor_args</span> <span class="o">=</span> <span class="n">TensorDeviceType</span><span class="p">()</span>
+
+<span class="n">config_file</span> <span class="o">=</span> <span class="n">load_yaml</span><span class="p">(</span><span class="n">join_path</span><span class="p">(</span><span class="n">get_robot_configs_path</span><span class="p">(),</span> <span class="s2">&quot;franka.yml&quot;</span><span class="p">))</span>
+<span class="n">urdf_file</span> <span class="o">=</span> <span class="n">config_file</span><span class="p">[</span><span class="s2">&quot;robot_cfg&quot;</span><span class="p">][</span><span class="s2">&quot;kinematics&quot;</span><span class="p">][</span>
+    <span class="s2">&quot;urdf_path&quot;</span>
+<span class="p">]</span>  <span class="c1"># Send global path starting with &quot;/&quot;</span>
+<span class="n">base_link</span> <span class="o">=</span> <span class="n">config_file</span><span class="p">[</span><span class="s2">&quot;robot_cfg&quot;</span><span class="p">][</span><span class="s2">&quot;kinematics&quot;</span><span class="p">][</span><span class="s2">&quot;base_link&quot;</span><span class="p">]</span>
+<span class="n">ee_link</span> <span class="o">=</span> <span class="n">config_file</span><span class="p">[</span><span class="s2">&quot;robot_cfg&quot;</span><span class="p">][</span><span class="s2">&quot;kinematics&quot;</span><span class="p">][</span><span class="s2">&quot;ee_link&quot;</span><span class="p">]</span>
+<span class="n">robot_cfg</span> <span class="o">=</span> <span class="n">RobotConfig</span><span class="o">.</span><span class="n">from_basic</span><span class="p">(</span><span class="n">urdf_file</span><span class="p">,</span> <span class="n">base_link</span><span class="p">,</span> <span class="n">ee_link</span><span class="p">,</span> <span class="n">tensor_args</span><span class="p">)</span>
+
+<span class="n">ik_config</span> <span class="o">=</span> <span class="n">IKSolverConfig</span><span class="o">.</span><span class="n">load_from_robot_config</span><span class="p">(</span>
+    <span class="n">robot_cfg</span><span class="p">,</span>
+    <span class="kc">None</span><span class="p">,</span>
+    <span class="n">rotation_threshold</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+    <span class="n">position_threshold</span><span class="o">=</span><span class="mf">0.005</span><span class="p">,</span>
+    <span class="n">num_seeds</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+    <span class="n">self_collision_check</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">self_collision_opt</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">tensor_args</span><span class="o">=</span><span class="n">tensor_args</span><span class="p">,</span>
+    <span class="n">use_cuda_graph</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">ik_solver</span> <span class="o">=</span> <span class="n">IKSolver</span><span class="p">(</span><span class="n">ik_config</span><span class="p">)</span>
+
+<span class="n">q_sample</span> <span class="o">=</span> <span class="n">ik_solver</span><span class="o">.</span><span class="n">sample_configs</span><span class="p">(</span><span class="mi">5000</span><span class="p">)</span>
+<span class="n">kin_state</span> <span class="o">=</span> <span class="n">ik_solver</span><span class="o">.</span><span class="n">fk</span><span class="p">(</span><span class="n">q_sample</span><span class="p">)</span>
+<span class="n">goal</span> <span class="o">=</span> <span class="n">Pose</span><span class="p">(</span><span class="n">kin_state</span><span class="o">.</span><span class="n">ee_position</span><span class="p">,</span> <span class="n">kin_state</span><span class="o">.</span><span class="n">ee_quaternion</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">ik_solver</span><span class="o">.</span><span class="n">solve_batch</span><span class="p">(</span><span class="n">goal</span><span class="p">)</span>
+<span class="n">q_solution</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">solution</span><span class="p">[</span><span class="n">result</span><span class="o">.</span><span class="n">success</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>To obtain collision-free inverse kinematics,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Third Party</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+
+<span class="c1"># CuRobo</span>
+<span class="kn">from</span> <span class="nn">curobo.geom.types</span> <span class="kn">import</span> <span class="n">WorldConfig</span>
+<span class="kn">from</span> <span class="nn">curobo.types.base</span> <span class="kn">import</span> <span class="n">TensorDeviceType</span>
+<span class="kn">from</span> <span class="nn">curobo.types.math</span> <span class="kn">import</span> <span class="n">Pose</span>
+<span class="kn">from</span> <span class="nn">curobo.types.robot</span> <span class="kn">import</span> <span class="n">RobotConfig</span>
+<span class="kn">from</span> <span class="nn">curobo.util_file</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">get_robot_configs_path</span><span class="p">,</span>
+    <span class="n">get_world_configs_path</span><span class="p">,</span>
+    <span class="n">join_path</span><span class="p">,</span>
+    <span class="n">load_yaml</span><span class="p">,</span>
+    <span class="p">)</span>
+<span class="kn">from</span> <span class="nn">curobo.wrap.reacher.ik_solver</span> <span class="kn">import</span> <span class="n">IKSolver</span><span class="p">,</span> <span class="n">IKSolverConfig</span>
+
+<span class="n">tensor_args</span> <span class="o">=</span> <span class="n">TensorDeviceType</span><span class="p">()</span>
+<span class="n">world_file</span> <span class="o">=</span> <span class="s2">&quot;collision_cage.yml&quot;</span>
+
+<span class="n">robot_file</span> <span class="o">=</span> <span class="s2">&quot;franka.yml&quot;</span>
+<span class="n">robot_cfg</span> <span class="o">=</span> <span class="n">RobotConfig</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span>
+    <span class="n">load_yaml</span><span class="p">(</span><span class="n">join_path</span><span class="p">(</span><span class="n">get_robot_configs_path</span><span class="p">(),</span> <span class="n">robot_file</span><span class="p">))[</span><span class="s2">&quot;robot_cfg&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="n">world_cfg</span> <span class="o">=</span> <span class="n">WorldConfig</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">load_yaml</span><span class="p">(</span><span class="n">join_path</span><span class="p">(</span><span class="n">get_world_configs_path</span><span class="p">(),</span> <span class="n">world_file</span><span class="p">)))</span>
+<span class="n">ik_config</span> <span class="o">=</span> <span class="n">IKSolverConfig</span><span class="o">.</span><span class="n">load_from_robot_config</span><span class="p">(</span>
+    <span class="n">robot_cfg</span><span class="p">,</span>
+    <span class="n">world_cfg</span><span class="p">,</span>
+    <span class="n">rotation_threshold</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+    <span class="n">position_threshold</span><span class="o">=</span><span class="mf">0.005</span><span class="p">,</span>
+    <span class="n">num_seeds</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+    <span class="n">self_collision_check</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">self_collision_opt</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">tensor_args</span><span class="o">=</span><span class="n">tensor_args</span><span class="p">,</span>
+    <span class="n">use_cuda_graph</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">ik_solver</span> <span class="o">=</span> <span class="n">IKSolver</span><span class="p">(</span><span class="n">ik_config</span><span class="p">)</span>
+
+<span class="n">q_sample</span> <span class="o">=</span> <span class="n">ik_solver</span><span class="o">.</span><span class="n">sample_configs</span><span class="p">(</span><span class="mi">5000</span><span class="p">)</span>
+<span class="n">kin_state</span> <span class="o">=</span> <span class="n">ik_solver</span><span class="o">.</span><span class="n">fk</span><span class="p">(</span><span class="n">q_sample</span><span class="p">)</span>
+<span class="n">goal</span> <span class="o">=</span> <span class="n">Pose</span><span class="p">(</span><span class="n">kin_state</span><span class="o">.</span><span class="n">ee_position</span><span class="p">,</span> <span class="n">kin_state</span><span class="o">.</span><span class="n">ee_quaternion</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">ik_solver</span><span class="o">.</span><span class="n">solve_batch</span><span class="p">(</span><span class="n">goal</span><span class="p">)</span>
+<span class="n">q_solution</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">solution</span><span class="p">[</span><span class="n">result</span><span class="o">.</span><span class="n">success</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>CuRobo’s <a class="reference internal" href="../../_api/curobo.wrap.reacher.ik_solver.html#curobo.wrap.reacher.ik_solver.IKSolver" title="curobo.wrap.reacher.ik_solver.IKSolver"><code class="xref py py-class docutils literal notranslate"><span class="pre">curobo.wrap.reacher.ik_solver.IKSolver</span></code></a> returns
+<a class="reference internal" href="../../_api/curobo.wrap.reacher.ik_solver.html#curobo.wrap.reacher.ik_solver.IKResult" title="curobo.wrap.reacher.ik_solver.IKResult"><code class="xref py py-class docutils literal notranslate"><span class="pre">curobo.wrap.reacher.ik_solver.IKResult</span></code></a> which also provides errors and success metrics.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you want to run IK with different batch sizes, set <code class="docutils literal notranslate"><span class="pre">use_cuda_graph=False</span></code> when initializing
+<cite>IKSolverConfig</cite>. This will run slower, can take upto 10x more time. Enabling cuda graph allows
+for capturing all cuda kernel calls in a CUDAGraph and only calling this recorded graph to run
+the IKSolver for a new problem set. However, we cannot change the shape of any tensor once the
+graph is recorded. Hence, CUDAGraph is only available for fixed size queries in CuRobo.</p>
+</div>
+</section>
+<section id="motion-generation">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Motion Generation</a><a class="headerlink" href="#motion-generation" title="Link to this heading"></a></h2>
+<p>To obtain collision-free trajectories,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># CuRobo</span>
+<span class="kn">from</span> <span class="nn">curobo.geom.sdf.world</span> <span class="kn">import</span> <span class="n">CollisionCheckerType</span>
+<span class="kn">from</span> <span class="nn">curobo.types.base</span> <span class="kn">import</span> <span class="n">TensorDeviceType</span>
+<span class="kn">from</span> <span class="nn">curobo.types.math</span> <span class="kn">import</span> <span class="n">Pose</span>
+<span class="kn">from</span> <span class="nn">curobo.types.robot</span> <span class="kn">import</span> <span class="n">JointState</span><span class="p">,</span> <span class="n">RobotConfig</span>
+<span class="kn">from</span> <span class="nn">curobo.util_file</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">get_robot_configs_path</span><span class="p">,</span>
+    <span class="n">get_world_configs_path</span><span class="p">,</span>
+    <span class="n">join_path</span><span class="p">,</span>
+    <span class="n">load_yaml</span><span class="p">,</span>
+    <span class="p">)</span>
+<span class="kn">from</span> <span class="nn">curobo.wrap.reacher.motion_gen</span> <span class="kn">import</span> <span class="n">MotionGen</span><span class="p">,</span> <span class="n">MotionGenConfig</span><span class="p">,</span> <span class="n">MotionGenPlanConfig</span>
+
+<span class="n">tensor_args</span> <span class="o">=</span> <span class="n">TensorDeviceType</span><span class="p">()</span>
+<span class="n">world_file</span> <span class="o">=</span> <span class="s2">&quot;collision_table.yml&quot;</span>
+<span class="n">robot_file</span> <span class="o">=</span> <span class="s2">&quot;franka.yml&quot;</span>
+<span class="n">motion_gen_config</span> <span class="o">=</span> <span class="n">MotionGenConfig</span><span class="o">.</span><span class="n">load_from_robot_config</span><span class="p">(</span>
+    <span class="n">robot_file</span><span class="p">,</span>
+    <span class="n">world_file</span><span class="p">,</span>
+    <span class="n">tensor_args</span><span class="p">,</span>
+    <span class="n">interpolation_dt</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">motion_gen</span> <span class="o">=</span> <span class="n">MotionGen</span><span class="p">(</span><span class="n">motion_gen_config</span><span class="p">)</span>
+<span class="n">motion_gen</span><span class="o">.</span><span class="n">warmup</span><span class="p">(</span><span class="n">enable_graph</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">robot_cfg</span> <span class="o">=</span> <span class="n">load_yaml</span><span class="p">(</span><span class="n">join_path</span><span class="p">(</span><span class="n">get_robot_configs_path</span><span class="p">(),</span> <span class="n">robot_file</span><span class="p">))[</span><span class="s2">&quot;robot_cfg&quot;</span><span class="p">]</span>
+<span class="n">robot_cfg</span> <span class="o">=</span> <span class="n">RobotConfig</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">robot_cfg</span><span class="p">,</span> <span class="n">tensor_args</span><span class="p">)</span>
+<span class="n">retract_cfg</span> <span class="o">=</span> <span class="n">motion_gen</span><span class="o">.</span><span class="n">get_retract_config</span><span class="p">()</span>
+
+<span class="n">state</span> <span class="o">=</span> <span class="n">motion_gen</span><span class="o">.</span><span class="n">rollout_fn</span><span class="o">.</span><span class="n">compute_kinematics</span><span class="p">(</span>
+    <span class="n">JointState</span><span class="o">.</span><span class="n">from_position</span><span class="p">(</span><span class="n">retract_cfg</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class="p">)</span>
+
+<span class="n">retract_pose</span> <span class="o">=</span> <span class="n">Pose</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">ee_pos_seq</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(),</span> <span class="n">quaternion</span><span class="o">=</span><span class="n">state</span><span class="o">.</span><span class="n">ee_quat_seq</span><span class="o">.</span><span class="n">squeeze</span><span class="p">())</span>
+<span class="n">start_state</span> <span class="o">=</span> <span class="n">JointState</span><span class="o">.</span><span class="n">from_position</span><span class="p">(</span><span class="n">retract_cfg</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.3</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">motion_gen</span><span class="o">.</span><span class="n">plan_single</span><span class="p">(</span>
+    <span class="n">start_state</span><span class="p">,</span> <span class="n">retract_pose</span><span class="p">,</span> <span class="n">MotionGenPlanConfig</span><span class="p">(</span><span class="n">max_attempts</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">optimized_plan</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">traj</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">get_interpolated_plan</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Trajectory Generated: &quot;</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">success</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">optimized_dt</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In all above examples, we loaded the world from a <code class="docutils literal notranslate"><span class="pre">yaml</span></code> file. CuRobo consumes world representation
+from an instance of <a class="reference internal" href="../../_api/curobo.geom.types.html#curobo.geom.types.WorldConfig" title="curobo.geom.types.WorldConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">curobo.geom.types.WorldConfig</span></code></a>. You can store your world as a dictionary
+in a <code class="docutils literal notranslate"><span class="pre">yaml</span></code> file and load from disk or build the world programmatically. See <a class="reference internal" href="2c_world_collision.html#world-collision"><span class="std std-ref">Collision World Representation</span></a> for a more details.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="1a_quick_overview.html" class="btn btn-neutral float-left" title="Basics" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="2b_isaacsim_examples.html" class="btn btn-neutral float-right" title="Using with Isaac Sim" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, NVIDIA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(250);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

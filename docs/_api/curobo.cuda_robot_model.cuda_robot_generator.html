@@ -1,0 +1,444 @@
+<!--
+-- Copyright (c) 2023 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+--
+-- NVIDIA CORPORATION, its affiliates and licensors retain all intellectual
+-- property and proprietary rights in and to this material, related
+-- documentation and any modifications thereto. Any use, reproduction,
+-- disclosure or distribution of this material and related documentation
+-- without an express license agreement from NVIDIA CORPORATION or
+-- its affiliates is strictly prohibited.
+-->
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>curobo.cuda_robot_model.cuda_robot_generator module &mdash; CuRobo  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="curobo.cuda_robot_model.cuda_robot_model module" href="curobo.cuda_robot_model.cuda_robot_model.html" />
+    <link rel="prev" title="curobo.cuda_robot_model package" href="curobo.cuda_robot_model.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CuRobo
+              <img src="../_static/nvidia_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Research</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/research/research.html">Technical Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/research/research_using_curobo.html">Research using CuRobo</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Library Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/1_install_instructions.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/1a_quick_overview.html">Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2a_python_examples.html">Using in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2b_isaacsim_examples.html">Using with Isaac Sim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2c_world_collision.html">Collision World Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2d_nvblox_demo.html">Using with Depth Camera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2e_torch_layer_example.html">Using in a Neural Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/4_benchmarks.html">Benchmarks &amp; Profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/5_docker_development.html">Docker Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/6_known_issues.html">Known Issues</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Advanced Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2a_batch_env.html">Batched Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2b_block_stacking_example.html">Block Stacking</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/tutorials/1_robot_configuration.html">Configuring a New Robot</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/01_robot_list.html">Supported Robots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/02_numerical_optimization.html">Numerical Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/04_cuda_kernels.html">CUDA Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/05_usd_api.html">USD for Robot and World Representation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">Python API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CuRobo</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../api.html">Python API</a></li>
+          <li class="breadcrumb-item"><a href="curobo.cuda_robot_model.html">curobo.cuda_robot_model package</a></li>
+      <li class="breadcrumb-item active">curobo.cuda_robot_model.cuda_robot_generator module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/_api/curobo.cuda_robot_model.cuda_robot_generator.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-curobo.cuda_robot_model.cuda_robot_generator">
+<span id="curobo-cuda-robot-model-cuda-robot-generator-module"></span><h1>curobo.cuda_robot_model.cuda_robot_generator module<a class="headerlink" href="#module-curobo.cuda_robot_model.cuda_robot_generator" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">curobo.cuda_robot_model.cuda_robot_generator.</span></span><span class="sig-name descname"><span class="pre">CudaRobotGeneratorConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base_link</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ee_link</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tensor_args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">TensorDeviceType(device=device(type='cuda',</span> <span class="pre">index=0),</span> <span class="pre">dtype=torch.float32)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">link_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collision_link_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collision_spheres</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collision_sphere_buffer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compute_jacobian</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">self_collision_buffer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">self_collision_ignore</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_global_cumul</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">asset_root_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mesh_link_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">load_link_names_with_mesh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">urdf_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">usd_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">usd_robot_root</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">isaac_usd_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_usd_kinematics</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">usd_flip_joints</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">usd_flip_joint_limits</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lock_joints</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra_links</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_object_link</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_external_assets</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra_collision_spheres</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cspace</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Create Cuda Robot Model Configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>base_link</strong> (<em>str</em>) – </p></li>
+<li><p><strong>ee_link</strong> (<em>str</em>) – </p></li>
+<li><p><strong>tensor_args</strong> (<a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType" title="curobo.types.base.TensorDeviceType"><em>TensorDeviceType</em></a>) – </p></li>
+<li><p><strong>link_names</strong> (<em>List</em><em>[</em><em>str</em><em>] </em><em>| </em><em>None</em>) – </p></li>
+<li><p><strong>collision_link_names</strong> (<em>List</em><em>[</em><em>str</em><em>] </em><em>| </em><em>None</em>) – </p></li>
+<li><p><strong>collision_spheres</strong> (<em>None</em><em> | </em><em>str</em><em> | </em><em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – </p></li>
+<li><p><strong>collision_sphere_buffer</strong> (<em>float</em>) – </p></li>
+<li><p><strong>compute_jacobian</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>self_collision_buffer</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>float</em><em>] </em><em>| </em><em>None</em>) – </p></li>
+<li><p><strong>self_collision_ignore</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>List</em><em>[</em><em>str</em><em>]</em><em>] </em><em>| </em><em>None</em>) – </p></li>
+<li><p><strong>debug</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>] </em><em>| </em><em>None</em>) – </p></li>
+<li><p><strong>use_global_cumul</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>asset_root_path</strong> (<em>str</em>) – </p></li>
+<li><p><strong>mesh_link_names</strong> (<em>List</em><em>[</em><em>str</em><em>] </em><em>| </em><em>None</em>) – </p></li>
+<li><p><strong>load_link_names_with_mesh</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>urdf_path</strong> (<em>str</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>usd_path</strong> (<em>str</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>usd_robot_root</strong> (<em>str</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>isaac_usd_path</strong> (<em>str</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>use_usd_kinematics</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>usd_flip_joints</strong> (<em>List</em><em>[</em><em>str</em><em>] </em><em>| </em><em>None</em>) – </p></li>
+<li><p><strong>usd_flip_joint_limits</strong> (<em>List</em><em>[</em><em>str</em><em>] </em><em>| </em><em>None</em>) – </p></li>
+<li><p><strong>lock_joints</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>float</em><em>] </em><em>| </em><em>None</em>) – </p></li>
+<li><p><strong>extra_links</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><a class="reference internal" href="curobo.cuda_robot_model.kinematics_parser.html#curobo.cuda_robot_model.kinematics_parser.LinkParams" title="curobo.cuda_robot_model.kinematics_parser.LinkParams"><em>LinkParams</em></a><em>] </em><em>| </em><em>None</em>) – </p></li>
+<li><p><strong>add_object_link</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>use_external_assets</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>extra_collision_spheres</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>int</em><em>] </em><em>| </em><em>None</em>) – </p></li>
+<li><p><strong>cspace</strong> (<em>None</em><em> | </em><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.CSpaceConfig" title="curobo.cuda_robot_model.types.CSpaceConfig"><em>CSpaceConfig</em></a><em> | </em><em>Dict</em><em>[</em><em>str</em><em>, </em><em>List</em><em>[</em><em>Any</em><em>]</em><em>]</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.base_link">
+<span class="sig-name descname"><span class="pre">base_link</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.base_link" title="Link to this definition"></a></dt>
+<dd><p>Name of base link for kinematic tree.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.ee_link">
+<span class="sig-name descname"><span class="pre">ee_link</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.ee_link" title="Link to this definition"></a></dt>
+<dd><p>Name of end-effector link to compute pose.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.tensor_args">
+<span class="sig-name descname"><span class="pre">tensor_args</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType" title="curobo.types.base.TensorDeviceType"><span class="pre">TensorDeviceType</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">TensorDeviceType(device=device(type='cuda',</span> <span class="pre">index=0),</span> <span class="pre">dtype=torch.float32)</span></em><a class="headerlink" href="#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.tensor_args" title="Link to this definition"></a></dt>
+<dd><p>Device to load cuda robot model.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.link_names">
+<span class="sig-name descname"><span class="pre">link_names</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.link_names" title="Link to this definition"></a></dt>
+<dd><p>Name of link names to compute pose in addition to ee_link.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.collision_link_names">
+<span class="sig-name descname"><span class="pre">collision_link_names</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.collision_link_names" title="Link to this definition"></a></dt>
+<dd><p>Name of links to compute sphere positions for use in collision checking.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.collision_spheres">
+<span class="sig-name descname"><span class="pre">collision_spheres</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">None</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.collision_spheres" title="Link to this definition"></a></dt>
+<dd><p>Collision spheres that fill the volume occupied by the links of the robot.
+Collision spheres can be generated for robot using <a class="reference external" href="https://docs.omniverse.nvidia.com/app_isaacsim/app_isaacsim/advanced_tutorials/tutorial_motion_generation_robot_description_editor.html#collision-spheres">https://docs.omniverse.nvidia.com/app_isaacsim/app_isaacsim/advanced_tutorials/tutorial_motion_generation_robot_description_editor.html#collision-spheres</a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.collision_sphere_buffer">
+<span class="sig-name descname"><span class="pre">collision_sphere_buffer</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></em><a class="headerlink" href="#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.collision_sphere_buffer" title="Link to this definition"></a></dt>
+<dd><p>Radius buffer to add to collision spheres as padding.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.compute_jacobian">
+<span class="sig-name descname"><span class="pre">compute_jacobian</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.compute_jacobian" title="Link to this definition"></a></dt>
+<dd><p>Compute jacobian of link poses. Currently not supported.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.self_collision_buffer">
+<span class="sig-name descname"><span class="pre">self_collision_buffer</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.self_collision_buffer" title="Link to this definition"></a></dt>
+<dd><p>Padding to add for self collision between links. Some robots use a large padding
+for self collision avoidance (<a class="reference external" href="https://github.com/ros-planning/panda_moveit_config/pull/35#issuecomment-671333863">https://github.com/ros-planning/panda_moveit_config/pull/35#issuecomment-671333863</a>)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.self_collision_ignore">
+<span class="sig-name descname"><span class="pre">self_collision_ignore</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.self_collision_ignore" title="Link to this definition"></a></dt>
+<dd><p>Self-collision ignore</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.debug">
+<span class="sig-name descname"><span class="pre">debug</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.debug" title="Link to this definition"></a></dt>
+<dd><p>debug config</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.use_global_cumul">
+<span class="sig-name descname"><span class="pre">use_global_cumul</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.use_global_cumul" title="Link to this definition"></a></dt>
+<dd><p>Enabling this flag writes out the cumulative transformation matrix to global memory. This
+allows for reusing the cumulative matrix during backward of kinematics (15% speedup over
+recomputing cumul in backward).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.asset_root_path">
+<span class="sig-name descname"><span class="pre">asset_root_path</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.asset_root_path" title="Link to this definition"></a></dt>
+<dd><p>Path of meshes of robot links. Currently not used as we represent robot link geometry with
+collision spheres.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.mesh_link_names">
+<span class="sig-name descname"><span class="pre">mesh_link_names</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.mesh_link_names" title="Link to this definition"></a></dt>
+<dd><p>Names of links to load meshes for visualization. This is only used for exporting
+visualizations.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.load_link_names_with_mesh">
+<span class="sig-name descname"><span class="pre">load_link_names_with_mesh</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.load_link_names_with_mesh" title="Link to this definition"></a></dt>
+<dd><p>Set this to true to add mesh_link_names to link_names when computing kinematics.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.urdf_path">
+<span class="sig-name descname"><span class="pre">urdf_path</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.urdf_path" title="Link to this definition"></a></dt>
+<dd><p>Path to load robot urdf.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.usd_path">
+<span class="sig-name descname"><span class="pre">usd_path</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.usd_path" title="Link to this definition"></a></dt>
+<dd><p>Path to load robot usd.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.usd_robot_root">
+<span class="sig-name descname"><span class="pre">usd_robot_root</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.usd_robot_root" title="Link to this definition"></a></dt>
+<dd><p>Root prim of robot in usd.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.isaac_usd_path">
+<span class="sig-name descname"><span class="pre">isaac_usd_path</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.isaac_usd_path" title="Link to this definition"></a></dt>
+<dd><p>Path of robot in Isaac server.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.use_usd_kinematics">
+<span class="sig-name descname"><span class="pre">use_usd_kinematics</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.use_usd_kinematics" title="Link to this definition"></a></dt>
+<dd><p>Load Kinematics chain from usd.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.usd_flip_joints">
+<span class="sig-name descname"><span class="pre">usd_flip_joints</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.usd_flip_joints" title="Link to this definition"></a></dt>
+<dd><p>Joints to flip axis when loading from USD</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.usd_flip_joint_limits">
+<span class="sig-name descname"><span class="pre">usd_flip_joint_limits</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.usd_flip_joint_limits" title="Link to this definition"></a></dt>
+<dd><p>Flip joint limits in USD.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.lock_joints">
+<span class="sig-name descname"><span class="pre">lock_joints</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.lock_joints" title="Link to this definition"></a></dt>
+<dd><p>Lock active joints in the kinematic tree. This will convert the joint to a fixed joint with
+joint angle given from this dictionary.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.extra_links">
+<span class="sig-name descname"><span class="pre">extra_links</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="curobo.cuda_robot_model.kinematics_parser.html#curobo.cuda_robot_model.kinematics_parser.LinkParams" title="curobo.cuda_robot_model.kinematics_parser.LinkParams"><span class="pre">LinkParams</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.extra_links" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.add_object_link">
+<span class="sig-name descname"><span class="pre">add_object_link</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.add_object_link" title="Link to this definition"></a></dt>
+<dd><p>this is deprecated</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.use_external_assets">
+<span class="sig-name descname"><span class="pre">use_external_assets</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.use_external_assets" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.extra_collision_spheres">
+<span class="sig-name descname"><span class="pre">extra_collision_spheres</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.extra_collision_spheres" title="Link to this definition"></a></dt>
+<dd><p>Create n collision spheres for links with name</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.cspace">
+<span class="sig-name descname"><span class="pre">cspace</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">None</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.CSpaceConfig" title="curobo.cuda_robot_model.types.CSpaceConfig"><span class="pre">CSpaceConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.cspace" title="Link to this definition"></a></dt>
+<dd><p>cspace config</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGenerator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">curobo.cuda_robot_model.cuda_robot_generator.</span></span><span class="sig-name descname"><span class="pre">CudaRobotGenerator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGenerator" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig" title="curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">CudaRobotGeneratorConfig</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>config</strong> (<a class="reference internal" href="#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig" title="curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig"><em>CudaRobotGeneratorConfig</em></a>) – </p>
+</dd>
+</dl>
+<dl class="py property">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGenerator.kinematics_config">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">kinematics_config</span></span><a class="headerlink" href="#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGenerator.kinematics_config" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGenerator.self_collision_config">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">self_collision_config</span></span><a class="headerlink" href="#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGenerator.self_collision_config" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGenerator.kinematics_parser">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">kinematics_parser</span></span><a class="headerlink" href="#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGenerator.kinematics_parser" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGenerator.initialize_tensors">
+<span class="sig-name descname"><span class="pre">initialize_tensors</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGenerator.initialize_tensors" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGenerator.add_link">
+<span class="sig-name descname"><span class="pre">add_link</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">link_params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGenerator.add_link" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>link_params</strong> (<a class="reference internal" href="curobo.cuda_robot_model.kinematics_parser.html#curobo.cuda_robot_model.kinematics_parser.LinkParams" title="curobo.cuda_robot_model.kinematics_parser.LinkParams"><em>LinkParams</em></a>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGenerator.add_fixed_link">
+<span class="sig-name descname"><span class="pre">add_fixed_link</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">link_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent_link_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">joint_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGenerator.add_fixed_link" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>link_name</strong> (<em>str</em>) – </p></li>
+<li><p><strong>parent_link_name</strong> (<em>str</em>) – </p></li>
+<li><p><strong>joint_name</strong> (<em>str</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>transform</strong> (<a class="reference internal" href="curobo.types.math.html#curobo.types.math.Pose" title="curobo.types.math.Pose"><em>Pose</em></a><em> | </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGenerator.get_joint_limits">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_joint_limits</span></span><a class="headerlink" href="#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGenerator.get_joint_limits" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="curobo.cuda_robot_model.html" class="btn btn-neutral float-left" title="curobo.cuda_robot_model package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="curobo.cuda_robot_model.cuda_robot_model.html" class="btn btn-neutral float-right" title="curobo.cuda_robot_model.cuda_robot_model module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, NVIDIA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(250);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,602 @@
+<!--
+-- Copyright (c) 2023 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+--
+-- NVIDIA CORPORATION, its affiliates and licensors retain all intellectual
+-- property and proprietary rights in and to this material, related
+-- documentation and any modifications thereto. Any use, reproduction,
+-- disclosure or distribution of this material and related documentation
+-- without an express license agreement from NVIDIA CORPORATION or
+-- its affiliates is strictly prohibited.
+-->
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>curobo.types.math module &mdash; CuRobo  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="curobo.types.robot module" href="curobo.types.robot.html" />
+    <link rel="prev" title="curobo.types.enum module" href="curobo.types.enum.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CuRobo
+              <img src="../_static/nvidia_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Research</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/research/research.html">Technical Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/research/research_using_curobo.html">Research using CuRobo</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Library Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/1_install_instructions.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/1a_quick_overview.html">Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2a_python_examples.html">Using in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2b_isaacsim_examples.html">Using with Isaac Sim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2c_world_collision.html">Collision World Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2d_nvblox_demo.html">Using with Depth Camera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2e_torch_layer_example.html">Using in a Neural Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/4_benchmarks.html">Benchmarks &amp; Profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/5_docker_development.html">Docker Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/6_known_issues.html">Known Issues</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Advanced Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2a_batch_env.html">Batched Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2b_block_stacking_example.html">Block Stacking</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/tutorials/1_robot_configuration.html">Configuring a New Robot</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/01_robot_list.html">Supported Robots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/02_numerical_optimization.html">Numerical Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/04_cuda_kernels.html">CUDA Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/05_usd_api.html">USD for Robot and World Representation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">Python API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CuRobo</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../api.html">Python API</a></li>
+          <li class="breadcrumb-item"><a href="modules.html">curobo</a></li>
+          <li class="breadcrumb-item"><a href="curobo.html">curobo package</a></li>
+          <li class="breadcrumb-item"><a href="curobo.types.html">curobo.types package</a></li>
+      <li class="breadcrumb-item active">curobo.types.math module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/_api/curobo.types.math.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-curobo.types.math">
+<span id="curobo-types-math-module"></span><h1>curobo.types.math module<a class="headerlink" href="#module-curobo.types.math" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="curobo.types.math.Pose">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">curobo.types.math.</span></span><span class="sig-name descname"><span class="pre">Pose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quaternion</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_goalset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ee_link'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize_rotation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.math.Pose" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></p>
+<p>Pose representation used in CuRobo. You can initialize a pose by calling
+pose = Pose(position, quaternion).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>position</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>quaternion</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>rotation</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>batch</strong> (<em>int</em>) – </p></li>
+<li><p><strong>n_goalset</strong> (<em>int</em>) – </p></li>
+<li><p><strong>name</strong> (<em>str</em>) – </p></li>
+<li><p><strong>normalize_rotation</strong> (<em>bool</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.types.math.Pose.position">
+<span class="sig-name descname"><span class="pre">position</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.types.math.Pose.position" title="Link to this definition"></a></dt>
+<dd><p>Position is represented as x, y, z, in meters</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.types.math.Pose.quaternion">
+<span class="sig-name descname"><span class="pre">quaternion</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.types.math.Pose.quaternion" title="Link to this definition"></a></dt>
+<dd><p>Quaternion is represented as w, x, y, z.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.types.math.Pose.rotation">
+<span class="sig-name descname"><span class="pre">rotation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.types.math.Pose.rotation" title="Link to this definition"></a></dt>
+<dd><p>Rotation is represents orientation as a 3x3 rotation matrix</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.types.math.Pose.batch">
+<span class="sig-name descname"><span class="pre">batch</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#curobo.types.math.Pose.batch" title="Link to this definition"></a></dt>
+<dd><p>Batch size will be initialized from input.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.types.math.Pose.n_goalset">
+<span class="sig-name descname"><span class="pre">n_goalset</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#curobo.types.math.Pose.n_goalset" title="Link to this definition"></a></dt>
+<dd><p>Goalset will be initialized from input when position shape is batch x n_goalset x 3</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.types.math.Pose.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ee_link'</span></em><a class="headerlink" href="#curobo.types.math.Pose.name" title="Link to this definition"></a></dt>
+<dd><p>name of link that this pose represents.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.types.math.Pose.normalize_rotation">
+<span class="sig-name descname"><span class="pre">normalize_rotation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#curobo.types.math.Pose.normalize_rotation" title="Link to this definition"></a></dt>
+<dd><p>quaternion input will be normalized when this flag is enabled. This is recommended when
+a pose comes from an external source as some programs do not send normalized quaternions.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.types.math.Pose.from_matrix">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">matrix</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.math.Pose.from_matrix" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>matrix</strong> (<em>ndarray</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.types.math.Pose.get_rotation">
+<span class="sig-name descname"><span class="pre">get_rotation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.math.Pose.get_rotation" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.types.math.Pose.stack">
+<span class="sig-name descname"><span class="pre">stack</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other_pose</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.math.Pose.stack" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>other_pose</strong> (<a class="reference internal" href="#curobo.types.math.Pose" title="curobo.types.math.Pose"><em>Pose</em></a>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.types.math.Pose.repeat">
+<span class="sig-name descname"><span class="pre">repeat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.math.Pose.repeat" title="Link to this definition"></a></dt>
+<dd><p>Repeat pose</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>n</strong> (<em>[</em><em>type</em><em>]</em>) – [description]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.types.math.Pose.unsqueeze">
+<span class="sig-name descname"><span class="pre">unsqueeze</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.math.Pose.unsqueeze" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.types.math.Pose.repeat_seeds">
+<span class="sig-name descname"><span class="pre">repeat_seeds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_seeds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.math.Pose.repeat_seeds" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>num_seeds</strong> (<em>int</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.types.math.Pose.get_index">
+<span class="sig-name descname"><span class="pre">get_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.math.Pose.get_index" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>b</strong> (<em>int</em>) – </p></li>
+<li><p><strong>n</strong> (<em>int</em><em> | </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#curobo.types.math.Pose" title="curobo.types.math.Pose"><em>Pose</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.types.math.Pose.apply_kernel">
+<span class="sig-name descname"><span class="pre">apply_kernel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kernel_mat</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.math.Pose.apply_kernel" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.types.math.Pose.from_list">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pose</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tensor_args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">TensorDeviceType(device=device(type='cuda',</span> <span class="pre">index=0),</span> <span class="pre">dtype=torch.float32)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q_xyzw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.math.Pose.from_list" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pose</strong> (<em>List</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+<li><p><strong>tensor_args</strong> (<a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType" title="curobo.types.base.TensorDeviceType"><em>TensorDeviceType</em></a>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.types.math.Pose.from_batch_list">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_batch_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pose</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tensor_args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q_xyzw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.math.Pose.from_batch_list" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pose</strong> (<em>List</em><em>[</em><em>List</em><em>[</em><em>float</em><em>]</em><em>]</em>) – </p></li>
+<li><p><strong>tensor_args</strong> (<a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType" title="curobo.types.base.TensorDeviceType"><em>TensorDeviceType</em></a>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.types.math.Pose.to_list">
+<span class="sig-name descname"><span class="pre">to_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q_xyzw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.math.Pose.to_list" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.types.math.Pose.tolist">
+<span class="sig-name descname"><span class="pre">tolist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q_xyzw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.math.Pose.tolist" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.types.math.Pose.clone">
+<span class="sig-name descname"><span class="pre">clone</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.math.Pose.clone" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.types.math.Pose.to">
+<span class="sig-name descname"><span class="pre">to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tensor_args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.math.Pose.to" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>tensor_args</strong> (<a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType" title="curobo.types.base.TensorDeviceType"><em>TensorDeviceType</em></a>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.types.math.Pose.get_matrix">
+<span class="sig-name descname"><span class="pre">get_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">out_matrix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.math.Pose.get_matrix" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>out_matrix</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.types.math.Pose.get_numpy_matrix">
+<span class="sig-name descname"><span class="pre">get_numpy_matrix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.math.Pose.get_numpy_matrix" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.types.math.Pose.inverse">
+<span class="sig-name descname"><span class="pre">inverse</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.math.Pose.inverse" title="Link to this definition"></a></dt>
+<dd><p>Inverse of pose</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>inverse pose</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#curobo.types.math.Pose" title="curobo.types.math.Pose">Pose</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.types.math.Pose.get_pose_vector">
+<span class="sig-name descname"><span class="pre">get_pose_vector</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.math.Pose.get_pose_vector" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.types.math.Pose.copy_">
+<span class="sig-name descname"><span class="pre">copy_</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pose</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.math.Pose.copy_" title="Link to this definition"></a></dt>
+<dd><p>Copies pose data from another memory buffer.
+This will create a new instance if buffers are not same shape</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>pose</strong> (<a class="reference internal" href="#curobo.types.math.Pose" title="curobo.types.math.Pose"><em>Pose</em></a>) – _description_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.types.math.Pose.cat">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">cat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pose_list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.math.Pose.cat" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>pose_list</strong> (<em>List</em><em>[</em><a class="reference internal" href="#curobo.types.math.Pose" title="curobo.types.math.Pose"><em>Pose</em></a><em>]</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.types.math.Pose.distance">
+<span class="sig-name descname"><span class="pre">distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other_pose</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_phi3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.math.Pose.distance" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>other_pose</strong> (<a class="reference internal" href="#curobo.types.math.Pose" title="curobo.types.math.Pose"><em>Pose</em></a>) – </p></li>
+<li><p><strong>use_phi3</strong> (<em>bool</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.types.math.Pose.angular_distance">
+<span class="sig-name descname"><span class="pre">angular_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other_pose</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_phi3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.math.Pose.angular_distance" title="Link to this definition"></a></dt>
+<dd><p>This function computes the angular distance phi_3.</p>
+<p>See Huynh, Du Q. “Metrics for 3D rotations: Comparison and analysis.” Journal of Mathematical
+Imaging and Vision 35 (2009): 155-164.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>goal_quat</strong> – _description_</p></li>
+<li><p><strong>current_quat</strong> – _description_</p></li>
+<li><p><strong>other_pose</strong> (<a class="reference internal" href="#curobo.types.math.Pose" title="curobo.types.math.Pose"><em>Pose</em></a>) – </p></li>
+<li><p><strong>use_phi3</strong> (<em>bool</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Angular distance in range [0,1]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.types.math.Pose.linear_distance">
+<span class="sig-name descname"><span class="pre">linear_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other_pose</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.math.Pose.linear_distance" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>other_pose</strong> (<a class="reference internal" href="#curobo.types.math.Pose" title="curobo.types.math.Pose"><em>Pose</em></a>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.types.math.Pose.multiply">
+<span class="sig-name descname"><span class="pre">multiply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other_pose</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.math.Pose.multiply" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>other_pose</strong> (<a class="reference internal" href="#curobo.types.math.Pose" title="curobo.types.math.Pose"><em>Pose</em></a>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.types.math.Pose.transform_point">
+<span class="sig-name descname"><span class="pre">transform_point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_buffer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gp_out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gq_out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gpt_out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.math.Pose.transform_point" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>points</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>out_buffer</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>gp_out</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>gq_out</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>gpt_out</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.types.math.Pose.transform_points">
+<span class="sig-name descname"><span class="pre">transform_points</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_buffer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gp_out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gq_out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gpt_out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.math.Pose.transform_points" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>points</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>out_buffer</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>gp_out</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>gq_out</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>gpt_out</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.types.math.Pose.batch_transform_points">
+<span class="sig-name descname"><span class="pre">batch_transform_points</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_buffer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gp_out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gq_out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gpt_out</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.math.Pose.batch_transform_points" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>points</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>out_buffer</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>gp_out</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>gq_out</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>gpt_out</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="curobo.types.math.Pose.shape">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">shape</span></span><a class="headerlink" href="#curobo.types.math.Pose.shape" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="curobo.types.math.quat_multiply">
+<span class="sig-prename descclassname"><span class="pre">curobo.types.math.</span></span><span class="sig-name descname"><span class="pre">quat_multiply</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q_res</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.math.quat_multiply" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="curobo.types.math.OrientationError">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">curobo.types.math.</span></span><span class="sig-name descname"><span class="pre">OrientationError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.math.OrientationError" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Function</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.types.math.OrientationError.geodesic_distance">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">geodesic_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">goal_quat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_quat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quat_res</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.math.OrientationError.geodesic_distance" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.types.math.OrientationError.forward">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">goal_quat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_quat</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quat_res</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.math.OrientationError.forward" title="Link to this definition"></a></dt>
+<dd><p>This function is to be overridden by all subclasses. There are two ways
+to define forward:</p>
+<p>Usage 1 (Combined forward and ctx):</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="err">@</span><span class="n">staticmethod</span>
+<span class="n">def</span><span class="w"> </span><span class="n">forward</span><span class="p">(</span><span class="n">ctx</span><span class="o">:</span><span class="w"> </span><span class="n">Any</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">args</span><span class="o">:</span><span class="w"> </span><span class="n">Any</span><span class="p">,</span><span class="w"> </span><span class="o">**</span><span class="n">kwargs</span><span class="o">:</span><span class="w"> </span><span class="n">Any</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">Any</span><span class="o">:</span>
+<span class="w">    </span><span class="n">pass</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>It must accept a context ctx as the first argument, followed by any
+number of arguments (tensors or other types).</p></li>
+<li><p>See <span class="xref std std-ref">combining-forward-context</span> for more details</p></li>
+</ul>
+<p>Usage 2 (Separate forward and ctx):</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="err">@</span><span class="n">staticmethod</span>
+<span class="n">def</span><span class="w"> </span><span class="n">forward</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="o">:</span><span class="w"> </span><span class="n">Any</span><span class="p">,</span><span class="w"> </span><span class="o">**</span><span class="n">kwargs</span><span class="o">:</span><span class="w"> </span><span class="n">Any</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">Any</span><span class="o">:</span>
+<span class="w">    </span><span class="n">pass</span>
+
+<span class="err">@</span><span class="n">staticmethod</span>
+<span class="n">def</span><span class="w"> </span><span class="n">setup_context</span><span class="p">(</span><span class="n">ctx</span><span class="o">:</span><span class="w"> </span><span class="n">Any</span><span class="p">,</span><span class="w"> </span><span class="n">inputs</span><span class="o">:</span><span class="w"> </span><span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span><span class="w"> </span><span class="p">...],</span><span class="w"> </span><span class="n">output</span><span class="o">:</span><span class="w"> </span><span class="n">Any</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">None</span><span class="o">:</span>
+<span class="w">    </span><span class="n">pass</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>The forward no longer accepts a ctx argument.</p></li>
+<li><p>Instead, you must also override the <code class="xref py py-meth docutils literal notranslate"><span class="pre">torch.autograd.Function.setup_context</span></code>
+staticmethod to handle setting up the <code class="docutils literal notranslate"><span class="pre">ctx</span></code> object.
+<code class="docutils literal notranslate"><span class="pre">output</span></code> is the output of the forward, <code class="docutils literal notranslate"><span class="pre">inputs</span></code> are a Tuple of inputs
+to the forward.</p></li>
+<li><p>See <span class="xref std std-ref">extending-autograd</span> for more details</p></li>
+</ul>
+<p>The context can be used to store arbitrary data that can be then
+retrieved during the backward pass. Tensors should not be stored
+directly on <cite>ctx</cite> (though this is not currently enforced for
+backward compatibility). Instead, tensors should be saved either with
+<code class="xref py py-func docutils literal notranslate"><span class="pre">ctx.save_for_backward</span></code> if they are intended to be used in
+<code class="docutils literal notranslate"><span class="pre">backward</span></code> (equivalently, <code class="docutils literal notranslate"><span class="pre">vjp</span></code>) or <code class="xref py py-func docutils literal notranslate"><span class="pre">ctx.save_for_forward</span></code>
+if they are intended to be used for in <code class="docutils literal notranslate"><span class="pre">jvp</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.types.math.OrientationError.backward">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">backward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grad_out</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.math.OrientationError.backward" title="Link to this definition"></a></dt>
+<dd><p>Defines a formula for differentiating the operation with backward mode
+automatic differentiation (alias to the vjp function).</p>
+<p>This function is to be overridden by all subclasses.</p>
+<p>It must accept a context <code class="xref py py-attr docutils literal notranslate"><span class="pre">ctx</span></code> as the first argument, followed by
+as many outputs as the <a class="reference internal" href="#curobo.types.math.OrientationError.forward" title="curobo.types.math.OrientationError.forward"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward</span></code></a> returned (None will be passed in
+for non tensor outputs of the forward function),
+and it should return as many tensors, as there were inputs to
+<a class="reference internal" href="#curobo.types.math.OrientationError.forward" title="curobo.types.math.OrientationError.forward"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward</span></code></a>. Each argument is the gradient w.r.t the given output,
+and each returned value should be the gradient w.r.t. the
+corresponding input. If an input is not a Tensor or is a Tensor not
+requiring grads, you can just pass None as a gradient for that input.</p>
+<p>The context can be used to retrieve tensors saved during the forward
+pass. It also has an attribute <code class="xref py py-attr docutils literal notranslate"><span class="pre">ctx.needs_input_grad</span></code> as a tuple
+of booleans representing whether each input needs gradient. E.g.,
+<a class="reference internal" href="#curobo.types.math.OrientationError.backward" title="curobo.types.math.OrientationError.backward"><code class="xref py py-func docutils literal notranslate"><span class="pre">backward</span></code></a> will have <code class="docutils literal notranslate"><span class="pre">ctx.needs_input_grad[0]</span> <span class="pre">=</span> <span class="pre">True</span></code> if the
+first input to <a class="reference internal" href="#curobo.types.math.OrientationError.forward" title="curobo.types.math.OrientationError.forward"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward</span></code></a> needs gradient computed w.r.t. the
+output.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="curobo.types.enum.html" class="btn btn-neutral float-left" title="curobo.types.enum module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="curobo.types.robot.html" class="btn btn-neutral float-right" title="curobo.types.robot module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, NVIDIA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(250);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

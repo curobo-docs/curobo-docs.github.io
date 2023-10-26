@@ -1,0 +1,431 @@
+<!--
+-- Copyright (c) 2023 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+--
+-- NVIDIA CORPORATION, its affiliates and licensors retain all intellectual
+-- property and proprietary rights in and to this material, related
+-- documentation and any modifications thereto. Any use, reproduction,
+-- disclosure or distribution of this material and related documentation
+-- without an express license agreement from NVIDIA CORPORATION or
+-- its affiliates is strictly prohibited.
+-->
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>curobo.cuda_robot_model package &mdash; CuRobo  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="curobo.cuda_robot_model.cuda_robot_generator module" href="curobo.cuda_robot_model.cuda_robot_generator.html" />
+    <link rel="prev" title="Python API" href="../api.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CuRobo
+              <img src="../_static/nvidia_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Research</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/research/research.html">Technical Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/research/research_using_curobo.html">Research using CuRobo</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Library Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/1_install_instructions.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/1a_quick_overview.html">Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2a_python_examples.html">Using in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2b_isaacsim_examples.html">Using with Isaac Sim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2c_world_collision.html">Collision World Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2d_nvblox_demo.html">Using with Depth Camera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2e_torch_layer_example.html">Using in a Neural Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/4_benchmarks.html">Benchmarks &amp; Profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/5_docker_development.html">Docker Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/6_known_issues.html">Known Issues</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Advanced Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2a_batch_env.html">Batched Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2b_block_stacking_example.html">Block Stacking</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/tutorials/1_robot_configuration.html">Configuring a New Robot</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/01_robot_list.html">Supported Robots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/02_numerical_optimization.html">Numerical Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/04_cuda_kernels.html">CUDA Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/05_usd_api.html">USD for Robot and World Representation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">Python API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CuRobo</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../api.html">Python API</a></li>
+      <li class="breadcrumb-item active">curobo.cuda_robot_model package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/_api/curobo.cuda_robot_model.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-curobo.cuda_robot_model">
+<span id="curobo-cuda-robot-model-package"></span><h1>curobo.cuda_robot_model package<a class="headerlink" href="#module-curobo.cuda_robot_model" title="Link to this heading"></a></h1>
+<p>This module contains code for cuda accelerated kinematics.</p>
+<p>Kinematics in CuRobo currently supports single axis actuated joints, where the joint can be actuated
+as prismatic or revolute joints. Continuous joints are approximated to revolute joints with limits
+at [-6, +6] radians. Mimic joints are not supported, so convert mimic joints to independent joints.</p>
+<p>CuRobo loads a robot’s kinematic tree from <a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.KinematicsTensorConfig" title="curobo.cuda_robot_model.types.KinematicsTensorConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">types.KinematicsTensorConfig</span></code></a>. This config is
+generated using <a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGenerator" title="curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">cuda_robot_generator.CudaRobotGenerator</span></code></a>. A parser base class
+<code class="xref py py-class docutils literal notranslate"><span class="pre">kinematics_parser.KinematicsParer</span></code> is provided to help with parsing kinematics from
+standard formats. Kinematics parsing from URDF is implemented in
+<a class="reference internal" href="curobo.cuda_robot_model.urdf_kinematics_parser.html#curobo.cuda_robot_model.urdf_kinematics_parser.UrdfKinematicsParser" title="curobo.cuda_robot_model.urdf_kinematics_parser.UrdfKinematicsParser"><code class="xref py py-class docutils literal notranslate"><span class="pre">urdf_kinematics_parser.UrdfKinematicsParser</span></code></a>. An experimental USD kinematics parser is
+provided in <a class="reference internal" href="curobo.cuda_robot_model.usd_kinematics_parser.html#curobo.cuda_robot_model.usd_kinematics_parser.UsdKinematicsParser" title="curobo.cuda_robot_model.usd_kinematics_parser.UsdKinematicsParser"><code class="xref py py-class docutils literal notranslate"><span class="pre">usd_kinematics_parser.UsdKinematicsParser</span></code></a>, which is missing an additional
+transform between the joint origin and link origin, so this might not work for all robots.</p>
+<p>In addition to parsing data from a kinematics file (urdf, usd), CuRobo also needs a sphere
+representation of the robot that approximates the volume of the robot’s links with spheres.
+Several other parameters are also needed to represent kinematics in CuRobo. A tutorial on setting up a
+robot is provided in <a class="reference internal" href="../source/tutorials/1_robot_configuration.html#tut-robot-configuration"><span class="std std-ref">Configuring a New Robot</span></a>.</p>
+<p>Once a robot configuration file is setup, you can pass this to
+<a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModelConfig" title="curobo.cuda_robot_model.cuda_robot_model.CudaRobotModelConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">cuda_robot_model.CudaRobotModelConfig</span></code></a> to generate an instance of kinematics configuraiton.
+<a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModel" title="curobo.cuda_robot_model.cuda_robot_model.CudaRobotModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">cuda_robot_model.CudaRobotModel</span></code></a> takes this configuration and provides access to kinematics
+computations.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModel" title="curobo.cuda_robot_model.cuda_robot_model.CudaRobotModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">cuda_robot_model.CudaRobotModel</span></code></a> creates memory tensors that are used by CUDA kernels
+while <a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModelConfig" title="curobo.cuda_robot_model.cuda_robot_model.CudaRobotModelConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">cuda_robot_model.CudaRobotModelConfig</span></code></a> contains only the robot kinematics
+configuration. To reduce memory overhead, you can pass one instance of
+<a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModelConfig" title="curobo.cuda_robot_model.cuda_robot_model.CudaRobotModelConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">cuda_robot_model.CudaRobotModelConfig</span></code></a> to many instances of
+<a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModel" title="curobo.cuda_robot_model.cuda_robot_model.CudaRobotModel"><code class="xref py py-class docutils literal notranslate"><span class="pre">cuda_robot_model.CudaRobotModel</span></code></a>.</p>
+</div>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_generator.html">curobo.cuda_robot_model.cuda_robot_generator module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig"><code class="docutils literal notranslate"><span class="pre">CudaRobotGeneratorConfig</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.base_link"><code class="docutils literal notranslate"><span class="pre">CudaRobotGeneratorConfig.base_link</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.ee_link"><code class="docutils literal notranslate"><span class="pre">CudaRobotGeneratorConfig.ee_link</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.tensor_args"><code class="docutils literal notranslate"><span class="pre">CudaRobotGeneratorConfig.tensor_args</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.link_names"><code class="docutils literal notranslate"><span class="pre">CudaRobotGeneratorConfig.link_names</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.collision_link_names"><code class="docutils literal notranslate"><span class="pre">CudaRobotGeneratorConfig.collision_link_names</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.collision_spheres"><code class="docutils literal notranslate"><span class="pre">CudaRobotGeneratorConfig.collision_spheres</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.collision_sphere_buffer"><code class="docutils literal notranslate"><span class="pre">CudaRobotGeneratorConfig.collision_sphere_buffer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.compute_jacobian"><code class="docutils literal notranslate"><span class="pre">CudaRobotGeneratorConfig.compute_jacobian</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.self_collision_buffer"><code class="docutils literal notranslate"><span class="pre">CudaRobotGeneratorConfig.self_collision_buffer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.self_collision_ignore"><code class="docutils literal notranslate"><span class="pre">CudaRobotGeneratorConfig.self_collision_ignore</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.debug"><code class="docutils literal notranslate"><span class="pre">CudaRobotGeneratorConfig.debug</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.use_global_cumul"><code class="docutils literal notranslate"><span class="pre">CudaRobotGeneratorConfig.use_global_cumul</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.asset_root_path"><code class="docutils literal notranslate"><span class="pre">CudaRobotGeneratorConfig.asset_root_path</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.mesh_link_names"><code class="docutils literal notranslate"><span class="pre">CudaRobotGeneratorConfig.mesh_link_names</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.load_link_names_with_mesh"><code class="docutils literal notranslate"><span class="pre">CudaRobotGeneratorConfig.load_link_names_with_mesh</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.urdf_path"><code class="docutils literal notranslate"><span class="pre">CudaRobotGeneratorConfig.urdf_path</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.usd_path"><code class="docutils literal notranslate"><span class="pre">CudaRobotGeneratorConfig.usd_path</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.usd_robot_root"><code class="docutils literal notranslate"><span class="pre">CudaRobotGeneratorConfig.usd_robot_root</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.isaac_usd_path"><code class="docutils literal notranslate"><span class="pre">CudaRobotGeneratorConfig.isaac_usd_path</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.use_usd_kinematics"><code class="docutils literal notranslate"><span class="pre">CudaRobotGeneratorConfig.use_usd_kinematics</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.usd_flip_joints"><code class="docutils literal notranslate"><span class="pre">CudaRobotGeneratorConfig.usd_flip_joints</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.usd_flip_joint_limits"><code class="docutils literal notranslate"><span class="pre">CudaRobotGeneratorConfig.usd_flip_joint_limits</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.lock_joints"><code class="docutils literal notranslate"><span class="pre">CudaRobotGeneratorConfig.lock_joints</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.extra_links"><code class="docutils literal notranslate"><span class="pre">CudaRobotGeneratorConfig.extra_links</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.add_object_link"><code class="docutils literal notranslate"><span class="pre">CudaRobotGeneratorConfig.add_object_link</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.use_external_assets"><code class="docutils literal notranslate"><span class="pre">CudaRobotGeneratorConfig.use_external_assets</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.extra_collision_spheres"><code class="docutils literal notranslate"><span class="pre">CudaRobotGeneratorConfig.extra_collision_spheres</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.cspace"><code class="docutils literal notranslate"><span class="pre">CudaRobotGeneratorConfig.cspace</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGenerator"><code class="docutils literal notranslate"><span class="pre">CudaRobotGenerator</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGenerator.kinematics_config"><code class="docutils literal notranslate"><span class="pre">CudaRobotGenerator.kinematics_config</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGenerator.self_collision_config"><code class="docutils literal notranslate"><span class="pre">CudaRobotGenerator.self_collision_config</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGenerator.kinematics_parser"><code class="docutils literal notranslate"><span class="pre">CudaRobotGenerator.kinematics_parser</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGenerator.initialize_tensors"><code class="docutils literal notranslate"><span class="pre">CudaRobotGenerator.initialize_tensors</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGenerator.add_link"><code class="docutils literal notranslate"><span class="pre">CudaRobotGenerator.add_link</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGenerator.add_fixed_link"><code class="docutils literal notranslate"><span class="pre">CudaRobotGenerator.add_fixed_link</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGenerator.get_joint_limits"><code class="docutils literal notranslate"><span class="pre">CudaRobotGenerator.get_joint_limits</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html">curobo.cuda_robot_model.cuda_robot_model module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModelConfig"><code class="docutils literal notranslate"><span class="pre">CudaRobotModelConfig</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModelConfig.tensor_args"><code class="docutils literal notranslate"><span class="pre">CudaRobotModelConfig.tensor_args</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModelConfig.link_names"><code class="docutils literal notranslate"><span class="pre">CudaRobotModelConfig.link_names</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModelConfig.kinematics_config"><code class="docutils literal notranslate"><span class="pre">CudaRobotModelConfig.kinematics_config</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModelConfig.self_collision_config"><code class="docutils literal notranslate"><span class="pre">CudaRobotModelConfig.self_collision_config</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModelConfig.kinematics_parser"><code class="docutils literal notranslate"><span class="pre">CudaRobotModelConfig.kinematics_parser</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModelConfig.compute_jacobian"><code class="docutils literal notranslate"><span class="pre">CudaRobotModelConfig.compute_jacobian</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModelConfig.use_global_cumul"><code class="docutils literal notranslate"><span class="pre">CudaRobotModelConfig.use_global_cumul</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModelConfig.generator_config"><code class="docutils literal notranslate"><span class="pre">CudaRobotModelConfig.generator_config</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModelConfig.get_joint_limits"><code class="docutils literal notranslate"><span class="pre">CudaRobotModelConfig.get_joint_limits</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModelConfig.from_basic_urdf"><code class="docutils literal notranslate"><span class="pre">CudaRobotModelConfig.from_basic_urdf</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModelConfig.from_basic_usd"><code class="docutils literal notranslate"><span class="pre">CudaRobotModelConfig.from_basic_usd</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModelConfig.from_robot_yaml_file"><code class="docutils literal notranslate"><span class="pre">CudaRobotModelConfig.from_robot_yaml_file</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModelConfig.from_data_dict"><code class="docutils literal notranslate"><span class="pre">CudaRobotModelConfig.from_data_dict</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModelConfig.from_config"><code class="docutils literal notranslate"><span class="pre">CudaRobotModelConfig.from_config</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModelConfig.cspace"><code class="docutils literal notranslate"><span class="pre">CudaRobotModelConfig.cspace</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModel"><code class="docutils literal notranslate"><span class="pre">CudaRobotModel</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModel.update_batch_size"><code class="docutils literal notranslate"><span class="pre">CudaRobotModel.update_batch_size</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModel.forward"><code class="docutils literal notranslate"><span class="pre">CudaRobotModel.forward</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModel.get_state"><code class="docutils literal notranslate"><span class="pre">CudaRobotModel.get_state</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModel.get_robot_as_mesh"><code class="docutils literal notranslate"><span class="pre">CudaRobotModel.get_robot_as_mesh</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModel.get_robot_as_spheres"><code class="docutils literal notranslate"><span class="pre">CudaRobotModel.get_robot_as_spheres</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModel.get_link_poses"><code class="docutils literal notranslate"><span class="pre">CudaRobotModel.get_link_poses</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModel.all_articulated_joint_names"><code class="docutils literal notranslate"><span class="pre">CudaRobotModel.all_articulated_joint_names</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModel.get_self_collision_config"><code class="docutils literal notranslate"><span class="pre">CudaRobotModel.get_self_collision_config</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModel.get_link_mesh"><code class="docutils literal notranslate"><span class="pre">CudaRobotModel.get_link_mesh</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModel.get_link_transform"><code class="docutils literal notranslate"><span class="pre">CudaRobotModel.get_link_transform</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModel.get_all_link_transforms"><code class="docutils literal notranslate"><span class="pre">CudaRobotModel.get_all_link_transforms</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModel.get_dof"><code class="docutils literal notranslate"><span class="pre">CudaRobotModel.get_dof</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModel.joint_names"><code class="docutils literal notranslate"><span class="pre">CudaRobotModel.joint_names</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModel.total_spheres"><code class="docutils literal notranslate"><span class="pre">CudaRobotModel.total_spheres</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModel.lock_jointstate"><code class="docutils literal notranslate"><span class="pre">CudaRobotModel.lock_jointstate</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModel.ee_link"><code class="docutils literal notranslate"><span class="pre">CudaRobotModel.ee_link</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModel.base_link"><code class="docutils literal notranslate"><span class="pre">CudaRobotModel.base_link</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModel.update_kinematics_config"><code class="docutils literal notranslate"><span class="pre">CudaRobotModel.update_kinematics_config</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="curobo.cuda_robot_model.kinematics_parser.html">curobo.cuda_robot_model.kinematics_parser module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="curobo.cuda_robot_model.kinematics_parser.html#curobo.cuda_robot_model.kinematics_parser.LinkParams"><code class="docutils literal notranslate"><span class="pre">LinkParams</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.kinematics_parser.html#curobo.cuda_robot_model.kinematics_parser.LinkParams.link_name"><code class="docutils literal notranslate"><span class="pre">LinkParams.link_name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.kinematics_parser.html#curobo.cuda_robot_model.kinematics_parser.LinkParams.joint_name"><code class="docutils literal notranslate"><span class="pre">LinkParams.joint_name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.kinematics_parser.html#curobo.cuda_robot_model.kinematics_parser.LinkParams.joint_type"><code class="docutils literal notranslate"><span class="pre">LinkParams.joint_type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.kinematics_parser.html#curobo.cuda_robot_model.kinematics_parser.LinkParams.fixed_transform"><code class="docutils literal notranslate"><span class="pre">LinkParams.fixed_transform</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.kinematics_parser.html#curobo.cuda_robot_model.kinematics_parser.LinkParams.parent_link_name"><code class="docutils literal notranslate"><span class="pre">LinkParams.parent_link_name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.kinematics_parser.html#curobo.cuda_robot_model.kinematics_parser.LinkParams.joint_limits"><code class="docutils literal notranslate"><span class="pre">LinkParams.joint_limits</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.kinematics_parser.html#curobo.cuda_robot_model.kinematics_parser.LinkParams.joint_axis"><code class="docutils literal notranslate"><span class="pre">LinkParams.joint_axis</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.kinematics_parser.html#curobo.cuda_robot_model.kinematics_parser.LinkParams.joint_id"><code class="docutils literal notranslate"><span class="pre">LinkParams.joint_id</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.kinematics_parser.html#curobo.cuda_robot_model.kinematics_parser.LinkParams.joint_velocity_limits"><code class="docutils literal notranslate"><span class="pre">LinkParams.joint_velocity_limits</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.kinematics_parser.html#curobo.cuda_robot_model.kinematics_parser.LinkParams.from_dict"><code class="docutils literal notranslate"><span class="pre">LinkParams.from_dict</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.cuda_robot_model.kinematics_parser.html#curobo.cuda_robot_model.kinematics_parser.KinematicsParser"><code class="docutils literal notranslate"><span class="pre">KinematicsParser</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.kinematics_parser.html#curobo.cuda_robot_model.kinematics_parser.KinematicsParser.build_link_parent"><code class="docutils literal notranslate"><span class="pre">KinematicsParser.build_link_parent</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.kinematics_parser.html#curobo.cuda_robot_model.kinematics_parser.KinematicsParser.get_chain"><code class="docutils literal notranslate"><span class="pre">KinematicsParser.get_chain</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.kinematics_parser.html#curobo.cuda_robot_model.kinematics_parser.KinematicsParser.get_link_parameters"><code class="docutils literal notranslate"><span class="pre">KinematicsParser.get_link_parameters</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.kinematics_parser.html#curobo.cuda_robot_model.kinematics_parser.KinematicsParser.add_absolute_path_to_link_meshes"><code class="docutils literal notranslate"><span class="pre">KinematicsParser.add_absolute_path_to_link_meshes</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.kinematics_parser.html#curobo.cuda_robot_model.kinematics_parser.KinematicsParser.get_link_mesh"><code class="docutils literal notranslate"><span class="pre">KinematicsParser.get_link_mesh</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="curobo.cuda_robot_model.types.html">curobo.cuda_robot_model.types module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.JointType"><code class="docutils literal notranslate"><span class="pre">JointType</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.JointType.FIXED"><code class="docutils literal notranslate"><span class="pre">JointType.FIXED</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.JointType.X_PRISM"><code class="docutils literal notranslate"><span class="pre">JointType.X_PRISM</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.JointType.Y_PRISM"><code class="docutils literal notranslate"><span class="pre">JointType.Y_PRISM</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.JointType.Z_PRISM"><code class="docutils literal notranslate"><span class="pre">JointType.Z_PRISM</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.JointType.X_ROT"><code class="docutils literal notranslate"><span class="pre">JointType.X_ROT</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.JointType.Y_ROT"><code class="docutils literal notranslate"><span class="pre">JointType.Y_ROT</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.JointType.Z_ROT"><code class="docutils literal notranslate"><span class="pre">JointType.Z_ROT</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.JointLimits"><code class="docutils literal notranslate"><span class="pre">JointLimits</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.JointLimits.joint_names"><code class="docutils literal notranslate"><span class="pre">JointLimits.joint_names</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.JointLimits.position"><code class="docutils literal notranslate"><span class="pre">JointLimits.position</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.JointLimits.velocity"><code class="docutils literal notranslate"><span class="pre">JointLimits.velocity</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.JointLimits.acceleration"><code class="docutils literal notranslate"><span class="pre">JointLimits.acceleration</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.JointLimits.jerk"><code class="docutils literal notranslate"><span class="pre">JointLimits.jerk</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.JointLimits.effort"><code class="docutils literal notranslate"><span class="pre">JointLimits.effort</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.JointLimits.tensor_args"><code class="docutils literal notranslate"><span class="pre">JointLimits.tensor_args</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.JointLimits.from_data_dict"><code class="docutils literal notranslate"><span class="pre">JointLimits.from_data_dict</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.JointLimits.clone"><code class="docutils literal notranslate"><span class="pre">JointLimits.clone</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.CSpaceConfig"><code class="docutils literal notranslate"><span class="pre">CSpaceConfig</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.CSpaceConfig.joint_names"><code class="docutils literal notranslate"><span class="pre">CSpaceConfig.joint_names</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.CSpaceConfig.retract_config"><code class="docutils literal notranslate"><span class="pre">CSpaceConfig.retract_config</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.CSpaceConfig.cspace_distance_weight"><code class="docutils literal notranslate"><span class="pre">CSpaceConfig.cspace_distance_weight</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.CSpaceConfig.null_space_weight"><code class="docutils literal notranslate"><span class="pre">CSpaceConfig.null_space_weight</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.CSpaceConfig.tensor_args"><code class="docutils literal notranslate"><span class="pre">CSpaceConfig.tensor_args</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.CSpaceConfig.max_acceleration"><code class="docutils literal notranslate"><span class="pre">CSpaceConfig.max_acceleration</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.CSpaceConfig.max_jerk"><code class="docutils literal notranslate"><span class="pre">CSpaceConfig.max_jerk</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.CSpaceConfig.velocity_scale"><code class="docutils literal notranslate"><span class="pre">CSpaceConfig.velocity_scale</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.CSpaceConfig.acceleration_scale"><code class="docutils literal notranslate"><span class="pre">CSpaceConfig.acceleration_scale</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.CSpaceConfig.jerk_scale"><code class="docutils literal notranslate"><span class="pre">CSpaceConfig.jerk_scale</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.CSpaceConfig.inplace_reindex"><code class="docutils literal notranslate"><span class="pre">CSpaceConfig.inplace_reindex</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.CSpaceConfig.clone"><code class="docutils literal notranslate"><span class="pre">CSpaceConfig.clone</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.CSpaceConfig.scale_joint_limits"><code class="docutils literal notranslate"><span class="pre">CSpaceConfig.scale_joint_limits</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.CSpaceConfig.load_from_joint_limits"><code class="docutils literal notranslate"><span class="pre">CSpaceConfig.load_from_joint_limits</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.KinematicsTensorConfig"><code class="docutils literal notranslate"><span class="pre">KinematicsTensorConfig</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.KinematicsTensorConfig.fixed_transforms"><code class="docutils literal notranslate"><span class="pre">KinematicsTensorConfig.fixed_transforms</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.KinematicsTensorConfig.link_map"><code class="docutils literal notranslate"><span class="pre">KinematicsTensorConfig.link_map</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.KinematicsTensorConfig.joint_map"><code class="docutils literal notranslate"><span class="pre">KinematicsTensorConfig.joint_map</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.KinematicsTensorConfig.joint_map_type"><code class="docutils literal notranslate"><span class="pre">KinematicsTensorConfig.joint_map_type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.KinematicsTensorConfig.store_link_map"><code class="docutils literal notranslate"><span class="pre">KinematicsTensorConfig.store_link_map</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.KinematicsTensorConfig.link_chain_map"><code class="docutils literal notranslate"><span class="pre">KinematicsTensorConfig.link_chain_map</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.KinematicsTensorConfig.link_names"><code class="docutils literal notranslate"><span class="pre">KinematicsTensorConfig.link_names</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.KinematicsTensorConfig.joint_limits"><code class="docutils literal notranslate"><span class="pre">KinematicsTensorConfig.joint_limits</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.KinematicsTensorConfig.non_fixed_joint_names"><code class="docutils literal notranslate"><span class="pre">KinematicsTensorConfig.non_fixed_joint_names</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.KinematicsTensorConfig.n_dof"><code class="docutils literal notranslate"><span class="pre">KinematicsTensorConfig.n_dof</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.KinematicsTensorConfig.mesh_link_names"><code class="docutils literal notranslate"><span class="pre">KinematicsTensorConfig.mesh_link_names</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.KinematicsTensorConfig.joint_names"><code class="docutils literal notranslate"><span class="pre">KinematicsTensorConfig.joint_names</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.KinematicsTensorConfig.lock_jointstate"><code class="docutils literal notranslate"><span class="pre">KinematicsTensorConfig.lock_jointstate</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.KinematicsTensorConfig.link_spheres"><code class="docutils literal notranslate"><span class="pre">KinematicsTensorConfig.link_spheres</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.KinematicsTensorConfig.link_sphere_idx_map"><code class="docutils literal notranslate"><span class="pre">KinematicsTensorConfig.link_sphere_idx_map</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.KinematicsTensorConfig.link_name_to_idx_map"><code class="docutils literal notranslate"><span class="pre">KinematicsTensorConfig.link_name_to_idx_map</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.KinematicsTensorConfig.total_spheres"><code class="docutils literal notranslate"><span class="pre">KinematicsTensorConfig.total_spheres</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.KinematicsTensorConfig.debug"><code class="docutils literal notranslate"><span class="pre">KinematicsTensorConfig.debug</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.KinematicsTensorConfig.ee_idx"><code class="docutils literal notranslate"><span class="pre">KinematicsTensorConfig.ee_idx</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.KinematicsTensorConfig.cspace"><code class="docutils literal notranslate"><span class="pre">KinematicsTensorConfig.cspace</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.KinematicsTensorConfig.base_link"><code class="docutils literal notranslate"><span class="pre">KinematicsTensorConfig.base_link</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.KinematicsTensorConfig.ee_link"><code class="docutils literal notranslate"><span class="pre">KinematicsTensorConfig.ee_link</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.KinematicsTensorConfig.load_cspace_cfg_from_kinematics"><code class="docutils literal notranslate"><span class="pre">KinematicsTensorConfig.load_cspace_cfg_from_kinematics</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.KinematicsTensorConfig.get_sphere_index_from_link_name"><code class="docutils literal notranslate"><span class="pre">KinematicsTensorConfig.get_sphere_index_from_link_name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.KinematicsTensorConfig.update_link_spheres"><code class="docutils literal notranslate"><span class="pre">KinematicsTensorConfig.update_link_spheres</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.KinematicsTensorConfig.get_link_spheres"><code class="docutils literal notranslate"><span class="pre">KinematicsTensorConfig.get_link_spheres</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.KinematicsTensorConfig.attach_object"><code class="docutils literal notranslate"><span class="pre">KinematicsTensorConfig.attach_object</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.KinematicsTensorConfig.detach_object"><code class="docutils literal notranslate"><span class="pre">KinematicsTensorConfig.detach_object</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.KinematicsTensorConfig.get_number_of_spheres"><code class="docutils literal notranslate"><span class="pre">KinematicsTensorConfig.get_number_of_spheres</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.SelfCollisionKinematicsConfig"><code class="docutils literal notranslate"><span class="pre">SelfCollisionKinematicsConfig</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.SelfCollisionKinematicsConfig.offset"><code class="docutils literal notranslate"><span class="pre">SelfCollisionKinematicsConfig.offset</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.SelfCollisionKinematicsConfig.distance_threshold"><code class="docutils literal notranslate"><span class="pre">SelfCollisionKinematicsConfig.distance_threshold</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.SelfCollisionKinematicsConfig.thread_location"><code class="docutils literal notranslate"><span class="pre">SelfCollisionKinematicsConfig.thread_location</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.SelfCollisionKinematicsConfig.thread_max"><code class="docutils literal notranslate"><span class="pre">SelfCollisionKinematicsConfig.thread_max</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.SelfCollisionKinematicsConfig.collision_matrix"><code class="docutils literal notranslate"><span class="pre">SelfCollisionKinematicsConfig.collision_matrix</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.SelfCollisionKinematicsConfig.experimental_kernel"><code class="docutils literal notranslate"><span class="pre">SelfCollisionKinematicsConfig.experimental_kernel</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.SelfCollisionKinematicsConfig.checks_per_thread"><code class="docutils literal notranslate"><span class="pre">SelfCollisionKinematicsConfig.checks_per_thread</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.CudaRobotModelState"><code class="docutils literal notranslate"><span class="pre">CudaRobotModelState</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.CudaRobotModelState.ee_position"><code class="docutils literal notranslate"><span class="pre">CudaRobotModelState.ee_position</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.CudaRobotModelState.ee_quaternion"><code class="docutils literal notranslate"><span class="pre">CudaRobotModelState.ee_quaternion</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.CudaRobotModelState.lin_jacobian"><code class="docutils literal notranslate"><span class="pre">CudaRobotModelState.lin_jacobian</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.CudaRobotModelState.ang_jacobian"><code class="docutils literal notranslate"><span class="pre">CudaRobotModelState.ang_jacobian</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.CudaRobotModelState.links_position"><code class="docutils literal notranslate"><span class="pre">CudaRobotModelState.links_position</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.CudaRobotModelState.links_quaternion"><code class="docutils literal notranslate"><span class="pre">CudaRobotModelState.links_quaternion</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.CudaRobotModelState.link_spheres_tensor"><code class="docutils literal notranslate"><span class="pre">CudaRobotModelState.link_spheres_tensor</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.CudaRobotModelState.link_names"><code class="docutils literal notranslate"><span class="pre">CudaRobotModelState.link_names</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.CudaRobotModelState.ee_pose"><code class="docutils literal notranslate"><span class="pre">CudaRobotModelState.ee_pose</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.CudaRobotModelState.get_link_spheres"><code class="docutils literal notranslate"><span class="pre">CudaRobotModelState.get_link_spheres</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.CudaRobotModelState.link_pose"><code class="docutils literal notranslate"><span class="pre">CudaRobotModelState.link_pose</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="curobo.cuda_robot_model.urdf_kinematics_parser.html">curobo.cuda_robot_model.urdf_kinematics_parser module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="curobo.cuda_robot_model.urdf_kinematics_parser.html#curobo.cuda_robot_model.urdf_kinematics_parser.UrdfKinematicsParser"><code class="docutils literal notranslate"><span class="pre">UrdfKinematicsParser</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.urdf_kinematics_parser.html#curobo.cuda_robot_model.urdf_kinematics_parser.UrdfKinematicsParser.build_link_parent"><code class="docutils literal notranslate"><span class="pre">UrdfKinematicsParser.build_link_parent</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.urdf_kinematics_parser.html#curobo.cuda_robot_model.urdf_kinematics_parser.UrdfKinematicsParser.get_link_parameters"><code class="docutils literal notranslate"><span class="pre">UrdfKinematicsParser.get_link_parameters</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.urdf_kinematics_parser.html#curobo.cuda_robot_model.urdf_kinematics_parser.UrdfKinematicsParser.add_absolute_path_to_link_meshes"><code class="docutils literal notranslate"><span class="pre">UrdfKinematicsParser.add_absolute_path_to_link_meshes</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.urdf_kinematics_parser.html#curobo.cuda_robot_model.urdf_kinematics_parser.UrdfKinematicsParser.get_urdf_string"><code class="docutils literal notranslate"><span class="pre">UrdfKinematicsParser.get_urdf_string</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.urdf_kinematics_parser.html#curobo.cuda_robot_model.urdf_kinematics_parser.UrdfKinematicsParser.get_link_mesh"><code class="docutils literal notranslate"><span class="pre">UrdfKinematicsParser.get_link_mesh</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="curobo.cuda_robot_model.usd_kinematics_parser.html">curobo.cuda_robot_model.usd_kinematics_parser module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="curobo.cuda_robot_model.usd_kinematics_parser.html#curobo.cuda_robot_model.usd_kinematics_parser.UsdKinematicsParser"><code class="docutils literal notranslate"><span class="pre">UsdKinematicsParser</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.usd_kinematics_parser.html#curobo.cuda_robot_model.usd_kinematics_parser.UsdKinematicsParser.robot_prim_root"><code class="docutils literal notranslate"><span class="pre">UsdKinematicsParser.robot_prim_root</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.usd_kinematics_parser.html#curobo.cuda_robot_model.usd_kinematics_parser.UsdKinematicsParser.build_link_parent"><code class="docutils literal notranslate"><span class="pre">UsdKinematicsParser.build_link_parent</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.usd_kinematics_parser.html#curobo.cuda_robot_model.usd_kinematics_parser.UsdKinematicsParser.get_link_parameters"><code class="docutils literal notranslate"><span class="pre">UsdKinematicsParser.get_link_parameters</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.cuda_robot_model.usd_kinematics_parser.html#curobo.cuda_robot_model.usd_kinematics_parser.get_links_for_joint"><code class="docutils literal notranslate"><span class="pre">get_links_for_joint</span></code></a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../api.html" class="btn btn-neutral float-left" title="Python API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="curobo.cuda_robot_model.cuda_robot_generator.html" class="btn btn-neutral float-right" title="curobo.cuda_robot_model.cuda_robot_generator module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, NVIDIA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(250);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

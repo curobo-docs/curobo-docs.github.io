@@ -1,0 +1,399 @@
+<!--
+-- Copyright (c) 2023 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+--
+-- NVIDIA CORPORATION, its affiliates and licensors retain all intellectual
+-- property and proprietary rights in and to this material, related
+-- documentation and any modifications thereto. Any use, reproduction,
+-- disclosure or distribution of this material and related documentation
+-- without an express license agreement from NVIDIA CORPORATION or
+-- its affiliates is strictly prohibited.
+-->
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>curobo.geom package &mdash; CuRobo  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="curobo.geom.sdf package" href="curobo.geom.sdf.html" />
+    <link rel="prev" title="curobo.cuda_robot_model.usd_kinematics_parser module" href="curobo.cuda_robot_model.usd_kinematics_parser.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CuRobo
+              <img src="../_static/nvidia_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Research</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/research/research.html">Technical Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/research/research_using_curobo.html">Research using CuRobo</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Library Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/1_install_instructions.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/1a_quick_overview.html">Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2a_python_examples.html">Using in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2b_isaacsim_examples.html">Using with Isaac Sim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2c_world_collision.html">Collision World Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2d_nvblox_demo.html">Using with Depth Camera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2e_torch_layer_example.html">Using in a Neural Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/4_benchmarks.html">Benchmarks &amp; Profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/5_docker_development.html">Docker Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/6_known_issues.html">Known Issues</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Advanced Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2a_batch_env.html">Batched Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2b_block_stacking_example.html">Block Stacking</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/tutorials/1_robot_configuration.html">Configuring a New Robot</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/01_robot_list.html">Supported Robots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/02_numerical_optimization.html">Numerical Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/04_cuda_kernels.html">CUDA Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/05_usd_api.html">USD for Robot and World Representation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">Python API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CuRobo</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../api.html">Python API</a></li>
+      <li class="breadcrumb-item active">curobo.geom package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/_api/curobo.geom.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-curobo.geom">
+<span id="curobo-geom-package"></span><h1>curobo.geom package<a class="headerlink" href="#module-curobo.geom" title="Link to this heading"></a></h1>
+<p>This module contains code for geometric processing such as pointcloud processing, analytic signed
+distance computation for the environment, and also signed distance computation between robot and the
+environment. These functions can be used for robot self collision checking and also for robot
+environment collision checking.</p>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="curobo.geom.sdf.html">curobo.geom.sdf package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="curobo.geom.sdf.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.sdf_grid.html">curobo.geom.sdf.sdf_grid module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="curobo.geom.sdf.sdf_grid.html#curobo.geom.sdf.sdf_grid.lookup_distance"><code class="docutils literal notranslate"><span class="pre">lookup_distance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.geom.sdf.sdf_grid.html#curobo.geom.sdf.sdf_grid.compute_sdf_gradient"><code class="docutils literal notranslate"><span class="pre">compute_sdf_gradient</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.geom.sdf.sdf_grid.html#curobo.geom.sdf.sdf_grid.SDFGrid"><code class="docutils literal notranslate"><span class="pre">SDFGrid</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.utils.html">curobo.geom.sdf.utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="curobo.geom.sdf.utils.html#curobo.geom.sdf.utils.create_collision_checker"><code class="docutils literal notranslate"><span class="pre">create_collision_checker</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.warp_primitives.html">curobo.geom.sdf.warp_primitives module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="curobo.geom.sdf.warp_primitives.html#curobo.geom.sdf.warp_primitives.SdfMeshWarpPy"><code class="docutils literal notranslate"><span class="pre">SdfMeshWarpPy</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.geom.sdf.warp_primitives.html#curobo.geom.sdf.warp_primitives.SweptSdfMeshWarpPy"><code class="docutils literal notranslate"><span class="pre">SweptSdfMeshWarpPy</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world.html">curobo.geom.sdf.world module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.CollisionBuffer"><code class="docutils literal notranslate"><span class="pre">CollisionBuffer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.CollisionQueryBuffer"><code class="docutils literal notranslate"><span class="pre">CollisionQueryBuffer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.CollisionCheckerType"><code class="docutils literal notranslate"><span class="pre">CollisionCheckerType</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldCollisionConfig"><code class="docutils literal notranslate"><span class="pre">WorldCollisionConfig</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldCollision"><code class="docutils literal notranslate"><span class="pre">WorldCollision</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldPrimitiveCollision"><code class="docutils literal notranslate"><span class="pre">WorldPrimitiveCollision</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world_blox.html">curobo.geom.sdf.world_blox module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="curobo.geom.sdf.world_blox.html#curobo.geom.sdf.world_blox.WorldBloxCollision"><code class="docutils literal notranslate"><span class="pre">WorldBloxCollision</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world_mesh.html">curobo.geom.sdf.world_mesh module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="curobo.geom.sdf.world_mesh.html#curobo.geom.sdf.world_mesh.WarpMeshData"><code class="docutils literal notranslate"><span class="pre">WarpMeshData</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.geom.sdf.world_mesh.html#curobo.geom.sdf.world_mesh.WorldMeshCollision"><code class="docutils literal notranslate"><span class="pre">WorldMeshCollision</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="curobo.geom.sphere_fit.html">curobo.geom.sphere_fit module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="curobo.geom.sphere_fit.html#curobo.geom.sphere_fit.SphereFitType"><code class="docutils literal notranslate"><span class="pre">SphereFitType</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.sphere_fit.html#curobo.geom.sphere_fit.SphereFitType.SAMPLE_SURFACE"><code class="docutils literal notranslate"><span class="pre">SphereFitType.SAMPLE_SURFACE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.sphere_fit.html#curobo.geom.sphere_fit.SphereFitType.VOXEL_SURFACE"><code class="docutils literal notranslate"><span class="pre">SphereFitType.VOXEL_SURFACE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.sphere_fit.html#curobo.geom.sphere_fit.SphereFitType.VOXEL_VOLUME"><code class="docutils literal notranslate"><span class="pre">SphereFitType.VOXEL_VOLUME</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.sphere_fit.html#curobo.geom.sphere_fit.SphereFitType.VOXEL_VOLUME_INSIDE"><code class="docutils literal notranslate"><span class="pre">SphereFitType.VOXEL_VOLUME_INSIDE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.sphere_fit.html#curobo.geom.sphere_fit.SphereFitType.VOXEL_VOLUME_SAMPLE_SURFACE"><code class="docutils literal notranslate"><span class="pre">SphereFitType.VOXEL_VOLUME_SAMPLE_SURFACE</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.geom.sphere_fit.html#curobo.geom.sphere_fit.sample_even_fit_mesh"><code class="docutils literal notranslate"><span class="pre">sample_even_fit_mesh</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.geom.sphere_fit.html#curobo.geom.sphere_fit.get_voxel_pitch"><code class="docutils literal notranslate"><span class="pre">get_voxel_pitch</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.geom.sphere_fit.html#curobo.geom.sphere_fit.voxel_fit_surface_mesh"><code class="docutils literal notranslate"><span class="pre">voxel_fit_surface_mesh</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.geom.sphere_fit.html#curobo.geom.sphere_fit.get_voxelgrid_from_mesh"><code class="docutils literal notranslate"><span class="pre">get_voxelgrid_from_mesh</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.geom.sphere_fit.html#curobo.geom.sphere_fit.voxel_fit_mesh"><code class="docutils literal notranslate"><span class="pre">voxel_fit_mesh</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.geom.sphere_fit.html#curobo.geom.sphere_fit.voxel_fit_volume_sample_surface_mesh"><code class="docutils literal notranslate"><span class="pre">voxel_fit_volume_sample_surface_mesh</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.geom.sphere_fit.html#curobo.geom.sphere_fit.voxel_fit_volume_inside_mesh"><code class="docutils literal notranslate"><span class="pre">voxel_fit_volume_inside_mesh</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.geom.sphere_fit.html#curobo.geom.sphere_fit.fit_spheres_to_mesh"><code class="docutils literal notranslate"><span class="pre">fit_spheres_to_mesh</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="curobo.geom.transform.html">curobo.geom.transform module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="curobo.geom.transform.html#curobo.geom.transform.transform_points"><code class="docutils literal notranslate"><span class="pre">transform_points</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.geom.transform.html#curobo.geom.transform.batch_transform_points"><code class="docutils literal notranslate"><span class="pre">batch_transform_points</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.geom.transform.html#curobo.geom.transform.matrix_to_quaternion"><code class="docutils literal notranslate"><span class="pre">matrix_to_quaternion</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.geom.transform.html#curobo.geom.transform.cuda_matrix_to_quaternion"><code class="docutils literal notranslate"><span class="pre">cuda_matrix_to_quaternion</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.geom.transform.html#curobo.geom.transform.quaternion_to_matrix"><code class="docutils literal notranslate"><span class="pre">quaternion_to_matrix</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.geom.transform.html#curobo.geom.transform.torch_quaternion_to_matrix"><code class="docutils literal notranslate"><span class="pre">torch_quaternion_to_matrix</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.geom.transform.html#curobo.geom.transform.pose_to_matrix"><code class="docutils literal notranslate"><span class="pre">pose_to_matrix</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.geom.transform.html#curobo.geom.transform.pose_multiply"><code class="docutils literal notranslate"><span class="pre">pose_multiply</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.geom.transform.html#curobo.geom.transform.pose_inverse"><code class="docutils literal notranslate"><span class="pre">pose_inverse</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.geom.transform.html#curobo.geom.transform.TransformPoint"><code class="docutils literal notranslate"><span class="pre">TransformPoint</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.transform.html#curobo.geom.transform.TransformPoint.forward"><code class="docutils literal notranslate"><span class="pre">TransformPoint.forward</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.transform.html#curobo.geom.transform.TransformPoint.backward"><code class="docutils literal notranslate"><span class="pre">TransformPoint.backward</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.geom.transform.html#curobo.geom.transform.BatchTransformPoint"><code class="docutils literal notranslate"><span class="pre">BatchTransformPoint</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.transform.html#curobo.geom.transform.BatchTransformPoint.forward"><code class="docutils literal notranslate"><span class="pre">BatchTransformPoint.forward</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.transform.html#curobo.geom.transform.BatchTransformPoint.backward"><code class="docutils literal notranslate"><span class="pre">BatchTransformPoint.backward</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.geom.transform.html#curobo.geom.transform.BatchTransformPose"><code class="docutils literal notranslate"><span class="pre">BatchTransformPose</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.transform.html#curobo.geom.transform.BatchTransformPose.forward"><code class="docutils literal notranslate"><span class="pre">BatchTransformPose.forward</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.transform.html#curobo.geom.transform.BatchTransformPose.backward"><code class="docutils literal notranslate"><span class="pre">BatchTransformPose.backward</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.geom.transform.html#curobo.geom.transform.TransformPose"><code class="docutils literal notranslate"><span class="pre">TransformPose</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.transform.html#curobo.geom.transform.TransformPose.forward"><code class="docutils literal notranslate"><span class="pre">TransformPose.forward</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.transform.html#curobo.geom.transform.TransformPose.backward"><code class="docutils literal notranslate"><span class="pre">TransformPose.backward</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.geom.transform.html#curobo.geom.transform.PoseInverse"><code class="docutils literal notranslate"><span class="pre">PoseInverse</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.transform.html#curobo.geom.transform.PoseInverse.forward"><code class="docutils literal notranslate"><span class="pre">PoseInverse.forward</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.transform.html#curobo.geom.transform.PoseInverse.backward"><code class="docutils literal notranslate"><span class="pre">PoseInverse.backward</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.geom.transform.html#curobo.geom.transform.QuatToMatrix"><code class="docutils literal notranslate"><span class="pre">QuatToMatrix</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.transform.html#curobo.geom.transform.QuatToMatrix.forward"><code class="docutils literal notranslate"><span class="pre">QuatToMatrix.forward</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.transform.html#curobo.geom.transform.QuatToMatrix.backward"><code class="docutils literal notranslate"><span class="pre">QuatToMatrix.backward</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.geom.transform.html#curobo.geom.transform.MatrixToQuaternion"><code class="docutils literal notranslate"><span class="pre">MatrixToQuaternion</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.transform.html#curobo.geom.transform.MatrixToQuaternion.forward"><code class="docutils literal notranslate"><span class="pre">MatrixToQuaternion.forward</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.transform.html#curobo.geom.transform.MatrixToQuaternion.backward"><code class="docutils literal notranslate"><span class="pre">MatrixToQuaternion.backward</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="curobo.geom.types.html">curobo.geom.types module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Material"><code class="docutils literal notranslate"><span class="pre">Material</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Material.metallic"><code class="docutils literal notranslate"><span class="pre">Material.metallic</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Material.roughness"><code class="docutils literal notranslate"><span class="pre">Material.roughness</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Obstacle"><code class="docutils literal notranslate"><span class="pre">Obstacle</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Obstacle.name"><code class="docutils literal notranslate"><span class="pre">Obstacle.name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Obstacle.pose"><code class="docutils literal notranslate"><span class="pre">Obstacle.pose</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Obstacle.scale"><code class="docutils literal notranslate"><span class="pre">Obstacle.scale</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Obstacle.color"><code class="docutils literal notranslate"><span class="pre">Obstacle.color</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Obstacle.texture_id"><code class="docutils literal notranslate"><span class="pre">Obstacle.texture_id</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Obstacle.texture"><code class="docutils literal notranslate"><span class="pre">Obstacle.texture</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Obstacle.material"><code class="docutils literal notranslate"><span class="pre">Obstacle.material</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Obstacle.tensor_args"><code class="docutils literal notranslate"><span class="pre">Obstacle.tensor_args</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Obstacle.get_trimesh_mesh"><code class="docutils literal notranslate"><span class="pre">Obstacle.get_trimesh_mesh</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Obstacle.save_as_mesh"><code class="docutils literal notranslate"><span class="pre">Obstacle.save_as_mesh</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Obstacle.get_cuboid"><code class="docutils literal notranslate"><span class="pre">Obstacle.get_cuboid</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Obstacle.get_mesh"><code class="docutils literal notranslate"><span class="pre">Obstacle.get_mesh</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Obstacle.get_transform_matrix"><code class="docutils literal notranslate"><span class="pre">Obstacle.get_transform_matrix</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Obstacle.get_sphere"><code class="docutils literal notranslate"><span class="pre">Obstacle.get_sphere</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Obstacle.get_bounding_spheres"><code class="docutils literal notranslate"><span class="pre">Obstacle.get_bounding_spheres</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Cuboid"><code class="docutils literal notranslate"><span class="pre">Cuboid</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Cuboid.dims"><code class="docutils literal notranslate"><span class="pre">Cuboid.dims</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Cuboid.get_trimesh_mesh"><code class="docutils literal notranslate"><span class="pre">Cuboid.get_trimesh_mesh</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Capsule"><code class="docutils literal notranslate"><span class="pre">Capsule</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Capsule.radius"><code class="docutils literal notranslate"><span class="pre">Capsule.radius</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Capsule.base"><code class="docutils literal notranslate"><span class="pre">Capsule.base</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Capsule.tip"><code class="docutils literal notranslate"><span class="pre">Capsule.tip</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Capsule.get_trimesh_mesh"><code class="docutils literal notranslate"><span class="pre">Capsule.get_trimesh_mesh</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Cylinder"><code class="docutils literal notranslate"><span class="pre">Cylinder</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Cylinder.radius"><code class="docutils literal notranslate"><span class="pre">Cylinder.radius</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Cylinder.height"><code class="docutils literal notranslate"><span class="pre">Cylinder.height</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Cylinder.get_trimesh_mesh"><code class="docutils literal notranslate"><span class="pre">Cylinder.get_trimesh_mesh</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Sphere"><code class="docutils literal notranslate"><span class="pre">Sphere</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Sphere.radius"><code class="docutils literal notranslate"><span class="pre">Sphere.radius</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Sphere.position"><code class="docutils literal notranslate"><span class="pre">Sphere.position</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Sphere.get_trimesh_mesh"><code class="docutils literal notranslate"><span class="pre">Sphere.get_trimesh_mesh</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Sphere.get_cuboid"><code class="docutils literal notranslate"><span class="pre">Sphere.get_cuboid</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Mesh"><code class="docutils literal notranslate"><span class="pre">Mesh</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Mesh.file_path"><code class="docutils literal notranslate"><span class="pre">Mesh.file_path</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Mesh.file_string"><code class="docutils literal notranslate"><span class="pre">Mesh.file_string</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Mesh.urdf_path"><code class="docutils literal notranslate"><span class="pre">Mesh.urdf_path</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Mesh.vertices"><code class="docutils literal notranslate"><span class="pre">Mesh.vertices</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Mesh.faces"><code class="docutils literal notranslate"><span class="pre">Mesh.faces</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Mesh.vertex_colors"><code class="docutils literal notranslate"><span class="pre">Mesh.vertex_colors</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Mesh.vertex_normals"><code class="docutils literal notranslate"><span class="pre">Mesh.vertex_normals</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Mesh.face_colors"><code class="docutils literal notranslate"><span class="pre">Mesh.face_colors</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Mesh.get_trimesh_mesh"><code class="docutils literal notranslate"><span class="pre">Mesh.get_trimesh_mesh</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Mesh.get_mesh_data"><code class="docutils literal notranslate"><span class="pre">Mesh.get_mesh_data</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Mesh.from_pointcloud"><code class="docutils literal notranslate"><span class="pre">Mesh.from_pointcloud</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.BloxMap"><code class="docutils literal notranslate"><span class="pre">BloxMap</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.BloxMap.map_path"><code class="docutils literal notranslate"><span class="pre">BloxMap.map_path</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.BloxMap.voxel_size"><code class="docutils literal notranslate"><span class="pre">BloxMap.voxel_size</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.BloxMap.integrator_type"><code class="docutils literal notranslate"><span class="pre">BloxMap.integrator_type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.BloxMap.mesh_file_path"><code class="docutils literal notranslate"><span class="pre">BloxMap.mesh_file_path</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.BloxMap.mapper_instance"><code class="docutils literal notranslate"><span class="pre">BloxMap.mapper_instance</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.BloxMap.mesh"><code class="docutils literal notranslate"><span class="pre">BloxMap.mesh</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.BloxMap.get_trimesh_mesh"><code class="docutils literal notranslate"><span class="pre">BloxMap.get_trimesh_mesh</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig"><code class="docutils literal notranslate"><span class="pre">WorldConfig</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig.sphere"><code class="docutils literal notranslate"><span class="pre">WorldConfig.sphere</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig.cuboid"><code class="docutils literal notranslate"><span class="pre">WorldConfig.cuboid</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig.capsule"><code class="docutils literal notranslate"><span class="pre">WorldConfig.capsule</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig.cylinder"><code class="docutils literal notranslate"><span class="pre">WorldConfig.cylinder</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig.mesh"><code class="docutils literal notranslate"><span class="pre">WorldConfig.mesh</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig.blox"><code class="docutils literal notranslate"><span class="pre">WorldConfig.blox</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig.objects"><code class="docutils literal notranslate"><span class="pre">WorldConfig.objects</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig.clone"><code class="docutils literal notranslate"><span class="pre">WorldConfig.clone</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig.from_dict"><code class="docutils literal notranslate"><span class="pre">WorldConfig.from_dict</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig.create_obb_world"><code class="docutils literal notranslate"><span class="pre">WorldConfig.create_obb_world</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig.create_mesh_world"><code class="docutils literal notranslate"><span class="pre">WorldConfig.create_mesh_world</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig.create_collision_support_world"><code class="docutils literal notranslate"><span class="pre">WorldConfig.create_collision_support_world</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig.get_scene_graph"><code class="docutils literal notranslate"><span class="pre">WorldConfig.get_scene_graph</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig.create_merged_mesh_world"><code class="docutils literal notranslate"><span class="pre">WorldConfig.create_merged_mesh_world</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig.get_obb_world"><code class="docutils literal notranslate"><span class="pre">WorldConfig.get_obb_world</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig.get_mesh_world"><code class="docutils literal notranslate"><span class="pre">WorldConfig.get_mesh_world</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig.get_collision_check_world"><code class="docutils literal notranslate"><span class="pre">WorldConfig.get_collision_check_world</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig.save_world_as_mesh"><code class="docutils literal notranslate"><span class="pre">WorldConfig.save_world_as_mesh</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig.get_cache_dict"><code class="docutils literal notranslate"><span class="pre">WorldConfig.get_cache_dict</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig.add_obstacle"><code class="docutils literal notranslate"><span class="pre">WorldConfig.add_obstacle</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig.randomize_color"><code class="docutils literal notranslate"><span class="pre">WorldConfig.randomize_color</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig.add_color"><code class="docutils literal notranslate"><span class="pre">WorldConfig.add_color</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig.add_material"><code class="docutils literal notranslate"><span class="pre">WorldConfig.add_material</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig.get_obstacle"><code class="docutils literal notranslate"><span class="pre">WorldConfig.get_obstacle</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig.remove_obstacle"><code class="docutils literal notranslate"><span class="pre">WorldConfig.remove_obstacle</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig.remove_absolute_paths"><code class="docutils literal notranslate"><span class="pre">WorldConfig.remove_absolute_paths</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.tensor_sphere"><code class="docutils literal notranslate"><span class="pre">tensor_sphere</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.tensor_capsule"><code class="docutils literal notranslate"><span class="pre">tensor_capsule</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.tensor_cube"><code class="docutils literal notranslate"><span class="pre">tensor_cube</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.batch_tensor_cube"><code class="docutils literal notranslate"><span class="pre">batch_tensor_cube</span></code></a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="curobo.cuda_robot_model.usd_kinematics_parser.html" class="btn btn-neutral float-left" title="curobo.cuda_robot_model.usd_kinematics_parser module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="curobo.geom.sdf.html" class="btn btn-neutral float-right" title="curobo.geom.sdf package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, NVIDIA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(250);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

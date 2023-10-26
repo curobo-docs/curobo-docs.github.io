@@ -1,0 +1,293 @@
+<!--
+-- Copyright (c) 2023 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+--
+-- NVIDIA CORPORATION, its affiliates and licensors retain all intellectual
+-- property and proprietary rights in and to this material, related
+-- documentation and any modifications thereto. Any use, reproduction,
+-- disclosure or distribution of this material and related documentation
+-- without an express license agreement from NVIDIA CORPORATION or
+-- its affiliates is strictly prohibited.
+-->
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>curobo.opt.particle package &mdash; CuRobo  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="curobo.opt.particle.parallel_es module" href="curobo.opt.particle.parallel_es.html" />
+    <link rel="prev" title="curobo.opt.newton.newton_base module" href="curobo.opt.newton.newton_base.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CuRobo
+              <img src="../_static/nvidia_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Research</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/research/research.html">Technical Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/research/research_using_curobo.html">Research using CuRobo</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Library Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/1_install_instructions.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/1a_quick_overview.html">Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2a_python_examples.html">Using in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2b_isaacsim_examples.html">Using with Isaac Sim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2c_world_collision.html">Collision World Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2d_nvblox_demo.html">Using with Depth Camera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2e_torch_layer_example.html">Using in a Neural Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/4_benchmarks.html">Benchmarks &amp; Profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/5_docker_development.html">Docker Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/6_known_issues.html">Known Issues</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Advanced Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2a_batch_env.html">Batched Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2b_block_stacking_example.html">Block Stacking</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/tutorials/1_robot_configuration.html">Configuring a New Robot</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/01_robot_list.html">Supported Robots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/02_numerical_optimization.html">Numerical Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/04_cuda_kernels.html">CUDA Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/05_usd_api.html">USD for Robot and World Representation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">Python API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CuRobo</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../api.html">Python API</a></li>
+          <li class="breadcrumb-item"><a href="curobo.opt.html">curobo.opt package</a></li>
+      <li class="breadcrumb-item active">curobo.opt.particle package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/_api/curobo.opt.particle.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-curobo.opt.particle">
+<span id="curobo-opt-particle-package"></span><h1>curobo.opt.particle package<a class="headerlink" href="#module-curobo.opt.particle" title="Link to this heading"></a></h1>
+<p>This module contains particle-based optimization solvers.</p>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="curobo.opt.particle.parallel_es.html">curobo.opt.particle.parallel_es module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="curobo.opt.particle.parallel_es.html#curobo.opt.particle.parallel_es.ParallelESConfig"><code class="docutils literal notranslate"><span class="pre">ParallelESConfig</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_es.html#curobo.opt.particle.parallel_es.ParallelESConfig.learning_rate"><code class="docutils literal notranslate"><span class="pre">ParallelESConfig.learning_rate</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.opt.particle.parallel_es.html#curobo.opt.particle.parallel_es.ParallelES"><code class="docutils literal notranslate"><span class="pre">ParallelES</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html">curobo.opt.particle.parallel_mppi module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.BaseActionType"><code class="docutils literal notranslate"><span class="pre">BaseActionType</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.BaseActionType.REPEAT"><code class="docutils literal notranslate"><span class="pre">BaseActionType.REPEAT</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.BaseActionType.NULL"><code class="docutils literal notranslate"><span class="pre">BaseActionType.NULL</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.BaseActionType.RANDOM"><code class="docutils literal notranslate"><span class="pre">BaseActionType.RANDOM</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.CovType"><code class="docutils literal notranslate"><span class="pre">CovType</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.CovType.SIGMA_I"><code class="docutils literal notranslate"><span class="pre">CovType.SIGMA_I</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.CovType.DIAG_A"><code class="docutils literal notranslate"><span class="pre">CovType.DIAG_A</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.CovType.FULL_A"><code class="docutils literal notranslate"><span class="pre">CovType.FULL_A</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.CovType.FULL_HA"><code class="docutils literal notranslate"><span class="pre">CovType.FULL_HA</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPIConfig"><code class="docutils literal notranslate"><span class="pre">ParallelMPPIConfig</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPIConfig.init_mean"><code class="docutils literal notranslate"><span class="pre">ParallelMPPIConfig.init_mean</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPIConfig.init_cov"><code class="docutils literal notranslate"><span class="pre">ParallelMPPIConfig.init_cov</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPIConfig.base_action"><code class="docutils literal notranslate"><span class="pre">ParallelMPPIConfig.base_action</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPIConfig.step_size_mean"><code class="docutils literal notranslate"><span class="pre">ParallelMPPIConfig.step_size_mean</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPIConfig.step_size_cov"><code class="docutils literal notranslate"><span class="pre">ParallelMPPIConfig.step_size_cov</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPIConfig.null_act_frac"><code class="docutils literal notranslate"><span class="pre">ParallelMPPIConfig.null_act_frac</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPIConfig.squash_fn"><code class="docutils literal notranslate"><span class="pre">ParallelMPPIConfig.squash_fn</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPIConfig.cov_type"><code class="docutils literal notranslate"><span class="pre">ParallelMPPIConfig.cov_type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPIConfig.sample_params"><code class="docutils literal notranslate"><span class="pre">ParallelMPPIConfig.sample_params</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPIConfig.update_cov"><code class="docutils literal notranslate"><span class="pre">ParallelMPPIConfig.update_cov</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPIConfig.random_mean"><code class="docutils literal notranslate"><span class="pre">ParallelMPPIConfig.random_mean</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPIConfig.beta"><code class="docutils literal notranslate"><span class="pre">ParallelMPPIConfig.beta</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPIConfig.alpha"><code class="docutils literal notranslate"><span class="pre">ParallelMPPIConfig.alpha</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPIConfig.gamma"><code class="docutils literal notranslate"><span class="pre">ParallelMPPIConfig.gamma</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPIConfig.kappa"><code class="docutils literal notranslate"><span class="pre">ParallelMPPIConfig.kappa</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPIConfig.sample_per_env"><code class="docutils literal notranslate"><span class="pre">ParallelMPPIConfig.sample_per_env</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPIConfig.create_data_dict"><code class="docutils literal notranslate"><span class="pre">ParallelMPPIConfig.create_data_dict</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPI"><code class="docutils literal notranslate"><span class="pre">ParallelMPPI</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPI.get_rollouts"><code class="docutils literal notranslate"><span class="pre">ParallelMPPI.get_rollouts</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPI.reset_distribution"><code class="docutils literal notranslate"><span class="pre">ParallelMPPI.reset_distribution</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPI.sample_actions"><code class="docutils literal notranslate"><span class="pre">ParallelMPPI.sample_actions</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPI.update_seed"><code class="docutils literal notranslate"><span class="pre">ParallelMPPI.update_seed</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPI.update_init_mean"><code class="docutils literal notranslate"><span class="pre">ParallelMPPI.update_init_mean</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPI.reset_mean"><code class="docutils literal notranslate"><span class="pre">ParallelMPPI.reset_mean</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPI.reset_covariance"><code class="docutils literal notranslate"><span class="pre">ParallelMPPI.reset_covariance</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPI.generate_noise"><code class="docutils literal notranslate"><span class="pre">ParallelMPPI.generate_noise</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPI.reset"><code class="docutils literal notranslate"><span class="pre">ParallelMPPI.reset</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPI.squashed_mean"><code class="docutils literal notranslate"><span class="pre">ParallelMPPI.squashed_mean</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPI.full_cov"><code class="docutils literal notranslate"><span class="pre">ParallelMPPI.full_cov</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPI.full_inv_cov"><code class="docutils literal notranslate"><span class="pre">ParallelMPPI.full_inv_cov</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPI.full_scale_tril"><code class="docutils literal notranslate"><span class="pre">ParallelMPPI.full_scale_tril</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPI.entropy"><code class="docutils literal notranslate"><span class="pre">ParallelMPPI.entropy</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPI.reset_seed"><code class="docutils literal notranslate"><span class="pre">ParallelMPPI.reset_seed</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPI.update_samples"><code class="docutils literal notranslate"><span class="pre">ParallelMPPI.update_samples</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPI.generate_rollouts"><code class="docutils literal notranslate"><span class="pre">ParallelMPPI.generate_rollouts</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="curobo.opt.particle.particle_opt_base.html">curobo.opt.particle.particle_opt_base module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="curobo.opt.particle.particle_opt_base.html#curobo.opt.particle.particle_opt_base.SampleMode"><code class="docutils literal notranslate"><span class="pre">SampleMode</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.particle_opt_base.html#curobo.opt.particle.particle_opt_base.SampleMode.MEAN"><code class="docutils literal notranslate"><span class="pre">SampleMode.MEAN</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.particle_opt_base.html#curobo.opt.particle.particle_opt_base.SampleMode.BEST"><code class="docutils literal notranslate"><span class="pre">SampleMode.BEST</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.particle_opt_base.html#curobo.opt.particle.particle_opt_base.SampleMode.SAMPLE"><code class="docutils literal notranslate"><span class="pre">SampleMode.SAMPLE</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.opt.particle.particle_opt_base.html#curobo.opt.particle.particle_opt_base.ParticleOptInfo"><code class="docutils literal notranslate"><span class="pre">ParticleOptInfo</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.particle_opt_base.html#curobo.opt.particle.particle_opt_base.ParticleOptInfo.info"><code class="docutils literal notranslate"><span class="pre">ParticleOptInfo.info</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.opt.particle.particle_opt_base.html#curobo.opt.particle.particle_opt_base.ParticleOptConfig"><code class="docutils literal notranslate"><span class="pre">ParticleOptConfig</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.particle_opt_base.html#curobo.opt.particle.particle_opt_base.ParticleOptConfig.gamma"><code class="docutils literal notranslate"><span class="pre">ParticleOptConfig.gamma</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.particle_opt_base.html#curobo.opt.particle.particle_opt_base.ParticleOptConfig.sample_mode"><code class="docutils literal notranslate"><span class="pre">ParticleOptConfig.sample_mode</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.particle_opt_base.html#curobo.opt.particle.particle_opt_base.ParticleOptConfig.seed"><code class="docutils literal notranslate"><span class="pre">ParticleOptConfig.seed</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.particle_opt_base.html#curobo.opt.particle.particle_opt_base.ParticleOptConfig.calculate_value"><code class="docutils literal notranslate"><span class="pre">ParticleOptConfig.calculate_value</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.particle_opt_base.html#curobo.opt.particle.particle_opt_base.ParticleOptConfig.store_rollouts"><code class="docutils literal notranslate"><span class="pre">ParticleOptConfig.store_rollouts</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.particle_opt_base.html#curobo.opt.particle.particle_opt_base.ParticleOptConfig.create_data_dict"><code class="docutils literal notranslate"><span class="pre">ParticleOptConfig.create_data_dict</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.opt.particle.particle_opt_base.html#curobo.opt.particle.particle_opt_base.ParticleOptBase"><code class="docutils literal notranslate"><span class="pre">ParticleOptBase</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.particle_opt_base.html#curobo.opt.particle.particle_opt_base.ParticleOptBase.sample_actions"><code class="docutils literal notranslate"><span class="pre">ParticleOptBase.sample_actions</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.particle_opt_base.html#curobo.opt.particle.particle_opt_base.ParticleOptBase.update_seed"><code class="docutils literal notranslate"><span class="pre">ParticleOptBase.update_seed</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.particle_opt_base.html#curobo.opt.particle.particle_opt_base.ParticleOptBase.reset"><code class="docutils literal notranslate"><span class="pre">ParticleOptBase.reset</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.particle_opt_base.html#curobo.opt.particle.particle_opt_base.ParticleOptBase.check_convergence"><code class="docutils literal notranslate"><span class="pre">ParticleOptBase.check_convergence</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.particle_opt_base.html#curobo.opt.particle.particle_opt_base.ParticleOptBase.generate_rollouts"><code class="docutils literal notranslate"><span class="pre">ParticleOptBase.generate_rollouts</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.particle_opt_base.html#curobo.opt.particle.particle_opt_base.ParticleOptBase.update_nenvs"><code class="docutils literal notranslate"><span class="pre">ParticleOptBase.update_nenvs</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.particle_opt_base.html#curobo.opt.particle.particle_opt_base.ParticleOptBase.update_num_particles_per_env"><code class="docutils literal notranslate"><span class="pre">ParticleOptBase.update_num_particles_per_env</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="curobo.opt.particle.particle_opt_utils.html">curobo.opt.particle.particle_opt_utils module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="curobo.opt.particle.particle_opt_utils.html#curobo.opt.particle.particle_opt_utils.SquashType"><code class="docutils literal notranslate"><span class="pre">SquashType</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.particle_opt_utils.html#curobo.opt.particle.particle_opt_utils.SquashType.CLAMP"><code class="docutils literal notranslate"><span class="pre">SquashType.CLAMP</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.particle_opt_utils.html#curobo.opt.particle.particle_opt_utils.SquashType.CLAMP_RESCALE"><code class="docutils literal notranslate"><span class="pre">SquashType.CLAMP_RESCALE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.particle_opt_utils.html#curobo.opt.particle.particle_opt_utils.SquashType.TANH"><code class="docutils literal notranslate"><span class="pre">SquashType.TANH</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.particle_opt_utils.html#curobo.opt.particle.particle_opt_utils.SquashType.IDENTITY"><code class="docutils literal notranslate"><span class="pre">SquashType.IDENTITY</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.opt.particle.particle_opt_utils.html#curobo.opt.particle.particle_opt_utils.scale_ctrl"><code class="docutils literal notranslate"><span class="pre">scale_ctrl</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.opt.particle.particle_opt_utils.html#curobo.opt.particle.particle_opt_utils.get_stomp_cov"><code class="docutils literal notranslate"><span class="pre">get_stomp_cov</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.opt.particle.particle_opt_utils.html#curobo.opt.particle.particle_opt_utils.gaussian_logprob"><code class="docutils literal notranslate"><span class="pre">gaussian_logprob</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.opt.particle.particle_opt_utils.html#curobo.opt.particle.particle_opt_utils.gaussian_logprobgrad"><code class="docutils literal notranslate"><span class="pre">gaussian_logprobgrad</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.opt.particle.particle_opt_utils.html#curobo.opt.particle.particle_opt_utils.gaussian_entropy"><code class="docutils literal notranslate"><span class="pre">gaussian_entropy</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.opt.particle.particle_opt_utils.html#curobo.opt.particle.particle_opt_utils.gaussian_kl"><code class="docutils literal notranslate"><span class="pre">gaussian_kl</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.opt.particle.particle_opt_utils.html#curobo.opt.particle.particle_opt_utils.cost_to_go"><code class="docutils literal notranslate"><span class="pre">cost_to_go</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.opt.particle.particle_opt_utils.html#curobo.opt.particle.particle_opt_utils.cost_to_go_np"><code class="docutils literal notranslate"><span class="pre">cost_to_go_np</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.opt.particle.particle_opt_utils.html#curobo.opt.particle.particle_opt_utils.matrix_cholesky"><code class="docutils literal notranslate"><span class="pre">matrix_cholesky</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.opt.particle.particle_opt_utils.html#curobo.opt.particle.particle_opt_utils.batch_cholesky"><code class="docutils literal notranslate"><span class="pre">batch_cholesky</span></code></a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="curobo.opt.newton.newton_base.html" class="btn btn-neutral float-left" title="curobo.opt.newton.newton_base module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="curobo.opt.particle.parallel_es.html" class="btn btn-neutral float-right" title="curobo.opt.particle.parallel_es module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, NVIDIA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(250);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

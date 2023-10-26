@@ -1,0 +1,841 @@
+<!--
+-- Copyright (c) 2023 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+--
+-- NVIDIA CORPORATION, its affiliates and licensors retain all intellectual
+-- property and proprietary rights in and to this material, related
+-- documentation and any modifications thereto. Any use, reproduction,
+-- disclosure or distribution of this material and related documentation
+-- without an express license agreement from NVIDIA CORPORATION or
+-- its affiliates is strictly prohibited.
+-->
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>curobo.wrap.reacher.ik_solver module &mdash; CuRobo  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="curobo.graph package" href="curobo.graph.html" />
+    <link rel="prev" title="curobo.curobolib.util_file module" href="curobo.curobolib.util_file.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CuRobo
+              <img src="../_static/nvidia_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Research</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/research/research.html">Technical Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/research/research_using_curobo.html">Research using CuRobo</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Library Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/1_install_instructions.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/1a_quick_overview.html">Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2a_python_examples.html">Using in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2b_isaacsim_examples.html">Using with Isaac Sim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2c_world_collision.html">Collision World Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2d_nvblox_demo.html">Using with Depth Camera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2e_torch_layer_example.html">Using in a Neural Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/4_benchmarks.html">Benchmarks &amp; Profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/5_docker_development.html">Docker Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/6_known_issues.html">Known Issues</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Advanced Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2a_batch_env.html">Batched Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2b_block_stacking_example.html">Block Stacking</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/tutorials/1_robot_configuration.html">Configuring a New Robot</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/01_robot_list.html">Supported Robots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/02_numerical_optimization.html">Numerical Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/04_cuda_kernels.html">CUDA Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/05_usd_api.html">USD for Robot and World Representation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">Python API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CuRobo</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../api.html">Python API</a></li>
+      <li class="breadcrumb-item active">curobo.wrap.reacher.ik_solver module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/_api/curobo.wrap.reacher.ik_solver.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-curobo.wrap.reacher.ik_solver">
+<span id="curobo-wrap-reacher-ik-solver-module"></span><h1>curobo.wrap.reacher.ik_solver module<a class="headerlink" href="#module-curobo.wrap.reacher.ik_solver" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.ik_solver.IKSolverConfig">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">curobo.wrap.reacher.ik_solver.</span></span><span class="sig-name descname"><span class="pre">IKSolverConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot_config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.types.robot.html#curobo.types.robot.RobotConfig" title="curobo.types.robot.RobotConfig"><span class="pre">curobo.types.robot.RobotConfig</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.wrap.wrap_base.html#curobo.wrap.wrap_base.WrapBase" title="curobo.wrap.wrap_base.WrapBase"><span class="pre">curobo.wrap.wrap_base.WrapBase</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_seeds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position_threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotation_threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rollout_fn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.rollout.arm_reacher.html#curobo.rollout.arm_reacher.ArmReacher" title="curobo.rollout.arm_reacher.ArmReacher"><span class="pre">curobo.rollout.arm_reacher.ArmReacher</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">ik_nn_seeder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">world_coll_checker</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldCollision" title="curobo.geom.sdf.world.WorldCollision"><span class="pre">curobo.geom.sdf.world.WorldCollision</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_rejection_ratio</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tensor_args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType" title="curobo.types.base.TensorDeviceType"><span class="pre">curobo.types.base.TensorDeviceType</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">TensorDeviceType(device=device(type='cuda',</span> <span class="pre">index=0),</span> <span class="pre">dtype=torch.float32)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.ik_solver.IKSolverConfig" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>robot_config</strong> (<a class="reference internal" href="curobo.types.robot.html#curobo.types.robot.RobotConfig" title="curobo.types.robot.RobotConfig"><em>RobotConfig</em></a>) – </p></li>
+<li><p><strong>solver</strong> (<a class="reference internal" href="curobo.wrap.wrap_base.html#curobo.wrap.wrap_base.WrapBase" title="curobo.wrap.wrap_base.WrapBase"><em>WrapBase</em></a>) – </p></li>
+<li><p><strong>num_seeds</strong> (<em>int</em>) – </p></li>
+<li><p><strong>position_threshold</strong> (<em>float</em>) – </p></li>
+<li><p><strong>rotation_threshold</strong> (<em>float</em>) – </p></li>
+<li><p><strong>rollout_fn</strong> (<a class="reference internal" href="curobo.rollout.arm_reacher.html#curobo.rollout.arm_reacher.ArmReacher" title="curobo.rollout.arm_reacher.ArmReacher"><em>ArmReacher</em></a>) – </p></li>
+<li><p><strong>ik_nn_seeder</strong> (<em>str</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>world_coll_checker</strong> (<a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldCollision" title="curobo.geom.sdf.world.WorldCollision"><em>WorldCollision</em></a><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>sample_rejection_ratio</strong> (<em>int</em>) – </p></li>
+<li><p><strong>tensor_args</strong> (<a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType" title="curobo.types.base.TensorDeviceType"><em>TensorDeviceType</em></a>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.ik_solver.IKSolverConfig.robot_config">
+<span class="sig-name descname"><span class="pre">robot_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.types.robot.html#curobo.types.robot.RobotConfig" title="curobo.types.robot.RobotConfig"><span class="pre">RobotConfig</span></a></em><a class="headerlink" href="#curobo.wrap.reacher.ik_solver.IKSolverConfig.robot_config" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.ik_solver.IKSolverConfig.solver">
+<span class="sig-name descname"><span class="pre">solver</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.wrap.wrap_base.html#curobo.wrap.wrap_base.WrapBase" title="curobo.wrap.wrap_base.WrapBase"><span class="pre">WrapBase</span></a></em><a class="headerlink" href="#curobo.wrap.reacher.ik_solver.IKSolverConfig.solver" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.ik_solver.IKSolverConfig.num_seeds">
+<span class="sig-name descname"><span class="pre">num_seeds</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#curobo.wrap.reacher.ik_solver.IKSolverConfig.num_seeds" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.ik_solver.IKSolverConfig.position_threshold">
+<span class="sig-name descname"><span class="pre">position_threshold</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#curobo.wrap.reacher.ik_solver.IKSolverConfig.position_threshold" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.ik_solver.IKSolverConfig.rotation_threshold">
+<span class="sig-name descname"><span class="pre">rotation_threshold</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#curobo.wrap.reacher.ik_solver.IKSolverConfig.rotation_threshold" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.ik_solver.IKSolverConfig.rollout_fn">
+<span class="sig-name descname"><span class="pre">rollout_fn</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.rollout.arm_reacher.html#curobo.rollout.arm_reacher.ArmReacher" title="curobo.rollout.arm_reacher.ArmReacher"><span class="pre">ArmReacher</span></a></em><a class="headerlink" href="#curobo.wrap.reacher.ik_solver.IKSolverConfig.rollout_fn" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.ik_solver.IKSolverConfig.ik_nn_seeder">
+<span class="sig-name descname"><span class="pre">ik_nn_seeder</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.wrap.reacher.ik_solver.IKSolverConfig.ik_nn_seeder" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.ik_solver.IKSolverConfig.world_coll_checker">
+<span class="sig-name descname"><span class="pre">world_coll_checker</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldCollision" title="curobo.geom.sdf.world.WorldCollision"><span class="pre">WorldCollision</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.wrap.reacher.ik_solver.IKSolverConfig.world_coll_checker" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.ik_solver.IKSolverConfig.sample_rejection_ratio">
+<span class="sig-name descname"><span class="pre">sample_rejection_ratio</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">50</span></em><a class="headerlink" href="#curobo.wrap.reacher.ik_solver.IKSolverConfig.sample_rejection_ratio" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.ik_solver.IKSolverConfig.tensor_args">
+<span class="sig-name descname"><span class="pre">tensor_args</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType" title="curobo.types.base.TensorDeviceType"><span class="pre">TensorDeviceType</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">TensorDeviceType(device=device(type='cuda',</span> <span class="pre">index=0),</span> <span class="pre">dtype=torch.float32)</span></em><a class="headerlink" href="#curobo.wrap.reacher.ik_solver.IKSolverConfig.tensor_args" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.ik_solver.IKSolverConfig.load_from_robot_config">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">load_from_robot_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot_cfg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">world_model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tensor_args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">TensorDeviceType(device=device(type='cuda',</span> <span class="pre">index=0),</span> <span class="pre">dtype=torch.float32)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_seeds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position_threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.005</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotation_threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">world_coll_checker</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_cfg_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'base_cfg.yml'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">particle_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'particle_ik.yml'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gradient_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gradient_ik.yml'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_cuda_graph</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">self_collision_check</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">self_collision_opt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grad_iters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_particle_opt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collision_checker_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">CollisionCheckerType.PRIMITIVE</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sync_cuda_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_gradient_descent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collision_cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_collision_envs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ee_link_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_es</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">es_learning_rate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_fixed_samples</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">store_debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regularization</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collision_activation_distance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">high_precision</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.ik_solver.IKSolverConfig.load_from_robot_config" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>robot_cfg</strong> (<em>str</em><em> | </em><em>Dict</em><em> | </em><a class="reference internal" href="curobo.types.robot.html#curobo.types.robot.RobotConfig" title="curobo.types.robot.RobotConfig"><em>RobotConfig</em></a>) – </p></li>
+<li><p><strong>world_model</strong> (<em>List</em><em>[</em><em>Dict</em><em>] </em><em>| </em><em>List</em><em>[</em><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig" title="curobo.geom.types.WorldConfig"><em>WorldConfig</em></a><em>] </em><em>| </em><em>Dict</em><em> | </em><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig" title="curobo.geom.types.WorldConfig"><em>WorldConfig</em></a><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>tensor_args</strong> (<a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType" title="curobo.types.base.TensorDeviceType"><em>TensorDeviceType</em></a>) – </p></li>
+<li><p><strong>num_seeds</strong> (<em>int</em>) – </p></li>
+<li><p><strong>position_threshold</strong> (<em>float</em>) – </p></li>
+<li><p><strong>rotation_threshold</strong> (<em>float</em>) – </p></li>
+<li><p><strong>base_cfg_file</strong> (<em>str</em>) – </p></li>
+<li><p><strong>particle_file</strong> (<em>str</em>) – </p></li>
+<li><p><strong>gradient_file</strong> (<em>str</em>) – </p></li>
+<li><p><strong>use_cuda_graph</strong> (<em>bool</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>self_collision_check</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>self_collision_opt</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>grad_iters</strong> (<em>int</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>use_particle_opt</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>collision_checker_type</strong> (<a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.CollisionCheckerType" title="curobo.geom.sdf.world.CollisionCheckerType"><em>CollisionCheckerType</em></a><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>sync_cuda_time</strong> (<em>bool</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>use_gradient_descent</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>collision_cache</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>int</em><em>] </em><em>| </em><em>None</em>) – </p></li>
+<li><p><strong>n_collision_envs</strong> (<em>int</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>ee_link_name</strong> (<em>str</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>use_es</strong> (<em>bool</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>es_learning_rate</strong> (<em>float</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>use_fixed_samples</strong> (<em>bool</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>store_debug</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>regularization</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>collision_activation_distance</strong> (<em>float</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>high_precision</strong> (<em>bool</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.ik_solver.IKResult">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">curobo.wrap.reacher.ik_solver.</span></span><span class="sig-name descname"><span class="pre">IKResult</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">js_solution</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><span class="pre">curobo.types.state.JointState</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">goal_pose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.types.math.html#curobo.types.math.Pose" title="curobo.types.math.Pose"><span class="pre">curobo.types.math.Pose</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">solution</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Annotated[torch.Tensor,</span> <span class="pre">{'__torchtyping__':</span> <span class="pre">True,</span> <span class="pre">'details':</span> <span class="pre">('batch',</span> <span class="pre">'dof',</span> <span class="pre">torch.float32),</span> <span class="pre">'cls_name':</span> <span class="pre">'TensorType'}]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Annotated[torch.Tensor,</span> <span class="pre">{'__torchtyping__':</span> <span class="pre">True,</span> <span class="pre">'details':</span> <span class="pre">('batch',</span> <span class="pre">'dof',</span> <span class="pre">torch.float32),</span> <span class="pre">'cls_name':</span> <span class="pre">'TensorType'}]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">success</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Annotated[torch.Tensor,</span> <span class="pre">{'__torchtyping__':</span> <span class="pre">True,</span> <span class="pre">'details':</span> <span class="pre">('batch',</span> <span class="pre">'value',</span> <span class="pre">torch.bool),</span> <span class="pre">'cls_name':</span> <span class="pre">'TensorType'}]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position_error</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Annotated[torch.Tensor,</span> <span class="pre">{'__torchtyping__':</span> <span class="pre">True,</span> <span class="pre">'details':</span> <span class="pre">('batch',</span> <span class="pre">'value',</span> <span class="pre">torch.float32),</span> <span class="pre">'cls_name':</span> <span class="pre">'TensorType'}]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotation_error</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Annotated[torch.Tensor,</span> <span class="pre">{'__torchtyping__':</span> <span class="pre">True,</span> <span class="pre">'details':</span> <span class="pre">('batch',</span> <span class="pre">'value',</span> <span class="pre">torch.float32),</span> <span class="pre">'cls_name':</span> <span class="pre">'TensorType'}]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Annotated[torch.Tensor,</span> <span class="pre">{'__torchtyping__':</span> <span class="pre">True,</span> <span class="pre">'details':</span> <span class="pre">('batch',</span> <span class="pre">'value',</span> <span class="pre">torch.float32),</span> <span class="pre">'cls_name':</span> <span class="pre">'TensorType'}]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solve_time</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.ik_solver.IKResult" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>js_solution</strong> (<a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><em>JointState</em></a>) – </p></li>
+<li><p><strong>goal_pose</strong> (<a class="reference internal" href="curobo.types.math.html#curobo.types.math.Pose" title="curobo.types.math.Pose"><em>Pose</em></a>) – </p></li>
+<li><p><strong>solution</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>seed</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>success</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>position_error</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>rotation_error</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>error</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>solve_time</strong> (<em>float</em>) – </p></li>
+<li><p><strong>debug_info</strong> (<em>Any</em><em> | </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.ik_solver.IKResult.js_solution">
+<span class="sig-name descname"><span class="pre">js_solution</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><span class="pre">JointState</span></a></em><a class="headerlink" href="#curobo.wrap.reacher.ik_solver.IKResult.js_solution" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.ik_solver.IKResult.goal_pose">
+<span class="sig-name descname"><span class="pre">goal_pose</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.types.math.html#curobo.types.math.Pose" title="curobo.types.math.Pose"><span class="pre">Pose</span></a></em><a class="headerlink" href="#curobo.wrap.reacher.ik_solver.IKResult.goal_pose" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.ik_solver.IKResult.solution">
+<span class="sig-name descname"><span class="pre">solution</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span></em><a class="headerlink" href="#curobo.wrap.reacher.ik_solver.IKResult.solution" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.ik_solver.IKResult.seed">
+<span class="sig-name descname"><span class="pre">seed</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span></em><a class="headerlink" href="#curobo.wrap.reacher.ik_solver.IKResult.seed" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.ik_solver.IKResult.success">
+<span class="sig-name descname"><span class="pre">success</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span></em><a class="headerlink" href="#curobo.wrap.reacher.ik_solver.IKResult.success" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.ik_solver.IKResult.position_error">
+<span class="sig-name descname"><span class="pre">position_error</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span></em><a class="headerlink" href="#curobo.wrap.reacher.ik_solver.IKResult.position_error" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.ik_solver.IKResult.rotation_error">
+<span class="sig-name descname"><span class="pre">rotation_error</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span></em><a class="headerlink" href="#curobo.wrap.reacher.ik_solver.IKResult.rotation_error" title="Link to this definition"></a></dt>
+<dd><p>rotation error is computed as sqrt(q_des^T * q)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.ik_solver.IKResult.error">
+<span class="sig-name descname"><span class="pre">error</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span></em><a class="headerlink" href="#curobo.wrap.reacher.ik_solver.IKResult.error" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.ik_solver.IKResult.solve_time">
+<span class="sig-name descname"><span class="pre">solve_time</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#curobo.wrap.reacher.ik_solver.IKResult.solve_time" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.ik_solver.IKResult.debug_info">
+<span class="sig-name descname"><span class="pre">debug_info</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Any</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.wrap.reacher.ik_solver.IKResult.debug_info" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.ik_solver.IKResult.get_unique_solution">
+<span class="sig-name descname"><span class="pre">get_unique_solution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">roundoff_decimals</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.ik_solver.IKResult.get_unique_solution" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>roundoff_decimals</strong> (<em>int</em>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>Tensor</em></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.ik_solver.IKResult.get_batch_unique_solution">
+<span class="sig-name descname"><span class="pre">get_batch_unique_solution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">roundoff_decimals</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.ik_solver.IKResult.get_batch_unique_solution" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>roundoff_decimals</strong> (<em>int</em>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>List</em>[<em>Tensor</em>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.ik_solver.IKSolver">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">curobo.wrap.reacher.ik_solver.</span></span><span class="sig-name descname"><span class="pre">IKSolver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.ik_solver.IKSolver" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#curobo.wrap.reacher.ik_solver.IKSolverConfig" title="curobo.wrap.reacher.ik_solver.IKSolverConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">IKSolverConfig</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>config</strong> (<a class="reference internal" href="#curobo.wrap.reacher.ik_solver.IKSolverConfig" title="curobo.wrap.reacher.ik_solver.IKSolverConfig"><em>IKSolverConfig</em></a>) – </p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.ik_solver.IKSolver.update_goal_buffer">
+<span class="sig-name descname"><span class="pre">update_goal_buffer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">solve_state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">goal_pose</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retract_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">link_poses</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.ik_solver.IKSolver.update_goal_buffer" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>solve_state</strong> (<a class="reference internal" href="curobo.wrap.reacher.types.html#curobo.wrap.reacher.types.ReacherSolveState" title="curobo.wrap.reacher.types.ReacherSolveState"><em>ReacherSolveState</em></a>) – </p></li>
+<li><p><strong>goal_pose</strong> (<a class="reference internal" href="curobo.types.math.html#curobo.types.math.Pose" title="curobo.types.math.Pose"><em>Pose</em></a>) – </p></li>
+<li><p><strong>retract_config</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>link_poses</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><a class="reference internal" href="curobo.types.math.html#curobo.types.math.Pose" title="curobo.types.math.Pose"><em>Pose</em></a><em>] </em><em>| </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal" title="curobo.rollout.rollout_base.Goal"><em>Goal</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.ik_solver.IKSolver.solve_any">
+<span class="sig-name descname"><span class="pre">solve_any</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">solve_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">goal_pose</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retract_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_seeds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_seeds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_nn_seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">newton_iters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">link_poses</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.ik_solver.IKSolver.solve_any" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>solve_type</strong> (<a class="reference internal" href="curobo.wrap.reacher.types.html#curobo.wrap.reacher.types.ReacherSolveType" title="curobo.wrap.reacher.types.ReacherSolveType"><em>ReacherSolveType</em></a>) – </p></li>
+<li><p><strong>goal_pose</strong> (<a class="reference internal" href="curobo.types.math.html#curobo.types.math.Pose" title="curobo.types.math.Pose"><em>Pose</em></a>) – </p></li>
+<li><p><strong>retract_config</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>seed_config</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>return_seeds</strong> (<em>int</em>) – </p></li>
+<li><p><strong>num_seeds</strong> (<em>int</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>use_nn_seed</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>newton_iters</strong> (<em>int</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>link_poses</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><a class="reference internal" href="curobo.types.math.html#curobo.types.math.Pose" title="curobo.types.math.Pose"><em>Pose</em></a><em>] </em><em>| </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#curobo.wrap.reacher.ik_solver.IKResult" title="curobo.wrap.reacher.ik_solver.IKResult"><em>IKResult</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.ik_solver.IKSolver.solve_single">
+<span class="sig-name descname"><span class="pre">solve_single</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">goal_pose</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retract_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_seeds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_seeds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_nn_seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">newton_iters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">link_poses</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.ik_solver.IKSolver.solve_single" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>goal_pose</strong> (<a class="reference internal" href="curobo.types.math.html#curobo.types.math.Pose" title="curobo.types.math.Pose"><em>Pose</em></a>) – </p></li>
+<li><p><strong>retract_config</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>seed_config</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>return_seeds</strong> (<em>int</em>) – </p></li>
+<li><p><strong>num_seeds</strong> (<em>int</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>use_nn_seed</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>newton_iters</strong> (<em>int</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>link_poses</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><a class="reference internal" href="curobo.types.math.html#curobo.types.math.Pose" title="curobo.types.math.Pose"><em>Pose</em></a><em>] </em><em>| </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#curobo.wrap.reacher.ik_solver.IKResult" title="curobo.wrap.reacher.ik_solver.IKResult"><em>IKResult</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.ik_solver.IKSolver.solve_goalset">
+<span class="sig-name descname"><span class="pre">solve_goalset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">goal_pose</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retract_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_seeds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_seeds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_nn_seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">newton_iters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">link_poses</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.ik_solver.IKSolver.solve_goalset" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>goal_pose</strong> (<a class="reference internal" href="curobo.types.math.html#curobo.types.math.Pose" title="curobo.types.math.Pose"><em>Pose</em></a>) – </p></li>
+<li><p><strong>retract_config</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>seed_config</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>return_seeds</strong> (<em>int</em>) – </p></li>
+<li><p><strong>num_seeds</strong> (<em>int</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>use_nn_seed</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>newton_iters</strong> (<em>int</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>link_poses</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><a class="reference internal" href="curobo.types.math.html#curobo.types.math.Pose" title="curobo.types.math.Pose"><em>Pose</em></a><em>] </em><em>| </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#curobo.wrap.reacher.ik_solver.IKResult" title="curobo.wrap.reacher.ik_solver.IKResult"><em>IKResult</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.ik_solver.IKSolver.solve_batch">
+<span class="sig-name descname"><span class="pre">solve_batch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">goal_pose</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retract_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_seeds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_seeds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_nn_seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">newton_iters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">link_poses</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.ik_solver.IKSolver.solve_batch" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>goal_pose</strong> (<a class="reference internal" href="curobo.types.math.html#curobo.types.math.Pose" title="curobo.types.math.Pose"><em>Pose</em></a>) – </p></li>
+<li><p><strong>retract_config</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>seed_config</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>return_seeds</strong> (<em>int</em>) – </p></li>
+<li><p><strong>num_seeds</strong> (<em>int</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>use_nn_seed</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>newton_iters</strong> (<em>int</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>link_poses</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><a class="reference internal" href="curobo.types.math.html#curobo.types.math.Pose" title="curobo.types.math.Pose"><em>Pose</em></a><em>] </em><em>| </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#curobo.wrap.reacher.ik_solver.IKResult" title="curobo.wrap.reacher.ik_solver.IKResult"><em>IKResult</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.ik_solver.IKSolver.solve_batch_goalset">
+<span class="sig-name descname"><span class="pre">solve_batch_goalset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">goal_pose</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retract_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_seeds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_seeds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_nn_seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">newton_iters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">link_poses</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.ik_solver.IKSolver.solve_batch_goalset" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>goal_pose</strong> (<a class="reference internal" href="curobo.types.math.html#curobo.types.math.Pose" title="curobo.types.math.Pose"><em>Pose</em></a>) – </p></li>
+<li><p><strong>retract_config</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>seed_config</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>return_seeds</strong> (<em>int</em>) – </p></li>
+<li><p><strong>num_seeds</strong> (<em>int</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>use_nn_seed</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>newton_iters</strong> (<em>int</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>link_poses</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><a class="reference internal" href="curobo.types.math.html#curobo.types.math.Pose" title="curobo.types.math.Pose"><em>Pose</em></a><em>] </em><em>| </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#curobo.wrap.reacher.ik_solver.IKResult" title="curobo.wrap.reacher.ik_solver.IKResult"><em>IKResult</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.ik_solver.IKSolver.solve_batch_env">
+<span class="sig-name descname"><span class="pre">solve_batch_env</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">goal_pose</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retract_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_seeds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_seeds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_nn_seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">newton_iters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">link_poses</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.ik_solver.IKSolver.solve_batch_env" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>goal_pose</strong> (<a class="reference internal" href="curobo.types.math.html#curobo.types.math.Pose" title="curobo.types.math.Pose"><em>Pose</em></a>) – </p></li>
+<li><p><strong>retract_config</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>seed_config</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>return_seeds</strong> (<em>int</em>) – </p></li>
+<li><p><strong>num_seeds</strong> (<em>int</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>use_nn_seed</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>newton_iters</strong> (<em>int</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>link_poses</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><a class="reference internal" href="curobo.types.math.html#curobo.types.math.Pose" title="curobo.types.math.Pose"><em>Pose</em></a><em>] </em><em>| </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#curobo.wrap.reacher.ik_solver.IKResult" title="curobo.wrap.reacher.ik_solver.IKResult"><em>IKResult</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.ik_solver.IKSolver.solve_batch_env_goalset">
+<span class="sig-name descname"><span class="pre">solve_batch_env_goalset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">goal_pose</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retract_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_seeds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_seeds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_nn_seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">newton_iters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">link_poses</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.ik_solver.IKSolver.solve_batch_env_goalset" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>goal_pose</strong> (<a class="reference internal" href="curobo.types.math.html#curobo.types.math.Pose" title="curobo.types.math.Pose"><em>Pose</em></a>) – </p></li>
+<li><p><strong>retract_config</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>seed_config</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>return_seeds</strong> (<em>int</em>) – </p></li>
+<li><p><strong>num_seeds</strong> (<em>int</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>use_nn_seed</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>newton_iters</strong> (<em>int</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>link_poses</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><a class="reference internal" href="curobo.types.math.html#curobo.types.math.Pose" title="curobo.types.math.Pose"><em>Pose</em></a><em>] </em><em>| </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#curobo.wrap.reacher.ik_solver.IKResult" title="curobo.wrap.reacher.ik_solver.IKResult"><em>IKResult</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.ik_solver.IKSolver.solve_from_solve_state">
+<span class="sig-name descname"><span class="pre">solve_from_solve_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">solve_state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">goal_pose</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_seeds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retract_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_seeds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_nn_seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">newton_iters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">link_poses</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.ik_solver.IKSolver.solve_from_solve_state" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>solve_state</strong> (<a class="reference internal" href="curobo.wrap.reacher.types.html#curobo.wrap.reacher.types.ReacherSolveState" title="curobo.wrap.reacher.types.ReacherSolveState"><em>ReacherSolveState</em></a>) – </p></li>
+<li><p><strong>goal_pose</strong> (<a class="reference internal" href="curobo.types.math.html#curobo.types.math.Pose" title="curobo.types.math.Pose"><em>Pose</em></a>) – </p></li>
+<li><p><strong>num_seeds</strong> (<em>int</em>) – </p></li>
+<li><p><strong>retract_config</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>seed_config</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>return_seeds</strong> (<em>int</em>) – </p></li>
+<li><p><strong>use_nn_seed</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>newton_iters</strong> (<em>int</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>link_poses</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><a class="reference internal" href="curobo.types.math.html#curobo.types.math.Pose" title="curobo.types.math.Pose"><em>Pose</em></a><em>] </em><em>| </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#curobo.wrap.reacher.ik_solver.IKResult" title="curobo.wrap.reacher.ik_solver.IKResult"><em>IKResult</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.ik_solver.IKSolver.get_result">
+<span class="sig-name descname"><span class="pre">get_result</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_seeds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">result</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">goal_pose</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_seeds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.ik_solver.IKSolver.get_result" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>num_seeds</strong> (<em>int</em>) – </p></li>
+<li><p><strong>result</strong> (<a class="reference internal" href="curobo.wrap.wrap_base.html#curobo.wrap.wrap_base.WrapResult" title="curobo.wrap.wrap_base.WrapResult"><em>WrapResult</em></a>) – </p></li>
+<li><p><strong>goal_pose</strong> (<a class="reference internal" href="curobo.types.math.html#curobo.types.math.Pose" title="curobo.types.math.Pose"><em>Pose</em></a>) – </p></li>
+<li><p><strong>return_seeds</strong> (<em>int</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#curobo.wrap.reacher.ik_solver.IKResult" title="curobo.wrap.reacher.ik_solver.IKResult"><em>IKResult</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.ik_solver.IKSolver.get_seed">
+<span class="sig-name descname"><span class="pre">get_seed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_seeds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">goal_pose</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_nn_seed</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.ik_solver.IKSolver.get_seed" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>num_seeds</strong> (<em>int</em>) – </p></li>
+<li><p><strong>goal_pose</strong> (<a class="reference internal" href="curobo.types.math.html#curobo.types.math.Pose" title="curobo.types.math.Pose"><em>Pose</em></a>) – </p></li>
+<li><p><strong>seed_config</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>Tensor</em></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.ik_solver.IKSolver.solve">
+<span class="sig-name descname"><span class="pre">solve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">goal_pose</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retract_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_seeds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_seeds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_nn_seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">newton_iters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.ik_solver.IKSolver.solve" title="Link to this definition"></a></dt>
+<dd><p>Ik solver</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>goal_pose</strong> (<a class="reference internal" href="curobo.types.math.html#curobo.types.math.Pose" title="curobo.types.math.Pose"><em>Pose</em></a>) – _description_</p></li>
+<li><p><strong>retract_config</strong> (<em>Optional</em><em>[</em><em>T_BDOF</em><em>]</em><em>, </em><em>optional</em>) – _description_. Defaults to None.</p></li>
+<li><p><strong>seed_config</strong> (<em>Optional</em><em>[</em><em>T_BDOF</em><em>]</em><em>, </em><em>optional</em>) – _description_. Defaults to None.</p></li>
+<li><p><strong>return_seeds</strong> (<em>int</em><em>, </em><em>optional</em>) – _description_. Defaults to 1.</p></li>
+<li><p><strong>num_seeds</strong> (<em>Optional</em><em>[</em><em>int</em><em>]</em><em>, </em><em>optional</em>) – _description_. Defaults to None.</p></li>
+<li><p><strong>use_nn_seed</strong> (<em>bool</em><em>, </em><em>optional</em>) – _description_. Defaults to True.</p></li>
+<li><p><strong>newton_iters</strong> (<em>Optional</em><em>[</em><em>int</em><em>]</em><em>, </em><em>optional</em>) – _description_. Defaults to None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>_description_</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#curobo.wrap.reacher.ik_solver.IKResult" title="curobo.wrap.reacher.ik_solver.IKResult">IKResult</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.ik_solver.IKSolver.batch_env_solve">
+<span class="sig-name descname"><span class="pre">batch_env_solve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">goal_pose</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retract_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_seeds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_seeds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_nn_seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">newton_iters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.ik_solver.IKSolver.batch_env_solve" title="Link to this definition"></a></dt>
+<dd><p>Ik solver</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>goal_pose</strong> (<a class="reference internal" href="curobo.types.math.html#curobo.types.math.Pose" title="curobo.types.math.Pose"><em>Pose</em></a>) – _description_</p></li>
+<li><p><strong>retract_config</strong> (<em>Optional</em><em>[</em><em>T_BDOF</em><em>]</em><em>, </em><em>optional</em>) – _description_. Defaults to None.</p></li>
+<li><p><strong>seed_config</strong> (<em>Optional</em><em>[</em><em>T_BDOF</em><em>]</em><em>, </em><em>optional</em>) – _description_. Defaults to None.</p></li>
+<li><p><strong>return_seeds</strong> (<em>int</em><em>, </em><em>optional</em>) – _description_. Defaults to 1.</p></li>
+<li><p><strong>num_seeds</strong> (<em>Optional</em><em>[</em><em>int</em><em>]</em><em>, </em><em>optional</em>) – _description_. Defaults to None.</p></li>
+<li><p><strong>use_nn_seed</strong> (<em>bool</em><em>, </em><em>optional</em>) – _description_. Defaults to True.</p></li>
+<li><p><strong>newton_iters</strong> (<em>Optional</em><em>[</em><em>int</em><em>]</em><em>, </em><em>optional</em>) – _description_. Defaults to None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>_description_</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#curobo.wrap.reacher.ik_solver.IKResult" title="curobo.wrap.reacher.ik_solver.IKResult">IKResult</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.ik_solver.IKSolver.get_success">
+<span class="sig-name descname"><span class="pre">get_success</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">metrics</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_seeds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.ik_solver.IKSolver.get_success" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>metrics</strong> (<a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutMetrics" title="curobo.rollout.rollout_base.RolloutMetrics"><em>RolloutMetrics</em></a>) – </p></li>
+<li><p><strong>num_seeds</strong> (<em>int</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>Tensor</em></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.ik_solver.IKSolver.generate_seed">
+<span class="sig-name descname"><span class="pre">generate_seed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_seeds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_nn_seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.ik_solver.IKSolver.generate_seed" title="Link to this definition"></a></dt>
+<dd><p>Generate seeds for a batch. Given a pose set, this will create all
+the seeds: [batch + batch*random_restarts]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>batch</strong> (<em>int</em><em>, </em><em>optional</em>) – [description]. Defaults to 1.</p></li>
+<li><p><strong>num_seeds</strong> (<em>Optional</em><em>[</em><em>int</em><em>]</em><em>, </em><em>optional</em>) – [description]. Defaults to None.</p></li>
+<li><p><strong>use_nn_seed</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>pose</strong> (<a class="reference internal" href="curobo.types.math.html#curobo.types.math.Pose" title="curobo.types.math.Pose"><em>Pose</em></a><em> | </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>[description]</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>[type]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.ik_solver.IKSolver.update_world">
+<span class="sig-name descname"><span class="pre">update_world</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">world</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.ik_solver.IKSolver.update_world" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>world</strong> (<a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig" title="curobo.geom.types.WorldConfig"><em>WorldConfig</em></a>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.ik_solver.IKSolver.reset_seed">
+<span class="sig-name descname"><span class="pre">reset_seed</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.ik_solver.IKSolver.reset_seed" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.ik_solver.IKSolver.check_constraints">
+<span class="sig-name descname"><span class="pre">check_constraints</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.ik_solver.IKSolver.check_constraints" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>q</strong> (<a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><em>JointState</em></a>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutMetrics" title="curobo.rollout.rollout_base.RolloutMetrics"><em>RolloutMetrics</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.ik_solver.IKSolver.sample_configs">
+<span class="sig-name descname"><span class="pre">sample_configs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_batch_env</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.ik_solver.IKSolver.sample_configs" title="Link to this definition"></a></dt>
+<dd><p>Only works for environment=0</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>n</strong> (<em>int</em>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>Tensor</em></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.ik_solver.IKSolver.kinematics">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">kinematics</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModel" title="curobo.cuda_robot_model.cuda_robot_model.CudaRobotModel"><span class="pre">CudaRobotModel</span></a></em><a class="headerlink" href="#curobo.wrap.reacher.ik_solver.IKSolver.kinematics" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.ik_solver.IKSolver.get_all_rollout_instances">
+<span class="sig-name descname"><span class="pre">get_all_rollout_instances</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.ik_solver.IKSolver.get_all_rollout_instances" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>List</em>[<a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutBase" title="curobo.rollout.rollout_base.RolloutBase"><em>RolloutBase</em></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.ik_solver.IKSolver.get_all_kinematics_instances">
+<span class="sig-name descname"><span class="pre">get_all_kinematics_instances</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.ik_solver.IKSolver.get_all_kinematics_instances" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>List</em>[<a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModel" title="curobo.cuda_robot_model.cuda_robot_model.CudaRobotModel"><em>CudaRobotModel</em></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.ik_solver.IKSolver.fk">
+<span class="sig-name descname"><span class="pre">fk</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.ik_solver.IKSolver.fk" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>q</strong> (<em>Tensor</em>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.CudaRobotModelState" title="curobo.cuda_robot_model.types.CudaRobotModelState"><em>CudaRobotModelState</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.ik_solver.IKSolver.reset_cuda_graph">
+<span class="sig-name descname"><span class="pre">reset_cuda_graph</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.ik_solver.IKSolver.reset_cuda_graph" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.ik_solver.IKSolver.attach_object_to_robot">
+<span class="sig-name descname"><span class="pre">attach_object_to_robot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sphere_radius</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sphere_tensor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">link_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'attached_object'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.ik_solver.IKSolver.attach_object_to_robot" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sphere_radius</strong> (<em>float</em>) – </p></li>
+<li><p><strong>sphere_tensor</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>link_name</strong> (<em>str</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.ik_solver.IKSolver.detach_object_from_robot">
+<span class="sig-name descname"><span class="pre">detach_object_from_robot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">link_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'attached_object'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.ik_solver.IKSolver.detach_object_from_robot" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>link_name</strong> (<em>str</em>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.ik_solver.IKSolver.get_retract_config">
+<span class="sig-name descname"><span class="pre">get_retract_config</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.ik_solver.IKSolver.get_retract_config" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="curobo.curobolib.util_file.html" class="btn btn-neutral float-left" title="curobo.curobolib.util_file module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="curobo.graph.html" class="btn btn-neutral float-right" title="curobo.graph package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, NVIDIA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(250);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

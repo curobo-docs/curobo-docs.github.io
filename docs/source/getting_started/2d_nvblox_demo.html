@@ -1,0 +1,279 @@
+<!--
+-- Copyright (c) 2023 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+--
+-- NVIDIA CORPORATION, its affiliates and licensors retain all intellectual
+-- property and proprietary rights in and to this material, related
+-- documentation and any modifications thereto. Any use, reproduction,
+-- disclosure or distribution of this material and related documentation
+-- without an express license agreement from NVIDIA CORPORATION or
+-- its affiliates is strictly prohibited.
+-->
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Using with Depth Camera &mdash; CuRobo  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Using in a Neural Network" href="2e_torch_layer_example.html" />
+    <link rel="prev" title="Collision World Representation" href="2c_world_collision.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            CuRobo
+              <img src="../../_static/nvidia_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Research</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../research/research.html">Technical Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../research/research_using_curobo.html">Research using CuRobo</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Library Overview</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="1_install_instructions.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1a_quick_overview.html">Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2a_python_examples.html">Using in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2b_isaacsim_examples.html">Using with Isaac Sim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2c_world_collision.html">Collision World Representation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Using with Depth Camera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2e_torch_layer_example.html">Using in a Neural Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_benchmarks.html">Benchmarks &amp; Profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_docker_development.html">Docker Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_known_issues.html">Known Issues</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Advanced Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_examples/2a_batch_env.html">Batched Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_examples/2b_block_stacking_example.html">Block Stacking</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/1_robot_configuration.html">Configuring a New Robot</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../notes/01_robot_list.html">Supported Robots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/02_numerical_optimization.html">Numerical Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/04_cuda_kernels.html">CUDA Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/05_usd_api.html">USD for Robot and World Representation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">Python API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">CuRobo</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Using with Depth Camera</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/source/getting_started/2d_nvblox_demo.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="using-with-depth-camera">
+<span id="depth-image-example"></span><h1>Using with Depth Camera<a class="headerlink" href="#using-with-depth-camera" title="Link to this heading"></a></h1>
+<p>For working with camera depth images, we use <a class="reference external" href="https://github.com/nvidia-isaac/nvblox">nvblox</a>. Nvblox takes as input depth images with camera poses and builds a Euclidean Signed Distance Field~(ESDF). nvblox is implemented to support many layers of ESDF, with segmented camera images going to different layers. In addition, nvblox enables decaying occupancy in layers, which we leverage to account for dynamic obstacles. Since a single layer with a fixed voxel size is not ideal for manipulation environments, we design a wrapper for nvblox that creates many layers with different voxel sizes, integration types, and history. This allows us to load static world objects in a base layer, dynamic obstacles in a dynamic layer, and interaction objects in a high resolution map. We pass all these layers to a single cuda kernel which iterates through all layers and returns the collision distances. We also expose APIs to update the layers with new depth images. We also provide the option to load nvblox layers from disk. We developed an pytorch interface to nvblox which is available at <a class="reference external" href="https://github.com/nvlabs/nvblox_torch">nvblox_torch</a> that we use in CuRobo for signed distance queries. The collision checking wrapper is implemented in <a class="reference internal" href="../../_api/curobo.geom.sdf.world_blox.html#curobo.geom.sdf.world_blox.WorldBloxCollision" title="curobo.geom.sdf.world_blox.WorldBloxCollision"><code class="xref py py-class docutils literal notranslate"><span class="pre">curobo.geom.sdf.world_blox.WorldBloxCollision</span></code></a>.</p>
+<p>We will first walk through some examples that use a pre-generated nvblox map followed by reactive examples that require a depth camera.</p>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#demos-with-an-existing-map" id="id4">Demos with an existing map</a></p>
+<ul>
+<li><p><a class="reference internal" href="#collision-checking" id="id5">Collision Checking</a></p></li>
+<li><p><a class="reference internal" href="#motion-generation" id="id6">Motion Generation</a></p></li>
+<li><p><a class="reference internal" href="#model-predictive-control" id="id7">Model Predictive Control</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#demos-with-online-mapping" id="id8">Demos with online mapping</a></p>
+<ul>
+<li><p><a class="reference internal" href="#id1" id="id9">Collision Checking</a></p></li>
+<li><p><a class="reference internal" href="#id2" id="id10">Motion Generation</a></p></li>
+<li><p><a class="reference internal" href="#id3" id="id11">Model Predictive Control</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<p>Install CuRobo with Isaac sim following <a class="reference internal" href="1_install_instructions.html#isaac-sim-installation"><span class="std std-ref">Install for use in Isaac Sim</span></a>. Then install nvblox following instructions in
+<a class="reference internal" href="1_install_instructions.html#nvblox-isaac-sim-install"><span class="std std-ref">Installing nvblox with Isaac Sim</span></a>.</p>
+<section id="demos-with-an-existing-map">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Demos with an existing map</a><a class="headerlink" href="#demos-with-an-existing-map" title="Link to this heading"></a></h2>
+<section id="collision-checking">
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">Collision Checking</a><a class="headerlink" href="#collision-checking" title="Link to this heading"></a></h3>
+<p>Launching <code class="docutils literal notranslate"><span class="pre">omni_python</span> <span class="pre">collision_checker.py</span> <span class="pre">--nvblox</span></code> will load an existing nvblox map and a sphere. Drag the sphere around to visualize collisions. When the sphere is green, it’s not in collision. When it’s blue, it’s within activation distance of a collision, and when red, it’s in collision. A red vector indicates the gradient of the distance.</p>
+<video autoplay="True" loop="True" preload="auto" width="690"><source src="../../videos/collision_vector_nvblox.mp4" type="video/mp4"></video><div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>You can insert cubes and the collision checker will now sum the cost across nvblox and primitives,</p>
+<video autoplay="True" loop="True" preload="auto" width="690"><source src="../../videos/collision_vector_cuboid.mp4" type="video/mp4"></video><div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>You can also add meshes through the drag and drop interface (<a class="reference internal" href="2b_isaacsim_examples.html#basics-isaacsim"><span class="std std-ref">Isaac Sim Basics</span></a>),</p>
+<video autoplay="True" loop="True" preload="auto" width="690"><source src="../../videos/collision_vector_mesh.mp4" type="video/mp4"></video><div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="motion-generation">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">Motion Generation</a><a class="headerlink" href="#motion-generation" title="Link to this heading"></a></h3>
+<p>Motion generation with a static nvblox map can be run with <code class="docutils literal notranslate"><span class="pre">omni_python</span> <span class="pre">motion_gen_reacher_nvblox.py</span></code></p>
+<video autoplay="True" loop="True" preload="auto" width="690"><source src="../../videos/motion_gen_nvblox.mp4" type="video/mp4"></video><div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="model-predictive-control">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">Model Predictive Control</a><a class="headerlink" href="#model-predictive-control" title="Link to this heading"></a></h3>
+<p>Reactive control with a static nvblox map can be run with <code class="docutils literal notranslate"><span class="pre">omni_python</span> <span class="pre">mpc_nvblox_example.py</span></code></p>
+<video autoplay="True" loop="True" preload="auto" width="690"><source src="../../videos/mpc_nvblox.mp4" type="video/mp4"></video><div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+</section>
+<section id="demos-with-online-mapping">
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">Demos with online mapping</a><a class="headerlink" href="#demos-with-online-mapping" title="Link to this heading"></a></h2>
+<p>You need a realsense camera to run the below demos. You also need to install curobo, nvblox and <code class="docutils literal notranslate"><span class="pre">nvblox_torch</span></code> with
+Isaac Sim, following instructions in <a class="reference internal" href="1_install_instructions.html#nvblox-isaac-sim-install"><span class="std std-ref">Installing nvblox with Isaac Sim</span></a>. Once installed, install pyrealsense2 with <code class="docutils literal notranslate"><span class="pre">omni_python</span> <span class="pre">-m</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">pyrealsense2</span></code>.</p>
+<p>Place the camera in front of your monitor as shown below. Launching the below examples will open an isaac sim window and also open a image viewer (after clicking play) that will
+show the clipped RGB and depth image stream. In Isaac Sim, you will see voxels being rendered when there is an object in the image viewer.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../../_images/realsense_setup.png"><img alt="../../_images/realsense_setup.png" src="../../_images/realsense_setup.png" style="width: 690px;" /></a>
+</figure>
+<p>We interface a depth camera (e.g., realsense) with CuRobo through <a class="reference internal" href="../../_api/curobo.geom.sdf.world_blox.html#curobo.geom.sdf.world_blox.WorldBloxCollision" title="curobo.geom.sdf.world_blox.WorldBloxCollision"><code class="xref py py-class docutils literal notranslate"><span class="pre">curobo.geom.sdf.world_blox.WorldBloxCollision</span></code></a> and send depth images at every simulation step.
+The collision class will integrate the depth images into nvblox’s ESDF representation and enable collision queries for CuRobo’s motion generation techniques.</p>
+<div align="center" class="align-center"><div class="graphviz"><img src="../../_images/graphviz-bc5820f0e2f5dd0ba92e2a2facf5f958ef683778.png" alt="digraph {
+  edge [color = &quot;#708090&quot;; fontsize=10];
+  node [shape=&quot;box&quot;, style=&quot;rounded, filled&quot;, fontsize=12]
+  &quot;Isaac Sim&quot; [label=&quot;Isaac Sim&quot;, shape=&quot;box&quot;, color=&quot;grey&quot;, style=&quot;rounded,filled&quot;]
+  world_coll [label=&quot;CuRobo WorldBloxCollision&quot;,shape=&quot;box&quot;,color=&quot;#76b900&quot;, style=&quot;filled, rounded&quot;, fontcolor=&quot;white&quot;]
+  motion_gen [label=&quot;CuRobo MotionGen / MPC&quot;, shape=&quot;box&quot;,shape=&quot;box&quot;,color=&quot;#76b900&quot;, style=&quot;filled, rounded&quot;, fontcolor=&quot;white&quot;]
+  realsense [label=&quot;Realsense Camera&quot;, shape=&quot;box&quot;, color=&quot;grey&quot;, style=&quot;rounded,filled&quot;]
+  realsense -&gt; world_coll;
+  world_coll -&gt; &quot;Isaac Sim&quot; [label=&quot;Voxels&quot;];
+
+
+  &quot;Isaac Sim&quot; -&gt; motion_gen [label=&quot;Robot State&quot;];
+  &quot;Isaac Sim&quot; -&gt; motion_gen [label=&quot;Goal Pose&quot;];
+  motion_gen -&gt; &quot;Isaac Sim&quot;[label=&quot;Joint Action&quot;];
+  world_coll -&gt; motion_gen;
+  label=&quot;CuRobo NVBLOX Interface&quot;
+  labelloc=top
+  labeljust=center
+}" class="graphviz" /></div>
+</div>
+<section id="id1">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">Collision Checking</a><a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<p>We will first run a collision checking example by launching <code class="docutils literal notranslate"><span class="pre">omni_python</span> <span class="pre">realsense_collision.py</span></code>, which will open a isaac sim window with a sphere. Click Play and the sphere will
+turn red when in collision with the voxels from the camera. You can also move the sphere to different locations by clicking it. You can change the pose of the camera by
+moving the blue cube.</p>
+<video controls="True" preload="auto" width="690"><source src="../../videos/collision_realsense.mp4" type="video/mp4"></video><div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="id2">
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">Motion Generation</a><a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<p>Next, we will run a motion generation demo where the the robot is moving between two poses. In this demo, the world is only updated between motion planning queries so the robot
+can collide with objects that appear during motion as you will see in the demo. Launch <code class="docutils literal notranslate"><span class="pre">omni_python</span> <span class="pre">realsense_reacher.py</span> <span class="pre">--hq_voxels</span></code> to run the demo. If your machine is
+running at a framerate less than 60, don’t use the argument <code class="docutils literal notranslate"><span class="pre">--hq_voxels</span></code>.</p>
+<video controls="True" preload="auto" width="690"><source src="../../videos/reacher_voxel_clip.mp4" type="video/mp4"></video><div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="id3">
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">Model Predictive Control</a><a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<p>NVBLOX world representation can be used for dynamic collision avoidance with a reactive controller such as MPC (with MPPI). Launch <code class="docutils literal notranslate"><span class="pre">omni_python</span> <span class="pre">realsense_mpc.py</span></code> to start this demo, where
+the robot will reach a target and try to stay there. When an obstacle appears in the scene, the robot will try to avoid the obstacle while trying to be as close as possible to the target.</p>
+<video controls="True" preload="auto" width="690"><source src="../../videos/mpc_realsense_clip.mp4" type="video/mp4"></video><div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="2c_world_collision.html" class="btn btn-neutral float-left" title="Collision World Representation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="2e_torch_layer_example.html" class="btn btn-neutral float-right" title="Using in a Neural Network" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, NVIDIA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(250);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

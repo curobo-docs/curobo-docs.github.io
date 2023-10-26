@@ -1,0 +1,234 @@
+<!--
+-- Copyright (c) 2023 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+--
+-- NVIDIA CORPORATION, its affiliates and licensors retain all intellectual
+-- property and proprietary rights in and to this material, related
+-- documentation and any modifications thereto. Any use, reproduction,
+-- disclosure or distribution of this material and related documentation
+-- without an express license agreement from NVIDIA CORPORATION or
+-- its affiliates is strictly prohibited.
+-->
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Supported Robots &mdash; CuRobo  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Numerical Optimization" href="02_numerical_optimization.html" />
+    <link rel="prev" title="Configuring a New Robot" href="../tutorials/1_robot_configuration.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            CuRobo
+              <img src="../../_static/nvidia_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Research</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../research/research.html">Technical Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../research/research_using_curobo.html">Research using CuRobo</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Library Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/1_install_instructions.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/1a_quick_overview.html">Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/2a_python_examples.html">Using in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/2b_isaacsim_examples.html">Using with Isaac Sim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/2c_world_collision.html">Collision World Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/2d_nvblox_demo.html">Using with Depth Camera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/2e_torch_layer_example.html">Using in a Neural Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/4_benchmarks.html">Benchmarks &amp; Profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/5_docker_development.html">Docker Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/6_known_issues.html">Known Issues</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Advanced Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_examples/2a_batch_env.html">Batched Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_examples/2b_block_stacking_example.html">Block Stacking</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/1_robot_configuration.html">Configuring a New Robot</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Notes</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Supported Robots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_numerical_optimization.html">Numerical Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_cuda_kernels.html">CUDA Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_usd_api.html">USD for Robot and World Representation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">Python API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">CuRobo</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Supported Robots</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/source/notes/01_robot_list.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="supported-robots">
+<span id="available-robot-list"></span><h1>Supported Robots<a class="headerlink" href="#supported-robots" title="Link to this heading"></a></h1>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../../_images/supported_robots.png"><img alt="../../_images/supported_robots.png" src="../../_images/supported_robots.png" style="width: 690px;" /></a>
+</figure>
+<table class="docutils align-center">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Robot File</p></th>
+<th class="head"><p>Information</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>franka.yml</p></td>
+<td><p>Franka Panda Robot</p></td>
+</tr>
+<tr class="row-odd"><td><p>ur5e.yml</p></td>
+<td><p>Universal Robots UR5e</p></td>
+</tr>
+<tr class="row-even"><td><p>ur10e.yml</p></td>
+<td><p>Universal Robots UR10e</p></td>
+</tr>
+<tr class="row-odd"><td><p>tm12.yml</p></td>
+<td><p>Techman TM12</p></td>
+</tr>
+<tr class="row-even"><td><p>jaco7.yml</p></td>
+<td><p>kinova Jaco 7</p></td>
+</tr>
+<tr class="row-odd"><td><p>kinova_gen3.yml</p></td>
+<td><p>Kinova Gen3</p></td>
+</tr>
+<tr class="row-even"><td><p>iiwa.yml</p></td>
+<td><p>KUKA IIWA</p></td>
+</tr>
+<tr class="row-odd"><td><p>iiwa_allegro.yml</p></td>
+<td><p>KUKA IIWA with an Allegro Hand as end-effector</p></td>
+</tr>
+<tr class="row-even"><td><p>franka_mobile.yml</p></td>
+<td><p>Franka Panda with a mobile base (linear x, linear y and rotation about z).</p></td>
+</tr>
+</tbody>
+</table>
+<p>In addition to these robots, CuRobo has multi-arm robots which are not supported for motion generation
+but can be used for kinematics and collision checking queries.</p>
+<table class="docutils align-center">
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Robot File</p></th>
+<th class="head"><p>Information</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>dual_ur10e.yml</p></td>
+<td><p>Two Universal Robots UR10e represented as a single robot.</p></td>
+</tr>
+<tr class="row-odd"><td><p>tri_ur10e.yml</p></td>
+<td><p>Three Universal Robots UR10e represented as a single robot.</p></td>
+</tr>
+<tr class="row-even"><td><p>quad_ur10e.yml</p></td>
+<td><p>Four Universal Robots UR10e represented as a single robot.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../tutorials/1_robot_configuration.html" class="btn btn-neutral float-left" title="Configuring a New Robot" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="02_numerical_optimization.html" class="btn btn-neutral float-right" title="Numerical Optimization" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, NVIDIA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(250);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

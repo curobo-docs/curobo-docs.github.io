@@ -1,0 +1,1330 @@
+<!--
+-- Copyright (c) 2023 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+--
+-- NVIDIA CORPORATION, its affiliates and licensors retain all intellectual
+-- property and proprietary rights in and to this material, related
+-- documentation and any modifications thereto. Any use, reproduction,
+-- disclosure or distribution of this material and related documentation
+-- without an express license agreement from NVIDIA CORPORATION or
+-- its affiliates is strictly prohibited.
+-->
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>curobo.wrap.reacher.motion_gen module &mdash; CuRobo  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="curobo" href="modules.html" />
+    <link rel="prev" title="curobo.wrap.reacher.trajopt module" href="curobo.wrap.reacher.trajopt.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CuRobo
+              <img src="../_static/nvidia_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Research</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/research/research.html">Technical Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/research/research_using_curobo.html">Research using CuRobo</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Library Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/1_install_instructions.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/1a_quick_overview.html">Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2a_python_examples.html">Using in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2b_isaacsim_examples.html">Using with Isaac Sim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2c_world_collision.html">Collision World Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2d_nvblox_demo.html">Using with Depth Camera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2e_torch_layer_example.html">Using in a Neural Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/4_benchmarks.html">Benchmarks &amp; Profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/5_docker_development.html">Docker Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/6_known_issues.html">Known Issues</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Advanced Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2a_batch_env.html">Batched Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2b_block_stacking_example.html">Block Stacking</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/tutorials/1_robot_configuration.html">Configuring a New Robot</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/01_robot_list.html">Supported Robots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/02_numerical_optimization.html">Numerical Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/04_cuda_kernels.html">CUDA Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/05_usd_api.html">USD for Robot and World Representation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">Python API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CuRobo</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../api.html">Python API</a></li>
+      <li class="breadcrumb-item active">curobo.wrap.reacher.motion_gen module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/_api/curobo.wrap.reacher.motion_gen.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-curobo.wrap.reacher.motion_gen">
+<span id="curobo-wrap-reacher-motion-gen-module"></span><h1>curobo.wrap.reacher.motion_gen module<a class="headerlink" href="#module-curobo.wrap.reacher.motion_gen" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenConfig">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">curobo.wrap.reacher.motion_gen.</span></span><span class="sig-name descname"><span class="pre">MotionGenConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ik_seeds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graph_seeds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trajopt_seeds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">noisy_trajopt_seeds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_ik_seeds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_trajopt_seeds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">robot_cfg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ik_solver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graph_planner</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trajopt_solver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">js_trajopt_solver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">finetune_trajopt_solver</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interpolation_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interpolation_steps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">world_coll_checker</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tensor_args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">partial_ik_iters</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graph_trajopt_iters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">store_debug_in_result</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interpolation_dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">finetune_dt_scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.05</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenConfig" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Creates a configuration file for running motion generation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ik_seeds</strong> (<em>int</em>) – </p></li>
+<li><p><strong>graph_seeds</strong> (<em>int</em>) – </p></li>
+<li><p><strong>trajopt_seeds</strong> (<em>int</em>) – </p></li>
+<li><p><strong>noisy_trajopt_seeds</strong> (<em>int</em>) – </p></li>
+<li><p><strong>batch_ik_seeds</strong> (<em>int</em>) – </p></li>
+<li><p><strong>batch_trajopt_seeds</strong> (<em>int</em>) – </p></li>
+<li><p><strong>robot_cfg</strong> (<a class="reference internal" href="curobo.types.robot.html#curobo.types.robot.RobotConfig" title="curobo.types.robot.RobotConfig"><em>RobotConfig</em></a>) – </p></li>
+<li><p><strong>ik_solver</strong> (<a class="reference internal" href="curobo.wrap.reacher.ik_solver.html#curobo.wrap.reacher.ik_solver.IKSolver" title="curobo.wrap.reacher.ik_solver.IKSolver"><em>IKSolver</em></a>) – </p></li>
+<li><p><strong>graph_planner</strong> (<a class="reference internal" href="curobo.graph.graph_base.html#curobo.graph.graph_base.GraphPlanBase" title="curobo.graph.graph_base.GraphPlanBase"><em>GraphPlanBase</em></a>) – </p></li>
+<li><p><strong>trajopt_solver</strong> (<a class="reference internal" href="curobo.wrap.reacher.trajopt.html#curobo.wrap.reacher.trajopt.TrajOptSolver" title="curobo.wrap.reacher.trajopt.TrajOptSolver"><em>TrajOptSolver</em></a>) – </p></li>
+<li><p><strong>js_trajopt_solver</strong> (<a class="reference internal" href="curobo.wrap.reacher.trajopt.html#curobo.wrap.reacher.trajopt.TrajOptSolver" title="curobo.wrap.reacher.trajopt.TrajOptSolver"><em>TrajOptSolver</em></a>) – </p></li>
+<li><p><strong>finetune_trajopt_solver</strong> (<a class="reference internal" href="curobo.wrap.reacher.trajopt.html#curobo.wrap.reacher.trajopt.TrajOptSolver" title="curobo.wrap.reacher.trajopt.TrajOptSolver"><em>TrajOptSolver</em></a>) – </p></li>
+<li><p><strong>interpolation_type</strong> (<a class="reference internal" href="curobo.util.trajectory.html#curobo.util.trajectory.InterpolateType" title="curobo.util.trajectory.InterpolateType"><em>InterpolateType</em></a>) – </p></li>
+<li><p><strong>interpolation_steps</strong> (<em>int</em>) – </p></li>
+<li><p><strong>world_coll_checker</strong> (<a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldCollision" title="curobo.geom.sdf.world.WorldCollision"><em>WorldCollision</em></a>) – </p></li>
+<li><p><strong>tensor_args</strong> (<a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType" title="curobo.types.base.TensorDeviceType"><em>TensorDeviceType</em></a>) – </p></li>
+<li><p><strong>partial_ik_iters</strong> (<em>int</em>) – </p></li>
+<li><p><strong>graph_trajopt_iters</strong> (<em>int</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>store_debug_in_result</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>interpolation_dt</strong> (<em>float</em>) – </p></li>
+<li><p><strong>finetune_dt_scale</strong> (<em>float</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenConfig.ik_seeds">
+<span class="sig-name descname"><span class="pre">ik_seeds</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenConfig.ik_seeds" title="Link to this definition"></a></dt>
+<dd><p>number of IK seeds to run per query problem.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenConfig.graph_seeds">
+<span class="sig-name descname"><span class="pre">graph_seeds</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenConfig.graph_seeds" title="Link to this definition"></a></dt>
+<dd><p>number of graph planning seeds to use per query problem.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenConfig.trajopt_seeds">
+<span class="sig-name descname"><span class="pre">trajopt_seeds</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenConfig.trajopt_seeds" title="Link to this definition"></a></dt>
+<dd><p>number of trajectory optimization seeds to use per query problem.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenConfig.noisy_trajopt_seeds">
+<span class="sig-name descname"><span class="pre">noisy_trajopt_seeds</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenConfig.noisy_trajopt_seeds" title="Link to this definition"></a></dt>
+<dd><p>number of seeds to run trajectory optimization per trajopt_seed.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenConfig.batch_ik_seeds">
+<span class="sig-name descname"><span class="pre">batch_ik_seeds</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenConfig.batch_ik_seeds" title="Link to this definition"></a></dt>
+<dd><p>number of IK seeds to use for batched queries.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenConfig.batch_trajopt_seeds">
+<span class="sig-name descname"><span class="pre">batch_trajopt_seeds</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenConfig.batch_trajopt_seeds" title="Link to this definition"></a></dt>
+<dd><p>number of trajectory optimization seeds to use for batched queries.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenConfig.robot_cfg">
+<span class="sig-name descname"><span class="pre">robot_cfg</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.types.robot.html#curobo.types.robot.RobotConfig" title="curobo.types.robot.RobotConfig"><span class="pre">RobotConfig</span></a></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenConfig.robot_cfg" title="Link to this definition"></a></dt>
+<dd><p>instance of robot configuration shared across all solvers.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenConfig.ik_solver">
+<span class="sig-name descname"><span class="pre">ik_solver</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.wrap.reacher.ik_solver.html#curobo.wrap.reacher.ik_solver.IKSolver" title="curobo.wrap.reacher.ik_solver.IKSolver"><span class="pre">IKSolver</span></a></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenConfig.ik_solver" title="Link to this definition"></a></dt>
+<dd><p>instance of IK solver to use for motion generation.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenConfig.graph_planner">
+<span class="sig-name descname"><span class="pre">graph_planner</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.graph.graph_base.html#curobo.graph.graph_base.GraphPlanBase" title="curobo.graph.graph_base.GraphPlanBase"><span class="pre">GraphPlanBase</span></a></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenConfig.graph_planner" title="Link to this definition"></a></dt>
+<dd><p>instance of graph planner to use.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenConfig.trajopt_solver">
+<span class="sig-name descname"><span class="pre">trajopt_solver</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.wrap.reacher.trajopt.html#curobo.wrap.reacher.trajopt.TrajOptSolver" title="curobo.wrap.reacher.trajopt.TrajOptSolver"><span class="pre">TrajOptSolver</span></a></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenConfig.trajopt_solver" title="Link to this definition"></a></dt>
+<dd><p>instance of trajectory optimization solver to use for reaching Cartesian poses.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenConfig.js_trajopt_solver">
+<span class="sig-name descname"><span class="pre">js_trajopt_solver</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.wrap.reacher.trajopt.html#curobo.wrap.reacher.trajopt.TrajOptSolver" title="curobo.wrap.reacher.trajopt.TrajOptSolver"><span class="pre">TrajOptSolver</span></a></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenConfig.js_trajopt_solver" title="Link to this definition"></a></dt>
+<dd><p>instance of trajectory optimization solver to use for reaching joint space targets.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenConfig.finetune_trajopt_solver">
+<span class="sig-name descname"><span class="pre">finetune_trajopt_solver</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.wrap.reacher.trajopt.html#curobo.wrap.reacher.trajopt.TrajOptSolver" title="curobo.wrap.reacher.trajopt.TrajOptSolver"><span class="pre">TrajOptSolver</span></a></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenConfig.finetune_trajopt_solver" title="Link to this definition"></a></dt>
+<dd><p>instance of trajectory optimization solver for final fine tuning.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenConfig.interpolation_type">
+<span class="sig-name descname"><span class="pre">interpolation_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.util.trajectory.html#curobo.util.trajectory.InterpolateType" title="curobo.util.trajectory.InterpolateType"><span class="pre">InterpolateType</span></a></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenConfig.interpolation_type" title="Link to this definition"></a></dt>
+<dd><p>interpolation to use for getting dense waypoints from optimized solution.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenConfig.interpolation_steps">
+<span class="sig-name descname"><span class="pre">interpolation_steps</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenConfig.interpolation_steps" title="Link to this definition"></a></dt>
+<dd><p>maximum number of steps to interpolate</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenConfig.world_coll_checker">
+<span class="sig-name descname"><span class="pre">world_coll_checker</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldCollision" title="curobo.geom.sdf.world.WorldCollision"><span class="pre">WorldCollision</span></a></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenConfig.world_coll_checker" title="Link to this definition"></a></dt>
+<dd><p>instance of world collision checker.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenConfig.tensor_args">
+<span class="sig-name descname"><span class="pre">tensor_args</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType" title="curobo.types.base.TensorDeviceType"><span class="pre">TensorDeviceType</span></a></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenConfig.tensor_args" title="Link to this definition"></a></dt>
+<dd><p>device to load motion generation.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenConfig.partial_ik_iters">
+<span class="sig-name descname"><span class="pre">partial_ik_iters</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenConfig.partial_ik_iters" title="Link to this definition"></a></dt>
+<dd><p>number of IK iterations to run for initializing trajectory optimization</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenConfig.graph_trajopt_iters">
+<span class="sig-name descname"><span class="pre">graph_trajopt_iters</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenConfig.graph_trajopt_iters" title="Link to this definition"></a></dt>
+<dd><p>number of iterations to run trajectory optimization when seeded from a graph plan.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenConfig.store_debug_in_result">
+<span class="sig-name descname"><span class="pre">store_debug_in_result</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenConfig.store_debug_in_result" title="Link to this definition"></a></dt>
+<dd><p>store debugging information in MotionGenResult</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenConfig.interpolation_dt">
+<span class="sig-name descname"><span class="pre">interpolation_dt</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.01</span></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenConfig.interpolation_dt" title="Link to this definition"></a></dt>
+<dd><p>interpolation dt to use for output trajectory.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenConfig.finetune_dt_scale">
+<span class="sig-name descname"><span class="pre">finetune_dt_scale</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1.05</span></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenConfig.finetune_dt_scale" title="Link to this definition"></a></dt>
+<dd><p>scale initial dt by this value to finetune trajectory optimization.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenConfig.load_from_robot_config">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">load_from_robot_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot_cfg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">world_model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tensor_args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">TensorDeviceType(device=device(type='cuda',</span> <span class="pre">index=0),</span> <span class="pre">dtype=torch.float32)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_ik_seeds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_graph_seeds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_trajopt_seeds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">12</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_batch_ik_seeds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_batch_trajopt_seeds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_trajopt_noisy_seeds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position_threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.005</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotation_threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cspace_threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">world_coll_checker</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_cfg_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'base_cfg.yml'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">particle_ik_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'particle_ik.yml'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gradient_ik_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gradient_ik.yml'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graph_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'graph.yml'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">particle_trajopt_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'particle_trajopt.yml'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gradient_trajopt_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gradient_trajopt.yml'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">finetune_trajopt_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'finetune_trajopt.yml'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trajopt_tsteps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">32</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interpolation_steps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interpolation_dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.02</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interpolation_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">InterpolateType.LINEAR_CUDA</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_cuda_graph</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">self_collision_check</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">self_collision_opt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grad_trajopt_iters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trajopt_seed_ratio</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{'bias':</span> <span class="pre">0.0,</span> <span class="pre">'linear':</span> <span class="pre">1.0}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ik_opt_iters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ik_particle_opt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collision_checker_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">CollisionCheckerType.PRIMITIVE</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sync_cuda_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trajopt_particle_opt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">traj_evaluator_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">traj_evaluator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minimize_jerk</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter_robot_command</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_gradient_descent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collision_cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_collision_envs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ee_link_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_es_ik</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_es_trajopt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">es_ik_learning_rate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">es_trajopt_learning_rate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_ik_fixed_samples</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_trajopt_fixed_samples</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evaluate_interpolated_trajectory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">partial_ik_iters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fixed_iters_trajopt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">store_ik_debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">store_trajopt_debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graph_trajopt_iters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collision_max_outside_distance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collision_activation_distance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trajopt_dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">js_trajopt_dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">js_trajopt_tsteps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trim_steps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">store_debug_in_result</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">finetune_trajopt_iters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smooth_weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">finetune_smooth_weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_finite_difference_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">finetune_dt_scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maximum_trajectory_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maximum_trajectory_dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity_scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">acceleration_scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jerk_scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenConfig.load_from_robot_config" title="Link to this definition"></a></dt>
+<dd><p>Load motion generation configuration from robot and world configurations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>robot_cfg</strong> (<em>Union</em><em>[</em><em>Union</em><em>[</em><em>str</em><em>, </em><em>Dict</em><em>]</em><em>, </em><a class="reference internal" href="curobo.types.robot.html#curobo.types.robot.RobotConfig" title="curobo.types.robot.RobotConfig"><em>RobotConfig</em></a><em>]</em>) – robot configuration to load.</p></li>
+<li><p><strong>world_model</strong> (<em>Optional</em><em>[</em><em>Union</em><em>[</em><em>Union</em><em>[</em><em>str</em><em>, </em><em>Dict</em><em>]</em><em>, </em><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig" title="curobo.geom.types.WorldConfig"><em>WorldConfig</em></a><em>]</em><em>]</em><em>, </em><em>optional</em>) – World configuration to load. Defaults to None.</p></li>
+<li><p><strong>tensor_args</strong> (<a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType" title="curobo.types.base.TensorDeviceType"><em>TensorDeviceType</em></a><em>, </em><em>optional</em>) – _description_. Defaults to TensorDeviceType().</p></li>
+<li><p><strong>num_ik_seeds</strong> (<em>int</em><em>, </em><em>optional</em>) – _description_. Defaults to 30.</p></li>
+<li><p><strong>num_graph_seeds</strong> (<em>int</em><em>, </em><em>optional</em>) – _description_. Defaults to 1.</p></li>
+<li><p><strong>num_trajopt_seeds</strong> (<em>int</em><em>, </em><em>optional</em>) – _description_. Defaults to 12.</p></li>
+<li><p><strong>num_batch_ik_seeds</strong> (<em>int</em><em>, </em><em>optional</em>) – _description_. Defaults to 30.</p></li>
+<li><p><strong>num_batch_trajopt_seeds</strong> (<em>int</em><em>, </em><em>optional</em>) – _description_. Defaults to 1.</p></li>
+<li><p><strong>num_trajopt_noisy_seeds</strong> (<em>int</em><em>, </em><em>optional</em>) – _description_. Defaults to 1.</p></li>
+<li><p><strong>position_threshold</strong> (<em>float</em><em>, </em><em>optional</em>) – _description_. Defaults to 0.005.</p></li>
+<li><p><strong>rotation_threshold</strong> (<em>float</em><em>, </em><em>optional</em>) – _description_. Defaults to 0.05.</p></li>
+<li><p><strong>cspace_threshold</strong> (<em>float</em><em>, </em><em>optional</em>) – _description_. Defaults to 0.05.</p></li>
+<li><p><strong>world_coll_checker</strong> (<em>_type_</em><em>, </em><em>optional</em>) – _description_. Defaults to None.</p></li>
+<li><p><strong>base_cfg_file</strong> (<em>str</em><em>, </em><em>optional</em>) – _description_. Defaults to “base_cfg.yml”.</p></li>
+<li><p><strong>particle_ik_file</strong> (<em>str</em><em>, </em><em>optional</em>) – _description_. Defaults to “particle_ik.yml”.</p></li>
+<li><p><strong>gradient_ik_file</strong> (<em>str</em><em>, </em><em>optional</em>) – _description_. Defaults to “gradient_ik.yml”.</p></li>
+<li><p><strong>graph_file</strong> (<em>str</em><em>, </em><em>optional</em>) – _description_. Defaults to “graph.yml”.</p></li>
+<li><p><strong>particle_trajopt_file</strong> (<em>str</em><em>, </em><em>optional</em>) – _description_. Defaults to “particle_trajopt.yml”.</p></li>
+<li><p><strong>gradient_trajopt_file</strong> (<em>str</em><em>, </em><em>optional</em>) – _description_. Defaults to “gradient_trajopt.yml”.</p></li>
+<li><p><strong>finetune_trajopt_file</strong> (<em>str</em><em>, </em><em>optional</em>) – _description_. Defaults to “finetune_trajopt.yml”.</p></li>
+<li><p><strong>trajopt_tsteps</strong> (<em>int</em><em>, </em><em>optional</em>) – _description_. Defaults to 32.</p></li>
+<li><p><strong>interpolation_steps</strong> (<em>int</em><em>, </em><em>optional</em>) – _description_. Defaults to 5000.</p></li>
+<li><p><strong>interpolation_dt</strong> (<em>float</em><em>, </em><em>optional</em>) – _description_. Defaults to 0.02.</p></li>
+<li><p><strong>interpolation_type</strong> (<a class="reference internal" href="curobo.util.trajectory.html#curobo.util.trajectory.InterpolateType" title="curobo.util.trajectory.InterpolateType"><em>InterpolateType</em></a><em>, </em><em>optional</em>) – _description_. Defaults to InterpolateType.LINEAR_CUDA.</p></li>
+<li><p><strong>use_cuda_graph</strong> (<em>Optional</em><em>[</em><em>bool</em><em>]</em><em>, </em><em>optional</em>) – _description_. Defaults to None.</p></li>
+<li><p><strong>self_collision_check</strong> (<em>bool</em><em>, </em><em>optional</em>) – _description_. Defaults to True.</p></li>
+<li><p><strong>self_collision_opt</strong> (<em>bool</em><em>, </em><em>optional</em>) – _description_. Defaults to True.</p></li>
+<li><p><strong>grad_trajopt_iters</strong> (<em>Optional</em><em>[</em><em>int</em><em>]</em><em>, </em><em>optional</em>) – _description_. Defaults to None.</p></li>
+<li><p><strong>trajopt_seed_ratio</strong> (<em>_type_</em><em>, </em><em>optional</em>) – _description_. Defaults to {“linear”: 1.0, “bias”: 0.0}.</p></li>
+<li><p><strong>ik_opt_iters</strong> (<em>Optional</em><em>[</em><em>int</em><em>]</em><em>, </em><em>optional</em>) – _description_. Defaults to None.</p></li>
+<li><p><strong>ik_particle_opt</strong> (<em>bool</em><em>, </em><em>optional</em>) – _description_. Defaults to True.</p></li>
+<li><p><strong>collision_checker_type</strong> (<em>Optional</em><em>[</em><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.CollisionCheckerType" title="curobo.geom.sdf.world.CollisionCheckerType"><em>CollisionCheckerType</em></a><em>]</em><em>, </em><em>optional</em>) – _description_. Defaults to CollisionCheckerType.PRIMITIVE.</p></li>
+<li><p><strong>sync_cuda_time</strong> (<em>Optional</em><em>[</em><em>bool</em><em>]</em><em>, </em><em>optional</em>) – _description_. Defaults to None.</p></li>
+<li><p><strong>trajopt_particle_opt</strong> (<em>bool</em><em>, </em><em>optional</em>) – _description_. Defaults to True.</p></li>
+<li><p><strong>traj_evaluator_config</strong> (<em>Optional</em><em>[</em><a class="reference internal" href="curobo.wrap.reacher.evaluator.html#curobo.wrap.reacher.evaluator.TrajEvaluatorConfig" title="curobo.wrap.reacher.evaluator.TrajEvaluatorConfig"><em>TrajEvaluatorConfig</em></a><em>]</em><em>, </em><em>optional</em>) – _description_. Defaults to None.</p></li>
+<li><p><strong>traj_evaluator</strong> (<em>Optional</em><em>[</em><a class="reference internal" href="curobo.wrap.reacher.evaluator.html#curobo.wrap.reacher.evaluator.TrajEvaluator" title="curobo.wrap.reacher.evaluator.TrajEvaluator"><em>TrajEvaluator</em></a><em>]</em><em>, </em><em>optional</em>) – _description_. Defaults to None.</p></li>
+<li><p><strong>minimize_jerk</strong> (<em>bool</em><em>, </em><em>optional</em>) – _description_. Defaults to True.</p></li>
+<li><p><strong>filter_robot_command</strong> (<em>bool</em><em>, </em><em>optional</em>) – _description_. Defaults to True.</p></li>
+<li><p><strong>use_gradient_descent</strong> (<em>bool</em><em>, </em><em>optional</em>) – _description_. Defaults to False.</p></li>
+<li><p><strong>collision_cache</strong> (<em>Optional</em><em>[</em><em>Dict</em><em>[</em><em>str</em><em>, </em><em>int</em><em>]</em><em>]</em><em>, </em><em>optional</em>) – _description_. Defaults to None.</p></li>
+<li><p><strong>n_collision_envs</strong> (<em>Optional</em><em>[</em><em>int</em><em>]</em><em>, </em><em>optional</em>) – _description_. Defaults to None.</p></li>
+<li><p><strong>ee_link_name</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em><em>, </em><em>optional</em>) – _description_. Defaults to None.</p></li>
+<li><p><strong>use_es_ik</strong> (<em>Optional</em><em>[</em><em>bool</em><em>]</em><em>, </em><em>optional</em>) – _description_. Defaults to None.</p></li>
+<li><p><strong>use_es_trajopt</strong> (<em>Optional</em><em>[</em><em>bool</em><em>]</em><em>, </em><em>optional</em>) – _description_. Defaults to None.</p></li>
+<li><p><strong>es_ik_learning_rate</strong> (<em>float</em><em>, </em><em>optional</em>) – _description_. Defaults to 1.0.</p></li>
+<li><p><strong>es_trajopt_learning_rate</strong> (<em>float</em><em>, </em><em>optional</em>) – _description_. Defaults to 1.0.</p></li>
+<li><p><strong>use_ik_fixed_samples</strong> (<em>Optional</em><em>[</em><em>bool</em><em>]</em><em>, </em><em>optional</em>) – _description_. Defaults to None.</p></li>
+<li><p><strong>use_trajopt_fixed_samples</strong> (<em>Optional</em><em>[</em><em>bool</em><em>]</em><em>, </em><em>optional</em>) – _description_. Defaults to None.</p></li>
+<li><p><strong>evaluate_interpolated_trajectory</strong> (<em>bool</em><em>, </em><em>optional</em>) – _description_. Defaults to True.</p></li>
+<li><p><strong>partial_ik_iters</strong> (<em>int</em><em>, </em><em>optional</em>) – _description_. Defaults to 2.</p></li>
+<li><p><strong>fixed_iters_trajopt</strong> (<em>Optional</em><em>[</em><em>bool</em><em>]</em><em>, </em><em>optional</em>) – _description_. Defaults to None.</p></li>
+<li><p><strong>store_ik_debug</strong> (<em>bool</em><em>, </em><em>optional</em>) – _description_. Defaults to False.</p></li>
+<li><p><strong>store_trajopt_debug</strong> (<em>bool</em><em>, </em><em>optional</em>) – _description_. Defaults to False.</p></li>
+<li><p><strong>graph_trajopt_iters</strong> (<em>Optional</em><em>[</em><em>int</em><em>]</em><em>, </em><em>optional</em>) – _description_. Defaults to None.</p></li>
+<li><p><strong>collision_max_outside_distance</strong> (<em>Optional</em><em>[</em><em>float</em><em>]</em><em>, </em><em>optional</em>) – _description_. Defaults to None.</p></li>
+<li><p><strong>collision_activation_distance</strong> (<em>Optional</em><em>[</em><em>float</em><em>]</em><em>, </em><em>optional</em>) – _description_. Defaults to None.</p></li>
+<li><p><strong>trajopt_dt</strong> (<em>Optional</em><em>[</em><em>float</em><em>]</em><em>, </em><em>optional</em>) – _description_. Defaults to None.</p></li>
+<li><p><strong>js_trajopt_dt</strong> (<em>Optional</em><em>[</em><em>float</em><em>]</em><em>, </em><em>optional</em>) – _description_. Defaults to None.</p></li>
+<li><p><strong>js_trajopt_tsteps</strong> (<em>Optional</em><em>[</em><em>int</em><em>]</em><em>, </em><em>optional</em>) – _description_. Defaults to None.</p></li>
+<li><p><strong>trim_steps</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><em>int</em><em>]</em><em>]</em><em>, </em><em>optional</em>) – _description_. Defaults to None.</p></li>
+<li><p><strong>store_debug_in_result</strong> (<em>bool</em><em>, </em><em>optional</em>) – _description_. Defaults to False.</p></li>
+<li><p><strong>finetune_trajopt_iters</strong> (<em>Optional</em><em>[</em><em>int</em><em>]</em><em>, </em><em>optional</em>) – _description_. Defaults to None.</p></li>
+<li><p><strong>smooth_weight</strong> (<em>List</em><em>[</em><em>float</em><em>]</em><em>, </em><em>optional</em>) – _description_. Defaults to None.</p></li>
+<li><p><strong>finetune_smooth_weight</strong> (<em>Optional</em><em>[</em><em>List</em><em>[</em><em>float</em><em>]</em><em>]</em><em>, </em><em>optional</em>) – _description_. Defaults to None.</p></li>
+<li><p><strong>state_finite_difference_mode</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em><em>, </em><em>optional</em>) – _description_. Defaults to None.</p></li>
+<li><p><strong>finetune_dt_scale</strong> (<em>float</em><em>, </em><em>optional</em>) – _description_. Defaults to 1.05.</p></li>
+<li><p><strong>maximum_trajectory_time</strong> (<em>Optional</em><em>[</em><em>float</em><em>]</em><em>, </em><em>optional</em>) – _description_. Defaults to None.</p></li>
+<li><p><strong>maximum_trajectory_dt</strong> (<em>float</em><em>, </em><em>optional</em>) – _description_. Defaults to 0.1.</p></li>
+<li><p><strong>velocity_scale</strong> (<em>Optional</em><em>[</em><em>Union</em><em>[</em><em>List</em><em>[</em><em>float</em><em>]</em><em>, </em><em>float</em><em>]</em><em>]</em><em>, </em><em>optional</em>) – _description_. Defaults to None.</p></li>
+<li><p><strong>acceleration_scale</strong> (<em>Optional</em><em>[</em><em>Union</em><em>[</em><em>List</em><em>[</em><em>float</em><em>]</em><em>, </em><em>float</em><em>]</em><em>]</em><em>, </em><em>optional</em>) – _description_. Defaults to None.</p></li>
+<li><p><strong>jerk_scale</strong> (<em>Optional</em><em>[</em><em>Union</em><em>[</em><em>List</em><em>[</em><em>float</em><em>]</em><em>, </em><em>float</em><em>]</em><em>]</em><em>, </em><em>optional</em>) – _description_. Defaults to None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>_description_</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>_type_</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenResult">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">curobo.wrap.reacher.motion_gen.</span></span><span class="sig-name descname"><span class="pre">MotionGenResult</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">success</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">valid_query</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optimized_plan</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">optimized_dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position_error</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotation_error</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cspace_error</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solve_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ik_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graph_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trajopt_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">finetune_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interpolated_plan</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interpolation_dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.02</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_buffer_last_tstep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug_info</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attempts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trajopt_attempts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">used_graph</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graph_plan</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenResult" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Result obtained from motion generation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>success</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>valid_query</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>optimized_plan</strong> (<a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><em>JointState</em></a><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>optimized_dt</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>position_error</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>rotation_error</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>cspace_error</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>solve_time</strong> (<em>float</em>) – </p></li>
+<li><p><strong>ik_time</strong> (<em>float</em>) – </p></li>
+<li><p><strong>graph_time</strong> (<em>float</em>) – </p></li>
+<li><p><strong>trajopt_time</strong> (<em>float</em>) – </p></li>
+<li><p><strong>finetune_time</strong> (<em>float</em>) – </p></li>
+<li><p><strong>total_time</strong> (<em>float</em>) – </p></li>
+<li><p><strong>interpolated_plan</strong> (<a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><em>JointState</em></a><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>interpolation_dt</strong> (<em>float</em>) – </p></li>
+<li><p><strong>path_buffer_last_tstep</strong> (<em>List</em><em>[</em><em>int</em><em>] </em><em>| </em><em>None</em>) – </p></li>
+<li><p><strong>debug_info</strong> (<em>Any</em>) – </p></li>
+<li><p><strong>status</strong> (<em>str</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>attempts</strong> (<em>int</em>) – </p></li>
+<li><p><strong>trajopt_attempts</strong> (<em>int</em>) – </p></li>
+<li><p><strong>used_graph</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>graph_plan</strong> (<a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><em>JointState</em></a><em> | </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenResult.success">
+<span class="sig-name descname"><span class="pre">success</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenResult.success" title="Link to this definition"></a></dt>
+<dd><p>success tensor with index referring to the batch index.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenResult.valid_query">
+<span class="sig-name descname"><span class="pre">valid_query</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenResult.valid_query" title="Link to this definition"></a></dt>
+<dd><p>returns true if the start state is not satisfying constraints (e.g., in collision)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenResult.optimized_plan">
+<span class="sig-name descname"><span class="pre">optimized_plan</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><span class="pre">JointState</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenResult.optimized_plan" title="Link to this definition"></a></dt>
+<dd><p>optimized trajectory</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenResult.optimized_dt">
+<span class="sig-name descname"><span class="pre">optimized_dt</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenResult.optimized_dt" title="Link to this definition"></a></dt>
+<dd><p>dt between steps in the optimized plan</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenResult.position_error">
+<span class="sig-name descname"><span class="pre">position_error</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenResult.position_error" title="Link to this definition"></a></dt>
+<dd><p>Cartesian position error at final timestep, returning l2 distance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenResult.rotation_error">
+<span class="sig-name descname"><span class="pre">rotation_error</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenResult.rotation_error" title="Link to this definition"></a></dt>
+<dd><p>Cartesian rotation error at final timestep, computed as q^(-1) * q_g</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenResult.cspace_error">
+<span class="sig-name descname"><span class="pre">cspace_error</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenResult.cspace_error" title="Link to this definition"></a></dt>
+<dd><p>Error in joint configuration, when planning in joint space, returning l2 distance.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenResult.solve_time">
+<span class="sig-name descname"><span class="pre">solve_time</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenResult.solve_time" title="Link to this definition"></a></dt>
+<dd><p>seconds taken  in the optimizer for solving the motion generation problem.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenResult.ik_time">
+<span class="sig-name descname"><span class="pre">ik_time</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenResult.ik_time" title="Link to this definition"></a></dt>
+<dd><p>seconds taken to solve IK.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenResult.graph_time">
+<span class="sig-name descname"><span class="pre">graph_time</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenResult.graph_time" title="Link to this definition"></a></dt>
+<dd><p>seconds taken to find graph plan.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenResult.trajopt_time">
+<span class="sig-name descname"><span class="pre">trajopt_time</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenResult.trajopt_time" title="Link to this definition"></a></dt>
+<dd><p>seconds taken in trajectory optimization.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenResult.finetune_time">
+<span class="sig-name descname"><span class="pre">finetune_time</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenResult.finetune_time" title="Link to this definition"></a></dt>
+<dd><p>seconds to run finetune trajectory optimization.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenResult.total_time">
+<span class="sig-name descname"><span class="pre">total_time</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenResult.total_time" title="Link to this definition"></a></dt>
+<dd><p>sum of ik_time, graph_time, and trajopt_time. This also includes any processing between
+calling the different modules.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenResult.interpolated_plan">
+<span class="sig-name descname"><span class="pre">interpolated_plan</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><span class="pre">JointState</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenResult.interpolated_plan" title="Link to this definition"></a></dt>
+<dd><p>interpolated solution, useful for visualization.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenResult.interpolation_dt">
+<span class="sig-name descname"><span class="pre">interpolation_dt</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.02</span></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenResult.interpolation_dt" title="Link to this definition"></a></dt>
+<dd><p>dt between steps in interpolated plan</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenResult.path_buffer_last_tstep">
+<span class="sig-name descname"><span class="pre">path_buffer_last_tstep</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenResult.path_buffer_last_tstep" title="Link to this definition"></a></dt>
+<dd><p>last timestep in interpolated plan per batch index. Only used for batched queries</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenResult.debug_info">
+<span class="sig-name descname"><span class="pre">debug_info</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Any</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenResult.debug_info" title="Link to this definition"></a></dt>
+<dd><p>Debug information</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenResult.status">
+<span class="sig-name descname"><span class="pre">status</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenResult.status" title="Link to this definition"></a></dt>
+<dd><p>status of motion generation query. returns [IK Fail, Graph Fail, TrajOpt Fail].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenResult.attempts">
+<span class="sig-name descname"><span class="pre">attempts</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenResult.attempts" title="Link to this definition"></a></dt>
+<dd><p>number of attempts used before returning a solution.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenResult.trajopt_attempts">
+<span class="sig-name descname"><span class="pre">trajopt_attempts</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenResult.trajopt_attempts" title="Link to this definition"></a></dt>
+<dd><p>number of trajectory optimization attempts used per attempt.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenResult.used_graph">
+<span class="sig-name descname"><span class="pre">used_graph</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenResult.used_graph" title="Link to this definition"></a></dt>
+<dd><p>returns true when a graph plan was used to seed trajectory optimization.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenResult.graph_plan">
+<span class="sig-name descname"><span class="pre">graph_plan</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><span class="pre">JointState</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenResult.graph_plan" title="Link to this definition"></a></dt>
+<dd><p>stores graph plan.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenResult.clone">
+<span class="sig-name descname"><span class="pre">clone</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenResult.clone" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenResult.copy_idx">
+<span class="sig-name descname"><span class="pre">copy_idx</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">idx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source_result</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenResult.copy_idx" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>idx</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>source_result</strong> (<a class="reference internal" href="#curobo.wrap.reacher.motion_gen.MotionGenResult" title="curobo.wrap.reacher.motion_gen.MotionGenResult"><em>MotionGenResult</em></a>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenResult.get_paths">
+<span class="sig-name descname"><span class="pre">get_paths</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenResult.get_paths" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>List</em>[<a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><em>JointState</em></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenResult.get_successful_paths">
+<span class="sig-name descname"><span class="pre">get_successful_paths</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenResult.get_successful_paths" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>List</em>[<em>Tensor</em>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenResult.get_interpolated_plan">
+<span class="sig-name descname"><span class="pre">get_interpolated_plan</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenResult.get_interpolated_plan" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><em>JointState</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenResult.motion_time">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">motion_time</span></span><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenResult.motion_time" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenPlanConfig">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">curobo.wrap.reacher.motion_gen.</span></span><span class="sig-name descname"><span class="pre">MotionGenPlanConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">enable_graph</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'bool'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enable_opt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'bool'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_nn_ik_seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'bool'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">need_graph_success</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'bool'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_attempts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'int'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">60</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'float'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enable_graph_attempt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Optional[int]'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">disable_graph_attempt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Optional[int]'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ik_fail_return</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Optional[int]'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">partial_ik_opt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'bool'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_ik_seeds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Optional[int]'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_graph_seeds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Optional[int]'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_trajopt_seeds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Optional[int]'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">success_ratio</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'float'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fail_on_invalid_query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'bool'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enable_finetune_trajopt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'bool'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenPlanConfig" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>enable_graph</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>enable_opt</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>use_nn_ik_seed</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>need_graph_success</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>max_attempts</strong> (<em>int</em>) – </p></li>
+<li><p><strong>timeout</strong> (<em>float</em>) – </p></li>
+<li><p><strong>enable_graph_attempt</strong> (<em>int</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>disable_graph_attempt</strong> (<em>int</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>ik_fail_return</strong> (<em>int</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>partial_ik_opt</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>num_ik_seeds</strong> (<em>int</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>num_graph_seeds</strong> (<em>int</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>num_trajopt_seeds</strong> (<em>int</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>success_ratio</strong> (<em>float</em>) – </p></li>
+<li><p><strong>fail_on_invalid_query</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>enable_finetune_trajopt</strong> (<em>bool</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenPlanConfig.enable_graph">
+<span class="sig-name descname"><span class="pre">enable_graph</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenPlanConfig.enable_graph" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenPlanConfig.enable_opt">
+<span class="sig-name descname"><span class="pre">enable_opt</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenPlanConfig.enable_opt" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenPlanConfig.use_nn_ik_seed">
+<span class="sig-name descname"><span class="pre">use_nn_ik_seed</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenPlanConfig.use_nn_ik_seed" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenPlanConfig.need_graph_success">
+<span class="sig-name descname"><span class="pre">need_graph_success</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenPlanConfig.need_graph_success" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenPlanConfig.max_attempts">
+<span class="sig-name descname"><span class="pre">max_attempts</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">60</span></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenPlanConfig.max_attempts" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenPlanConfig.timeout">
+<span class="sig-name descname"><span class="pre">timeout</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">10.0</span></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenPlanConfig.timeout" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenPlanConfig.enable_graph_attempt">
+<span class="sig-name descname"><span class="pre">enable_graph_attempt</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenPlanConfig.enable_graph_attempt" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenPlanConfig.disable_graph_attempt">
+<span class="sig-name descname"><span class="pre">disable_graph_attempt</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenPlanConfig.disable_graph_attempt" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenPlanConfig.ik_fail_return">
+<span class="sig-name descname"><span class="pre">ik_fail_return</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenPlanConfig.ik_fail_return" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenPlanConfig.partial_ik_opt">
+<span class="sig-name descname"><span class="pre">partial_ik_opt</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenPlanConfig.partial_ik_opt" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenPlanConfig.num_ik_seeds">
+<span class="sig-name descname"><span class="pre">num_ik_seeds</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenPlanConfig.num_ik_seeds" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenPlanConfig.num_graph_seeds">
+<span class="sig-name descname"><span class="pre">num_graph_seeds</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenPlanConfig.num_graph_seeds" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenPlanConfig.num_trajopt_seeds">
+<span class="sig-name descname"><span class="pre">num_trajopt_seeds</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenPlanConfig.num_trajopt_seeds" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenPlanConfig.success_ratio">
+<span class="sig-name descname"><span class="pre">success_ratio</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenPlanConfig.success_ratio" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenPlanConfig.fail_on_invalid_query">
+<span class="sig-name descname"><span class="pre">fail_on_invalid_query</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenPlanConfig.fail_on_invalid_query" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenPlanConfig.enable_finetune_trajopt">
+<span class="sig-name descname"><span class="pre">enable_finetune_trajopt</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenPlanConfig.enable_finetune_trajopt" title="Link to this definition"></a></dt>
+<dd><p>enables retiming trajectory optimization, useful for getting low jerk trajectories.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGenPlanConfig.clone">
+<span class="sig-name descname"><span class="pre">clone</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGenPlanConfig.clone" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#curobo.wrap.reacher.motion_gen.MotionGenPlanConfig" title="curobo.wrap.reacher.motion_gen.MotionGenPlanConfig"><em>MotionGenPlanConfig</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGen">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">curobo.wrap.reacher.motion_gen.</span></span><span class="sig-name descname"><span class="pre">MotionGen</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGen" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#curobo.wrap.reacher.motion_gen.MotionGenConfig" title="curobo.wrap.reacher.motion_gen.MotionGenConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">MotionGenConfig</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>config</strong> (<a class="reference internal" href="#curobo.wrap.reacher.motion_gen.MotionGenConfig" title="curobo.wrap.reacher.motion_gen.MotionGenConfig"><em>MotionGenConfig</em></a>) – </p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGen.update_batch_size">
+<span class="sig-name descname"><span class="pre">update_batch_size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seeds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGen.update_batch_size" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGen.solve_ik">
+<span class="sig-name descname"><span class="pre">solve_ik</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">goal_pose</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retract_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_seeds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_seeds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_nn_seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">newton_iters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGen.solve_ik" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>goal_pose</strong> (<a class="reference internal" href="curobo.types.math.html#curobo.types.math.Pose" title="curobo.types.math.Pose"><em>Pose</em></a>) – </p></li>
+<li><p><strong>retract_config</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>seed_config</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>return_seeds</strong> (<em>int</em>) – </p></li>
+<li><p><strong>num_seeds</strong> (<em>int</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>use_nn_seed</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>newton_iters</strong> (<em>int</em><em> | </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="curobo.wrap.reacher.ik_solver.html#curobo.wrap.reacher.ik_solver.IKResult" title="curobo.wrap.reacher.ik_solver.IKResult"><em>IKResult</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGen.graph_search">
+<span class="sig-name descname"><span class="pre">graph_search</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">goal_config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interpolation_steps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGen.graph_search" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start_config</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>goal_config</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>interpolation_steps</strong> (<em>int</em><em> | </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="curobo.graph.graph_base.html#curobo.graph.graph_base.GraphResult" title="curobo.graph.graph_base.GraphResult"><em>GraphResult</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGen.plan_single">
+<span class="sig-name descname"><span class="pre">plan_single</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">goal_pose</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plan_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">MotionGenPlanConfig(enable_graph=False,</span> <span class="pre">enable_opt=True,</span> <span class="pre">use_nn_ik_seed=False,</span> <span class="pre">need_graph_success=False,</span> <span class="pre">max_attempts=60,</span> <span class="pre">timeout=10.0,</span> <span class="pre">enable_graph_attempt=3,</span> <span class="pre">disable_graph_attempt=None,</span> <span class="pre">ik_fail_return=None,</span> <span class="pre">partial_ik_opt=True,</span> <span class="pre">num_ik_seeds=None,</span> <span class="pre">num_graph_seeds=None,</span> <span class="pre">num_trajopt_seeds=None,</span> <span class="pre">success_ratio=1,</span> <span class="pre">fail_on_invalid_query=True,</span> <span class="pre">enable_finetune_trajopt=True)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">link_poses</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGen.plan_single" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start_state</strong> (<a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><em>JointState</em></a>) – </p></li>
+<li><p><strong>goal_pose</strong> (<a class="reference internal" href="curobo.types.math.html#curobo.types.math.Pose" title="curobo.types.math.Pose"><em>Pose</em></a>) – </p></li>
+<li><p><strong>plan_config</strong> (<a class="reference internal" href="#curobo.wrap.reacher.motion_gen.MotionGenPlanConfig" title="curobo.wrap.reacher.motion_gen.MotionGenPlanConfig"><em>MotionGenPlanConfig</em></a>) – </p></li>
+<li><p><strong>link_poses</strong> (<em>List</em><em>[</em><a class="reference internal" href="curobo.types.math.html#curobo.types.math.Pose" title="curobo.types.math.Pose"><em>Pose</em></a><em>] </em><em>| </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#curobo.wrap.reacher.motion_gen.MotionGenResult" title="curobo.wrap.reacher.motion_gen.MotionGenResult"><em>MotionGenResult</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGen.plan_goalset">
+<span class="sig-name descname"><span class="pre">plan_goalset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">goal_pose</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plan_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">MotionGenPlanConfig(enable_graph=False,</span> <span class="pre">enable_opt=True,</span> <span class="pre">use_nn_ik_seed=False,</span> <span class="pre">need_graph_success=False,</span> <span class="pre">max_attempts=60,</span> <span class="pre">timeout=10.0,</span> <span class="pre">enable_graph_attempt=3,</span> <span class="pre">disable_graph_attempt=None,</span> <span class="pre">ik_fail_return=None,</span> <span class="pre">partial_ik_opt=True,</span> <span class="pre">num_ik_seeds=None,</span> <span class="pre">num_graph_seeds=None,</span> <span class="pre">num_trajopt_seeds=None,</span> <span class="pre">success_ratio=1,</span> <span class="pre">fail_on_invalid_query=True,</span> <span class="pre">enable_finetune_trajopt=True)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGen.plan_goalset" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start_state</strong> (<a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><em>JointState</em></a>) – </p></li>
+<li><p><strong>goal_pose</strong> (<a class="reference internal" href="curobo.types.math.html#curobo.types.math.Pose" title="curobo.types.math.Pose"><em>Pose</em></a>) – </p></li>
+<li><p><strong>plan_config</strong> (<a class="reference internal" href="#curobo.wrap.reacher.motion_gen.MotionGenPlanConfig" title="curobo.wrap.reacher.motion_gen.MotionGenPlanConfig"><em>MotionGenPlanConfig</em></a>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#curobo.wrap.reacher.motion_gen.MotionGenResult" title="curobo.wrap.reacher.motion_gen.MotionGenResult"><em>MotionGenResult</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGen.plan_batch">
+<span class="sig-name descname"><span class="pre">plan_batch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">goal_pose</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plan_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">MotionGenPlanConfig(enable_graph=False,</span> <span class="pre">enable_opt=True,</span> <span class="pre">use_nn_ik_seed=False,</span> <span class="pre">need_graph_success=False,</span> <span class="pre">max_attempts=60,</span> <span class="pre">timeout=10.0,</span> <span class="pre">enable_graph_attempt=3,</span> <span class="pre">disable_graph_attempt=None,</span> <span class="pre">ik_fail_return=None,</span> <span class="pre">partial_ik_opt=True,</span> <span class="pre">num_ik_seeds=None,</span> <span class="pre">num_graph_seeds=None,</span> <span class="pre">num_trajopt_seeds=None,</span> <span class="pre">success_ratio=1,</span> <span class="pre">fail_on_invalid_query=True,</span> <span class="pre">enable_finetune_trajopt=True)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGen.plan_batch" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start_state</strong> (<a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><em>JointState</em></a>) – </p></li>
+<li><p><strong>goal_pose</strong> (<a class="reference internal" href="curobo.types.math.html#curobo.types.math.Pose" title="curobo.types.math.Pose"><em>Pose</em></a>) – </p></li>
+<li><p><strong>plan_config</strong> (<a class="reference internal" href="#curobo.wrap.reacher.motion_gen.MotionGenPlanConfig" title="curobo.wrap.reacher.motion_gen.MotionGenPlanConfig"><em>MotionGenPlanConfig</em></a>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#curobo.wrap.reacher.motion_gen.MotionGenResult" title="curobo.wrap.reacher.motion_gen.MotionGenResult"><em>MotionGenResult</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGen.plan_batch_goalset">
+<span class="sig-name descname"><span class="pre">plan_batch_goalset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">goal_pose</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plan_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">MotionGenPlanConfig(enable_graph=False,</span> <span class="pre">enable_opt=True,</span> <span class="pre">use_nn_ik_seed=False,</span> <span class="pre">need_graph_success=False,</span> <span class="pre">max_attempts=60,</span> <span class="pre">timeout=10.0,</span> <span class="pre">enable_graph_attempt=3,</span> <span class="pre">disable_graph_attempt=None,</span> <span class="pre">ik_fail_return=None,</span> <span class="pre">partial_ik_opt=True,</span> <span class="pre">num_ik_seeds=None,</span> <span class="pre">num_graph_seeds=None,</span> <span class="pre">num_trajopt_seeds=None,</span> <span class="pre">success_ratio=1,</span> <span class="pre">fail_on_invalid_query=True,</span> <span class="pre">enable_finetune_trajopt=True)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGen.plan_batch_goalset" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start_state</strong> (<a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><em>JointState</em></a>) – </p></li>
+<li><p><strong>goal_pose</strong> (<a class="reference internal" href="curobo.types.math.html#curobo.types.math.Pose" title="curobo.types.math.Pose"><em>Pose</em></a>) – </p></li>
+<li><p><strong>plan_config</strong> (<a class="reference internal" href="#curobo.wrap.reacher.motion_gen.MotionGenPlanConfig" title="curobo.wrap.reacher.motion_gen.MotionGenPlanConfig"><em>MotionGenPlanConfig</em></a>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#curobo.wrap.reacher.motion_gen.MotionGenResult" title="curobo.wrap.reacher.motion_gen.MotionGenResult"><em>MotionGenResult</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGen.plan_batch_env_goalset">
+<span class="sig-name descname"><span class="pre">plan_batch_env_goalset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">goal_pose</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plan_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">MotionGenPlanConfig(enable_graph=False,</span> <span class="pre">enable_opt=True,</span> <span class="pre">use_nn_ik_seed=False,</span> <span class="pre">need_graph_success=False,</span> <span class="pre">max_attempts=60,</span> <span class="pre">timeout=10.0,</span> <span class="pre">enable_graph_attempt=3,</span> <span class="pre">disable_graph_attempt=None,</span> <span class="pre">ik_fail_return=None,</span> <span class="pre">partial_ik_opt=True,</span> <span class="pre">num_ik_seeds=None,</span> <span class="pre">num_graph_seeds=None,</span> <span class="pre">num_trajopt_seeds=None,</span> <span class="pre">success_ratio=1,</span> <span class="pre">fail_on_invalid_query=True,</span> <span class="pre">enable_finetune_trajopt=True)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGen.plan_batch_env_goalset" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start_state</strong> (<a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><em>JointState</em></a>) – </p></li>
+<li><p><strong>goal_pose</strong> (<a class="reference internal" href="curobo.types.math.html#curobo.types.math.Pose" title="curobo.types.math.Pose"><em>Pose</em></a>) – </p></li>
+<li><p><strong>plan_config</strong> (<a class="reference internal" href="#curobo.wrap.reacher.motion_gen.MotionGenPlanConfig" title="curobo.wrap.reacher.motion_gen.MotionGenPlanConfig"><em>MotionGenPlanConfig</em></a>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#curobo.wrap.reacher.motion_gen.MotionGenResult" title="curobo.wrap.reacher.motion_gen.MotionGenResult"><em>MotionGenResult</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGen.plan_batch_env">
+<span class="sig-name descname"><span class="pre">plan_batch_env</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">goal_pose</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plan_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">MotionGenPlanConfig(enable_graph=False,</span> <span class="pre">enable_opt=True,</span> <span class="pre">use_nn_ik_seed=False,</span> <span class="pre">need_graph_success=False,</span> <span class="pre">max_attempts=60,</span> <span class="pre">timeout=10.0,</span> <span class="pre">enable_graph_attempt=3,</span> <span class="pre">disable_graph_attempt=None,</span> <span class="pre">ik_fail_return=None,</span> <span class="pre">partial_ik_opt=True,</span> <span class="pre">num_ik_seeds=None,</span> <span class="pre">num_graph_seeds=None,</span> <span class="pre">num_trajopt_seeds=None,</span> <span class="pre">success_ratio=1,</span> <span class="pre">fail_on_invalid_query=True,</span> <span class="pre">enable_finetune_trajopt=True)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGen.plan_batch_env" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start_state</strong> (<a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><em>JointState</em></a>) – </p></li>
+<li><p><strong>goal_pose</strong> (<a class="reference internal" href="curobo.types.math.html#curobo.types.math.Pose" title="curobo.types.math.Pose"><em>Pose</em></a>) – </p></li>
+<li><p><strong>plan_config</strong> (<a class="reference internal" href="#curobo.wrap.reacher.motion_gen.MotionGenPlanConfig" title="curobo.wrap.reacher.motion_gen.MotionGenPlanConfig"><em>MotionGenPlanConfig</em></a>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#curobo.wrap.reacher.motion_gen.MotionGenResult" title="curobo.wrap.reacher.motion_gen.MotionGenResult"><em>MotionGenResult</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGen.compute_kinematics">
+<span class="sig-name descname"><span class="pre">compute_kinematics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGen.compute_kinematics" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>state</strong> (<a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><em>JointState</em></a>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="curobo.rollout.dynamics_model.kinematic_model.html#curobo.rollout.dynamics_model.kinematic_model.KinematicModelState" title="curobo.rollout.dynamics_model.kinematic_model.KinematicModelState"><em>KinematicModelState</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGen.kinematics">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">kinematics</span></span><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGen.kinematics" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGen.dof">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dof</span></span><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGen.dof" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGen.check_constraints">
+<span class="sig-name descname"><span class="pre">check_constraints</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGen.check_constraints" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>state</strong> (<a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><em>JointState</em></a>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutMetrics" title="curobo.rollout.rollout_base.RolloutMetrics"><em>RolloutMetrics</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGen.update_world">
+<span class="sig-name descname"><span class="pre">update_world</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">world</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGen.update_world" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>world</strong> (<a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig" title="curobo.geom.types.WorldConfig"><em>WorldConfig</em></a>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGen.clear_world_cache">
+<span class="sig-name descname"><span class="pre">clear_world_cache</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGen.clear_world_cache" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGen.reset">
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reset_seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGen.reset" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGen.reset_seed">
+<span class="sig-name descname"><span class="pre">reset_seed</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGen.reset_seed" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGen.get_retract_config">
+<span class="sig-name descname"><span class="pre">get_retract_config</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGen.get_retract_config" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGen.warmup">
+<span class="sig-name descname"><span class="pre">warmup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">enable_graph</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">warmup_js_trajopt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_env_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGen.warmup" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>enable_graph</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>batch</strong> (<em>int</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>warmup_js_trajopt</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>batch_env_mode</strong> (<em>bool</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGen.plan_single_js">
+<span class="sig-name descname"><span class="pre">plan_single_js</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">goal_state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plan_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">MotionGenPlanConfig(enable_graph=False,</span> <span class="pre">enable_opt=True,</span> <span class="pre">use_nn_ik_seed=False,</span> <span class="pre">need_graph_success=False,</span> <span class="pre">max_attempts=60,</span> <span class="pre">timeout=10.0,</span> <span class="pre">enable_graph_attempt=3,</span> <span class="pre">disable_graph_attempt=None,</span> <span class="pre">ik_fail_return=None,</span> <span class="pre">partial_ik_opt=True,</span> <span class="pre">num_ik_seeds=None,</span> <span class="pre">num_graph_seeds=None,</span> <span class="pre">num_trajopt_seeds=None,</span> <span class="pre">success_ratio=1,</span> <span class="pre">fail_on_invalid_query=True,</span> <span class="pre">enable_finetune_trajopt=True)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGen.plan_single_js" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start_state</strong> (<a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><em>JointState</em></a>) – </p></li>
+<li><p><strong>goal_state</strong> (<a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><em>JointState</em></a>) – </p></li>
+<li><p><strong>plan_config</strong> (<a class="reference internal" href="#curobo.wrap.reacher.motion_gen.MotionGenPlanConfig" title="curobo.wrap.reacher.motion_gen.MotionGenPlanConfig"><em>MotionGenPlanConfig</em></a>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#curobo.wrap.reacher.motion_gen.MotionGenResult" title="curobo.wrap.reacher.motion_gen.MotionGenResult"><em>MotionGenResult</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGen.plan">
+<span class="sig-name descname"><span class="pre">plan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">goal_pose</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enable_graph</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enable_opt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_nn_ik_seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">need_graph_success</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_attempts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enable_graph_attempt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">disable_graph_attempt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trajopt_attempts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ik_fail_return</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">partial_ik_opt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_ik_seeds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_graph_seeds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_trajopt_seeds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGen.plan" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start_state</strong> (<a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><em>JointState</em></a>) – </p></li>
+<li><p><strong>goal_pose</strong> (<a class="reference internal" href="curobo.types.math.html#curobo.types.math.Pose" title="curobo.types.math.Pose"><em>Pose</em></a>) – </p></li>
+<li><p><strong>enable_graph</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>enable_opt</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>use_nn_ik_seed</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>need_graph_success</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>max_attempts</strong> (<em>int</em>) – </p></li>
+<li><p><strong>timeout</strong> (<em>float</em>) – </p></li>
+<li><p><strong>enable_graph_attempt</strong> (<em>int</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>disable_graph_attempt</strong> (<em>int</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>trajopt_attempts</strong> (<em>int</em>) – </p></li>
+<li><p><strong>ik_fail_return</strong> (<em>int</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>partial_ik_opt</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>num_ik_seeds</strong> (<em>int</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>num_graph_seeds</strong> (<em>int</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>num_trajopt_seeds</strong> (<em>int</em><em> | </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGen.batch_plan">
+<span class="sig-name descname"><span class="pre">batch_plan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">goal_pose</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enable_graph</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enable_opt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_nn_ik_seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">need_graph_success</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_attempts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enable_graph_attempt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">disable_graph_attempt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">success_ratio</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ik_fail_return</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fail_on_invalid_query</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">partial_ik_opt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_ik_seeds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_graph_seeds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_trajopt_seeds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGen.batch_plan" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start_state</strong> (<a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><em>JointState</em></a>) – </p></li>
+<li><p><strong>goal_pose</strong> (<a class="reference internal" href="curobo.types.math.html#curobo.types.math.Pose" title="curobo.types.math.Pose"><em>Pose</em></a>) – </p></li>
+<li><p><strong>enable_graph</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>enable_opt</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>use_nn_ik_seed</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>need_graph_success</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>max_attempts</strong> (<em>int</em>) – </p></li>
+<li><p><strong>timeout</strong> (<em>float</em>) – </p></li>
+<li><p><strong>enable_graph_attempt</strong> (<em>int</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>disable_graph_attempt</strong> (<em>int</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>success_ratio</strong> (<em>float</em>) – </p></li>
+<li><p><strong>ik_fail_return</strong> (<em>int</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>fail_on_invalid_query</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>partial_ik_opt</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>num_ik_seeds</strong> (<em>int</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>num_graph_seeds</strong> (<em>int</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>num_trajopt_seeds</strong> (<em>int</em><em> | </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGen.solve_trajopt">
+<span class="sig-name descname"><span class="pre">solve_trajopt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">goal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">act_seed</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_all_solutions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_seeds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGen.solve_trajopt" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>goal</strong> (<a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal" title="curobo.rollout.rollout_base.Goal"><em>Goal</em></a>) – </p></li>
+<li><p><strong>return_all_solutions</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>num_seeds</strong> (<em>int</em><em> | </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGen.get_active_js">
+<span class="sig-name descname"><span class="pre">get_active_js</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">in_js</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGen.get_active_js" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>in_js</strong> (<a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><em>JointState</em></a>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGen.get_all_rollout_instances">
+<span class="sig-name descname"><span class="pre">get_all_rollout_instances</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGen.get_all_rollout_instances" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>List</em>[<a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutBase" title="curobo.rollout.rollout_base.RolloutBase"><em>RolloutBase</em></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGen.get_all_kinematics_instances">
+<span class="sig-name descname"><span class="pre">get_all_kinematics_instances</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGen.get_all_kinematics_instances" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>List</em>[<a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModel" title="curobo.cuda_robot_model.cuda_robot_model.CudaRobotModel"><em>CudaRobotModel</em></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGen.attach_objects_to_robot">
+<span class="sig-name descname"><span class="pre">attach_objects_to_robot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">joint_state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">object_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">surface_sphere_radius</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">link_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'attached_object'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sphere_fit_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">SphereFitType.VOXEL_VOLUME_SAMPLE_SURFACE</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">voxelize_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ray'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">world_objects_pose_offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remove_obstacles_from_world_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGen.attach_objects_to_robot" title="Link to this definition"></a></dt>
+<dd><p>Attach an object from world to robot’s link.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>surface_sphere_radius</strong> (<em>float</em>) – _description_. Defaults to None.</p></li>
+<li><p><strong>sphere_tensor</strong> – _description_. Defaults to None.</p></li>
+<li><p><strong>link_name</strong> (<em>str</em>) – _description_. Defaults to “attached_object”.</p></li>
+<li><p><strong>joint_state</strong> (<a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><em>JointState</em></a>) – </p></li>
+<li><p><strong>object_names</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – </p></li>
+<li><p><strong>sphere_fit_type</strong> (<a class="reference internal" href="curobo.geom.sphere_fit.html#curobo.geom.sphere_fit.SphereFitType" title="curobo.geom.sphere_fit.SphereFitType"><em>SphereFitType</em></a>) – </p></li>
+<li><p><strong>voxelize_method</strong> (<em>str</em>) – </p></li>
+<li><p><strong>world_objects_pose_offset</strong> (<a class="reference internal" href="curobo.types.math.html#curobo.types.math.Pose" title="curobo.types.math.Pose"><em>Pose</em></a><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>remove_obstacles_from_world_config</strong> (<em>bool</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGen.add_camera_frame">
+<span class="sig-name descname"><span class="pre">add_camera_frame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">camera_observation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obstacle_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGen.add_camera_frame" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>camera_observation</strong> (<a class="reference internal" href="curobo.types.camera.html#curobo.types.camera.CameraObservation" title="curobo.types.camera.CameraObservation"><em>CameraObservation</em></a>) – </p></li>
+<li><p><strong>obstacle_name</strong> (<em>str</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGen.process_camera_frames">
+<span class="sig-name descname"><span class="pre">process_camera_frames</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obstacle_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">process_aux</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGen.process_camera_frames" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>obstacle_name</strong> (<em>str</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>process_aux</strong> (<em>bool</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGen.attach_bounding_box_from_blox_to_robot">
+<span class="sig-name descname"><span class="pre">attach_bounding_box_from_blox_to_robot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">joint_state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounding_box</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blox_layer_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">surface_sphere_radius</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">link_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'attached_object'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sphere_fit_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">SphereFitType.VOXEL_VOLUME_SAMPLE_SURFACE</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">voxelize_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ray'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">world_objects_pose_offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGen.attach_bounding_box_from_blox_to_robot" title="Link to this definition"></a></dt>
+<dd><p>Attach the voxels in a blox layer to robot’s link.</p>
+<p>NOTE: This is not currently implemented.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>joint_state</strong> (<a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><em>JointState</em></a>) – _description_</p></li>
+<li><p><strong>bounding_box</strong> (<a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Cuboid" title="curobo.geom.types.Cuboid"><em>Cuboid</em></a>) – _description_</p></li>
+<li><p><strong>blox_layer_name</strong> (<em>Optional</em><em>[</em><em>str</em><em>]</em><em>, </em><em>optional</em>) – _description_. Defaults to None.</p></li>
+<li><p><strong>surface_sphere_radius</strong> (<em>float</em><em>, </em><em>optional</em>) – _description_. Defaults to 0.001.</p></li>
+<li><p><strong>link_name</strong> (<em>str</em><em>, </em><em>optional</em>) – _description_. Defaults to “attached_object”.</p></li>
+<li><p><strong>sphere_fit_type</strong> (<a class="reference internal" href="curobo.geom.sphere_fit.html#curobo.geom.sphere_fit.SphereFitType" title="curobo.geom.sphere_fit.SphereFitType"><em>SphereFitType</em></a><em>, </em><em>optional</em>) – _description_. Defaults to SphereFitType.VOXEL_VOLUME_SAMPLE_SURFACE.</p></li>
+<li><p><strong>voxelize_method</strong> (<em>str</em><em>, </em><em>optional</em>) – _description_. Defaults to “ray”.</p></li>
+<li><p><strong>world_objects_pose_offset</strong> (<em>Optional</em><em>[</em><a class="reference internal" href="curobo.types.math.html#curobo.types.math.Pose" title="curobo.types.math.Pose"><em>Pose</em></a><em>]</em><em>, </em><em>optional</em>) – _description_. Defaults to None.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGen.attach_new_object_to_robot">
+<span class="sig-name descname"><span class="pre">attach_new_object_to_robot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">joint_state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obstacle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">surface_sphere_radius</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">link_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'attached_object'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sphere_fit_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">SphereFitType.VOXEL_VOLUME_SAMPLE_SURFACE</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">voxelize_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ray'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">world_objects_pose_offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGen.attach_new_object_to_robot" title="Link to this definition"></a></dt>
+<dd><p>Attach an object to robot’s link. The object to be attached is not in the world model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>joint_state</strong> (<a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><em>JointState</em></a>) – _description_</p></li>
+<li><p><strong>obstacle</strong> (<a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Obstacle" title="curobo.geom.types.Obstacle"><em>Obstacle</em></a>) – _description_</p></li>
+<li><p><strong>surface_sphere_radius</strong> (<em>float</em><em>, </em><em>optional</em>) – _description_. Defaults to 0.001.</p></li>
+<li><p><strong>link_name</strong> (<em>str</em><em>, </em><em>optional</em>) – _description_. Defaults to “attached_object”.</p></li>
+<li><p><strong>sphere_fit_type</strong> (<a class="reference internal" href="curobo.geom.sphere_fit.html#curobo.geom.sphere_fit.SphereFitType" title="curobo.geom.sphere_fit.SphereFitType"><em>SphereFitType</em></a><em>, </em><em>optional</em>) – _description_. Defaults to SphereFitType.VOXEL_VOLUME_SAMPLE_SURFACE.</p></li>
+<li><p><strong>voxelize_method</strong> (<em>str</em><em>, </em><em>optional</em>) – _description_. Defaults to “ray”.</p></li>
+<li><p><strong>world_objects_pose_offset</strong> (<em>Optional</em><em>[</em><a class="reference internal" href="curobo.types.math.html#curobo.types.math.Pose" title="curobo.types.math.Pose"><em>Pose</em></a><em>]</em><em>, </em><em>optional</em>) – _description_. Defaults to None.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGen.detach_object_from_robot">
+<span class="sig-name descname"><span class="pre">detach_object_from_robot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">link_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'attached_object'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGen.detach_object_from_robot" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>link_name</strong> (<em>str</em>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGen.attach_spheres_to_robot">
+<span class="sig-name descname"><span class="pre">attach_spheres_to_robot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sphere_radius</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sphere_tensor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">link_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'attached_object'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGen.attach_spheres_to_robot" title="Link to this definition"></a></dt>
+<dd><p>Attach spheres to robot’s link.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sphere_radius</strong> (<em>float</em><em> | </em><em>None</em>) – _description_. Defaults to None.</p></li>
+<li><p><strong>sphere_tensor</strong> (<em>Tensor</em><em> | </em><em>None</em>) – _description_. Defaults to None.</p></li>
+<li><p><strong>link_name</strong> (<em>str</em>) – _description_. Defaults to “attached_object”.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGen.detach_spheres_from_robot">
+<span class="sig-name descname"><span class="pre">detach_spheres_from_robot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">link_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'attached_object'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGen.detach_spheres_from_robot" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>link_name</strong> (<em>str</em>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGen.get_full_js">
+<span class="sig-name descname"><span class="pre">get_full_js</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">active_js</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGen.get_full_js" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>active_js</strong> (<a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><em>JointState</em></a>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><em>JointState</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGen.add_running_pose_constraint">
+<span class="sig-name descname"><span class="pre">add_running_pose_constraint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lock_x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lock_y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lock_z</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lock_rx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lock_ry</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lock_rz</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGen.add_running_pose_constraint" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lock_x</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>lock_y</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>lock_z</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>lock_rx</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>lock_ry</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>lock_rz</strong> (<em>bool</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGen.remove_running_pose_constraint">
+<span class="sig-name descname"><span class="pre">remove_running_pose_constraint</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGen.remove_running_pose_constraint" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGen.run_finetune_trajopt">
+<span class="sig-name descname"><span class="pre">run_finetune_trajopt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">goal_pose</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">traj_solution</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">traj_dt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_attempts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGen.run_finetune_trajopt" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start_state</strong> (<a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><em>JointState</em></a>) – </p></li>
+<li><p><strong>goal_pose</strong> (<a class="reference internal" href="curobo.types.math.html#curobo.types.math.Pose" title="curobo.types.math.Pose"><em>Pose</em></a>) – </p></li>
+<li><p><strong>traj_solution</strong> (<a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><em>JointState</em></a>) – </p></li>
+<li><p><strong>traj_dt</strong> (<em>float</em><em> | </em><em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>max_attempts</strong> (<em>int</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGen.world_model">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">world_model</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig" title="curobo.geom.types.WorldConfig"><span class="pre">WorldConfig</span></a></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGen.world_model" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGen.world_collision">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">world_collision</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldCollision" title="curobo.geom.sdf.world.WorldCollision"><span class="pre">WorldCollision</span></a></em><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGen.world_collision" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGen.update_interpolation_type">
+<span class="sig-name descname"><span class="pre">update_interpolation_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interpolation_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">update_graph</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">update_trajopt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGen.update_interpolation_type" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>interpolation_type</strong> (<a class="reference internal" href="curobo.util.trajectory.html#curobo.util.trajectory.InterpolateType" title="curobo.util.trajectory.InterpolateType"><em>InterpolateType</em></a>) – </p></li>
+<li><p><strong>update_graph</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>update_trajopt</strong> (<em>bool</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.motion_gen.MotionGen.update_locked_state">
+<span class="sig-name descname"><span class="pre">update_locked_state</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.motion_gen.MotionGen.update_locked_state" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>js</strong> (<a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><em>JointState</em></a>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="curobo.wrap.reacher.trajopt.html" class="btn btn-neutral float-left" title="curobo.wrap.reacher.trajopt module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="modules.html" class="btn btn-neutral float-right" title="curobo" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, NVIDIA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(250);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

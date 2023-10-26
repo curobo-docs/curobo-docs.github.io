@@ -1,0 +1,224 @@
+<!--
+-- Copyright (c) 2023 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+--
+-- NVIDIA CORPORATION, its affiliates and licensors retain all intellectual
+-- property and proprietary rights in and to this material, related
+-- documentation and any modifications thereto. Any use, reproduction,
+-- disclosure or distribution of this material and related documentation
+-- without an express license agreement from NVIDIA CORPORATION or
+-- its affiliates is strictly prohibited.
+-->
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Benchmarks &amp; Profiling &mdash; CuRobo  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Docker Development" href="5_docker_development.html" />
+    <link rel="prev" title="Using in a Neural Network" href="2e_torch_layer_example.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            CuRobo
+              <img src="../../_static/nvidia_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Research</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../research/research.html">Technical Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../research/research_using_curobo.html">Research using CuRobo</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Library Overview</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="1_install_instructions.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1a_quick_overview.html">Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2a_python_examples.html">Using in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2b_isaacsim_examples.html">Using with Isaac Sim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2c_world_collision.html">Collision World Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2d_nvblox_demo.html">Using with Depth Camera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2e_torch_layer_example.html">Using in a Neural Network</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Benchmarks &amp; Profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_docker_development.html">Docker Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_known_issues.html">Known Issues</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Advanced Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_examples/2a_batch_env.html">Batched Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_examples/2b_block_stacking_example.html">Block Stacking</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/1_robot_configuration.html">Configuring a New Robot</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../notes/01_robot_list.html">Supported Robots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/02_numerical_optimization.html">Numerical Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/04_cuda_kernels.html">CUDA Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/05_usd_api.html">USD for Robot and World Representation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">Python API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">CuRobo</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Benchmarks &amp; Profiling</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/source/getting_started/4_benchmarks.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="benchmarks-profiling">
+<h1>Benchmarks &amp; Profiling<a class="headerlink" href="#benchmarks-profiling" title="Link to this heading"></a></h1>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#benchmarks" id="id1">Benchmarks</a></p>
+<ul>
+<li><p><a class="reference internal" href="#kinematics-collision-checking" id="id2">Kinematics &amp; Collision Checking</a></p></li>
+<li><p><a class="reference internal" href="#inverse-kinematics" id="id3">Inverse Kinematics</a></p></li>
+<li><p><a class="reference internal" href="#motion-generation-geometric-planning" id="id4">Motion Generation &amp; Geometric Planning</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#profiling" id="id5">Profiling</a></p></li>
+</ul>
+</nav>
+<section id="benchmarks">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Benchmarks</a><a class="headerlink" href="#benchmarks" title="Link to this heading"></a></h2>
+<p>We use robometrics to run some of the benchmarks and also provide csv export with pandas.
+Install the following packages before running the benchmarks:</p>
+<ol class="arabic simple">
+<li><p>Install robometrics with <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">&quot;robometrics[evaluator]</span> <span class="pre">&#64;</span> <span class="pre">git+https://github.com/fishbotics/robometrics.git&quot;</span></code></p></li>
+<li><p>Optionally, install pandas if you want csv files with <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">pandas</span></code></p></li>
+</ol>
+<section id="kinematics-collision-checking">
+<h3><a class="toc-backref" href="#id2" role="doc-backlink">Kinematics &amp; Collision Checking</a><a class="headerlink" href="#kinematics-collision-checking" title="Link to this heading"></a></h3>
+<p>To measure compute time for kinematics and collision checking, run the below script which will execute for all
+supported robots,</p>
+<p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">benchmark/kinematics_benchmark.py</span> <span class="pre">--save_path=.</span> <span class="pre">--file_name=kinematics</span></code></p>
+<p>This will save the results to <code class="docutils literal notranslate"><span class="pre">kinematics.yml</span></code></p>
+</section>
+<section id="inverse-kinematics">
+<h3><a class="toc-backref" href="#id3" role="doc-backlink">Inverse Kinematics</a><a class="headerlink" href="#inverse-kinematics" title="Link to this heading"></a></h3>
+<p>To measure success metrics and compute time for inverse kinematics and collision-free inverse kinematics, run</p>
+<p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">benchmark/ik_benchmark.py</span> <span class="pre">--save_path=.</span> <span class="pre">--file_name=ik</span></code></p>
+<p>This will save the results to <code class="docutils literal notranslate"><span class="pre">ik.yml</span></code>.</p>
+</section>
+<section id="motion-generation-geometric-planning">
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">Motion Generation &amp; Geometric Planning</a><a class="headerlink" href="#motion-generation-geometric-planning" title="Link to this heading"></a></h3>
+<p>To run benchmarks for motion generation:</p>
+<p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">benchmark/curobo_benchmark.py</span></code></p>
+<p>Pass <code class="docutils literal notranslate"><span class="pre">--mesh</span></code> to run benchmarks with obstacles represented as meshes.</p>
+<p>To run benchmarks for motion generation with obstacles represented using rendered depth images in nvblox,</p>
+<p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">benchmark/curobo_nvblox_benchmark.py</span></code></p>
+<p>This requires you to install nvblox_torch, following instructions in <a class="reference internal" href="2d_nvblox_demo.html#depth-image-example"><span class="std std-ref">Using with Depth Camera</span></a>. You
+would also need pyrender, install with <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">pyrender</span></code></p>
+<p>To evaluate the motions with the robometrics evaluator:</p>
+<p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">benchmark/robometrics_benchmark.py</span></code></p>
+<p>Passing <code class="docutils literal notranslate"><span class="pre">--graph</span></code> in the above commands will run the benchmarks with only geometric planning.</p>
+</section>
+</section>
+<section id="profiling">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Profiling</a><a class="headerlink" href="#profiling" title="Link to this heading"></a></h2>
+<p>For users who want to understand the computational graph and analyze compute bottlenecks, we provide scripts
+that run the motion generation pipeline and dump torch profiling to a json file. This file can be loaded in
+<a class="reference external" href="chrome://tracing">chrome://tracing</a></p>
+<p>Before running these scripts, <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">benchmark</span> <span class="pre">&amp;&amp;</span> <span class="pre">mkdir</span> <span class="pre">-p</span> <span class="pre">log/trace</span></code>,</p>
+<p>Run <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">curobo_profile.py</span></code> to run motion generation profiling.</p>
+<p>Run <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">curobo_nvblox_profile.py</span></code> to run motion generation profiling with nvblox for collision avoidance.</p>
+<p>Run <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">curobo_python_profile.py</span></code> to profile the code using cProfile.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="2e_torch_layer_example.html" class="btn btn-neutral float-left" title="Using in a Neural Network" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="5_docker_development.html" class="btn btn-neutral float-right" title="Docker Development" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, NVIDIA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(250);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

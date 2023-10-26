@@ -1,0 +1,486 @@
+<!--
+-- Copyright (c) 2023 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+--
+-- NVIDIA CORPORATION, its affiliates and licensors retain all intellectual
+-- property and proprietary rights in and to this material, related
+-- documentation and any modifications thereto. Any use, reproduction,
+-- disclosure or distribution of this material and related documentation
+-- without an express license agreement from NVIDIA CORPORATION or
+-- its affiliates is strictly prohibited.
+-->
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>curobo.rollout package &mdash; CuRobo  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="curobo.rollout.cost package" href="curobo.rollout.cost.html" />
+    <link rel="prev" title="curobo.opt.opt_base module" href="curobo.opt.opt_base.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CuRobo
+              <img src="../_static/nvidia_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Research</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/research/research.html">Technical Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/research/research_using_curobo.html">Research using CuRobo</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Library Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/1_install_instructions.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/1a_quick_overview.html">Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2a_python_examples.html">Using in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2b_isaacsim_examples.html">Using with Isaac Sim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2c_world_collision.html">Collision World Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2d_nvblox_demo.html">Using with Depth Camera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2e_torch_layer_example.html">Using in a Neural Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/4_benchmarks.html">Benchmarks &amp; Profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/5_docker_development.html">Docker Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/6_known_issues.html">Known Issues</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Advanced Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2a_batch_env.html">Batched Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2b_block_stacking_example.html">Block Stacking</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/tutorials/1_robot_configuration.html">Configuring a New Robot</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/01_robot_list.html">Supported Robots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/02_numerical_optimization.html">Numerical Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/04_cuda_kernels.html">CUDA Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/05_usd_api.html">USD for Robot and World Representation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">Python API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CuRobo</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../api.html">Python API</a></li>
+      <li class="breadcrumb-item active">curobo.rollout package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/_api/curobo.rollout.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-curobo.rollout">
+<span id="curobo-rollout-package"></span><h1>curobo.rollout package<a class="headerlink" href="#module-curobo.rollout" title="Link to this heading"></a></h1>
+<p>This module contains rollout classes</p>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="curobo.rollout.cost.html">curobo.rollout.cost package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="curobo.rollout.cost.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.cost.bound_cost.html">curobo.rollout.cost.bound_cost module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.cost.bound_cost.html#curobo.rollout.cost.bound_cost.BoundCostType"><code class="docutils literal notranslate"><span class="pre">BoundCostType</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.cost.bound_cost.html#curobo.rollout.cost.bound_cost.BoundCostConfig"><code class="docutils literal notranslate"><span class="pre">BoundCostConfig</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.cost.bound_cost.html#curobo.rollout.cost.bound_cost.BoundCost"><code class="docutils literal notranslate"><span class="pre">BoundCost</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.cost.bound_cost.html#curobo.rollout.cost.bound_cost.WarpBoundSmoothFunction"><code class="docutils literal notranslate"><span class="pre">WarpBoundSmoothFunction</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.cost.bound_cost.html#curobo.rollout.cost.bound_cost.WarpBoundFunction"><code class="docutils literal notranslate"><span class="pre">WarpBoundFunction</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.cost.bound_cost.html#curobo.rollout.cost.bound_cost.WarpBoundPosFunction"><code class="docutils literal notranslate"><span class="pre">WarpBoundPosFunction</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.cost.bound_cost.html#curobo.rollout.cost.bound_cost.WarpBoundPosLoss"><code class="docutils literal notranslate"><span class="pre">WarpBoundPosLoss</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.cost.cost_base.html">curobo.rollout.cost.cost_base module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.cost.cost_base.html#curobo.rollout.cost.cost_base.CostConfig"><code class="docutils literal notranslate"><span class="pre">CostConfig</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.cost.cost_base.html#curobo.rollout.cost.cost_base.CostBase"><code class="docutils literal notranslate"><span class="pre">CostBase</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.cost.dist_cost.html">curobo.rollout.cost.dist_cost module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.cost.dist_cost.html#curobo.rollout.cost.dist_cost.DistType"><code class="docutils literal notranslate"><span class="pre">DistType</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.cost.dist_cost.html#curobo.rollout.cost.dist_cost.DistCostConfig"><code class="docutils literal notranslate"><span class="pre">DistCostConfig</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.cost.dist_cost.html#curobo.rollout.cost.dist_cost.L2DistFunction"><code class="docutils literal notranslate"><span class="pre">L2DistFunction</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.cost.dist_cost.html#curobo.rollout.cost.dist_cost.DistCost"><code class="docutils literal notranslate"><span class="pre">DistCost</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.cost.manipulability_cost.html">curobo.rollout.cost.manipulability_cost module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.cost.manipulability_cost.html#curobo.rollout.cost.manipulability_cost.ManipulabilityCostConfig"><code class="docutils literal notranslate"><span class="pre">ManipulabilityCostConfig</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.cost.manipulability_cost.html#curobo.rollout.cost.manipulability_cost.ManipulabilityCost"><code class="docutils literal notranslate"><span class="pre">ManipulabilityCost</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.cost.pose_cost.html">curobo.rollout.cost.pose_cost module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.cost.pose_cost.html#curobo.rollout.cost.pose_cost.PoseErrorType"><code class="docutils literal notranslate"><span class="pre">PoseErrorType</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.cost.pose_cost.html#curobo.rollout.cost.pose_cost.PoseCostConfig"><code class="docutils literal notranslate"><span class="pre">PoseCostConfig</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.cost.pose_cost.html#curobo.rollout.cost.pose_cost.PoseErrorDistance"><code class="docutils literal notranslate"><span class="pre">PoseErrorDistance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.cost.pose_cost.html#curobo.rollout.cost.pose_cost.PoseLoss"><code class="docutils literal notranslate"><span class="pre">PoseLoss</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.cost.pose_cost.html#curobo.rollout.cost.pose_cost.PoseError"><code class="docutils literal notranslate"><span class="pre">PoseError</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.cost.pose_cost.html#curobo.rollout.cost.pose_cost.PoseCost"><code class="docutils literal notranslate"><span class="pre">PoseCost</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.cost.primitive_collision_cost.html">curobo.rollout.cost.primitive_collision_cost module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.cost.primitive_collision_cost.html#curobo.rollout.cost.primitive_collision_cost.PrimitiveCollisionCostConfig"><code class="docutils literal notranslate"><span class="pre">PrimitiveCollisionCostConfig</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.cost.primitive_collision_cost.html#curobo.rollout.cost.primitive_collision_cost.PrimitiveCollisionCost"><code class="docutils literal notranslate"><span class="pre">PrimitiveCollisionCost</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.cost.projected_dist_cost.html">curobo.rollout.cost.projected_dist_cost module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.cost.projected_dist_cost.html#curobo.rollout.cost.projected_dist_cost.ProjType"><code class="docutils literal notranslate"><span class="pre">ProjType</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.cost.projected_dist_cost.html#curobo.rollout.cost.projected_dist_cost.ProjectedDistCostConfig"><code class="docutils literal notranslate"><span class="pre">ProjectedDistCostConfig</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.cost.projected_dist_cost.html#curobo.rollout.cost.projected_dist_cost.ProjectedDistCost"><code class="docutils literal notranslate"><span class="pre">ProjectedDistCost</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.cost.self_collision_cost.html">curobo.rollout.cost.self_collision_cost module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.cost.self_collision_cost.html#curobo.rollout.cost.self_collision_cost.SelfCollisionCostConfig"><code class="docutils literal notranslate"><span class="pre">SelfCollisionCostConfig</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.cost.self_collision_cost.html#curobo.rollout.cost.self_collision_cost.SelfCollisionCost"><code class="docutils literal notranslate"><span class="pre">SelfCollisionCost</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.cost.stop_cost.html">curobo.rollout.cost.stop_cost module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.cost.stop_cost.html#curobo.rollout.cost.stop_cost.StopCostConfig"><code class="docutils literal notranslate"><span class="pre">StopCostConfig</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.cost.stop_cost.html#curobo.rollout.cost.stop_cost.StopCost"><code class="docutils literal notranslate"><span class="pre">StopCost</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.cost.straight_line_cost.html">curobo.rollout.cost.straight_line_cost module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.cost.straight_line_cost.html#curobo.rollout.cost.straight_line_cost.StraightLineCost"><code class="docutils literal notranslate"><span class="pre">StraightLineCost</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.cost.zero_cost.html">curobo.rollout.cost.zero_cost module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.cost.zero_cost.html#curobo.rollout.cost.zero_cost.SquaredSum"><code class="docutils literal notranslate"><span class="pre">SquaredSum</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.cost.zero_cost.html#curobo.rollout.cost.zero_cost.RunSquaredSum"><code class="docutils literal notranslate"><span class="pre">RunSquaredSum</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.cost.zero_cost.html#curobo.rollout.cost.zero_cost.ZeroCost"><code class="docutils literal notranslate"><span class="pre">ZeroCost</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="curobo.rollout.dynamics_model.html">curobo.rollout.dynamics_model package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="curobo.rollout.dynamics_model.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.dynamics_model.integration_utils.html">curobo.rollout.dynamics_model.integration_utils module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.dynamics_model.integration_utils.html#curobo.rollout.dynamics_model.integration_utils.build_clique_matrix"><code class="docutils literal notranslate"><span class="pre">build_clique_matrix</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.dynamics_model.integration_utils.html#curobo.rollout.dynamics_model.integration_utils.build_fd_matrix"><code class="docutils literal notranslate"><span class="pre">build_fd_matrix</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.dynamics_model.integration_utils.html#curobo.rollout.dynamics_model.integration_utils.build_int_matrix"><code class="docutils literal notranslate"><span class="pre">build_int_matrix</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.dynamics_model.integration_utils.html#curobo.rollout.dynamics_model.integration_utils.build_start_state_mask"><code class="docutils literal notranslate"><span class="pre">build_start_state_mask</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.dynamics_model.integration_utils.html#curobo.rollout.dynamics_model.integration_utils.tensor_step_jerk"><code class="docutils literal notranslate"><span class="pre">tensor_step_jerk</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.dynamics_model.integration_utils.html#curobo.rollout.dynamics_model.integration_utils.euler_integrate"><code class="docutils literal notranslate"><span class="pre">euler_integrate</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.dynamics_model.integration_utils.html#curobo.rollout.dynamics_model.integration_utils.tensor_step_acc"><code class="docutils literal notranslate"><span class="pre">tensor_step_acc</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.dynamics_model.integration_utils.html#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStep"><code class="docutils literal notranslate"><span class="pre">CliqueTensorStep</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.dynamics_model.integration_utils.html#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepKernel"><code class="docutils literal notranslate"><span class="pre">CliqueTensorStepKernel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.dynamics_model.integration_utils.html#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepIdxKernel"><code class="docutils literal notranslate"><span class="pre">CliqueTensorStepIdxKernel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.dynamics_model.integration_utils.html#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepCentralDifferenceKernel"><code class="docutils literal notranslate"><span class="pre">CliqueTensorStepCentralDifferenceKernel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.dynamics_model.integration_utils.html#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepIdxCentralDifferenceKernel"><code class="docutils literal notranslate"><span class="pre">CliqueTensorStepIdxCentralDifferenceKernel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.dynamics_model.integration_utils.html#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepCoalesceKernel"><code class="docutils literal notranslate"><span class="pre">CliqueTensorStepCoalesceKernel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.dynamics_model.integration_utils.html#curobo.rollout.dynamics_model.integration_utils.AccelerationTensorStepKernel"><code class="docutils literal notranslate"><span class="pre">AccelerationTensorStepKernel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.dynamics_model.integration_utils.html#curobo.rollout.dynamics_model.integration_utils.AccelerationTensorStepIdxKernel"><code class="docutils literal notranslate"><span class="pre">AccelerationTensorStepIdxKernel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.dynamics_model.integration_utils.html#curobo.rollout.dynamics_model.integration_utils.tensor_step_pos_clique"><code class="docutils literal notranslate"><span class="pre">tensor_step_pos_clique</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.dynamics_model.integration_utils.html#curobo.rollout.dynamics_model.integration_utils.step_acc_semi_euler"><code class="docutils literal notranslate"><span class="pre">step_acc_semi_euler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.dynamics_model.integration_utils.html#curobo.rollout.dynamics_model.integration_utils.tensor_step_acc_semi_euler"><code class="docutils literal notranslate"><span class="pre">tensor_step_acc_semi_euler</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.dynamics_model.integration_utils.html#curobo.rollout.dynamics_model.integration_utils.tensor_step_vel"><code class="docutils literal notranslate"><span class="pre">tensor_step_vel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.dynamics_model.integration_utils.html#curobo.rollout.dynamics_model.integration_utils.tensor_step_pos"><code class="docutils literal notranslate"><span class="pre">tensor_step_pos</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.dynamics_model.integration_utils.html#curobo.rollout.dynamics_model.integration_utils.tensor_step_pos_ik"><code class="docutils literal notranslate"><span class="pre">tensor_step_pos_ik</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.dynamics_model.integration_utils.html#curobo.rollout.dynamics_model.integration_utils.tensor_linspace"><code class="docutils literal notranslate"><span class="pre">tensor_linspace</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.dynamics_model.integration_utils.html#curobo.rollout.dynamics_model.integration_utils.sum_matrix"><code class="docutils literal notranslate"><span class="pre">sum_matrix</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.dynamics_model.integration_utils.html#curobo.rollout.dynamics_model.integration_utils.interpolate_kernel"><code class="docutils literal notranslate"><span class="pre">interpolate_kernel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.dynamics_model.integration_utils.html#curobo.rollout.dynamics_model.integration_utils.action_interpolate_kernel"><code class="docutils literal notranslate"><span class="pre">action_interpolate_kernel</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.dynamics_model.kinematic_model.html">curobo.rollout.dynamics_model.kinematic_model module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.dynamics_model.kinematic_model.html#curobo.rollout.dynamics_model.kinematic_model.TimeTrajConfig"><code class="docutils literal notranslate"><span class="pre">TimeTrajConfig</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.dynamics_model.kinematic_model.html#curobo.rollout.dynamics_model.kinematic_model.KinematicModelState"><code class="docutils literal notranslate"><span class="pre">KinematicModelState</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.dynamics_model.kinematic_model.html#curobo.rollout.dynamics_model.kinematic_model.KinematicModelConfig"><code class="docutils literal notranslate"><span class="pre">KinematicModelConfig</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.dynamics_model.kinematic_model.html#curobo.rollout.dynamics_model.kinematic_model.KinematicModel"><code class="docutils literal notranslate"><span class="pre">KinematicModel</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.dynamics_model.model_base.html">curobo.rollout.dynamics_model.model_base module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.dynamics_model.model_base.html#curobo.rollout.dynamics_model.model_base.DynamicsModelBase"><code class="docutils literal notranslate"><span class="pre">DynamicsModelBase</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.dynamics_model.tensor_step.html">curobo.rollout.dynamics_model.tensor_step module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.dynamics_model.tensor_step.html#curobo.rollout.dynamics_model.tensor_step.TensorStepType"><code class="docutils literal notranslate"><span class="pre">TensorStepType</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.dynamics_model.tensor_step.html#curobo.rollout.dynamics_model.tensor_step.TensorStepBase"><code class="docutils literal notranslate"><span class="pre">TensorStepBase</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.dynamics_model.tensor_step.html#curobo.rollout.dynamics_model.tensor_step.TensorStepAcceleration"><code class="docutils literal notranslate"><span class="pre">TensorStepAcceleration</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.dynamics_model.tensor_step.html#curobo.rollout.dynamics_model.tensor_step.TensorStepPositionTeleport"><code class="docutils literal notranslate"><span class="pre">TensorStepPositionTeleport</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.dynamics_model.tensor_step.html#curobo.rollout.dynamics_model.tensor_step.TensorStepPosition"><code class="docutils literal notranslate"><span class="pre">TensorStepPosition</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.dynamics_model.tensor_step.html#curobo.rollout.dynamics_model.tensor_step.TensorStepPositionClique"><code class="docutils literal notranslate"><span class="pre">TensorStepPositionClique</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.dynamics_model.tensor_step.html#curobo.rollout.dynamics_model.tensor_step.TensorStepAccelerationKernel"><code class="docutils literal notranslate"><span class="pre">TensorStepAccelerationKernel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.rollout.dynamics_model.tensor_step.html#curobo.rollout.dynamics_model.tensor_step.TensorStepPositionCliqueKernel"><code class="docutils literal notranslate"><span class="pre">TensorStepPositionCliqueKernel</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="curobo.rollout.arm_base.html">curobo.rollout.arm_base module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmCostConfig"><code class="docutils literal notranslate"><span class="pre">ArmCostConfig</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmCostConfig.bound_cfg"><code class="docutils literal notranslate"><span class="pre">ArmCostConfig.bound_cfg</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmCostConfig.null_space_cfg"><code class="docutils literal notranslate"><span class="pre">ArmCostConfig.null_space_cfg</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmCostConfig.manipulability_cfg"><code class="docutils literal notranslate"><span class="pre">ArmCostConfig.manipulability_cfg</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmCostConfig.stop_cfg"><code class="docutils literal notranslate"><span class="pre">ArmCostConfig.stop_cfg</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmCostConfig.self_collision_cfg"><code class="docutils literal notranslate"><span class="pre">ArmCostConfig.self_collision_cfg</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmCostConfig.primitive_collision_cfg"><code class="docutils literal notranslate"><span class="pre">ArmCostConfig.primitive_collision_cfg</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmCostConfig.from_dict"><code class="docutils literal notranslate"><span class="pre">ArmCostConfig.from_dict</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmBaseConfig"><code class="docutils literal notranslate"><span class="pre">ArmBaseConfig</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmBaseConfig.model_cfg"><code class="docutils literal notranslate"><span class="pre">ArmBaseConfig.model_cfg</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmBaseConfig.cost_cfg"><code class="docutils literal notranslate"><span class="pre">ArmBaseConfig.cost_cfg</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmBaseConfig.constraint_cfg"><code class="docutils literal notranslate"><span class="pre">ArmBaseConfig.constraint_cfg</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmBaseConfig.convergence_cfg"><code class="docutils literal notranslate"><span class="pre">ArmBaseConfig.convergence_cfg</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmBaseConfig.world_coll_checker"><code class="docutils literal notranslate"><span class="pre">ArmBaseConfig.world_coll_checker</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmBaseConfig.model_from_dict"><code class="docutils literal notranslate"><span class="pre">ArmBaseConfig.model_from_dict</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmBaseConfig.cost_from_dict"><code class="docutils literal notranslate"><span class="pre">ArmBaseConfig.cost_from_dict</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmBaseConfig.world_coll_checker_from_dict"><code class="docutils literal notranslate"><span class="pre">ArmBaseConfig.world_coll_checker_from_dict</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmBaseConfig.from_dict"><code class="docutils literal notranslate"><span class="pre">ArmBaseConfig.from_dict</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmBase"><code class="docutils literal notranslate"><span class="pre">ArmBase</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmBase.cost_fn"><code class="docutils literal notranslate"><span class="pre">ArmBase.cost_fn</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmBase.constraint_fn"><code class="docutils literal notranslate"><span class="pre">ArmBase.constraint_fn</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmBase.get_metrics"><code class="docutils literal notranslate"><span class="pre">ArmBase.get_metrics</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmBase.get_metrics_cuda_graph"><code class="docutils literal notranslate"><span class="pre">ArmBase.get_metrics_cuda_graph</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmBase.convergence_fn"><code class="docutils literal notranslate"><span class="pre">ArmBase.convergence_fn</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmBase.compute_kinematics"><code class="docutils literal notranslate"><span class="pre">ArmBase.compute_kinematics</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmBase.rollout_constraint"><code class="docutils literal notranslate"><span class="pre">ArmBase.rollout_constraint</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmBase.rollout_constraint_cuda_graph"><code class="docutils literal notranslate"><span class="pre">ArmBase.rollout_constraint_cuda_graph</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmBase.rollout_fn"><code class="docutils literal notranslate"><span class="pre">ArmBase.rollout_fn</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmBase.update_params"><code class="docutils literal notranslate"><span class="pre">ArmBase.update_params</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmBase.get_ee_pose"><code class="docutils literal notranslate"><span class="pre">ArmBase.get_ee_pose</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmBase.current_cost"><code class="docutils literal notranslate"><span class="pre">ArmBase.current_cost</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmBase.filter_robot_state"><code class="docutils literal notranslate"><span class="pre">ArmBase.filter_robot_state</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmBase.get_robot_command"><code class="docutils literal notranslate"><span class="pre">ArmBase.get_robot_command</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmBase.reset"><code class="docutils literal notranslate"><span class="pre">ArmBase.reset</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmBase.d_action"><code class="docutils literal notranslate"><span class="pre">ArmBase.d_action</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmBase.action_bound_lows"><code class="docutils literal notranslate"><span class="pre">ArmBase.action_bound_lows</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmBase.action_bound_highs"><code class="docutils literal notranslate"><span class="pre">ArmBase.action_bound_highs</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmBase.state_bounds"><code class="docutils literal notranslate"><span class="pre">ArmBase.state_bounds</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmBase.dt"><code class="docutils literal notranslate"><span class="pre">ArmBase.dt</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmBase.horizon"><code class="docutils literal notranslate"><span class="pre">ArmBase.horizon</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmBase.get_init_action_seq"><code class="docutils literal notranslate"><span class="pre">ArmBase.get_init_action_seq</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmBase.reset_cuda_graph"><code class="docutils literal notranslate"><span class="pre">ArmBase.reset_cuda_graph</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmBase.get_action_from_state"><code class="docutils literal notranslate"><span class="pre">ArmBase.get_action_from_state</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmBase.get_state_from_action"><code class="docutils literal notranslate"><span class="pre">ArmBase.get_state_from_action</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmBase.kinematics"><code class="docutils literal notranslate"><span class="pre">ArmBase.kinematics</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmBase.cspace_config"><code class="docutils literal notranslate"><span class="pre">ArmBase.cspace_config</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmBase.get_full_dof_from_solution"><code class="docutils literal notranslate"><span class="pre">ArmBase.get_full_dof_from_solution</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmBase.joint_names"><code class="docutils literal notranslate"><span class="pre">ArmBase.joint_names</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmBase.retract_state"><code class="docutils literal notranslate"><span class="pre">ArmBase.retract_state</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmBase.update_traj_dt"><code class="docutils literal notranslate"><span class="pre">ArmBase.update_traj_dt</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmBase.update_cost_dt"><code class="docutils literal notranslate"><span class="pre">ArmBase.update_cost_dt</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="curobo.rollout.arm_reacher.html">curobo.rollout.arm_reacher module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="curobo.rollout.arm_reacher.html#curobo.rollout.arm_reacher.ArmReacherMetrics"><code class="docutils literal notranslate"><span class="pre">ArmReacherMetrics</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_reacher.html#curobo.rollout.arm_reacher.ArmReacherMetrics.cspace_error"><code class="docutils literal notranslate"><span class="pre">ArmReacherMetrics.cspace_error</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_reacher.html#curobo.rollout.arm_reacher.ArmReacherMetrics.position_error"><code class="docutils literal notranslate"><span class="pre">ArmReacherMetrics.position_error</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_reacher.html#curobo.rollout.arm_reacher.ArmReacherMetrics.rotation_error"><code class="docutils literal notranslate"><span class="pre">ArmReacherMetrics.rotation_error</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_reacher.html#curobo.rollout.arm_reacher.ArmReacherMetrics.pose_error"><code class="docutils literal notranslate"><span class="pre">ArmReacherMetrics.pose_error</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_reacher.html#curobo.rollout.arm_reacher.ArmReacherMetrics.clone"><code class="docutils literal notranslate"><span class="pre">ArmReacherMetrics.clone</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.rollout.arm_reacher.html#curobo.rollout.arm_reacher.ArmReacherCostConfig"><code class="docutils literal notranslate"><span class="pre">ArmReacherCostConfig</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_reacher.html#curobo.rollout.arm_reacher.ArmReacherCostConfig.pose_cfg"><code class="docutils literal notranslate"><span class="pre">ArmReacherCostConfig.pose_cfg</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_reacher.html#curobo.rollout.arm_reacher.ArmReacherCostConfig.cspace_cfg"><code class="docutils literal notranslate"><span class="pre">ArmReacherCostConfig.cspace_cfg</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_reacher.html#curobo.rollout.arm_reacher.ArmReacherCostConfig.straight_line_cfg"><code class="docutils literal notranslate"><span class="pre">ArmReacherCostConfig.straight_line_cfg</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_reacher.html#curobo.rollout.arm_reacher.ArmReacherCostConfig.zero_acc_cfg"><code class="docutils literal notranslate"><span class="pre">ArmReacherCostConfig.zero_acc_cfg</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_reacher.html#curobo.rollout.arm_reacher.ArmReacherCostConfig.zero_vel_cfg"><code class="docutils literal notranslate"><span class="pre">ArmReacherCostConfig.zero_vel_cfg</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_reacher.html#curobo.rollout.arm_reacher.ArmReacherCostConfig.zero_jerk_cfg"><code class="docutils literal notranslate"><span class="pre">ArmReacherCostConfig.zero_jerk_cfg</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_reacher.html#curobo.rollout.arm_reacher.ArmReacherCostConfig.from_dict"><code class="docutils literal notranslate"><span class="pre">ArmReacherCostConfig.from_dict</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.rollout.arm_reacher.html#curobo.rollout.arm_reacher.ArmReacherConfig"><code class="docutils literal notranslate"><span class="pre">ArmReacherConfig</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_reacher.html#curobo.rollout.arm_reacher.ArmReacherConfig.cost_cfg"><code class="docutils literal notranslate"><span class="pre">ArmReacherConfig.cost_cfg</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_reacher.html#curobo.rollout.arm_reacher.ArmReacherConfig.constraint_cfg"><code class="docutils literal notranslate"><span class="pre">ArmReacherConfig.constraint_cfg</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_reacher.html#curobo.rollout.arm_reacher.ArmReacherConfig.convergence_cfg"><code class="docutils literal notranslate"><span class="pre">ArmReacherConfig.convergence_cfg</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_reacher.html#curobo.rollout.arm_reacher.ArmReacherConfig.cost_from_dict"><code class="docutils literal notranslate"><span class="pre">ArmReacherConfig.cost_from_dict</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.rollout.arm_reacher.html#curobo.rollout.arm_reacher.ArmReacher"><code class="docutils literal notranslate"><span class="pre">ArmReacher</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_reacher.html#curobo.rollout.arm_reacher.ArmReacher.cost_fn"><code class="docutils literal notranslate"><span class="pre">ArmReacher.cost_fn</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_reacher.html#curobo.rollout.arm_reacher.ArmReacher.convergence_fn"><code class="docutils literal notranslate"><span class="pre">ArmReacher.convergence_fn</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_reacher.html#curobo.rollout.arm_reacher.ArmReacher.update_params"><code class="docutils literal notranslate"><span class="pre">ArmReacher.update_params</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_reacher.html#curobo.rollout.arm_reacher.ArmReacher.enable_pose_cost"><code class="docutils literal notranslate"><span class="pre">ArmReacher.enable_pose_cost</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.arm_reacher.html#curobo.rollout.arm_reacher.ArmReacher.enable_cspace_cost"><code class="docutils literal notranslate"><span class="pre">ArmReacher.enable_cspace_cost</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="curobo.rollout.rollout_base.html">curobo.rollout.rollout_base module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutMetrics"><code class="docutils literal notranslate"><span class="pre">RolloutMetrics</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutMetrics.cost"><code class="docutils literal notranslate"><span class="pre">RolloutMetrics.cost</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutMetrics.constraint"><code class="docutils literal notranslate"><span class="pre">RolloutMetrics.constraint</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutMetrics.feasible"><code class="docutils literal notranslate"><span class="pre">RolloutMetrics.feasible</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutMetrics.state"><code class="docutils literal notranslate"><span class="pre">RolloutMetrics.state</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutMetrics.clone"><code class="docutils literal notranslate"><span class="pre">RolloutMetrics.clone</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Trajectory"><code class="docutils literal notranslate"><span class="pre">Trajectory</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Trajectory.actions"><code class="docutils literal notranslate"><span class="pre">Trajectory.actions</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Trajectory.costs"><code class="docutils literal notranslate"><span class="pre">Trajectory.costs</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Trajectory.state"><code class="docutils literal notranslate"><span class="pre">Trajectory.state</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Trajectory.debug"><code class="docutils literal notranslate"><span class="pre">Trajectory.debug</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal"><code class="docutils literal notranslate"><span class="pre">Goal</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal.name"><code class="docutils literal notranslate"><span class="pre">Goal.name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal.goal_state"><code class="docutils literal notranslate"><span class="pre">Goal.goal_state</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal.goal_pose"><code class="docutils literal notranslate"><span class="pre">Goal.goal_pose</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal.links_goal_pose"><code class="docutils literal notranslate"><span class="pre">Goal.links_goal_pose</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal.current_state"><code class="docutils literal notranslate"><span class="pre">Goal.current_state</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal.retract_state"><code class="docutils literal notranslate"><span class="pre">Goal.retract_state</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal.batch"><code class="docutils literal notranslate"><span class="pre">Goal.batch</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal.batch_pose_idx"><code class="docutils literal notranslate"><span class="pre">Goal.batch_pose_idx</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal.batch_goal_state_idx"><code class="docutils literal notranslate"><span class="pre">Goal.batch_goal_state_idx</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal.batch_retract_state_idx"><code class="docutils literal notranslate"><span class="pre">Goal.batch_retract_state_idx</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal.batch_current_state_idx"><code class="docutils literal notranslate"><span class="pre">Goal.batch_current_state_idx</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal.batch_enable_idx"><code class="docutils literal notranslate"><span class="pre">Goal.batch_enable_idx</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal.batch_world_idx"><code class="docutils literal notranslate"><span class="pre">Goal.batch_world_idx</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal.update_batch_idx_buffers"><code class="docutils literal notranslate"><span class="pre">Goal.update_batch_idx_buffers</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal.n_goalset"><code class="docutils literal notranslate"><span class="pre">Goal.n_goalset</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal.repeat_seeds"><code class="docutils literal notranslate"><span class="pre">Goal.repeat_seeds</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal.apply_kernel"><code class="docutils literal notranslate"><span class="pre">Goal.apply_kernel</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal.to"><code class="docutils literal notranslate"><span class="pre">Goal.to</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal.copy_"><code class="docutils literal notranslate"><span class="pre">Goal.copy_</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal.get_batch_goal_state"><code class="docutils literal notranslate"><span class="pre">Goal.get_batch_goal_state</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal.create_index_buffers"><code class="docutils literal notranslate"><span class="pre">Goal.create_index_buffers</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal.create_idx"><code class="docutils literal notranslate"><span class="pre">Goal.create_idx</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutConfig"><code class="docutils literal notranslate"><span class="pre">RolloutConfig</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutConfig.tensor_args"><code class="docutils literal notranslate"><span class="pre">RolloutConfig.tensor_args</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutBase"><code class="docutils literal notranslate"><span class="pre">RolloutBase</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutBase.cost_fn"><code class="docutils literal notranslate"><span class="pre">RolloutBase.cost_fn</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutBase.constraint_fn"><code class="docutils literal notranslate"><span class="pre">RolloutBase.constraint_fn</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutBase.convergence_fn"><code class="docutils literal notranslate"><span class="pre">RolloutBase.convergence_fn</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutBase.get_metrics"><code class="docutils literal notranslate"><span class="pre">RolloutBase.get_metrics</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutBase.get_metrics_cuda_graph"><code class="docutils literal notranslate"><span class="pre">RolloutBase.get_metrics_cuda_graph</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutBase.rollout_fn"><code class="docutils literal notranslate"><span class="pre">RolloutBase.rollout_fn</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutBase.current_cost"><code class="docutils literal notranslate"><span class="pre">RolloutBase.current_cost</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutBase.update_params"><code class="docutils literal notranslate"><span class="pre">RolloutBase.update_params</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutBase.action_bounds"><code class="docutils literal notranslate"><span class="pre">RolloutBase.action_bounds</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutBase.filter_robot_state"><code class="docutils literal notranslate"><span class="pre">RolloutBase.filter_robot_state</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutBase.get_robot_command"><code class="docutils literal notranslate"><span class="pre">RolloutBase.get_robot_command</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutBase.reset_seed"><code class="docutils literal notranslate"><span class="pre">RolloutBase.reset_seed</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutBase.reset"><code class="docutils literal notranslate"><span class="pre">RolloutBase.reset</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutBase.d_action"><code class="docutils literal notranslate"><span class="pre">RolloutBase.d_action</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutBase.action_bound_lows"><code class="docutils literal notranslate"><span class="pre">RolloutBase.action_bound_lows</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutBase.action_bound_highs"><code class="docutils literal notranslate"><span class="pre">RolloutBase.action_bound_highs</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutBase.dt"><code class="docutils literal notranslate"><span class="pre">RolloutBase.dt</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutBase.horizon"><code class="docutils literal notranslate"><span class="pre">RolloutBase.horizon</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutBase.update_start_state"><code class="docutils literal notranslate"><span class="pre">RolloutBase.update_start_state</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutBase.get_init_action_seq"><code class="docutils literal notranslate"><span class="pre">RolloutBase.get_init_action_seq</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutBase.state_bounds"><code class="docutils literal notranslate"><span class="pre">RolloutBase.state_bounds</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutBase.sample_random_actions"><code class="docutils literal notranslate"><span class="pre">RolloutBase.sample_random_actions</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutBase.rollout_constraint"><code class="docutils literal notranslate"><span class="pre">RolloutBase.rollout_constraint</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutBase.reset_cuda_graph"><code class="docutils literal notranslate"><span class="pre">RolloutBase.reset_cuda_graph</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutBase.get_action_from_state"><code class="docutils literal notranslate"><span class="pre">RolloutBase.get_action_from_state</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutBase.get_state_from_action"><code class="docutils literal notranslate"><span class="pre">RolloutBase.get_state_from_action</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutBase.cspace_config"><code class="docutils literal notranslate"><span class="pre">RolloutBase.cspace_config</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutBase.get_full_dof_from_solution"><code class="docutils literal notranslate"><span class="pre">RolloutBase.get_full_dof_from_solution</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="curobo.opt.opt_base.html" class="btn btn-neutral float-left" title="curobo.opt.opt_base module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="curobo.rollout.cost.html" class="btn btn-neutral float-right" title="curobo.rollout.cost package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, NVIDIA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(250);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

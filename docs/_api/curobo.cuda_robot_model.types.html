@@ -1,0 +1,796 @@
+<!--
+-- Copyright (c) 2023 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+--
+-- NVIDIA CORPORATION, its affiliates and licensors retain all intellectual
+-- property and proprietary rights in and to this material, related
+-- documentation and any modifications thereto. Any use, reproduction,
+-- disclosure or distribution of this material and related documentation
+-- without an express license agreement from NVIDIA CORPORATION or
+-- its affiliates is strictly prohibited.
+-->
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>curobo.cuda_robot_model.types module &mdash; CuRobo  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="curobo.cuda_robot_model.urdf_kinematics_parser module" href="curobo.cuda_robot_model.urdf_kinematics_parser.html" />
+    <link rel="prev" title="curobo.cuda_robot_model.kinematics_parser module" href="curobo.cuda_robot_model.kinematics_parser.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CuRobo
+              <img src="../_static/nvidia_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Research</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/research/research.html">Technical Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/research/research_using_curobo.html">Research using CuRobo</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Library Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/1_install_instructions.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/1a_quick_overview.html">Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2a_python_examples.html">Using in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2b_isaacsim_examples.html">Using with Isaac Sim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2c_world_collision.html">Collision World Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2d_nvblox_demo.html">Using with Depth Camera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2e_torch_layer_example.html">Using in a Neural Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/4_benchmarks.html">Benchmarks &amp; Profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/5_docker_development.html">Docker Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/6_known_issues.html">Known Issues</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Advanced Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2a_batch_env.html">Batched Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2b_block_stacking_example.html">Block Stacking</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/tutorials/1_robot_configuration.html">Configuring a New Robot</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/01_robot_list.html">Supported Robots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/02_numerical_optimization.html">Numerical Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/04_cuda_kernels.html">CUDA Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/05_usd_api.html">USD for Robot and World Representation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">Python API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CuRobo</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../api.html">Python API</a></li>
+          <li class="breadcrumb-item"><a href="curobo.cuda_robot_model.html">curobo.cuda_robot_model package</a></li>
+      <li class="breadcrumb-item active">curobo.cuda_robot_model.types module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/_api/curobo.cuda_robot_model.types.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-curobo.cuda_robot_model.types">
+<span id="curobo-cuda-robot-model-types-module"></span><h1>curobo.cuda_robot_model.types module<a class="headerlink" href="#module-curobo.cuda_robot_model.types" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.JointType">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">curobo.cuda_robot_model.types.</span></span><span class="sig-name descname"><span class="pre">JointType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.cuda_robot_model.types.JointType" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.JointType.FIXED">
+<span class="sig-name descname"><span class="pre">FIXED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">-1</span></em><a class="headerlink" href="#curobo.cuda_robot_model.types.JointType.FIXED" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.JointType.X_PRISM">
+<span class="sig-name descname"><span class="pre">X_PRISM</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#curobo.cuda_robot_model.types.JointType.X_PRISM" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.JointType.Y_PRISM">
+<span class="sig-name descname"><span class="pre">Y_PRISM</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#curobo.cuda_robot_model.types.JointType.Y_PRISM" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.JointType.Z_PRISM">
+<span class="sig-name descname"><span class="pre">Z_PRISM</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#curobo.cuda_robot_model.types.JointType.Z_PRISM" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.JointType.X_ROT">
+<span class="sig-name descname"><span class="pre">X_ROT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#curobo.cuda_robot_model.types.JointType.X_ROT" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.JointType.Y_ROT">
+<span class="sig-name descname"><span class="pre">Y_ROT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#curobo.cuda_robot_model.types.JointType.Y_ROT" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.JointType.Z_ROT">
+<span class="sig-name descname"><span class="pre">Z_ROT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></em><a class="headerlink" href="#curobo.cuda_robot_model.types.JointType.Z_ROT" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.JointLimits">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">curobo.cuda_robot_model.types.</span></span><span class="sig-name descname"><span class="pre">JointLimits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">joint_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'List[str]'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'torch.Tensor'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'torch.Tensor'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">acceleration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'torch.Tensor'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jerk</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'torch.Tensor'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">effort</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Optional[torch.Tensor]'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tensor_args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'TensorDeviceType'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">TensorDeviceType(device=device(type='cuda',</span> <span class="pre">index=0),</span> <span class="pre">dtype=torch.float32)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.cuda_robot_model.types.JointLimits" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>joint_names</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – </p></li>
+<li><p><strong>position</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>velocity</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>acceleration</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>jerk</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>effort</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>tensor_args</strong> (<a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType" title="curobo.types.base.TensorDeviceType"><em>TensorDeviceType</em></a>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.JointLimits.joint_names">
+<span class="sig-name descname"><span class="pre">joint_names</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#curobo.cuda_robot_model.types.JointLimits.joint_names" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.JointLimits.position">
+<span class="sig-name descname"><span class="pre">position</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span></em><a class="headerlink" href="#curobo.cuda_robot_model.types.JointLimits.position" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.JointLimits.velocity">
+<span class="sig-name descname"><span class="pre">velocity</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span></em><a class="headerlink" href="#curobo.cuda_robot_model.types.JointLimits.velocity" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.JointLimits.acceleration">
+<span class="sig-name descname"><span class="pre">acceleration</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span></em><a class="headerlink" href="#curobo.cuda_robot_model.types.JointLimits.acceleration" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.JointLimits.jerk">
+<span class="sig-name descname"><span class="pre">jerk</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span></em><a class="headerlink" href="#curobo.cuda_robot_model.types.JointLimits.jerk" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.JointLimits.effort">
+<span class="sig-name descname"><span class="pre">effort</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.cuda_robot_model.types.JointLimits.effort" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.JointLimits.tensor_args">
+<span class="sig-name descname"><span class="pre">tensor_args</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType" title="curobo.types.base.TensorDeviceType"><span class="pre">TensorDeviceType</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">TensorDeviceType(device=device(type='cuda',</span> <span class="pre">index=0),</span> <span class="pre">dtype=torch.float32)</span></em><a class="headerlink" href="#curobo.cuda_robot_model.types.JointLimits.tensor_args" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.JointLimits.from_data_dict">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_data_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tensor_args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">TensorDeviceType(device=device(type='cuda',</span> <span class="pre">index=0),</span> <span class="pre">dtype=torch.float32)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.cuda_robot_model.types.JointLimits.from_data_dict" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>Dict</em>) – </p></li>
+<li><p><strong>tensor_args</strong> (<a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType" title="curobo.types.base.TensorDeviceType"><em>TensorDeviceType</em></a>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.JointLimits.clone">
+<span class="sig-name descname"><span class="pre">clone</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.cuda_robot_model.types.JointLimits.clone" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#curobo.cuda_robot_model.types.JointLimits" title="curobo.cuda_robot_model.types.JointLimits"><em>JointLimits</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.CSpaceConfig">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">curobo.cuda_robot_model.types.</span></span><span class="sig-name descname"><span class="pre">CSpaceConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">joint_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'List[str]'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retract_config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Optional[T_DOF]'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cspace_distance_weight</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Optional[T_DOF]'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">null_space_weight</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Optional[T_DOF]'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tensor_args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'TensorDeviceType'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">TensorDeviceType(device=device(type='cuda',</span> <span class="pre">index=0),</span> <span class="pre">dtype=torch.float32)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_acceleration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Union[float,</span> <span class="pre">List[float]]'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_jerk</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Union[float,</span> <span class="pre">List[float]]'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">500.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity_scale</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Union[float,</span> <span class="pre">List[float]]'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">acceleration_scale</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Union[float,</span> <span class="pre">List[float]]'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jerk_scale</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Union[float,</span> <span class="pre">List[float]]'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.cuda_robot_model.types.CSpaceConfig" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>joint_names</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – </p></li>
+<li><p><strong>retract_config</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>cspace_distance_weight</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>null_space_weight</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>tensor_args</strong> (<a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType" title="curobo.types.base.TensorDeviceType"><em>TensorDeviceType</em></a>) – </p></li>
+<li><p><strong>max_acceleration</strong> (<em>float</em><em> | </em><em>List</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+<li><p><strong>max_jerk</strong> (<em>float</em><em> | </em><em>List</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+<li><p><strong>velocity_scale</strong> (<em>float</em><em> | </em><em>List</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+<li><p><strong>acceleration_scale</strong> (<em>float</em><em> | </em><em>List</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+<li><p><strong>jerk_scale</strong> (<em>float</em><em> | </em><em>List</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.CSpaceConfig.joint_names">
+<span class="sig-name descname"><span class="pre">joint_names</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#curobo.cuda_robot_model.types.CSpaceConfig.joint_names" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.CSpaceConfig.retract_config">
+<span class="sig-name descname"><span class="pre">retract_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.cuda_robot_model.types.CSpaceConfig.retract_config" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.CSpaceConfig.cspace_distance_weight">
+<span class="sig-name descname"><span class="pre">cspace_distance_weight</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.cuda_robot_model.types.CSpaceConfig.cspace_distance_weight" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.CSpaceConfig.null_space_weight">
+<span class="sig-name descname"><span class="pre">null_space_weight</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.cuda_robot_model.types.CSpaceConfig.null_space_weight" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.CSpaceConfig.tensor_args">
+<span class="sig-name descname"><span class="pre">tensor_args</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType" title="curobo.types.base.TensorDeviceType"><span class="pre">TensorDeviceType</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">TensorDeviceType(device=device(type='cuda',</span> <span class="pre">index=0),</span> <span class="pre">dtype=torch.float32)</span></em><a class="headerlink" href="#curobo.cuda_robot_model.types.CSpaceConfig.tensor_args" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.CSpaceConfig.max_acceleration">
+<span class="sig-name descname"><span class="pre">max_acceleration</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">10.0</span></em><a class="headerlink" href="#curobo.cuda_robot_model.types.CSpaceConfig.max_acceleration" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.CSpaceConfig.max_jerk">
+<span class="sig-name descname"><span class="pre">max_jerk</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">500.0</span></em><a class="headerlink" href="#curobo.cuda_robot_model.types.CSpaceConfig.max_jerk" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.CSpaceConfig.velocity_scale">
+<span class="sig-name descname"><span class="pre">velocity_scale</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1.0</span></em><a class="headerlink" href="#curobo.cuda_robot_model.types.CSpaceConfig.velocity_scale" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.CSpaceConfig.acceleration_scale">
+<span class="sig-name descname"><span class="pre">acceleration_scale</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1.0</span></em><a class="headerlink" href="#curobo.cuda_robot_model.types.CSpaceConfig.acceleration_scale" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.CSpaceConfig.jerk_scale">
+<span class="sig-name descname"><span class="pre">jerk_scale</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1.0</span></em><a class="headerlink" href="#curobo.cuda_robot_model.types.CSpaceConfig.jerk_scale" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.CSpaceConfig.inplace_reindex">
+<span class="sig-name descname"><span class="pre">inplace_reindex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">joint_names</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.cuda_robot_model.types.CSpaceConfig.inplace_reindex" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>joint_names</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.CSpaceConfig.clone">
+<span class="sig-name descname"><span class="pre">clone</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.cuda_robot_model.types.CSpaceConfig.clone" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#curobo.cuda_robot_model.types.CSpaceConfig" title="curobo.cuda_robot_model.types.CSpaceConfig"><em>CSpaceConfig</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.CSpaceConfig.scale_joint_limits">
+<span class="sig-name descname"><span class="pre">scale_joint_limits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">joint_limits</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.cuda_robot_model.types.CSpaceConfig.scale_joint_limits" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>joint_limits</strong> (<a class="reference internal" href="#curobo.cuda_robot_model.types.JointLimits" title="curobo.cuda_robot_model.types.JointLimits"><em>JointLimits</em></a>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.CSpaceConfig.load_from_joint_limits">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">load_from_joint_limits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">joint_position_upper</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">joint_position_lower</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">joint_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tensor_args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">TensorDeviceType(device=device(type='cuda',</span> <span class="pre">index=0),</span> <span class="pre">dtype=torch.float32)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.cuda_robot_model.types.CSpaceConfig.load_from_joint_limits" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>joint_position_upper</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>joint_position_lower</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>joint_names</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – </p></li>
+<li><p><strong>tensor_args</strong> (<a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType" title="curobo.types.base.TensorDeviceType"><em>TensorDeviceType</em></a>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.KinematicsTensorConfig">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">curobo.cuda_robot_model.types.</span></span><span class="sig-name descname"><span class="pre">KinematicsTensorConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fixed_transforms</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'torch.Tensor'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">link_map</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'torch.Tensor'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">joint_map</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'torch.Tensor'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">joint_map_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'torch.Tensor'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">store_link_map</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'torch.Tensor'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">link_chain_map</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'torch.Tensor'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">link_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'List[str]'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">joint_limits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'JointLimits'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">non_fixed_joint_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'List[str]'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_dof</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'int'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mesh_link_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Optional[List[str]]'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">joint_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Optional[List[str]]'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lock_jointstate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Optional[JointState]'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">link_spheres</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Optional[torch.Tensor]'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">link_sphere_idx_map</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Optional[torch.Tensor]'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">link_name_to_idx_map</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Optional[Dict[str,</span> <span class="pre">int]]'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_spheres</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'int'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Optional[Any]'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ee_idx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'int'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cspace</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Optional[CSpaceConfig]'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_link</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'str'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'base_link'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ee_link</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'str'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'ee_link'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.cuda_robot_model.types.KinematicsTensorConfig" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fixed_transforms</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>link_map</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>joint_map</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>joint_map_type</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>store_link_map</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>link_chain_map</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>link_names</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – </p></li>
+<li><p><strong>joint_limits</strong> (<a class="reference internal" href="#curobo.cuda_robot_model.types.JointLimits" title="curobo.cuda_robot_model.types.JointLimits"><em>JointLimits</em></a>) – </p></li>
+<li><p><strong>non_fixed_joint_names</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – </p></li>
+<li><p><strong>n_dof</strong> (<em>int</em>) – </p></li>
+<li><p><strong>mesh_link_names</strong> (<em>List</em><em>[</em><em>str</em><em>] </em><em>| </em><em>None</em>) – </p></li>
+<li><p><strong>joint_names</strong> (<em>List</em><em>[</em><em>str</em><em>] </em><em>| </em><em>None</em>) – </p></li>
+<li><p><strong>lock_jointstate</strong> (<a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><em>JointState</em></a><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>link_spheres</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>link_sphere_idx_map</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>link_name_to_idx_map</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>int</em><em>] </em><em>| </em><em>None</em>) – </p></li>
+<li><p><strong>total_spheres</strong> (<em>int</em>) – </p></li>
+<li><p><strong>debug</strong> (<em>Any</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>ee_idx</strong> (<em>int</em>) – </p></li>
+<li><p><strong>cspace</strong> (<a class="reference internal" href="#curobo.cuda_robot_model.types.CSpaceConfig" title="curobo.cuda_robot_model.types.CSpaceConfig"><em>CSpaceConfig</em></a><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>base_link</strong> (<em>str</em>) – </p></li>
+<li><p><strong>ee_link</strong> (<em>str</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.KinematicsTensorConfig.fixed_transforms">
+<span class="sig-name descname"><span class="pre">fixed_transforms</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span></em><a class="headerlink" href="#curobo.cuda_robot_model.types.KinematicsTensorConfig.fixed_transforms" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.KinematicsTensorConfig.link_map">
+<span class="sig-name descname"><span class="pre">link_map</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span></em><a class="headerlink" href="#curobo.cuda_robot_model.types.KinematicsTensorConfig.link_map" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.KinematicsTensorConfig.joint_map">
+<span class="sig-name descname"><span class="pre">joint_map</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span></em><a class="headerlink" href="#curobo.cuda_robot_model.types.KinematicsTensorConfig.joint_map" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.KinematicsTensorConfig.joint_map_type">
+<span class="sig-name descname"><span class="pre">joint_map_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span></em><a class="headerlink" href="#curobo.cuda_robot_model.types.KinematicsTensorConfig.joint_map_type" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.KinematicsTensorConfig.store_link_map">
+<span class="sig-name descname"><span class="pre">store_link_map</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span></em><a class="headerlink" href="#curobo.cuda_robot_model.types.KinematicsTensorConfig.store_link_map" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.KinematicsTensorConfig.link_chain_map">
+<span class="sig-name descname"><span class="pre">link_chain_map</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span></em><a class="headerlink" href="#curobo.cuda_robot_model.types.KinematicsTensorConfig.link_chain_map" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.KinematicsTensorConfig.link_names">
+<span class="sig-name descname"><span class="pre">link_names</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#curobo.cuda_robot_model.types.KinematicsTensorConfig.link_names" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.KinematicsTensorConfig.joint_limits">
+<span class="sig-name descname"><span class="pre">joint_limits</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#curobo.cuda_robot_model.types.JointLimits" title="curobo.cuda_robot_model.types.JointLimits"><span class="pre">JointLimits</span></a></em><a class="headerlink" href="#curobo.cuda_robot_model.types.KinematicsTensorConfig.joint_limits" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.KinematicsTensorConfig.non_fixed_joint_names">
+<span class="sig-name descname"><span class="pre">non_fixed_joint_names</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#curobo.cuda_robot_model.types.KinematicsTensorConfig.non_fixed_joint_names" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.KinematicsTensorConfig.n_dof">
+<span class="sig-name descname"><span class="pre">n_dof</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#curobo.cuda_robot_model.types.KinematicsTensorConfig.n_dof" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.KinematicsTensorConfig.mesh_link_names">
+<span class="sig-name descname"><span class="pre">mesh_link_names</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.cuda_robot_model.types.KinematicsTensorConfig.mesh_link_names" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.KinematicsTensorConfig.joint_names">
+<span class="sig-name descname"><span class="pre">joint_names</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.cuda_robot_model.types.KinematicsTensorConfig.joint_names" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.KinematicsTensorConfig.lock_jointstate">
+<span class="sig-name descname"><span class="pre">lock_jointstate</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><span class="pre">JointState</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.cuda_robot_model.types.KinematicsTensorConfig.lock_jointstate" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.KinematicsTensorConfig.link_spheres">
+<span class="sig-name descname"><span class="pre">link_spheres</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.cuda_robot_model.types.KinematicsTensorConfig.link_spheres" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.KinematicsTensorConfig.link_sphere_idx_map">
+<span class="sig-name descname"><span class="pre">link_sphere_idx_map</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.cuda_robot_model.types.KinematicsTensorConfig.link_sphere_idx_map" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.KinematicsTensorConfig.link_name_to_idx_map">
+<span class="sig-name descname"><span class="pre">link_name_to_idx_map</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.cuda_robot_model.types.KinematicsTensorConfig.link_name_to_idx_map" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.KinematicsTensorConfig.total_spheres">
+<span class="sig-name descname"><span class="pre">total_spheres</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#curobo.cuda_robot_model.types.KinematicsTensorConfig.total_spheres" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.KinematicsTensorConfig.debug">
+<span class="sig-name descname"><span class="pre">debug</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Any</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.cuda_robot_model.types.KinematicsTensorConfig.debug" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.KinematicsTensorConfig.ee_idx">
+<span class="sig-name descname"><span class="pre">ee_idx</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#curobo.cuda_robot_model.types.KinematicsTensorConfig.ee_idx" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.KinematicsTensorConfig.cspace">
+<span class="sig-name descname"><span class="pre">cspace</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#curobo.cuda_robot_model.types.CSpaceConfig" title="curobo.cuda_robot_model.types.CSpaceConfig"><span class="pre">CSpaceConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.cuda_robot_model.types.KinematicsTensorConfig.cspace" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.KinematicsTensorConfig.base_link">
+<span class="sig-name descname"><span class="pre">base_link</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'base_link'</span></em><a class="headerlink" href="#curobo.cuda_robot_model.types.KinematicsTensorConfig.base_link" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.KinematicsTensorConfig.ee_link">
+<span class="sig-name descname"><span class="pre">ee_link</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ee_link'</span></em><a class="headerlink" href="#curobo.cuda_robot_model.types.KinematicsTensorConfig.ee_link" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.KinematicsTensorConfig.load_cspace_cfg_from_kinematics">
+<span class="sig-name descname"><span class="pre">load_cspace_cfg_from_kinematics</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.cuda_robot_model.types.KinematicsTensorConfig.load_cspace_cfg_from_kinematics" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.KinematicsTensorConfig.get_sphere_index_from_link_name">
+<span class="sig-name descname"><span class="pre">get_sphere_index_from_link_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">link_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.cuda_robot_model.types.KinematicsTensorConfig.get_sphere_index_from_link_name" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>link_name</strong> (<em>str</em>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>Tensor</em></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.KinematicsTensorConfig.update_link_spheres">
+<span class="sig-name descname"><span class="pre">update_link_spheres</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">link_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sphere_position_radius</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_sph_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.cuda_robot_model.types.KinematicsTensorConfig.update_link_spheres" title="Link to this definition"></a></dt>
+<dd><p>Update sphere parameters</p>
+<p>#NOTE: This currently does not update self collision distances.
+:param link_name: _description_
+:param sphere_position_radius: _description_
+:param start_sph_idx: _description_. Defaults to 0.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>link_name</strong> (<em>str</em>) – </p></li>
+<li><p><strong>sphere_position_radius</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>start_sph_idx</strong> (<em>int</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.KinematicsTensorConfig.get_link_spheres">
+<span class="sig-name descname"><span class="pre">get_link_spheres</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">link_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.cuda_robot_model.types.KinematicsTensorConfig.get_link_spheres" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>link_name</strong> (<em>str</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.KinematicsTensorConfig.attach_object">
+<span class="sig-name descname"><span class="pre">attach_object</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sphere_radius</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sphere_tensor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">link_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'attached_object'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.cuda_robot_model.types.KinematicsTensorConfig.attach_object" title="Link to this definition"></a></dt>
+<dd><p>_summary_</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sphere_radius</strong> (<em>float</em><em> | </em><em>None</em>) – _description_. Defaults to None.</p></li>
+<li><p><strong>sphere_tensor</strong> (<em>Tensor</em><em> | </em><em>None</em>) – _description_. Defaults to None.</p></li>
+<li><p><strong>link_name</strong> (<em>str</em>) – _description_. Defaults to “attached_object”.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>ValueError</strong> – _description_</p></li>
+<li><p><strong>ValueError</strong> – _description_</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>_description_</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.KinematicsTensorConfig.detach_object">
+<span class="sig-name descname"><span class="pre">detach_object</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">link_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'attached_object'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.cuda_robot_model.types.KinematicsTensorConfig.detach_object" title="Link to this definition"></a></dt>
+<dd><p>Detach object from robot end-effector</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>link_name</strong> (<em>str</em>) – _description_. Defaults to “attached_object”.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – _description_</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>_description_</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.KinematicsTensorConfig.get_number_of_spheres">
+<span class="sig-name descname"><span class="pre">get_number_of_spheres</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">link_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.cuda_robot_model.types.KinematicsTensorConfig.get_number_of_spheres" title="Link to this definition"></a></dt>
+<dd><p>Get number of spheres for a link</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>link_name</strong> (<em>str</em>) – name of link</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.SelfCollisionKinematicsConfig">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">curobo.cuda_robot_model.types.</span></span><span class="sig-name descname"><span class="pre">SelfCollisionKinematicsConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance_threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thread_location</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thread_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collision_matrix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">experimental_kernel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">checks_per_thread</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">32</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.cuda_robot_model.types.SelfCollisionKinematicsConfig" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Dataclass that stores self collision attributes to pass to cuda kernel.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>offset</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>distance_threshold</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>thread_location</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>thread_max</strong> (<em>int</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>collision_matrix</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>experimental_kernel</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>checks_per_thread</strong> (<em>int</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.SelfCollisionKinematicsConfig.offset">
+<span class="sig-name descname"><span class="pre">offset</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.cuda_robot_model.types.SelfCollisionKinematicsConfig.offset" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.SelfCollisionKinematicsConfig.distance_threshold">
+<span class="sig-name descname"><span class="pre">distance_threshold</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.cuda_robot_model.types.SelfCollisionKinematicsConfig.distance_threshold" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.SelfCollisionKinematicsConfig.thread_location">
+<span class="sig-name descname"><span class="pre">thread_location</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.cuda_robot_model.types.SelfCollisionKinematicsConfig.thread_location" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.SelfCollisionKinematicsConfig.thread_max">
+<span class="sig-name descname"><span class="pre">thread_max</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.cuda_robot_model.types.SelfCollisionKinematicsConfig.thread_max" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.SelfCollisionKinematicsConfig.collision_matrix">
+<span class="sig-name descname"><span class="pre">collision_matrix</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.cuda_robot_model.types.SelfCollisionKinematicsConfig.collision_matrix" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.SelfCollisionKinematicsConfig.experimental_kernel">
+<span class="sig-name descname"><span class="pre">experimental_kernel</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#curobo.cuda_robot_model.types.SelfCollisionKinematicsConfig.experimental_kernel" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.SelfCollisionKinematicsConfig.checks_per_thread">
+<span class="sig-name descname"><span class="pre">checks_per_thread</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">32</span></em><a class="headerlink" href="#curobo.cuda_robot_model.types.SelfCollisionKinematicsConfig.checks_per_thread" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.CudaRobotModelState">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">curobo.cuda_robot_model.types.</span></span><span class="sig-name descname"><span class="pre">CudaRobotModelState</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ee_position</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ee_quaternion</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lin_jacobian</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ang_jacobian</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">links_position</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">links_quaternion</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">link_spheres_tensor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">link_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.cuda_robot_model.types.CudaRobotModelState" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Dataclass that stores kinematics information.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ee_position</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>ee_quaternion</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>lin_jacobian</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>ang_jacobian</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>links_position</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>links_quaternion</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>link_spheres_tensor</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>link_names</strong> (<em>str</em><em> | </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.CudaRobotModelState.ee_position">
+<span class="sig-name descname"><span class="pre">ee_position</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span></em><a class="headerlink" href="#curobo.cuda_robot_model.types.CudaRobotModelState.ee_position" title="Link to this definition"></a></dt>
+<dd><p>End-effector position stored as x,y,z in meters [b, 3]. End-effector is defined by
+<a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.ee_link" title="curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.ee_link"><code class="xref py py-attr docutils literal notranslate"><span class="pre">curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.ee_link</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.CudaRobotModelState.ee_quaternion">
+<span class="sig-name descname"><span class="pre">ee_quaternion</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span></em><a class="headerlink" href="#curobo.cuda_robot_model.types.CudaRobotModelState.ee_quaternion" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.CudaRobotModelState.lin_jacobian">
+<span class="sig-name descname"><span class="pre">lin_jacobian</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.cuda_robot_model.types.CudaRobotModelState.lin_jacobian" title="Link to this definition"></a></dt>
+<dd><p>Linear Jacobian. Currently not supported.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.CudaRobotModelState.ang_jacobian">
+<span class="sig-name descname"><span class="pre">ang_jacobian</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.cuda_robot_model.types.CudaRobotModelState.ang_jacobian" title="Link to this definition"></a></dt>
+<dd><p>Angular Jacobian. Currently not supported.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.CudaRobotModelState.links_position">
+<span class="sig-name descname"><span class="pre">links_position</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.cuda_robot_model.types.CudaRobotModelState.links_position" title="Link to this definition"></a></dt>
+<dd><p>Position of links specified by link_names  (<code class="xref py py-attr docutils literal notranslate"><span class="pre">CudaRobotModelConfig.link_names</span></code>).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.CudaRobotModelState.links_quaternion">
+<span class="sig-name descname"><span class="pre">links_quaternion</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.cuda_robot_model.types.CudaRobotModelState.links_quaternion" title="Link to this definition"></a></dt>
+<dd><p>Quaternions of links specified by link names (<code class="xref py py-attr docutils literal notranslate"><span class="pre">CudaRobotModelConfig.link_names</span></code>).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.CudaRobotModelState.link_spheres_tensor">
+<span class="sig-name descname"><span class="pre">link_spheres_tensor</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.cuda_robot_model.types.CudaRobotModelState.link_spheres_tensor" title="Link to this definition"></a></dt>
+<dd><p>Position of spheres specified by collision spheres (<code class="xref py py-attr docutils literal notranslate"><span class="pre">CudaRobotModelConfig.collision_spheres</span></code>)
+in x, y, z, r format [b,n,4].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.CudaRobotModelState.link_names">
+<span class="sig-name descname"><span class="pre">link_names</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.cuda_robot_model.types.CudaRobotModelState.link_names" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.CudaRobotModelState.ee_pose">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ee_pose</span></span><a class="headerlink" href="#curobo.cuda_robot_model.types.CudaRobotModelState.ee_pose" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.CudaRobotModelState.get_link_spheres">
+<span class="sig-name descname"><span class="pre">get_link_spheres</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.cuda_robot_model.types.CudaRobotModelState.get_link_spheres" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.types.CudaRobotModelState.link_pose">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">link_pose</span></span><a class="headerlink" href="#curobo.cuda_robot_model.types.CudaRobotModelState.link_pose" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="curobo.cuda_robot_model.kinematics_parser.html" class="btn btn-neutral float-left" title="curobo.cuda_robot_model.kinematics_parser module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="curobo.cuda_robot_model.urdf_kinematics_parser.html" class="btn btn-neutral float-right" title="curobo.cuda_robot_model.urdf_kinematics_parser module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, NVIDIA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(250);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,638 @@
+<!--
+-- Copyright (c) 2023 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+--
+-- NVIDIA CORPORATION, its affiliates and licensors retain all intellectual
+-- property and proprietary rights in and to this material, related
+-- documentation and any modifications thereto. Any use, reproduction,
+-- disclosure or distribution of this material and related documentation
+-- without an express license agreement from NVIDIA CORPORATION or
+-- its affiliates is strictly prohibited.
+-->
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>curobo.rollout.dynamics_model.kinematic_model module &mdash; CuRobo  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="curobo.rollout.dynamics_model.model_base module" href="curobo.rollout.dynamics_model.model_base.html" />
+    <link rel="prev" title="curobo.rollout.dynamics_model.integration_utils module" href="curobo.rollout.dynamics_model.integration_utils.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CuRobo
+              <img src="../_static/nvidia_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Research</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/research/research.html">Technical Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/research/research_using_curobo.html">Research using CuRobo</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Library Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/1_install_instructions.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/1a_quick_overview.html">Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2a_python_examples.html">Using in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2b_isaacsim_examples.html">Using with Isaac Sim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2c_world_collision.html">Collision World Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2d_nvblox_demo.html">Using with Depth Camera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2e_torch_layer_example.html">Using in a Neural Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/4_benchmarks.html">Benchmarks &amp; Profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/5_docker_development.html">Docker Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/6_known_issues.html">Known Issues</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Advanced Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2a_batch_env.html">Batched Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2b_block_stacking_example.html">Block Stacking</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/tutorials/1_robot_configuration.html">Configuring a New Robot</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/01_robot_list.html">Supported Robots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/02_numerical_optimization.html">Numerical Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/04_cuda_kernels.html">CUDA Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/05_usd_api.html">USD for Robot and World Representation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">Python API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CuRobo</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../api.html">Python API</a></li>
+          <li class="breadcrumb-item"><a href="curobo.rollout.html">curobo.rollout package</a></li>
+          <li class="breadcrumb-item"><a href="curobo.rollout.dynamics_model.html">curobo.rollout.dynamics_model package</a></li>
+      <li class="breadcrumb-item active">curobo.rollout.dynamics_model.kinematic_model module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/_api/curobo.rollout.dynamics_model.kinematic_model.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-curobo.rollout.dynamics_model.kinematic_model">
+<span id="curobo-rollout-dynamics-model-kinematic-model-module"></span><h1>curobo.rollout.dynamics_model.kinematic_model module<a class="headerlink" href="#module-curobo.rollout.dynamics_model.kinematic_model" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="curobo.rollout.dynamics_model.kinematic_model.TimeTrajConfig">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">curobo.rollout.dynamics_model.kinematic_model.</span></span><span class="sig-name descname"><span class="pre">TimeTrajConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base_dt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_ratio</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_dt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.kinematic_model.TimeTrajConfig" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>base_dt</strong> (<em>float</em>) – </p></li>
+<li><p><strong>base_ratio</strong> (<em>float</em>) – </p></li>
+<li><p><strong>max_dt</strong> (<em>float</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.rollout.dynamics_model.kinematic_model.TimeTrajConfig.base_dt">
+<span class="sig-name descname"><span class="pre">base_dt</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#curobo.rollout.dynamics_model.kinematic_model.TimeTrajConfig.base_dt" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.rollout.dynamics_model.kinematic_model.TimeTrajConfig.base_ratio">
+<span class="sig-name descname"><span class="pre">base_ratio</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#curobo.rollout.dynamics_model.kinematic_model.TimeTrajConfig.base_ratio" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.rollout.dynamics_model.kinematic_model.TimeTrajConfig.max_dt">
+<span class="sig-name descname"><span class="pre">max_dt</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#curobo.rollout.dynamics_model.kinematic_model.TimeTrajConfig.max_dt" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.rollout.dynamics_model.kinematic_model.TimeTrajConfig.get_dt_array">
+<span class="sig-name descname"><span class="pre">get_dt_array</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_points</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.kinematic_model.TimeTrajConfig.get_dt_array" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>num_points</strong> (<em>int</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.rollout.dynamics_model.kinematic_model.TimeTrajConfig.update_dt">
+<span class="sig-name descname"><span class="pre">update_dt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">all_dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_ratio</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.kinematic_model.TimeTrajConfig.update_dt" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>all_dt</strong> (<em>float</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>base_dt</strong> (<em>float</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>max_dt</strong> (<em>float</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>base_ratio</strong> (<em>float</em><em> | </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="curobo.rollout.dynamics_model.kinematic_model.KinematicModelState">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">curobo.rollout.dynamics_model.kinematic_model.</span></span><span class="sig-name descname"><span class="pre">KinematicModelState</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state_seq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><span class="pre">curobo.types.state.JointState</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">ee_pos_seq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">torch.Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ee_quat_seq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">torch.Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">robot_spheres</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">torch.Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">link_pos_seq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">torch.Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">link_quat_seq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">torch.Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lin_jac_seq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">torch.Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ang_jac_seq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">torch.Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">link_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.kinematic_model.KinematicModelState" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>state_seq</strong> (<a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><em>JointState</em></a>) – </p></li>
+<li><p><strong>ee_pos_seq</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>ee_quat_seq</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>robot_spheres</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>link_pos_seq</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>link_quat_seq</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>lin_jac_seq</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>ang_jac_seq</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>link_names</strong> (<em>List</em><em>[</em><em>str</em><em>] </em><em>| </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.rollout.dynamics_model.kinematic_model.KinematicModelState.state_seq">
+<span class="sig-name descname"><span class="pre">state_seq</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><span class="pre">JointState</span></a></em><a class="headerlink" href="#curobo.rollout.dynamics_model.kinematic_model.KinematicModelState.state_seq" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.rollout.dynamics_model.kinematic_model.KinematicModelState.ee_pos_seq">
+<span class="sig-name descname"><span class="pre">ee_pos_seq</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.rollout.dynamics_model.kinematic_model.KinematicModelState.ee_pos_seq" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.rollout.dynamics_model.kinematic_model.KinematicModelState.ee_quat_seq">
+<span class="sig-name descname"><span class="pre">ee_quat_seq</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.rollout.dynamics_model.kinematic_model.KinematicModelState.ee_quat_seq" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.rollout.dynamics_model.kinematic_model.KinematicModelState.robot_spheres">
+<span class="sig-name descname"><span class="pre">robot_spheres</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.rollout.dynamics_model.kinematic_model.KinematicModelState.robot_spheres" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.rollout.dynamics_model.kinematic_model.KinematicModelState.link_pos_seq">
+<span class="sig-name descname"><span class="pre">link_pos_seq</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.rollout.dynamics_model.kinematic_model.KinematicModelState.link_pos_seq" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.rollout.dynamics_model.kinematic_model.KinematicModelState.link_quat_seq">
+<span class="sig-name descname"><span class="pre">link_quat_seq</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.rollout.dynamics_model.kinematic_model.KinematicModelState.link_quat_seq" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.rollout.dynamics_model.kinematic_model.KinematicModelState.lin_jac_seq">
+<span class="sig-name descname"><span class="pre">lin_jac_seq</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.rollout.dynamics_model.kinematic_model.KinematicModelState.lin_jac_seq" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.rollout.dynamics_model.kinematic_model.KinematicModelState.ang_jac_seq">
+<span class="sig-name descname"><span class="pre">ang_jac_seq</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.rollout.dynamics_model.kinematic_model.KinematicModelState.ang_jac_seq" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.rollout.dynamics_model.kinematic_model.KinematicModelState.link_names">
+<span class="sig-name descname"><span class="pre">link_names</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.rollout.dynamics_model.kinematic_model.KinematicModelState.link_names" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="curobo.rollout.dynamics_model.kinematic_model.KinematicModelState.ee_pose">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ee_pose</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.types.math.html#curobo.types.math.Pose" title="curobo.types.math.Pose"><span class="pre">Pose</span></a></em><a class="headerlink" href="#curobo.rollout.dynamics_model.kinematic_model.KinematicModelState.ee_pose" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="curobo.rollout.dynamics_model.kinematic_model.KinematicModelState.link_pose">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">link_pose</span></span><a class="headerlink" href="#curobo.rollout.dynamics_model.kinematic_model.KinematicModelState.link_pose" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="curobo.rollout.dynamics_model.kinematic_model.KinematicModelConfig">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">curobo.rollout.dynamics_model.kinematic_model.</span></span><span class="sig-name descname"><span class="pre">KinematicModelConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot_config:</span> <span class="pre">curobo.types.robot.RobotConfig</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt_traj_params:</span> <span class="pre">curobo.rollout.dynamics_model.kinematic_model.TimeTrajConfig</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tensor_args:</span> <span class="pre">curobo.types.base.TensorDeviceType</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vel_scale:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_estimation_variance:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">horizon:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">control_space:</span> <span class="pre">curobo.types.enum.StateType</span> <span class="pre">=</span> <span class="pre">&lt;StateType.ACCELERATION:</span> <span class="pre">2&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_filter_cfg:</span> <span class="pre">Optional[curobo.util.state_filter.FilterConfig]</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">teleport_mode:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_full_act_buffer:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_finite_difference_mode:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'BACKWARD'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter_robot_command:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.kinematic_model.KinematicModelConfig" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>robot_config</strong> (<a class="reference internal" href="curobo.types.robot.html#curobo.types.robot.RobotConfig" title="curobo.types.robot.RobotConfig"><em>RobotConfig</em></a>) – </p></li>
+<li><p><strong>dt_traj_params</strong> (<a class="reference internal" href="#curobo.rollout.dynamics_model.kinematic_model.TimeTrajConfig" title="curobo.rollout.dynamics_model.kinematic_model.TimeTrajConfig"><em>TimeTrajConfig</em></a>) – </p></li>
+<li><p><strong>tensor_args</strong> (<a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType" title="curobo.types.base.TensorDeviceType"><em>TensorDeviceType</em></a>) – </p></li>
+<li><p><strong>vel_scale</strong> (<em>float</em>) – </p></li>
+<li><p><strong>state_estimation_variance</strong> (<em>float</em>) – </p></li>
+<li><p><strong>batch_size</strong> (<em>int</em>) – </p></li>
+<li><p><strong>horizon</strong> (<em>int</em>) – </p></li>
+<li><p><strong>control_space</strong> (<a class="reference internal" href="curobo.types.enum.html#curobo.types.enum.StateType" title="curobo.types.enum.StateType"><em>StateType</em></a>) – </p></li>
+<li><p><strong>state_filter_cfg</strong> (<a class="reference internal" href="curobo.util.state_filter.html#curobo.util.state_filter.FilterConfig" title="curobo.util.state_filter.FilterConfig"><em>FilterConfig</em></a><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>teleport_mode</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>return_full_act_buffer</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>state_finite_difference_mode</strong> (<em>str</em>) – </p></li>
+<li><p><strong>filter_robot_command</strong> (<em>bool</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.rollout.dynamics_model.kinematic_model.KinematicModelConfig.robot_config">
+<span class="sig-name descname"><span class="pre">robot_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.types.robot.html#curobo.types.robot.RobotConfig" title="curobo.types.robot.RobotConfig"><span class="pre">RobotConfig</span></a></em><a class="headerlink" href="#curobo.rollout.dynamics_model.kinematic_model.KinematicModelConfig.robot_config" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.rollout.dynamics_model.kinematic_model.KinematicModelConfig.dt_traj_params">
+<span class="sig-name descname"><span class="pre">dt_traj_params</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#curobo.rollout.dynamics_model.kinematic_model.TimeTrajConfig" title="curobo.rollout.dynamics_model.kinematic_model.TimeTrajConfig"><span class="pre">TimeTrajConfig</span></a></em><a class="headerlink" href="#curobo.rollout.dynamics_model.kinematic_model.KinematicModelConfig.dt_traj_params" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.rollout.dynamics_model.kinematic_model.KinematicModelConfig.tensor_args">
+<span class="sig-name descname"><span class="pre">tensor_args</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType" title="curobo.types.base.TensorDeviceType"><span class="pre">TensorDeviceType</span></a></em><a class="headerlink" href="#curobo.rollout.dynamics_model.kinematic_model.KinematicModelConfig.tensor_args" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.rollout.dynamics_model.kinematic_model.KinematicModelConfig.vel_scale">
+<span class="sig-name descname"><span class="pre">vel_scale</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1.0</span></em><a class="headerlink" href="#curobo.rollout.dynamics_model.kinematic_model.KinematicModelConfig.vel_scale" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.rollout.dynamics_model.kinematic_model.KinematicModelConfig.state_estimation_variance">
+<span class="sig-name descname"><span class="pre">state_estimation_variance</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></em><a class="headerlink" href="#curobo.rollout.dynamics_model.kinematic_model.KinematicModelConfig.state_estimation_variance" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.rollout.dynamics_model.kinematic_model.KinematicModelConfig.batch_size">
+<span class="sig-name descname"><span class="pre">batch_size</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#curobo.rollout.dynamics_model.kinematic_model.KinematicModelConfig.batch_size" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.rollout.dynamics_model.kinematic_model.KinematicModelConfig.horizon">
+<span class="sig-name descname"><span class="pre">horizon</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></em><a class="headerlink" href="#curobo.rollout.dynamics_model.kinematic_model.KinematicModelConfig.horizon" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.rollout.dynamics_model.kinematic_model.KinematicModelConfig.control_space">
+<span class="sig-name descname"><span class="pre">control_space</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.types.enum.html#curobo.types.enum.StateType" title="curobo.types.enum.StateType"><span class="pre">StateType</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#curobo.rollout.dynamics_model.kinematic_model.KinematicModelConfig.control_space" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.rollout.dynamics_model.kinematic_model.KinematicModelConfig.state_filter_cfg">
+<span class="sig-name descname"><span class="pre">state_filter_cfg</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.util.state_filter.html#curobo.util.state_filter.FilterConfig" title="curobo.util.state_filter.FilterConfig"><span class="pre">FilterConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.rollout.dynamics_model.kinematic_model.KinematicModelConfig.state_filter_cfg" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.rollout.dynamics_model.kinematic_model.KinematicModelConfig.teleport_mode">
+<span class="sig-name descname"><span class="pre">teleport_mode</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#curobo.rollout.dynamics_model.kinematic_model.KinematicModelConfig.teleport_mode" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.rollout.dynamics_model.kinematic_model.KinematicModelConfig.return_full_act_buffer">
+<span class="sig-name descname"><span class="pre">return_full_act_buffer</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#curobo.rollout.dynamics_model.kinematic_model.KinematicModelConfig.return_full_act_buffer" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.rollout.dynamics_model.kinematic_model.KinematicModelConfig.state_finite_difference_mode">
+<span class="sig-name descname"><span class="pre">state_finite_difference_mode</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'BACKWARD'</span></em><a class="headerlink" href="#curobo.rollout.dynamics_model.kinematic_model.KinematicModelConfig.state_finite_difference_mode" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.rollout.dynamics_model.kinematic_model.KinematicModelConfig.filter_robot_command">
+<span class="sig-name descname"><span class="pre">filter_robot_command</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#curobo.rollout.dynamics_model.kinematic_model.KinematicModelConfig.filter_robot_command" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.rollout.dynamics_model.kinematic_model.KinematicModelConfig.from_dict">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_dict_in</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">robot_cfg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tensor_args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">TensorDeviceType(device=device(type='cuda',</span> <span class="pre">index=0),</span> <span class="pre">dtype=torch.float32)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.kinematic_model.KinematicModelConfig.from_dict" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>robot_cfg</strong> (<em>Dict</em><em> | </em><a class="reference internal" href="curobo.types.robot.html#curobo.types.robot.RobotConfig" title="curobo.types.robot.RobotConfig"><em>RobotConfig</em></a>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="curobo.rollout.dynamics_model.kinematic_model.KinematicModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">curobo.rollout.dynamics_model.kinematic_model.</span></span><span class="sig-name descname"><span class="pre">KinematicModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kinematic_model_config</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.kinematic_model.KinematicModel" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#curobo.rollout.dynamics_model.kinematic_model.KinematicModelConfig" title="curobo.rollout.dynamics_model.kinematic_model.KinematicModelConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">KinematicModelConfig</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>kinematic_model_config</strong> (<a class="reference internal" href="#curobo.rollout.dynamics_model.kinematic_model.KinematicModelConfig" title="curobo.rollout.dynamics_model.kinematic_model.KinematicModelConfig"><em>KinematicModelConfig</em></a>) – </p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.rollout.dynamics_model.kinematic_model.KinematicModel.update_traj_dt">
+<span class="sig-name descname"><span class="pre">update_traj_dt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_ratio</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.kinematic_model.KinematicModel.update_traj_dt" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dt</strong> (<em>float</em><em> | </em><em>Tensor</em>) – </p></li>
+<li><p><strong>base_dt</strong> (<em>float</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>max_dt</strong> (<em>float</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>base_ratio</strong> (<em>float</em><em> | </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.rollout.dynamics_model.kinematic_model.KinematicModel.get_next_state">
+<span class="sig-name descname"><span class="pre">get_next_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">curr_state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">act</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.kinematic_model.KinematicModel.get_next_state" title="Link to this definition"></a></dt>
+<dd><p>Does a single step from the current state
+Args:
+curr_state: current state
+act: action
+dt: time to integrate
+Returns:
+next_state
+TODO: Move this into tensorstep class?</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>curr_state</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>act</strong> (<em>Tensor</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.rollout.dynamics_model.kinematic_model.KinematicModel.tensor_step">
+<span class="sig-name descname"><span class="pre">tensor_step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">act</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_seq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.kinematic_model.KinematicModel.tensor_step" title="Link to this definition"></a></dt>
+<dd><p>Args:
+state: [1,N]
+act: [H,N]
+todo:
+Integration  with variable dt along trajectory</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>state</strong> (<a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><em>JointState</em></a>) – </p></li>
+<li><p><strong>act</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>state_seq</strong> (<a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><em>JointState</em></a>) – </p></li>
+<li><p><strong>state_idx</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><em>JointState</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.rollout.dynamics_model.kinematic_model.KinematicModel.robot_cmd_tensor_step">
+<span class="sig-name descname"><span class="pre">robot_cmd_tensor_step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">act</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_seq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.kinematic_model.KinematicModel.robot_cmd_tensor_step" title="Link to this definition"></a></dt>
+<dd><p>Args:
+state: [1,N]
+act: [H,N]
+todo:
+Integration  with variable dt along trajectory</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>state</strong> (<a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><em>JointState</em></a>) – </p></li>
+<li><p><strong>act</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>state_seq</strong> (<a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><em>JointState</em></a>) – </p></li>
+<li><p><strong>state_idx</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><em>JointState</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.rollout.dynamics_model.kinematic_model.KinematicModel.update_cmd_batch_size">
+<span class="sig-name descname"><span class="pre">update_cmd_batch_size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batch_size</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.kinematic_model.KinematicModel.update_cmd_batch_size" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.rollout.dynamics_model.kinematic_model.KinematicModel.update_batch_size">
+<span class="sig-name descname"><span class="pre">update_batch_size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batch_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_update</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.kinematic_model.KinematicModel.update_batch_size" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.rollout.dynamics_model.kinematic_model.KinematicModel.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">act_seq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_state_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.kinematic_model.KinematicModel.forward" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start_state</strong> (<a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><em>JointState</em></a>) – </p></li>
+<li><p><strong>act_seq</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>start_state_idx</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#curobo.rollout.dynamics_model.kinematic_model.KinematicModelState" title="curobo.rollout.dynamics_model.kinematic_model.KinematicModelState"><em>KinematicModelState</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.rollout.dynamics_model.kinematic_model.KinematicModel.integrate_action">
+<span class="sig-name descname"><span class="pre">integrate_action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">act_seq</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.kinematic_model.KinematicModel.integrate_action" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.rollout.dynamics_model.kinematic_model.KinematicModel.integrate_action_step">
+<span class="sig-name descname"><span class="pre">integrate_action_step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">act</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.kinematic_model.KinematicModel.integrate_action_step" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.rollout.dynamics_model.kinematic_model.KinematicModel.filter_robot_state">
+<span class="sig-name descname"><span class="pre">filter_robot_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">current_state</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.kinematic_model.KinematicModel.filter_robot_state" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>current_state</strong> (<a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><em>JointState</em></a>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.rollout.dynamics_model.kinematic_model.KinematicModel.get_robot_command">
+<span class="sig-name descname"><span class="pre">get_robot_command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">current_state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">act_seq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shift_steps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.kinematic_model.KinematicModel.get_robot_command" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>current_state</strong> (<a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><em>JointState</em></a>) – </p></li>
+<li><p><strong>act_seq</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>shift_steps</strong> (<em>int</em>) – </p></li>
+<li><p><strong>state_idx</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><em>JointState</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="curobo.rollout.dynamics_model.kinematic_model.KinematicModel.action_bound_lows">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">action_bound_lows</span></span><a class="headerlink" href="#curobo.rollout.dynamics_model.kinematic_model.KinematicModel.action_bound_lows" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="curobo.rollout.dynamics_model.kinematic_model.KinematicModel.action_bound_highs">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">action_bound_highs</span></span><a class="headerlink" href="#curobo.rollout.dynamics_model.kinematic_model.KinematicModel.action_bound_highs" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="curobo.rollout.dynamics_model.kinematic_model.KinematicModel.init_action_mean">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">init_action_mean</span></span><a class="headerlink" href="#curobo.rollout.dynamics_model.kinematic_model.KinematicModel.init_action_mean" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="curobo.rollout.dynamics_model.kinematic_model.KinematicModel.retract_config">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">retract_config</span></span><a class="headerlink" href="#curobo.rollout.dynamics_model.kinematic_model.KinematicModel.retract_config" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="curobo.rollout.dynamics_model.kinematic_model.KinematicModel.cspace_distance_weight">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">cspace_distance_weight</span></span><a class="headerlink" href="#curobo.rollout.dynamics_model.kinematic_model.KinematicModel.cspace_distance_weight" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="curobo.rollout.dynamics_model.kinematic_model.KinematicModel.null_space_weight">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">null_space_weight</span></span><a class="headerlink" href="#curobo.rollout.dynamics_model.kinematic_model.KinematicModel.null_space_weight" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="curobo.rollout.dynamics_model.kinematic_model.KinematicModel.max_acceleration">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">max_acceleration</span></span><a class="headerlink" href="#curobo.rollout.dynamics_model.kinematic_model.KinematicModel.max_acceleration" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="curobo.rollout.dynamics_model.kinematic_model.KinematicModel.max_jerk">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">max_jerk</span></span><a class="headerlink" href="#curobo.rollout.dynamics_model.kinematic_model.KinematicModel.max_jerk" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.rollout.dynamics_model.kinematic_model.KinematicModel.get_state_bounds">
+<span class="sig-name descname"><span class="pre">get_state_bounds</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.kinematic_model.KinematicModel.get_state_bounds" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.rollout.dynamics_model.kinematic_model.KinematicModel.get_action_from_state">
+<span class="sig-name descname"><span class="pre">get_action_from_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.kinematic_model.KinematicModel.get_action_from_state" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>state</strong> (<a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><em>JointState</em></a>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>Tensor</em></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.rollout.dynamics_model.kinematic_model.KinematicModel.get_state_from_action">
+<span class="sig-name descname"><span class="pre">get_state_from_action</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">act_seq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.kinematic_model.KinematicModel.get_state_from_action" title="Link to this definition"></a></dt>
+<dd><p>Compute State sequence from an action trajectory</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start_state</strong> (<a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><em>JointState</em></a>) – _description_</p></li>
+<li><p><strong>act_seq</strong> (<em>torch.Tensor</em>) – _description_</p></li>
+<li><p><strong>state_idx</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>_description_</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState">JointState</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="curobo.rollout.dynamics_model.integration_utils.html" class="btn btn-neutral float-left" title="curobo.rollout.dynamics_model.integration_utils module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="curobo.rollout.dynamics_model.model_base.html" class="btn btn-neutral float-right" title="curobo.rollout.dynamics_model.model_base module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, NVIDIA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(250);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

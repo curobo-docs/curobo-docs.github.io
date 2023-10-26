@@ -1,0 +1,513 @@
+<!--
+-- Copyright (c) 2023 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+--
+-- NVIDIA CORPORATION, its affiliates and licensors retain all intellectual
+-- property and proprietary rights in and to this material, related
+-- documentation and any modifications thereto. Any use, reproduction,
+-- disclosure or distribution of this material and related documentation
+-- without an express license agreement from NVIDIA CORPORATION or
+-- its affiliates is strictly prohibited.
+-->
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>curobo.wrap.model.robot_world module &mdash; CuRobo  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="curobo.wrap.reacher package" href="curobo.wrap.reacher.html" />
+    <link rel="prev" title="curobo.wrap.model.curobo_robot_world module" href="curobo.wrap.model.curobo_robot_world.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CuRobo
+              <img src="../_static/nvidia_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Research</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/research/research.html">Technical Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/research/research_using_curobo.html">Research using CuRobo</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Library Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/1_install_instructions.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/1a_quick_overview.html">Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2a_python_examples.html">Using in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2b_isaacsim_examples.html">Using with Isaac Sim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2c_world_collision.html">Collision World Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2d_nvblox_demo.html">Using with Depth Camera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2e_torch_layer_example.html">Using in a Neural Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/4_benchmarks.html">Benchmarks &amp; Profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/5_docker_development.html">Docker Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/6_known_issues.html">Known Issues</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Advanced Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2a_batch_env.html">Batched Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2b_block_stacking_example.html">Block Stacking</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/tutorials/1_robot_configuration.html">Configuring a New Robot</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/01_robot_list.html">Supported Robots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/02_numerical_optimization.html">Numerical Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/04_cuda_kernels.html">CUDA Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/05_usd_api.html">USD for Robot and World Representation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">Python API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CuRobo</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../api.html">Python API</a></li>
+          <li class="breadcrumb-item"><a href="modules.html">curobo</a></li>
+          <li class="breadcrumb-item"><a href="curobo.html">curobo package</a></li>
+          <li class="breadcrumb-item"><a href="curobo.wrap.html">curobo.wrap package</a></li>
+          <li class="breadcrumb-item"><a href="curobo.wrap.model.html">curobo.wrap.model package</a></li>
+      <li class="breadcrumb-item active">curobo.wrap.model.robot_world module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/_api/curobo.wrap.model.robot_world.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-curobo.wrap.model.robot_world">
+<span id="curobo-wrap-model-robot-world-module"></span><h1>curobo.wrap.model.robot_world module<a class="headerlink" href="#module-curobo.wrap.model.robot_world" title="Link to this heading"></a></h1>
+<p>This module has differentiable layers built from CuRobo’s core features for use in Pytorch.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="curobo.wrap.model.robot_world.RobotWorldConfig">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">curobo.wrap.model.robot_world.</span></span><span class="sig-name descname"><span class="pre">RobotWorldConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kinematics</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModel" title="curobo.cuda_robot_model.cuda_robot_model.CudaRobotModel"><span class="pre">curobo.cuda_robot_model.cuda_robot_model.CudaRobotModel</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">sampler</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.util.sample_lib.html#curobo.util.sample_lib.HaltonGenerator" title="curobo.util.sample_lib.HaltonGenerator"><span class="pre">curobo.util.sample_lib.HaltonGenerator</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">bound_scale</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">torch.Tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bound_cost</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.rollout.cost.bound_cost.html#curobo.rollout.cost.bound_cost.BoundCost" title="curobo.rollout.cost.bound_cost.BoundCost"><span class="pre">curobo.rollout.cost.bound_cost.BoundCost</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">pose_cost</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.rollout.cost.pose_cost.html#curobo.rollout.cost.pose_cost.PoseCost" title="curobo.rollout.cost.pose_cost.PoseCost"><span class="pre">curobo.rollout.cost.pose_cost.PoseCost</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">self_collision_cost</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.rollout.cost.self_collision_cost.html#curobo.rollout.cost.self_collision_cost.SelfCollisionCost" title="curobo.rollout.cost.self_collision_cost.SelfCollisionCost"><span class="pre">curobo.rollout.cost.self_collision_cost.SelfCollisionCost</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collision_cost</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.rollout.cost.primitive_collision_cost.html#curobo.rollout.cost.primitive_collision_cost.PrimitiveCollisionCost" title="curobo.rollout.cost.primitive_collision_cost.PrimitiveCollisionCost"><span class="pre">curobo.rollout.cost.primitive_collision_cost.PrimitiveCollisionCost</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collision_constraint</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.rollout.cost.primitive_collision_cost.html#curobo.rollout.cost.primitive_collision_cost.PrimitiveCollisionCost" title="curobo.rollout.cost.primitive_collision_cost.PrimitiveCollisionCost"><span class="pre">curobo.rollout.cost.primitive_collision_cost.PrimitiveCollisionCost</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">world_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldCollision" title="curobo.geom.sdf.world.WorldCollision"><span class="pre">curobo.geom.sdf.world.WorldCollision</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rejection_ratio</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tensor_args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType" title="curobo.types.base.TensorDeviceType"><span class="pre">curobo.types.base.TensorDeviceType</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">TensorDeviceType(device=device(type='cuda',</span> <span class="pre">index=0),</span> <span class="pre">dtype=torch.float32)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contact_distance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.model.robot_world.RobotWorldConfig" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>kinematics</strong> (<a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModel" title="curobo.cuda_robot_model.cuda_robot_model.CudaRobotModel"><em>CudaRobotModel</em></a>) – </p></li>
+<li><p><strong>sampler</strong> (<a class="reference internal" href="curobo.util.sample_lib.html#curobo.util.sample_lib.HaltonGenerator" title="curobo.util.sample_lib.HaltonGenerator"><em>HaltonGenerator</em></a>) – </p></li>
+<li><p><strong>bound_scale</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>bound_cost</strong> (<a class="reference internal" href="curobo.rollout.cost.bound_cost.html#curobo.rollout.cost.bound_cost.BoundCost" title="curobo.rollout.cost.bound_cost.BoundCost"><em>BoundCost</em></a>) – </p></li>
+<li><p><strong>pose_cost</strong> (<a class="reference internal" href="curobo.rollout.cost.pose_cost.html#curobo.rollout.cost.pose_cost.PoseCost" title="curobo.rollout.cost.pose_cost.PoseCost"><em>PoseCost</em></a>) – </p></li>
+<li><p><strong>self_collision_cost</strong> (<a class="reference internal" href="curobo.rollout.cost.self_collision_cost.html#curobo.rollout.cost.self_collision_cost.SelfCollisionCost" title="curobo.rollout.cost.self_collision_cost.SelfCollisionCost"><em>SelfCollisionCost</em></a><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>collision_cost</strong> (<a class="reference internal" href="curobo.rollout.cost.primitive_collision_cost.html#curobo.rollout.cost.primitive_collision_cost.PrimitiveCollisionCost" title="curobo.rollout.cost.primitive_collision_cost.PrimitiveCollisionCost"><em>PrimitiveCollisionCost</em></a><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>collision_constraint</strong> (<a class="reference internal" href="curobo.rollout.cost.primitive_collision_cost.html#curobo.rollout.cost.primitive_collision_cost.PrimitiveCollisionCost" title="curobo.rollout.cost.primitive_collision_cost.PrimitiveCollisionCost"><em>PrimitiveCollisionCost</em></a><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>world_model</strong> (<a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldCollision" title="curobo.geom.sdf.world.WorldCollision"><em>WorldCollision</em></a><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>rejection_ratio</strong> (<em>int</em>) – </p></li>
+<li><p><strong>tensor_args</strong> (<a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType" title="curobo.types.base.TensorDeviceType"><em>TensorDeviceType</em></a>) – </p></li>
+<li><p><strong>contact_distance</strong> (<em>float</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.model.robot_world.RobotWorldConfig.kinematics">
+<span class="sig-name descname"><span class="pre">kinematics</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModel" title="curobo.cuda_robot_model.cuda_robot_model.CudaRobotModel"><span class="pre">CudaRobotModel</span></a></em><a class="headerlink" href="#curobo.wrap.model.robot_world.RobotWorldConfig.kinematics" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.model.robot_world.RobotWorldConfig.sampler">
+<span class="sig-name descname"><span class="pre">sampler</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.util.sample_lib.html#curobo.util.sample_lib.HaltonGenerator" title="curobo.util.sample_lib.HaltonGenerator"><span class="pre">HaltonGenerator</span></a></em><a class="headerlink" href="#curobo.wrap.model.robot_world.RobotWorldConfig.sampler" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.model.robot_world.RobotWorldConfig.bound_scale">
+<span class="sig-name descname"><span class="pre">bound_scale</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span></em><a class="headerlink" href="#curobo.wrap.model.robot_world.RobotWorldConfig.bound_scale" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.model.robot_world.RobotWorldConfig.bound_cost">
+<span class="sig-name descname"><span class="pre">bound_cost</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.rollout.cost.bound_cost.html#curobo.rollout.cost.bound_cost.BoundCost" title="curobo.rollout.cost.bound_cost.BoundCost"><span class="pre">BoundCost</span></a></em><a class="headerlink" href="#curobo.wrap.model.robot_world.RobotWorldConfig.bound_cost" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.model.robot_world.RobotWorldConfig.pose_cost">
+<span class="sig-name descname"><span class="pre">pose_cost</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.rollout.cost.pose_cost.html#curobo.rollout.cost.pose_cost.PoseCost" title="curobo.rollout.cost.pose_cost.PoseCost"><span class="pre">PoseCost</span></a></em><a class="headerlink" href="#curobo.wrap.model.robot_world.RobotWorldConfig.pose_cost" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.model.robot_world.RobotWorldConfig.self_collision_cost">
+<span class="sig-name descname"><span class="pre">self_collision_cost</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.rollout.cost.self_collision_cost.html#curobo.rollout.cost.self_collision_cost.SelfCollisionCost" title="curobo.rollout.cost.self_collision_cost.SelfCollisionCost"><span class="pre">SelfCollisionCost</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.wrap.model.robot_world.RobotWorldConfig.self_collision_cost" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.model.robot_world.RobotWorldConfig.collision_cost">
+<span class="sig-name descname"><span class="pre">collision_cost</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.rollout.cost.primitive_collision_cost.html#curobo.rollout.cost.primitive_collision_cost.PrimitiveCollisionCost" title="curobo.rollout.cost.primitive_collision_cost.PrimitiveCollisionCost"><span class="pre">PrimitiveCollisionCost</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.wrap.model.robot_world.RobotWorldConfig.collision_cost" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.model.robot_world.RobotWorldConfig.collision_constraint">
+<span class="sig-name descname"><span class="pre">collision_constraint</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.rollout.cost.primitive_collision_cost.html#curobo.rollout.cost.primitive_collision_cost.PrimitiveCollisionCost" title="curobo.rollout.cost.primitive_collision_cost.PrimitiveCollisionCost"><span class="pre">PrimitiveCollisionCost</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.wrap.model.robot_world.RobotWorldConfig.collision_constraint" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.model.robot_world.RobotWorldConfig.world_model">
+<span class="sig-name descname"><span class="pre">world_model</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldCollision" title="curobo.geom.sdf.world.WorldCollision"><span class="pre">WorldCollision</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.wrap.model.robot_world.RobotWorldConfig.world_model" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.model.robot_world.RobotWorldConfig.rejection_ratio">
+<span class="sig-name descname"><span class="pre">rejection_ratio</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">10</span></em><a class="headerlink" href="#curobo.wrap.model.robot_world.RobotWorldConfig.rejection_ratio" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.model.robot_world.RobotWorldConfig.tensor_args">
+<span class="sig-name descname"><span class="pre">tensor_args</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType" title="curobo.types.base.TensorDeviceType"><span class="pre">TensorDeviceType</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">TensorDeviceType(device=device(type='cuda',</span> <span class="pre">index=0),</span> <span class="pre">dtype=torch.float32)</span></em><a class="headerlink" href="#curobo.wrap.model.robot_world.RobotWorldConfig.tensor_args" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.wrap.model.robot_world.RobotWorldConfig.contact_distance">
+<span class="sig-name descname"><span class="pre">contact_distance</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></em><a class="headerlink" href="#curobo.wrap.model.robot_world.RobotWorldConfig.contact_distance" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.model.robot_world.RobotWorldConfig.load_from_config">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">load_from_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'franka.yml'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">world_model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tensor_args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">TensorDeviceType(device=device(type='cuda',</span> <span class="pre">index=0),</span> <span class="pre">dtype=torch.float32)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_envs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_meshes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_cuboids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collision_activation_distance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">self_collision_activation_distance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_collision_distance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collision_checker_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">CollisionCheckerType.MESH</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">world_collision_checker</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pose_weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[1,</span> <span class="pre">1,</span> <span class="pre">1,</span> <span class="pre">1]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.model.robot_world.RobotWorldConfig.load_from_config" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>robot_config</strong> (<a class="reference internal" href="curobo.types.robot.html#curobo.types.robot.RobotConfig" title="curobo.types.robot.RobotConfig"><em>RobotConfig</em></a><em> | </em><em>str</em>) – </p></li>
+<li><p><strong>world_model</strong> (<em>None</em><em> | </em><em>str</em><em> | </em><em>Dict</em><em> | </em><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig" title="curobo.geom.types.WorldConfig"><em>WorldConfig</em></a><em> | </em><em>List</em><em>[</em><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig" title="curobo.geom.types.WorldConfig"><em>WorldConfig</em></a><em>] </em><em>| </em><em>List</em><em>[</em><em>str</em><em>]</em>) – </p></li>
+<li><p><strong>tensor_args</strong> (<a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType" title="curobo.types.base.TensorDeviceType"><em>TensorDeviceType</em></a>) – </p></li>
+<li><p><strong>n_envs</strong> (<em>int</em>) – </p></li>
+<li><p><strong>n_meshes</strong> (<em>int</em>) – </p></li>
+<li><p><strong>n_cuboids</strong> (<em>int</em>) – </p></li>
+<li><p><strong>collision_activation_distance</strong> (<em>float</em>) – </p></li>
+<li><p><strong>self_collision_activation_distance</strong> (<em>float</em>) – </p></li>
+<li><p><strong>max_collision_distance</strong> (<em>float</em>) – </p></li>
+<li><p><strong>collision_checker_type</strong> (<a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.CollisionCheckerType" title="curobo.geom.sdf.world.CollisionCheckerType"><em>CollisionCheckerType</em></a>) – </p></li>
+<li><p><strong>world_collision_checker</strong> (<a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldCollision" title="curobo.geom.sdf.world.WorldCollision"><em>WorldCollision</em></a><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>pose_weight</strong> (<em>List</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="curobo.wrap.model.robot_world.RobotWorld">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">curobo.wrap.model.robot_world.</span></span><span class="sig-name descname"><span class="pre">RobotWorld</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.model.robot_world.RobotWorld" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#curobo.wrap.model.robot_world.RobotWorldConfig" title="curobo.wrap.model.robot_world.RobotWorldConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">RobotWorldConfig</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>config</strong> (<a class="reference internal" href="#curobo.wrap.model.robot_world.RobotWorldConfig" title="curobo.wrap.model.robot_world.RobotWorldConfig"><em>RobotWorldConfig</em></a>) – </p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.model.robot_world.RobotWorld.get_kinematics">
+<span class="sig-name descname"><span class="pre">get_kinematics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.model.robot_world.RobotWorld.get_kinematics" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>q</strong> (<em>Tensor</em>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.CudaRobotModelState" title="curobo.cuda_robot_model.types.CudaRobotModelState"><em>CudaRobotModelState</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.model.robot_world.RobotWorld.update_world">
+<span class="sig-name descname"><span class="pre">update_world</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">world_config</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.model.robot_world.RobotWorld.update_world" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>world_config</strong> (<a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig" title="curobo.geom.types.WorldConfig"><em>WorldConfig</em></a>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.model.robot_world.RobotWorld.get_collision_distance">
+<span class="sig-name descname"><span class="pre">get_collision_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_sph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_query_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.model.robot_world.RobotWorld.get_collision_distance" title="Link to this definition"></a></dt>
+<dd><p>Get collision distance</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x_sph</strong> (<em>torch.Tensor</em>) – batch, horizon, n_spheres, 4</p></li>
+<li><p><strong>env_query_idx</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>_description_</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch.Tensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.model.robot_world.RobotWorld.get_collision_constraint">
+<span class="sig-name descname"><span class="pre">get_collision_constraint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_sph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_query_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.model.robot_world.RobotWorld.get_collision_constraint" title="Link to this definition"></a></dt>
+<dd><p>Get collision distance</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x_sph</strong> (<em>torch.Tensor</em>) – batch, horizon, n_spheres, 4</p></li>
+<li><p><strong>env_query_idx</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>_description_</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>torch.Tensor</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.model.robot_world.RobotWorld.get_self_collision_distance">
+<span class="sig-name descname"><span class="pre">get_self_collision_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_sph</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.model.robot_world.RobotWorld.get_self_collision_distance" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x_sph</strong> (<em>Tensor</em>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>Tensor</em></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.model.robot_world.RobotWorld.get_self_collision">
+<span class="sig-name descname"><span class="pre">get_self_collision</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_sph</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.model.robot_world.RobotWorld.get_self_collision" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x_sph</strong> (<em>Tensor</em>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>Tensor</em></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.model.robot_world.RobotWorld.get_collision_vector">
+<span class="sig-name descname"><span class="pre">get_collision_vector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_sph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_query_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.model.robot_world.RobotWorld.get_collision_vector" title="Link to this definition"></a></dt>
+<dd><p>NOTE: This function is not differentiable</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x_sph</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>env_query_idx</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.model.robot_world.RobotWorld.get_world_self_collision_distance_from_joints">
+<span class="sig-name descname"><span class="pre">get_world_self_collision_distance_from_joints</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_query_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.model.robot_world.RobotWorld.get_world_self_collision_distance_from_joints" title="Link to this definition"></a></dt>
+<dd><p>q : batch, dof</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>q</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>env_query_idx</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>Tuple</em>[<em>Tensor</em>, <em>Tensor</em>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.model.robot_world.RobotWorld.get_world_self_collision_distance_from_joint_trajectory">
+<span class="sig-name descname"><span class="pre">get_world_self_collision_distance_from_joint_trajectory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_query_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.model.robot_world.RobotWorld.get_world_self_collision_distance_from_joint_trajectory" title="Link to this definition"></a></dt>
+<dd><p>q : batch, horizon, dof</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>q</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>env_query_idx</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>Tuple</em>[<em>Tensor</em>, <em>Tensor</em>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.model.robot_world.RobotWorld.get_bound">
+<span class="sig-name descname"><span class="pre">get_bound</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.model.robot_world.RobotWorld.get_bound" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>q</strong> (<em>Tensor</em>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>Tensor</em></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.model.robot_world.RobotWorld.sample">
+<span class="sig-name descname"><span class="pre">sample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask_valid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_query_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.model.robot_world.RobotWorld.sample" title="Link to this definition"></a></dt>
+<dd><p>This does not support batched environments, use sample_trajectory instead.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n</strong> (<em>int</em>) – </p></li>
+<li><p><strong>mask_valid</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>env_query_idx</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.model.robot_world.RobotWorld.validate">
+<span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_query_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.model.robot_world.RobotWorld.validate" title="Link to this definition"></a></dt>
+<dd><p>This does not support batched environments, use validate_trajectory instead</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>q</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>env_query_idx</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.model.robot_world.RobotWorld.sample_trajectory">
+<span class="sig-name descname"><span class="pre">sample_trajectory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">horizon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask_valid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_query_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.model.robot_world.RobotWorld.sample_trajectory" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>batch</strong> (<em>int</em>) – </p></li>
+<li><p><strong>horizon</strong> (<em>int</em>) – </p></li>
+<li><p><strong>mask_valid</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>env_query_idx</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.model.robot_world.RobotWorld.validate_trajectory">
+<span class="sig-name descname"><span class="pre">validate_trajectory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_query_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.model.robot_world.RobotWorld.validate_trajectory" title="Link to this definition"></a></dt>
+<dd><p>q: batch , horizon, dof
+env_query_idx: batch, 1</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>q</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>env_query_idx</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.model.robot_world.RobotWorld.pose_distance">
+<span class="sig-name descname"><span class="pre">pose_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_des</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_current</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.model.robot_world.RobotWorld.pose_distance" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x_des</strong> (<a class="reference internal" href="curobo.types.math.html#curobo.types.math.Pose" title="curobo.types.math.Pose"><em>Pose</em></a>) – </p></li>
+<li><p><strong>x_current</strong> (<a class="reference internal" href="curobo.types.math.html#curobo.types.math.Pose" title="curobo.types.math.Pose"><em>Pose</em></a>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="curobo.wrap.model.curobo_robot_world.html" class="btn btn-neutral float-left" title="curobo.wrap.model.curobo_robot_world module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="curobo.wrap.reacher.html" class="btn btn-neutral float-right" title="curobo.wrap.reacher package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, NVIDIA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(250);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

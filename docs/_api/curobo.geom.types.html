@@ -1,0 +1,1115 @@
+<!--
+-- Copyright (c) 2023 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+--
+-- NVIDIA CORPORATION, its affiliates and licensors retain all intellectual
+-- property and proprietary rights in and to this material, related
+-- documentation and any modifications thereto. Any use, reproduction,
+-- disclosure or distribution of this material and related documentation
+-- without an express license agreement from NVIDIA CORPORATION or
+-- its affiliates is strictly prohibited.
+-->
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>curobo.geom.types module &mdash; CuRobo  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="curobo.opt package" href="curobo.opt.html" />
+    <link rel="prev" title="curobo.geom.transform module" href="curobo.geom.transform.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CuRobo
+              <img src="../_static/nvidia_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Research</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/research/research.html">Technical Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/research/research_using_curobo.html">Research using CuRobo</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Library Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/1_install_instructions.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/1a_quick_overview.html">Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2a_python_examples.html">Using in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2b_isaacsim_examples.html">Using with Isaac Sim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2c_world_collision.html">Collision World Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2d_nvblox_demo.html">Using with Depth Camera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2e_torch_layer_example.html">Using in a Neural Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/4_benchmarks.html">Benchmarks &amp; Profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/5_docker_development.html">Docker Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/6_known_issues.html">Known Issues</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Advanced Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2a_batch_env.html">Batched Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2b_block_stacking_example.html">Block Stacking</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/tutorials/1_robot_configuration.html">Configuring a New Robot</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/01_robot_list.html">Supported Robots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/02_numerical_optimization.html">Numerical Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/04_cuda_kernels.html">CUDA Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/05_usd_api.html">USD for Robot and World Representation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">Python API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CuRobo</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../api.html">Python API</a></li>
+          <li class="breadcrumb-item"><a href="curobo.geom.html">curobo.geom package</a></li>
+      <li class="breadcrumb-item active">curobo.geom.types module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/_api/curobo.geom.types.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-curobo.geom.types">
+<span id="curobo-geom-types-module"></span><h1>curobo.geom.types module<a class="headerlink" href="#module-curobo.geom.types" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="curobo.geom.types.Material">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">curobo.geom.types.</span></span><span class="sig-name descname"><span class="pre">Material</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">metallic</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'float'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">roughness</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'float'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.4</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.types.Material" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>metallic</strong> (<em>float</em>) – </p></li>
+<li><p><strong>roughness</strong> (<em>float</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.geom.types.Material.metallic">
+<span class="sig-name descname"><span class="pre">metallic</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></em><a class="headerlink" href="#curobo.geom.types.Material.metallic" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.geom.types.Material.roughness">
+<span class="sig-name descname"><span class="pre">roughness</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.4</span></em><a class="headerlink" href="#curobo.geom.types.Material.roughness" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="curobo.geom.types.Obstacle">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">curobo.geom.types.</span></span><span class="sig-name descname"><span class="pre">Obstacle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">texture_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">texture</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">material</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Material(metallic=0.0,</span> <span class="pre">roughness=0.4)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tensor_args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">TensorDeviceType(device=device(type='cuda',</span> <span class="pre">index=0),</span> <span class="pre">dtype=torch.float32)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.types.Obstacle" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Base class for all obstacles.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – </p></li>
+<li><p><strong>pose</strong> (<em>List</em><em>[</em><em>float</em><em>] </em><em>| </em><em>None</em>) – </p></li>
+<li><p><strong>scale</strong> (<em>List</em><em>[</em><em>float</em><em>] </em><em>| </em><em>None</em>) – </p></li>
+<li><p><strong>color</strong> (<em>List</em><em>[</em><em>float</em><em>] </em><em>| </em><em>None</em>) – </p></li>
+<li><p><strong>texture_id</strong> (<em>str</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>texture</strong> (<em>str</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>material</strong> (<a class="reference internal" href="#curobo.geom.types.Material" title="curobo.geom.types.Material"><em>Material</em></a>) – </p></li>
+<li><p><strong>tensor_args</strong> (<a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType" title="curobo.types.base.TensorDeviceType"><em>TensorDeviceType</em></a>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.geom.types.Obstacle.name">
+<span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#curobo.geom.types.Obstacle.name" title="Link to this definition"></a></dt>
+<dd><p>Unique name of obstacle.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.geom.types.Obstacle.pose">
+<span class="sig-name descname"><span class="pre">pose</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.geom.types.Obstacle.pose" title="Link to this definition"></a></dt>
+<dd><p>Pose of obstacle as a list with format [x y z qw qx qy qz]</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.geom.types.Obstacle.scale">
+<span class="sig-name descname"><span class="pre">scale</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.geom.types.Obstacle.scale" title="Link to this definition"></a></dt>
+<dd><p>implement scaling for all obstacle types.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>NOTE</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.geom.types.Obstacle.color">
+<span class="sig-name descname"><span class="pre">color</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.geom.types.Obstacle.color" title="Link to this definition"></a></dt>
+<dd><p>Color of obstacle to use in visualization.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.geom.types.Obstacle.texture_id">
+<span class="sig-name descname"><span class="pre">texture_id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.geom.types.Obstacle.texture_id" title="Link to this definition"></a></dt>
+<dd><p>texture to apply to obstacle in visualization.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.geom.types.Obstacle.texture">
+<span class="sig-name descname"><span class="pre">texture</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.geom.types.Obstacle.texture" title="Link to this definition"></a></dt>
+<dd><p>texture to apply to obstacle in visualization.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.geom.types.Obstacle.material">
+<span class="sig-name descname"><span class="pre">material</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#curobo.geom.types.Material" title="curobo.geom.types.Material"><span class="pre">Material</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Material(metallic=0.0,</span> <span class="pre">roughness=0.4)</span></em><a class="headerlink" href="#curobo.geom.types.Obstacle.material" title="Link to this definition"></a></dt>
+<dd><p>material properties to apply in visualization.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.geom.types.Obstacle.tensor_args">
+<span class="sig-name descname"><span class="pre">tensor_args</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType" title="curobo.types.base.TensorDeviceType"><span class="pre">TensorDeviceType</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">TensorDeviceType(device=device(type='cuda',</span> <span class="pre">index=0),</span> <span class="pre">dtype=torch.float32)</span></em><a class="headerlink" href="#curobo.geom.types.Obstacle.tensor_args" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.types.Obstacle.get_trimesh_mesh">
+<span class="sig-name descname"><span class="pre">get_trimesh_mesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">process</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.types.Obstacle.get_trimesh_mesh" title="Link to this definition"></a></dt>
+<dd><p>Create a trimesh instance from the obstacle representation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>process</strong> (<em>bool</em><em>, </em><em>optional</em>) – process when loading from file. Defaults to True.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>NotImplementedError</strong> – requires implementation in derived class.</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>instance of obstacle as a trimesh.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>trimesh.Trimesh</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.types.Obstacle.save_as_mesh">
+<span class="sig-name descname"><span class="pre">save_as_mesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.types.Obstacle.save_as_mesh" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>file_path</strong> (<em>str</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.types.Obstacle.get_cuboid">
+<span class="sig-name descname"><span class="pre">get_cuboid</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.types.Obstacle.get_cuboid" title="Link to this definition"></a></dt>
+<dd><p>Get oriented bounding box of obstacle (OBB).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>returns obstacle as a cuboid.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#curobo.geom.types.Cuboid" title="curobo.geom.types.Cuboid">Cuboid</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.types.Obstacle.get_mesh">
+<span class="sig-name descname"><span class="pre">get_mesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">process</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.types.Obstacle.get_mesh" title="Link to this definition"></a></dt>
+<dd><p>Get obstacle as a mesh.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>process</strong> (<em>bool</em><em>, </em><em>optional</em>) – process mesh from file. Defaults to True.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>obstacle as a mesh.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#curobo.geom.types.Mesh" title="curobo.geom.types.Mesh">Mesh</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.types.Obstacle.get_transform_matrix">
+<span class="sig-name descname"><span class="pre">get_transform_matrix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.types.Obstacle.get_transform_matrix" title="Link to this definition"></a></dt>
+<dd><p>Get homogenous transformation matrix from pose.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>transformation matrix.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.types.Obstacle.get_sphere">
+<span class="sig-name descname"><span class="pre">get_sphere</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.types.Obstacle.get_sphere" title="Link to this definition"></a></dt>
+<dd><p>Compute a sphere that fits in the volume of the object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>n</strong> (<em>int</em>) – number of spheres</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>spheres</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#curobo.geom.types.Sphere" title="curobo.geom.types.Sphere"><em>Sphere</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.types.Obstacle.get_bounding_spheres">
+<span class="sig-name descname"><span class="pre">get_bounding_spheres</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_spheres</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">surface_sphere_radius</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.002</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fit_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">SphereFitType.VOXEL_VOLUME_SAMPLE_SURFACE</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">voxelize_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ray'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_transform_pose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tensor_args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">TensorDeviceType(device=device(type='cuda',</span> <span class="pre">index=0),</span> <span class="pre">dtype=torch.float32)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.types.Obstacle.get_bounding_spheres" title="Link to this definition"></a></dt>
+<dd><p>Compute n spheres that fits in the volume of the object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n</strong> – number of spheres</p></li>
+<li><p><strong>n_spheres</strong> (<em>int</em>) – </p></li>
+<li><p><strong>surface_sphere_radius</strong> (<em>float</em>) – </p></li>
+<li><p><strong>fit_type</strong> (<a class="reference internal" href="curobo.geom.sphere_fit.html#curobo.geom.sphere_fit.SphereFitType" title="curobo.geom.sphere_fit.SphereFitType"><em>SphereFitType</em></a>) – </p></li>
+<li><p><strong>voxelize_method</strong> (<em>str</em>) – </p></li>
+<li><p><strong>pre_transform_pose</strong> (<a class="reference internal" href="curobo.types.math.html#curobo.types.math.Pose" title="curobo.types.math.Pose"><em>Pose</em></a><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>tensor_args</strong> (<a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType" title="curobo.types.base.TensorDeviceType"><em>TensorDeviceType</em></a>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>spheres</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>List</em>[<a class="reference internal" href="#curobo.geom.types.Sphere" title="curobo.geom.types.Sphere"><em>Sphere</em></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="curobo.geom.types.Cuboid">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">curobo.geom.types.</span></span><span class="sig-name descname"><span class="pre">Cuboid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pose=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">texture_id=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">texture=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">material=Material(metallic=0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">roughness=0.4)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tensor_args=TensorDeviceType(device=device(type='cuda'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index=0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype=torch.float32)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dims=&lt;factory&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.types.Cuboid" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#curobo.geom.types.Obstacle" title="curobo.geom.types.Obstacle"><code class="xref py py-class docutils literal notranslate"><span class="pre">Obstacle</span></code></a></p>
+<p>Represent obstacle as a cuboid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – </p></li>
+<li><p><strong>pose</strong> (<em>List</em><em>[</em><em>float</em><em>] </em><em>| </em><em>None</em>) – </p></li>
+<li><p><strong>scale</strong> (<em>List</em><em>[</em><em>float</em><em>] </em><em>| </em><em>None</em>) – </p></li>
+<li><p><strong>color</strong> (<em>List</em><em>[</em><em>float</em><em>] </em><em>| </em><em>None</em>) – </p></li>
+<li><p><strong>texture_id</strong> (<em>str</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>texture</strong> (<em>str</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>material</strong> (<a class="reference internal" href="#curobo.geom.types.Material" title="curobo.geom.types.Material"><em>Material</em></a>) – </p></li>
+<li><p><strong>tensor_args</strong> (<a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType" title="curobo.types.base.TensorDeviceType"><em>TensorDeviceType</em></a>) – </p></li>
+<li><p><strong>dims</strong> (<em>List</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.geom.types.Cuboid.dims">
+<span class="sig-name descname"><span class="pre">dims</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#curobo.geom.types.Cuboid.dims" title="Link to this definition"></a></dt>
+<dd><p>Dimensions of cuboid in meters [x_length, y_length, z_length].</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.types.Cuboid.get_trimesh_mesh">
+<span class="sig-name descname"><span class="pre">get_trimesh_mesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">process</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.types.Cuboid.get_trimesh_mesh" title="Link to this definition"></a></dt>
+<dd><p>Create a trimesh instance from the obstacle representation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>process</strong> (<em>bool</em><em>, </em><em>optional</em>) – process when loading from file. Defaults to True.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>NotImplementedError</strong> – requires implementation in derived class.</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>instance of obstacle as a trimesh.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>trimesh.Trimesh</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="curobo.geom.types.Capsule">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">curobo.geom.types.</span></span><span class="sig-name descname"><span class="pre">Capsule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name:</span> <span class="pre">'str'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pose:</span> <span class="pre">'Optional[List[float]]'</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale:</span> <span class="pre">'Optional[List[float]]'</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color:</span> <span class="pre">'Optional[List[float]]'</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">texture_id:</span> <span class="pre">'Optional[str]'</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">texture:</span> <span class="pre">'Optional[str]'</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">material:</span> <span class="pre">'Material'</span> <span class="pre">=</span> <span class="pre">Material(metallic=0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">roughness=0.4)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tensor_args:</span> <span class="pre">'TensorDeviceType'</span> <span class="pre">=</span> <span class="pre">TensorDeviceType(device=device(type='cuda'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index=0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype=torch.float32)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius:</span> <span class="pre">'float'</span> <span class="pre">=</span> <span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base:</span> <span class="pre">'List[float]'</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tip:</span> <span class="pre">'List[float]'</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.types.Capsule" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#curobo.geom.types.Obstacle" title="curobo.geom.types.Obstacle"><code class="xref py py-class docutils literal notranslate"><span class="pre">Obstacle</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – </p></li>
+<li><p><strong>pose</strong> (<em>List</em><em>[</em><em>float</em><em>] </em><em>| </em><em>None</em>) – </p></li>
+<li><p><strong>scale</strong> (<em>List</em><em>[</em><em>float</em><em>] </em><em>| </em><em>None</em>) – </p></li>
+<li><p><strong>color</strong> (<em>List</em><em>[</em><em>float</em><em>] </em><em>| </em><em>None</em>) – </p></li>
+<li><p><strong>texture_id</strong> (<em>str</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>texture</strong> (<em>str</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>material</strong> (<a class="reference internal" href="#curobo.geom.types.Material" title="curobo.geom.types.Material"><em>Material</em></a>) – </p></li>
+<li><p><strong>tensor_args</strong> (<a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType" title="curobo.types.base.TensorDeviceType"><em>TensorDeviceType</em></a>) – </p></li>
+<li><p><strong>radius</strong> (<em>float</em>) – </p></li>
+<li><p><strong>base</strong> (<em>List</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+<li><p><strong>tip</strong> (<em>List</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.geom.types.Capsule.radius">
+<span class="sig-name descname"><span class="pre">radius</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></em><a class="headerlink" href="#curobo.geom.types.Capsule.radius" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.geom.types.Capsule.base">
+<span class="sig-name descname"><span class="pre">base</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#curobo.geom.types.Capsule.base" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.geom.types.Capsule.tip">
+<span class="sig-name descname"><span class="pre">tip</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#curobo.geom.types.Capsule.tip" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.types.Capsule.get_trimesh_mesh">
+<span class="sig-name descname"><span class="pre">get_trimesh_mesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">process</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.types.Capsule.get_trimesh_mesh" title="Link to this definition"></a></dt>
+<dd><p>Create a trimesh instance from the obstacle representation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>process</strong> (<em>bool</em><em>, </em><em>optional</em>) – process when loading from file. Defaults to True.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>NotImplementedError</strong> – requires implementation in derived class.</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>instance of obstacle as a trimesh.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>trimesh.Trimesh</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="curobo.geom.types.Cylinder">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">curobo.geom.types.</span></span><span class="sig-name descname"><span class="pre">Cylinder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'str'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Optional[List[float]]'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Optional[List[float]]'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Optional[List[float]]'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">texture_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Optional[str]'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">texture</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Optional[str]'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">material</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Material'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Material(metallic=0.0,</span> <span class="pre">roughness=0.4)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tensor_args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'TensorDeviceType'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">TensorDeviceType(device=device(type='cuda',</span> <span class="pre">index=0),</span> <span class="pre">dtype=torch.float32)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'float'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'float'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.types.Cylinder" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#curobo.geom.types.Obstacle" title="curobo.geom.types.Obstacle"><code class="xref py py-class docutils literal notranslate"><span class="pre">Obstacle</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – </p></li>
+<li><p><strong>pose</strong> (<em>List</em><em>[</em><em>float</em><em>] </em><em>| </em><em>None</em>) – </p></li>
+<li><p><strong>scale</strong> (<em>List</em><em>[</em><em>float</em><em>] </em><em>| </em><em>None</em>) – </p></li>
+<li><p><strong>color</strong> (<em>List</em><em>[</em><em>float</em><em>] </em><em>| </em><em>None</em>) – </p></li>
+<li><p><strong>texture_id</strong> (<em>str</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>texture</strong> (<em>str</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>material</strong> (<a class="reference internal" href="#curobo.geom.types.Material" title="curobo.geom.types.Material"><em>Material</em></a>) – </p></li>
+<li><p><strong>tensor_args</strong> (<a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType" title="curobo.types.base.TensorDeviceType"><em>TensorDeviceType</em></a>) – </p></li>
+<li><p><strong>radius</strong> (<em>float</em>) – </p></li>
+<li><p><strong>height</strong> (<em>float</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.geom.types.Cylinder.radius">
+<span class="sig-name descname"><span class="pre">radius</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></em><a class="headerlink" href="#curobo.geom.types.Cylinder.radius" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.geom.types.Cylinder.height">
+<span class="sig-name descname"><span class="pre">height</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></em><a class="headerlink" href="#curobo.geom.types.Cylinder.height" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.types.Cylinder.get_trimesh_mesh">
+<span class="sig-name descname"><span class="pre">get_trimesh_mesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">process</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.types.Cylinder.get_trimesh_mesh" title="Link to this definition"></a></dt>
+<dd><p>Create a trimesh instance from the obstacle representation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>process</strong> (<em>bool</em><em>, </em><em>optional</em>) – process when loading from file. Defaults to True.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>NotImplementedError</strong> – requires implementation in derived class.</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>instance of obstacle as a trimesh.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>trimesh.Trimesh</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="curobo.geom.types.Sphere">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">curobo.geom.types.</span></span><span class="sig-name descname"><span class="pre">Sphere</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'str'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Optional[List[float]]'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Optional[List[float]]'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Optional[List[float]]'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">texture_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Optional[str]'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">texture</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Optional[str]'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">material</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Material'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Material(metallic=0.0,</span> <span class="pre">roughness=0.4)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tensor_args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'TensorDeviceType'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">TensorDeviceType(device=device(type='cuda',</span> <span class="pre">index=0),</span> <span class="pre">dtype=torch.float32)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'float'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Optional[List[float]]'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.types.Sphere" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#curobo.geom.types.Obstacle" title="curobo.geom.types.Obstacle"><code class="xref py py-class docutils literal notranslate"><span class="pre">Obstacle</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – </p></li>
+<li><p><strong>pose</strong> (<em>List</em><em>[</em><em>float</em><em>] </em><em>| </em><em>None</em>) – </p></li>
+<li><p><strong>scale</strong> (<em>List</em><em>[</em><em>float</em><em>] </em><em>| </em><em>None</em>) – </p></li>
+<li><p><strong>color</strong> (<em>List</em><em>[</em><em>float</em><em>] </em><em>| </em><em>None</em>) – </p></li>
+<li><p><strong>texture_id</strong> (<em>str</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>texture</strong> (<em>str</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>material</strong> (<a class="reference internal" href="#curobo.geom.types.Material" title="curobo.geom.types.Material"><em>Material</em></a>) – </p></li>
+<li><p><strong>tensor_args</strong> (<a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType" title="curobo.types.base.TensorDeviceType"><em>TensorDeviceType</em></a>) – </p></li>
+<li><p><strong>radius</strong> (<em>float</em>) – </p></li>
+<li><p><strong>position</strong> (<em>List</em><em>[</em><em>float</em><em>] </em><em>| </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.geom.types.Sphere.radius">
+<span class="sig-name descname"><span class="pre">radius</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></em><a class="headerlink" href="#curobo.geom.types.Sphere.radius" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.geom.types.Sphere.position">
+<span class="sig-name descname"><span class="pre">position</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.geom.types.Sphere.position" title="Link to this definition"></a></dt>
+<dd><p>position is deprecated, use pose instead</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.types.Sphere.get_trimesh_mesh">
+<span class="sig-name descname"><span class="pre">get_trimesh_mesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">process</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.types.Sphere.get_trimesh_mesh" title="Link to this definition"></a></dt>
+<dd><p>Create a trimesh instance from the obstacle representation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>process</strong> (<em>bool</em><em>, </em><em>optional</em>) – process when loading from file. Defaults to True.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>NotImplementedError</strong> – requires implementation in derived class.</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>instance of obstacle as a trimesh.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>trimesh.Trimesh</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.types.Sphere.get_cuboid">
+<span class="sig-name descname"><span class="pre">get_cuboid</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.types.Sphere.get_cuboid" title="Link to this definition"></a></dt>
+<dd><p>Get oriented bounding box of obstacle (OBB).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>returns obstacle as a cuboid.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#curobo.geom.types.Cuboid" title="curobo.geom.types.Cuboid">Cuboid</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="curobo.geom.types.Mesh">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">curobo.geom.types.</span></span><span class="sig-name descname"><span class="pre">Mesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'str'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Optional[List[float]]'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Optional[List[float]]'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Optional[List[float]]'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">texture_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Optional[str]'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">texture</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Optional[str]'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">material</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Material'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Material(metallic=0.0,</span> <span class="pre">roughness=0.4)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tensor_args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'TensorDeviceType'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">TensorDeviceType(device=device(type='cuda',</span> <span class="pre">index=0),</span> <span class="pre">dtype=torch.float32)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Optional[str]'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_string</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Optional[str]'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">urdf_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Optional[str]'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vertices</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Optional[List[List[float]]]'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">faces</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Optional[List[int]]'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vertex_colors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Optional[List[List[float]]]'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vertex_normals</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Optional[List[List[float]]]'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">face_colors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Optional[List[List[float]]]'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.types.Mesh" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#curobo.geom.types.Obstacle" title="curobo.geom.types.Obstacle"><code class="xref py py-class docutils literal notranslate"><span class="pre">Obstacle</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – </p></li>
+<li><p><strong>pose</strong> (<em>List</em><em>[</em><em>float</em><em>] </em><em>| </em><em>None</em>) – </p></li>
+<li><p><strong>scale</strong> (<em>List</em><em>[</em><em>float</em><em>] </em><em>| </em><em>None</em>) – </p></li>
+<li><p><strong>color</strong> (<em>List</em><em>[</em><em>float</em><em>] </em><em>| </em><em>None</em>) – </p></li>
+<li><p><strong>texture_id</strong> (<em>str</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>texture</strong> (<em>str</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>material</strong> (<a class="reference internal" href="#curobo.geom.types.Material" title="curobo.geom.types.Material"><em>Material</em></a>) – </p></li>
+<li><p><strong>tensor_args</strong> (<a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType" title="curobo.types.base.TensorDeviceType"><em>TensorDeviceType</em></a>) – </p></li>
+<li><p><strong>file_path</strong> (<em>str</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>file_string</strong> (<em>str</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>urdf_path</strong> (<em>str</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>vertices</strong> (<em>List</em><em>[</em><em>List</em><em>[</em><em>float</em><em>]</em><em>] </em><em>| </em><em>None</em>) – </p></li>
+<li><p><strong>faces</strong> (<em>List</em><em>[</em><em>int</em><em>] </em><em>| </em><em>None</em>) – </p></li>
+<li><p><strong>vertex_colors</strong> (<em>List</em><em>[</em><em>List</em><em>[</em><em>float</em><em>]</em><em>] </em><em>| </em><em>None</em>) – </p></li>
+<li><p><strong>vertex_normals</strong> (<em>List</em><em>[</em><em>List</em><em>[</em><em>float</em><em>]</em><em>] </em><em>| </em><em>None</em>) – </p></li>
+<li><p><strong>face_colors</strong> (<em>List</em><em>[</em><em>List</em><em>[</em><em>float</em><em>]</em><em>] </em><em>| </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.geom.types.Mesh.file_path">
+<span class="sig-name descname"><span class="pre">file_path</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.geom.types.Mesh.file_path" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.geom.types.Mesh.file_string">
+<span class="sig-name descname"><span class="pre">file_string</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.geom.types.Mesh.file_string" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.geom.types.Mesh.urdf_path">
+<span class="sig-name descname"><span class="pre">urdf_path</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.geom.types.Mesh.urdf_path" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.geom.types.Mesh.vertices">
+<span class="sig-name descname"><span class="pre">vertices</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.geom.types.Mesh.vertices" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.geom.types.Mesh.faces">
+<span class="sig-name descname"><span class="pre">faces</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.geom.types.Mesh.faces" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.geom.types.Mesh.vertex_colors">
+<span class="sig-name descname"><span class="pre">vertex_colors</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.geom.types.Mesh.vertex_colors" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.geom.types.Mesh.vertex_normals">
+<span class="sig-name descname"><span class="pre">vertex_normals</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.geom.types.Mesh.vertex_normals" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.geom.types.Mesh.face_colors">
+<span class="sig-name descname"><span class="pre">face_colors</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.geom.types.Mesh.face_colors" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.types.Mesh.get_trimesh_mesh">
+<span class="sig-name descname"><span class="pre">get_trimesh_mesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">process</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.types.Mesh.get_trimesh_mesh" title="Link to this definition"></a></dt>
+<dd><p>Create a trimesh instance from the obstacle representation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>process</strong> (<em>bool</em><em>, </em><em>optional</em>) – process when loading from file. Defaults to True.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>NotImplementedError</strong> – requires implementation in derived class.</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>instance of obstacle as a trimesh.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>trimesh.Trimesh</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.types.Mesh.get_mesh_data">
+<span class="sig-name descname"><span class="pre">get_mesh_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">process</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.types.Mesh.get_mesh_data" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>process</strong> (<em>bool</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.types.Mesh.from_pointcloud">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_pointcloud</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pointcloud</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pitch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.02</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'world_pc'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0,</span> <span class="pre">0,</span> <span class="pre">0,</span> <span class="pre">1,</span> <span class="pre">0,</span> <span class="pre">0,</span> <span class="pre">0]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter_close_points</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.types.Mesh.from_pointcloud" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pointcloud</strong> (<em>ndarray</em>) – </p></li>
+<li><p><strong>pitch</strong> (<em>float</em>) – </p></li>
+<li><p><strong>pose</strong> (<em>List</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+<li><p><strong>filter_close_points</strong> (<em>float</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="curobo.geom.types.BloxMap">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">curobo.geom.types.</span></span><span class="sig-name descname"><span class="pre">BloxMap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name:</span> <span class="pre">'str'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pose:</span> <span class="pre">'Optional[List[float]]'</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale:</span> <span class="pre">'List[float]'</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color:</span> <span class="pre">'Optional[List[float]]'</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">texture_id:</span> <span class="pre">'Optional[str]'</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">texture:</span> <span class="pre">'Optional[str]'</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">material:</span> <span class="pre">'Material'</span> <span class="pre">=</span> <span class="pre">Material(metallic=0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">roughness=0.4)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tensor_args:</span> <span class="pre">'TensorDeviceType'</span> <span class="pre">=</span> <span class="pre">TensorDeviceType(device=device(type='cuda'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index=0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype=torch.float32)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">map_path:</span> <span class="pre">'Optional[str]'</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">voxel_size:</span> <span class="pre">'float'</span> <span class="pre">=</span> <span class="pre">0.02</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">integrator_type:</span> <span class="pre">'str'</span> <span class="pre">=</span> <span class="pre">'tsdf'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mesh_file_path:</span> <span class="pre">'Optional[str]'</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mapper_instance:</span> <span class="pre">'Any'</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mesh:</span> <span class="pre">'Optional[Mesh]'</span> <span class="pre">=</span> <span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.types.BloxMap" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#curobo.geom.types.Obstacle" title="curobo.geom.types.Obstacle"><code class="xref py py-class docutils literal notranslate"><span class="pre">Obstacle</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – </p></li>
+<li><p><strong>pose</strong> (<em>List</em><em>[</em><em>float</em><em>] </em><em>| </em><em>None</em>) – </p></li>
+<li><p><strong>scale</strong> (<em>List</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+<li><p><strong>color</strong> (<em>List</em><em>[</em><em>float</em><em>] </em><em>| </em><em>None</em>) – </p></li>
+<li><p><strong>texture_id</strong> (<em>str</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>texture</strong> (<em>str</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>material</strong> (<a class="reference internal" href="#curobo.geom.types.Material" title="curobo.geom.types.Material"><em>Material</em></a>) – </p></li>
+<li><p><strong>tensor_args</strong> (<a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType" title="curobo.types.base.TensorDeviceType"><em>TensorDeviceType</em></a>) – </p></li>
+<li><p><strong>map_path</strong> (<em>str</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>voxel_size</strong> (<em>float</em>) – </p></li>
+<li><p><strong>integrator_type</strong> (<em>str</em>) – </p></li>
+<li><p><strong>mesh_file_path</strong> (<em>str</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>mapper_instance</strong> (<em>Any</em>) – </p></li>
+<li><p><strong>mesh</strong> (<a class="reference internal" href="#curobo.geom.types.Mesh" title="curobo.geom.types.Mesh"><em>Mesh</em></a><em> | </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.geom.types.BloxMap.map_path">
+<span class="sig-name descname"><span class="pre">map_path</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.geom.types.BloxMap.map_path" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.geom.types.BloxMap.voxel_size">
+<span class="sig-name descname"><span class="pre">voxel_size</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.02</span></em><a class="headerlink" href="#curobo.geom.types.BloxMap.voxel_size" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.geom.types.BloxMap.integrator_type">
+<span class="sig-name descname"><span class="pre">integrator_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'tsdf'</span></em><a class="headerlink" href="#curobo.geom.types.BloxMap.integrator_type" title="Link to this definition"></a></dt>
+<dd><p>[“tsdf”, “occupancy”]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>integrator type to use in nvblox. Options</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.geom.types.BloxMap.mesh_file_path">
+<span class="sig-name descname"><span class="pre">mesh_file_path</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.geom.types.BloxMap.mesh_file_path" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.geom.types.BloxMap.mapper_instance">
+<span class="sig-name descname"><span class="pre">mapper_instance</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Any</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.geom.types.BloxMap.mapper_instance" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.geom.types.BloxMap.mesh">
+<span class="sig-name descname"><span class="pre">mesh</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#curobo.geom.types.Mesh" title="curobo.geom.types.Mesh"><span class="pre">Mesh</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.geom.types.BloxMap.mesh" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.types.BloxMap.get_trimesh_mesh">
+<span class="sig-name descname"><span class="pre">get_trimesh_mesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">process</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.types.BloxMap.get_trimesh_mesh" title="Link to this definition"></a></dt>
+<dd><p>Create a trimesh instance from the obstacle representation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>process</strong> (<em>bool</em><em>, </em><em>optional</em>) – process when loading from file. Defaults to True.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>NotImplementedError</strong> – requires implementation in derived class.</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>instance of obstacle as a trimesh.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>trimesh.Trimesh</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="curobo.geom.types.WorldConfig">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">curobo.geom.types.</span></span><span class="sig-name descname"><span class="pre">WorldConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sphere</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cuboid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">capsule</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cylinder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mesh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blox</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">objects</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.types.WorldConfig" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></p>
+<p>Representation of World for use in CuRobo.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sphere</strong> (<em>List</em><em>[</em><a class="reference internal" href="#curobo.geom.types.Sphere" title="curobo.geom.types.Sphere"><em>Sphere</em></a><em>] </em><em>| </em><em>None</em>) – </p></li>
+<li><p><strong>cuboid</strong> (<em>List</em><em>[</em><a class="reference internal" href="#curobo.geom.types.Cuboid" title="curobo.geom.types.Cuboid"><em>Cuboid</em></a><em>] </em><em>| </em><em>None</em>) – </p></li>
+<li><p><strong>capsule</strong> (<em>List</em><em>[</em><a class="reference internal" href="#curobo.geom.types.Capsule" title="curobo.geom.types.Capsule"><em>Capsule</em></a><em>] </em><em>| </em><em>None</em>) – </p></li>
+<li><p><strong>cylinder</strong> (<em>List</em><em>[</em><a class="reference internal" href="#curobo.geom.types.Cylinder" title="curobo.geom.types.Cylinder"><em>Cylinder</em></a><em>] </em><em>| </em><em>None</em>) – </p></li>
+<li><p><strong>mesh</strong> (<em>List</em><em>[</em><a class="reference internal" href="#curobo.geom.types.Mesh" title="curobo.geom.types.Mesh"><em>Mesh</em></a><em>] </em><em>| </em><em>None</em>) – </p></li>
+<li><p><strong>blox</strong> (<em>List</em><em>[</em><a class="reference internal" href="#curobo.geom.types.BloxMap" title="curobo.geom.types.BloxMap"><em>BloxMap</em></a><em>] </em><em>| </em><em>None</em>) – </p></li>
+<li><p><strong>objects</strong> (<em>List</em><em>[</em><a class="reference internal" href="#curobo.geom.types.Obstacle" title="curobo.geom.types.Obstacle"><em>Obstacle</em></a><em>] </em><em>| </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.geom.types.WorldConfig.sphere">
+<span class="sig-name descname"><span class="pre">sphere</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#curobo.geom.types.Sphere" title="curobo.geom.types.Sphere"><span class="pre">Sphere</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.geom.types.WorldConfig.sphere" title="Link to this definition"></a></dt>
+<dd><p>List of Sphere obstacles.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.geom.types.WorldConfig.cuboid">
+<span class="sig-name descname"><span class="pre">cuboid</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#curobo.geom.types.Cuboid" title="curobo.geom.types.Cuboid"><span class="pre">Cuboid</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.geom.types.WorldConfig.cuboid" title="Link to this definition"></a></dt>
+<dd><p>List of Cuboid obstacles.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.geom.types.WorldConfig.capsule">
+<span class="sig-name descname"><span class="pre">capsule</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#curobo.geom.types.Capsule" title="curobo.geom.types.Capsule"><span class="pre">Capsule</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.geom.types.WorldConfig.capsule" title="Link to this definition"></a></dt>
+<dd><p>List of Capsule obstacles.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.geom.types.WorldConfig.cylinder">
+<span class="sig-name descname"><span class="pre">cylinder</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#curobo.geom.types.Cylinder" title="curobo.geom.types.Cylinder"><span class="pre">Cylinder</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.geom.types.WorldConfig.cylinder" title="Link to this definition"></a></dt>
+<dd><p>List of Cylinder obstacles.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.geom.types.WorldConfig.mesh">
+<span class="sig-name descname"><span class="pre">mesh</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#curobo.geom.types.Mesh" title="curobo.geom.types.Mesh"><span class="pre">Mesh</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.geom.types.WorldConfig.mesh" title="Link to this definition"></a></dt>
+<dd><p>List of Mesh obstacles.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.geom.types.WorldConfig.blox">
+<span class="sig-name descname"><span class="pre">blox</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#curobo.geom.types.BloxMap" title="curobo.geom.types.BloxMap"><span class="pre">BloxMap</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.geom.types.WorldConfig.blox" title="Link to this definition"></a></dt>
+<dd><p>BloxMap obstacle.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.geom.types.WorldConfig.objects">
+<span class="sig-name descname"><span class="pre">objects</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#curobo.geom.types.Obstacle" title="curobo.geom.types.Obstacle"><span class="pre">Obstacle</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.geom.types.WorldConfig.objects" title="Link to this definition"></a></dt>
+<dd><p>List of all obstacles in world.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.types.WorldConfig.clone">
+<span class="sig-name descname"><span class="pre">clone</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.types.WorldConfig.clone" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.types.WorldConfig.from_dict">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.types.WorldConfig.from_dict" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data_dict</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#curobo.geom.types.WorldConfig" title="curobo.geom.types.WorldConfig"><em>WorldConfig</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.types.WorldConfig.create_obb_world">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_obb_world</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">current_world</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.types.WorldConfig.create_obb_world" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>current_world</strong> (<a class="reference internal" href="#curobo.geom.types.WorldConfig" title="curobo.geom.types.WorldConfig"><em>WorldConfig</em></a>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.types.WorldConfig.create_mesh_world">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_mesh_world</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">current_world</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">process</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.types.WorldConfig.create_mesh_world" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>current_world</strong> (<a class="reference internal" href="#curobo.geom.types.WorldConfig" title="curobo.geom.types.WorldConfig"><em>WorldConfig</em></a>) – </p></li>
+<li><p><strong>process</strong> (<em>bool</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.types.WorldConfig.create_collision_support_world">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_collision_support_world</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">current_world</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">process</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.types.WorldConfig.create_collision_support_world" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>current_world</strong> (<a class="reference internal" href="#curobo.geom.types.WorldConfig" title="curobo.geom.types.WorldConfig"><em>WorldConfig</em></a>) – </p></li>
+<li><p><strong>process</strong> (<em>bool</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.types.WorldConfig.get_scene_graph">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_scene_graph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">current_world</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.types.WorldConfig.get_scene_graph" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>current_world</strong> (<a class="reference internal" href="#curobo.geom.types.WorldConfig" title="curobo.geom.types.WorldConfig"><em>WorldConfig</em></a>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.types.WorldConfig.create_merged_mesh_world">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_merged_mesh_world</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">current_world</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">process</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.types.WorldConfig.create_merged_mesh_world" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>current_world</strong> (<a class="reference internal" href="#curobo.geom.types.WorldConfig" title="curobo.geom.types.WorldConfig"><em>WorldConfig</em></a>) – </p></li>
+<li><p><strong>process</strong> (<em>bool</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.types.WorldConfig.get_obb_world">
+<span class="sig-name descname"><span class="pre">get_obb_world</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.types.WorldConfig.get_obb_world" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.types.WorldConfig.get_mesh_world">
+<span class="sig-name descname"><span class="pre">get_mesh_world</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">merge_meshes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">process</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.types.WorldConfig.get_mesh_world" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>merge_meshes</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>process</strong> (<em>bool</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.types.WorldConfig.get_collision_check_world">
+<span class="sig-name descname"><span class="pre">get_collision_check_world</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh_process</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.types.WorldConfig.get_collision_check_world" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>mesh_process</strong> (<em>bool</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.types.WorldConfig.save_world_as_mesh">
+<span class="sig-name descname"><span class="pre">save_world_as_mesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_as_scene_graph</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.types.WorldConfig.save_world_as_mesh" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>file_path</strong> (<em>str</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.types.WorldConfig.get_cache_dict">
+<span class="sig-name descname"><span class="pre">get_cache_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.types.WorldConfig.get_cache_dict" title="Link to this definition"></a></dt>
+<dd><p>Computes the number of obstacles in each type</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>_description_</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>Dict</em>[str, int]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.types.WorldConfig.add_obstacle">
+<span class="sig-name descname"><span class="pre">add_obstacle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obstacle</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.types.WorldConfig.add_obstacle" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>obstacle</strong> (<a class="reference internal" href="#curobo.geom.types.Obstacle" title="curobo.geom.types.Obstacle"><em>Obstacle</em></a>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.types.WorldConfig.randomize_color">
+<span class="sig-name descname"><span class="pre">randomize_color</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0,</span> <span class="pre">1]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0,</span> <span class="pre">1]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0,</span> <span class="pre">1]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.types.WorldConfig.randomize_color" title="Link to this definition"></a></dt>
+<dd><p>Randomize color of objects within the given range</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>r</strong> – _description_. Defaults to [0,1].</p></li>
+<li><p><strong>g</strong> – _description_. Defaults to [0,1].</p></li>
+<li><p><strong>b</strong> – _description_. Defaults to [0,1].</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>_description_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.types.WorldConfig.add_color">
+<span class="sig-name descname"><span class="pre">add_color</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rgba</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0,</span> <span class="pre">1.0]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.types.WorldConfig.add_color" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.types.WorldConfig.add_material">
+<span class="sig-name descname"><span class="pre">add_material</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">material</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Material(metallic=0.0,</span> <span class="pre">roughness=0.4)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.types.WorldConfig.add_material" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.types.WorldConfig.get_obstacle">
+<span class="sig-name descname"><span class="pre">get_obstacle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.types.WorldConfig.get_obstacle" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Union[None, <a class="reference internal" href="#curobo.geom.types.Obstacle" title="curobo.geom.types.Obstacle">Obstacle</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.types.WorldConfig.remove_obstacle">
+<span class="sig-name descname"><span class="pre">remove_obstacle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.types.WorldConfig.remove_obstacle" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.types.WorldConfig.remove_absolute_paths">
+<span class="sig-name descname"><span class="pre">remove_absolute_paths</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.types.WorldConfig.remove_absolute_paths" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#curobo.geom.types.WorldConfig" title="curobo.geom.types.WorldConfig"><em>WorldConfig</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="curobo.geom.types.tensor_sphere">
+<span class="sig-prename descclassname"><span class="pre">curobo.geom.types.</span></span><span class="sig-name descname"><span class="pre">tensor_sphere</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tensor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tensor_args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">TensorDeviceType(device=device(type='cuda',</span> <span class="pre">index=0),</span> <span class="pre">dtype=torch.float32)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.types.tensor_sphere" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="curobo.geom.types.tensor_capsule">
+<span class="sig-prename descclassname"><span class="pre">curobo.geom.types.</span></span><span class="sig-name descname"><span class="pre">tensor_capsule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tip</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tensor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tensor_args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">TensorDeviceType(device=device(type='cuda',</span> <span class="pre">index=0),</span> <span class="pre">dtype=torch.float32)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.types.tensor_capsule" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="curobo.geom.types.tensor_cube">
+<span class="sig-prename descclassname"><span class="pre">curobo.geom.types.</span></span><span class="sig-name descname"><span class="pre">tensor_cube</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pose</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dims</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tensor_args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">TensorDeviceType(device=device(type='cuda',</span> <span class="pre">index=0),</span> <span class="pre">dtype=torch.float32)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.types.tensor_cube" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pose</strong> (<em>_type_</em>) – x,y,z, qw,qx,qy,qz</p></li>
+<li><p><strong>dims</strong> (<em>_type_</em>) – _description_</p></li>
+<li><p><strong>tensor_args</strong> (<em>_type_</em><em>, </em><em>optional</em>) – _description_. Defaults to TensorDeviceType().</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>_description_</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>_type_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="curobo.geom.types.batch_tensor_cube">
+<span class="sig-prename descclassname"><span class="pre">curobo.geom.types.</span></span><span class="sig-name descname"><span class="pre">batch_tensor_cube</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pose</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dims</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tensor_args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">TensorDeviceType(device=device(type='cuda',</span> <span class="pre">index=0),</span> <span class="pre">dtype=torch.float32)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.types.batch_tensor_cube" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pose</strong> (<em>_type_</em>) – x,y,z, qw,qx,qy,qz</p></li>
+<li><p><strong>dims</strong> (<em>_type_</em>) – _description_</p></li>
+<li><p><strong>tensor_args</strong> (<em>_type_</em><em>, </em><em>optional</em>) – _description_. Defaults to TensorDeviceType().</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>_description_</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>_type_</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="curobo.geom.transform.html" class="btn btn-neutral float-left" title="curobo.geom.transform module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="curobo.opt.html" class="btn btn-neutral float-right" title="curobo.opt package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, NVIDIA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(250);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,410 @@
+<!--
+-- Copyright (c) 2023 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+--
+-- NVIDIA CORPORATION, its affiliates and licensors retain all intellectual
+-- property and proprietary rights in and to this material, related
+-- documentation and any modifications thereto. Any use, reproduction,
+-- disclosure or distribution of this material and related documentation
+-- without an express license agreement from NVIDIA CORPORATION or
+-- its affiliates is strictly prohibited.
+-->
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>curobo.rollout.arm_reacher module &mdash; CuRobo  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="curobo.rollout.rollout_base module" href="curobo.rollout.rollout_base.html" />
+    <link rel="prev" title="curobo.rollout.arm_base module" href="curobo.rollout.arm_base.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CuRobo
+              <img src="../_static/nvidia_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Research</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/research/research.html">Technical Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/research/research_using_curobo.html">Research using CuRobo</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Library Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/1_install_instructions.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/1a_quick_overview.html">Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2a_python_examples.html">Using in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2b_isaacsim_examples.html">Using with Isaac Sim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2c_world_collision.html">Collision World Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2d_nvblox_demo.html">Using with Depth Camera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2e_torch_layer_example.html">Using in a Neural Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/4_benchmarks.html">Benchmarks &amp; Profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/5_docker_development.html">Docker Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/6_known_issues.html">Known Issues</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Advanced Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2a_batch_env.html">Batched Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2b_block_stacking_example.html">Block Stacking</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/tutorials/1_robot_configuration.html">Configuring a New Robot</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/01_robot_list.html">Supported Robots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/02_numerical_optimization.html">Numerical Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/04_cuda_kernels.html">CUDA Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/05_usd_api.html">USD for Robot and World Representation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">Python API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CuRobo</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../api.html">Python API</a></li>
+          <li class="breadcrumb-item"><a href="curobo.rollout.html">curobo.rollout package</a></li>
+      <li class="breadcrumb-item active">curobo.rollout.arm_reacher module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/_api/curobo.rollout.arm_reacher.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-curobo.rollout.arm_reacher">
+<span id="curobo-rollout-arm-reacher-module"></span><h1>curobo.rollout.arm_reacher module<a class="headerlink" href="#module-curobo.rollout.arm_reacher" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="curobo.rollout.arm_reacher.ArmReacherMetrics">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">curobo.rollout.arm_reacher.</span></span><span class="sig-name descname"><span class="pre">ArmReacherMetrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cost</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Optional[T_BValue_float]'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constraint</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Optional[T_BValue_float]'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feasible</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Optional[T_BValue_bool]'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Optional[State]'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cspace_error</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional[Annotated[torch.Tensor,</span> <span class="pre">{'__torchtyping__':</span> <span class="pre">True,</span> <span class="pre">'details':</span> <span class="pre">('batch',</span> <span class="pre">'value',</span> <span class="pre">torch.float32),</span> <span class="pre">'cls_name':</span> <span class="pre">'TensorType'}]]</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position_error</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional[Annotated[torch.Tensor,</span> <span class="pre">{'__torchtyping__':</span> <span class="pre">True,</span> <span class="pre">'details':</span> <span class="pre">('batch',</span> <span class="pre">'value',</span> <span class="pre">torch.float32),</span> <span class="pre">'cls_name':</span> <span class="pre">'TensorType'}]]</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotation_error</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional[Annotated[torch.Tensor,</span> <span class="pre">{'__torchtyping__':</span> <span class="pre">True,</span> <span class="pre">'details':</span> <span class="pre">('batch',</span> <span class="pre">'value',</span> <span class="pre">torch.float32),</span> <span class="pre">'cls_name':</span> <span class="pre">'TensorType'}]]</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pose_error</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional[Annotated[torch.Tensor,</span> <span class="pre">{'__torchtyping__':</span> <span class="pre">True,</span> <span class="pre">'details':</span> <span class="pre">('batch',</span> <span class="pre">'value',</span> <span class="pre">torch.float32),</span> <span class="pre">'cls_name':</span> <span class="pre">'TensorType'}]]</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.arm_reacher.ArmReacherMetrics" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutMetrics" title="curobo.rollout.rollout_base.RolloutMetrics"><code class="xref py py-class docutils literal notranslate"><span class="pre">RolloutMetrics</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cost</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>constraint</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>feasible</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>state</strong> (<a class="reference internal" href="curobo.types.state.html#curobo.types.state.State" title="curobo.types.state.State"><em>State</em></a><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>cspace_error</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>position_error</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>rotation_error</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>pose_error</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.rollout.arm_reacher.ArmReacherMetrics.cspace_error">
+<span class="sig-name descname"><span class="pre">cspace_error</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.rollout.arm_reacher.ArmReacherMetrics.cspace_error" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.rollout.arm_reacher.ArmReacherMetrics.position_error">
+<span class="sig-name descname"><span class="pre">position_error</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.rollout.arm_reacher.ArmReacherMetrics.position_error" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.rollout.arm_reacher.ArmReacherMetrics.rotation_error">
+<span class="sig-name descname"><span class="pre">rotation_error</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.rollout.arm_reacher.ArmReacherMetrics.rotation_error" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.rollout.arm_reacher.ArmReacherMetrics.pose_error">
+<span class="sig-name descname"><span class="pre">pose_error</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.rollout.arm_reacher.ArmReacherMetrics.pose_error" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.rollout.arm_reacher.ArmReacherMetrics.clone">
+<span class="sig-name descname"><span class="pre">clone</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">clone_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.arm_reacher.ArmReacherMetrics.clone" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="curobo.rollout.arm_reacher.ArmReacherCostConfig">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">curobo.rollout.arm_reacher.</span></span><span class="sig-name descname"><span class="pre">ArmReacherCostConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bound_cfg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.rollout.cost.bound_cost.html#curobo.rollout.cost.bound_cost.BoundCostConfig" title="curobo.rollout.cost.bound_cost.BoundCostConfig"><span class="pre">curobo.rollout.cost.bound_cost.BoundCostConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">null_space_cfg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.rollout.cost.dist_cost.html#curobo.rollout.cost.dist_cost.DistCostConfig" title="curobo.rollout.cost.dist_cost.DistCostConfig"><span class="pre">curobo.rollout.cost.dist_cost.DistCostConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">manipulability_cfg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.rollout.cost.manipulability_cost.html#curobo.rollout.cost.manipulability_cost.ManipulabilityCostConfig" title="curobo.rollout.cost.manipulability_cost.ManipulabilityCostConfig"><span class="pre">curobo.rollout.cost.manipulability_cost.ManipulabilityCostConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stop_cfg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.rollout.cost.stop_cost.html#curobo.rollout.cost.stop_cost.StopCostConfig" title="curobo.rollout.cost.stop_cost.StopCostConfig"><span class="pre">curobo.rollout.cost.stop_cost.StopCostConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">self_collision_cfg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.rollout.cost.self_collision_cost.html#curobo.rollout.cost.self_collision_cost.SelfCollisionCostConfig" title="curobo.rollout.cost.self_collision_cost.SelfCollisionCostConfig"><span class="pre">curobo.rollout.cost.self_collision_cost.SelfCollisionCostConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">primitive_collision_cfg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.rollout.cost.primitive_collision_cost.html#curobo.rollout.cost.primitive_collision_cost.PrimitiveCollisionCostConfig" title="curobo.rollout.cost.primitive_collision_cost.PrimitiveCollisionCostConfig"><span class="pre">curobo.rollout.cost.primitive_collision_cost.PrimitiveCollisionCostConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pose_cfg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.rollout.cost.pose_cost.html#curobo.rollout.cost.pose_cost.PoseCostConfig" title="curobo.rollout.cost.pose_cost.PoseCostConfig"><span class="pre">curobo.rollout.cost.pose_cost.PoseCostConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cspace_cfg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.rollout.cost.dist_cost.html#curobo.rollout.cost.dist_cost.DistCostConfig" title="curobo.rollout.cost.dist_cost.DistCostConfig"><span class="pre">curobo.rollout.cost.dist_cost.DistCostConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">straight_line_cfg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.rollout.cost.cost_base.html#curobo.rollout.cost.cost_base.CostConfig" title="curobo.rollout.cost.cost_base.CostConfig"><span class="pre">curobo.rollout.cost.cost_base.CostConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zero_acc_cfg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.rollout.cost.cost_base.html#curobo.rollout.cost.cost_base.CostConfig" title="curobo.rollout.cost.cost_base.CostConfig"><span class="pre">curobo.rollout.cost.cost_base.CostConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zero_vel_cfg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.rollout.cost.cost_base.html#curobo.rollout.cost.cost_base.CostConfig" title="curobo.rollout.cost.cost_base.CostConfig"><span class="pre">curobo.rollout.cost.cost_base.CostConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zero_jerk_cfg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.rollout.cost.cost_base.html#curobo.rollout.cost.cost_base.CostConfig" title="curobo.rollout.cost.cost_base.CostConfig"><span class="pre">curobo.rollout.cost.cost_base.CostConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.arm_reacher.ArmReacherCostConfig" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmCostConfig" title="curobo.rollout.arm_base.ArmCostConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArmCostConfig</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>bound_cfg</strong> (<a class="reference internal" href="curobo.rollout.cost.bound_cost.html#curobo.rollout.cost.bound_cost.BoundCostConfig" title="curobo.rollout.cost.bound_cost.BoundCostConfig"><em>BoundCostConfig</em></a><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>null_space_cfg</strong> (<a class="reference internal" href="curobo.rollout.cost.dist_cost.html#curobo.rollout.cost.dist_cost.DistCostConfig" title="curobo.rollout.cost.dist_cost.DistCostConfig"><em>DistCostConfig</em></a><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>manipulability_cfg</strong> (<a class="reference internal" href="curobo.rollout.cost.manipulability_cost.html#curobo.rollout.cost.manipulability_cost.ManipulabilityCostConfig" title="curobo.rollout.cost.manipulability_cost.ManipulabilityCostConfig"><em>ManipulabilityCostConfig</em></a><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>stop_cfg</strong> (<a class="reference internal" href="curobo.rollout.cost.stop_cost.html#curobo.rollout.cost.stop_cost.StopCostConfig" title="curobo.rollout.cost.stop_cost.StopCostConfig"><em>StopCostConfig</em></a><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>self_collision_cfg</strong> (<a class="reference internal" href="curobo.rollout.cost.self_collision_cost.html#curobo.rollout.cost.self_collision_cost.SelfCollisionCostConfig" title="curobo.rollout.cost.self_collision_cost.SelfCollisionCostConfig"><em>SelfCollisionCostConfig</em></a><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>primitive_collision_cfg</strong> (<a class="reference internal" href="curobo.rollout.cost.primitive_collision_cost.html#curobo.rollout.cost.primitive_collision_cost.PrimitiveCollisionCostConfig" title="curobo.rollout.cost.primitive_collision_cost.PrimitiveCollisionCostConfig"><em>PrimitiveCollisionCostConfig</em></a><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>pose_cfg</strong> (<a class="reference internal" href="curobo.rollout.cost.pose_cost.html#curobo.rollout.cost.pose_cost.PoseCostConfig" title="curobo.rollout.cost.pose_cost.PoseCostConfig"><em>PoseCostConfig</em></a><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>cspace_cfg</strong> (<a class="reference internal" href="curobo.rollout.cost.dist_cost.html#curobo.rollout.cost.dist_cost.DistCostConfig" title="curobo.rollout.cost.dist_cost.DistCostConfig"><em>DistCostConfig</em></a><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>straight_line_cfg</strong> (<a class="reference internal" href="curobo.rollout.cost.cost_base.html#curobo.rollout.cost.cost_base.CostConfig" title="curobo.rollout.cost.cost_base.CostConfig"><em>CostConfig</em></a><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>zero_acc_cfg</strong> (<a class="reference internal" href="curobo.rollout.cost.cost_base.html#curobo.rollout.cost.cost_base.CostConfig" title="curobo.rollout.cost.cost_base.CostConfig"><em>CostConfig</em></a><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>zero_vel_cfg</strong> (<a class="reference internal" href="curobo.rollout.cost.cost_base.html#curobo.rollout.cost.cost_base.CostConfig" title="curobo.rollout.cost.cost_base.CostConfig"><em>CostConfig</em></a><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>zero_jerk_cfg</strong> (<a class="reference internal" href="curobo.rollout.cost.cost_base.html#curobo.rollout.cost.cost_base.CostConfig" title="curobo.rollout.cost.cost_base.CostConfig"><em>CostConfig</em></a><em> | </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.rollout.arm_reacher.ArmReacherCostConfig.pose_cfg">
+<span class="sig-name descname"><span class="pre">pose_cfg</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.rollout.cost.pose_cost.html#curobo.rollout.cost.pose_cost.PoseCostConfig" title="curobo.rollout.cost.pose_cost.PoseCostConfig"><span class="pre">PoseCostConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.rollout.arm_reacher.ArmReacherCostConfig.pose_cfg" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.rollout.arm_reacher.ArmReacherCostConfig.cspace_cfg">
+<span class="sig-name descname"><span class="pre">cspace_cfg</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.rollout.cost.dist_cost.html#curobo.rollout.cost.dist_cost.DistCostConfig" title="curobo.rollout.cost.dist_cost.DistCostConfig"><span class="pre">DistCostConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.rollout.arm_reacher.ArmReacherCostConfig.cspace_cfg" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.rollout.arm_reacher.ArmReacherCostConfig.straight_line_cfg">
+<span class="sig-name descname"><span class="pre">straight_line_cfg</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.rollout.cost.cost_base.html#curobo.rollout.cost.cost_base.CostConfig" title="curobo.rollout.cost.cost_base.CostConfig"><span class="pre">CostConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.rollout.arm_reacher.ArmReacherCostConfig.straight_line_cfg" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.rollout.arm_reacher.ArmReacherCostConfig.zero_acc_cfg">
+<span class="sig-name descname"><span class="pre">zero_acc_cfg</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.rollout.cost.cost_base.html#curobo.rollout.cost.cost_base.CostConfig" title="curobo.rollout.cost.cost_base.CostConfig"><span class="pre">CostConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.rollout.arm_reacher.ArmReacherCostConfig.zero_acc_cfg" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.rollout.arm_reacher.ArmReacherCostConfig.zero_vel_cfg">
+<span class="sig-name descname"><span class="pre">zero_vel_cfg</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.rollout.cost.cost_base.html#curobo.rollout.cost.cost_base.CostConfig" title="curobo.rollout.cost.cost_base.CostConfig"><span class="pre">CostConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.rollout.arm_reacher.ArmReacherCostConfig.zero_vel_cfg" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.rollout.arm_reacher.ArmReacherCostConfig.zero_jerk_cfg">
+<span class="sig-name descname"><span class="pre">zero_jerk_cfg</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.rollout.cost.cost_base.html#curobo.rollout.cost.cost_base.CostConfig" title="curobo.rollout.cost.cost_base.CostConfig"><span class="pre">CostConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.rollout.arm_reacher.ArmReacherCostConfig.zero_jerk_cfg" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.rollout.arm_reacher.ArmReacherCostConfig.from_dict">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">robot_cfg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">world_coll_checker</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tensor_args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">TensorDeviceType(device=device(type='cuda',</span> <span class="pre">index=0),</span> <span class="pre">dtype=torch.float32)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.arm_reacher.ArmReacherCostConfig.from_dict" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data_dict</strong> (<em>Dict</em>) – </p></li>
+<li><p><strong>robot_cfg</strong> (<a class="reference internal" href="curobo.types.robot.html#curobo.types.robot.RobotConfig" title="curobo.types.robot.RobotConfig"><em>RobotConfig</em></a>) – </p></li>
+<li><p><strong>world_coll_checker</strong> (<a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldCollision" title="curobo.geom.sdf.world.WorldCollision"><em>WorldCollision</em></a><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>tensor_args</strong> (<a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType" title="curobo.types.base.TensorDeviceType"><em>TensorDeviceType</em></a>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="curobo.rollout.arm_reacher.ArmReacherConfig">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">curobo.rollout.arm_reacher.</span></span><span class="sig-name descname"><span class="pre">ArmReacherConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tensor_args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'TensorDeviceType'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_cfg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.rollout.dynamics_model.kinematic_model.html#curobo.rollout.dynamics_model.kinematic_model.KinematicModelConfig" title="curobo.rollout.dynamics_model.kinematic_model.KinematicModelConfig"><span class="pre">curobo.rollout.dynamics_model.kinematic_model.KinematicModelConfig</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">cost_cfg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#curobo.rollout.arm_reacher.ArmReacherCostConfig" title="curobo.rollout.arm_reacher.ArmReacherCostConfig"><span class="pre">curobo.rollout.arm_reacher.ArmReacherCostConfig</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">constraint_cfg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#curobo.rollout.arm_reacher.ArmReacherCostConfig" title="curobo.rollout.arm_reacher.ArmReacherCostConfig"><span class="pre">curobo.rollout.arm_reacher.ArmReacherCostConfig</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">convergence_cfg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#curobo.rollout.arm_reacher.ArmReacherCostConfig" title="curobo.rollout.arm_reacher.ArmReacherCostConfig"><span class="pre">curobo.rollout.arm_reacher.ArmReacherCostConfig</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">world_coll_checker</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldCollision" title="curobo.geom.sdf.world.WorldCollision"><span class="pre">curobo.geom.sdf.world.WorldCollision</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.arm_reacher.ArmReacherConfig" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmBaseConfig" title="curobo.rollout.arm_base.ArmBaseConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArmBaseConfig</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tensor_args</strong> (<a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType" title="curobo.types.base.TensorDeviceType"><em>TensorDeviceType</em></a>) – </p></li>
+<li><p><strong>model_cfg</strong> (<a class="reference internal" href="curobo.rollout.dynamics_model.kinematic_model.html#curobo.rollout.dynamics_model.kinematic_model.KinematicModelConfig" title="curobo.rollout.dynamics_model.kinematic_model.KinematicModelConfig"><em>KinematicModelConfig</em></a>) – </p></li>
+<li><p><strong>cost_cfg</strong> (<a class="reference internal" href="#curobo.rollout.arm_reacher.ArmReacherCostConfig" title="curobo.rollout.arm_reacher.ArmReacherCostConfig"><em>ArmReacherCostConfig</em></a>) – </p></li>
+<li><p><strong>constraint_cfg</strong> (<a class="reference internal" href="#curobo.rollout.arm_reacher.ArmReacherCostConfig" title="curobo.rollout.arm_reacher.ArmReacherCostConfig"><em>ArmReacherCostConfig</em></a>) – </p></li>
+<li><p><strong>convergence_cfg</strong> (<a class="reference internal" href="#curobo.rollout.arm_reacher.ArmReacherCostConfig" title="curobo.rollout.arm_reacher.ArmReacherCostConfig"><em>ArmReacherCostConfig</em></a>) – </p></li>
+<li><p><strong>world_coll_checker</strong> (<a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldCollision" title="curobo.geom.sdf.world.WorldCollision"><em>WorldCollision</em></a><em> | </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.rollout.arm_reacher.ArmReacherConfig.cost_cfg">
+<span class="sig-name descname"><span class="pre">cost_cfg</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#curobo.rollout.arm_reacher.ArmReacherCostConfig" title="curobo.rollout.arm_reacher.ArmReacherCostConfig"><span class="pre">ArmReacherCostConfig</span></a></em><a class="headerlink" href="#curobo.rollout.arm_reacher.ArmReacherConfig.cost_cfg" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.rollout.arm_reacher.ArmReacherConfig.constraint_cfg">
+<span class="sig-name descname"><span class="pre">constraint_cfg</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#curobo.rollout.arm_reacher.ArmReacherCostConfig" title="curobo.rollout.arm_reacher.ArmReacherCostConfig"><span class="pre">ArmReacherCostConfig</span></a></em><a class="headerlink" href="#curobo.rollout.arm_reacher.ArmReacherConfig.constraint_cfg" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.rollout.arm_reacher.ArmReacherConfig.convergence_cfg">
+<span class="sig-name descname"><span class="pre">convergence_cfg</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#curobo.rollout.arm_reacher.ArmReacherCostConfig" title="curobo.rollout.arm_reacher.ArmReacherCostConfig"><span class="pre">ArmReacherCostConfig</span></a></em><a class="headerlink" href="#curobo.rollout.arm_reacher.ArmReacherConfig.convergence_cfg" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.rollout.arm_reacher.ArmReacherConfig.cost_from_dict">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">cost_from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cost_data_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">robot_cfg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">world_coll_checker</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tensor_args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">TensorDeviceType(device=device(type='cuda',</span> <span class="pre">index=0),</span> <span class="pre">dtype=torch.float32)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.arm_reacher.ArmReacherConfig.cost_from_dict" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cost_data_dict</strong> (<em>Dict</em>) – </p></li>
+<li><p><strong>robot_cfg</strong> (<a class="reference internal" href="curobo.types.robot.html#curobo.types.robot.RobotConfig" title="curobo.types.robot.RobotConfig"><em>RobotConfig</em></a>) – </p></li>
+<li><p><strong>world_coll_checker</strong> (<a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldCollision" title="curobo.geom.sdf.world.WorldCollision"><em>WorldCollision</em></a><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>tensor_args</strong> (<a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType" title="curobo.types.base.TensorDeviceType"><em>TensorDeviceType</em></a>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="curobo.rollout.arm_reacher.ArmReacher">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">curobo.rollout.arm_reacher.</span></span><span class="sig-name descname"><span class="pre">ArmReacher</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.arm_reacher.ArmReacher" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmBase" title="curobo.rollout.arm_base.ArmBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArmBase</span></code></a>, <a class="reference internal" href="#curobo.rollout.arm_reacher.ArmReacherConfig" title="curobo.rollout.arm_reacher.ArmReacherConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArmReacherConfig</span></code></a></p>
+<div class="graphviz"><img src="../_images/inheritance-01707e3aa7e11f06399686d1ec5b7bae7551639f.png" alt="Inheritance diagram of curobo.rollout.arm_reacher.ArmReacher" usemap="#inheritance0e3e0504ba" class="inheritance graphviz" /></div>
+<map id="inheritance0e3e0504ba" name="inheritance0e3e0504ba">
+<area shape="rect" id="node1" href="curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmBase" target="_top" title="This rollout function is for reaching a cartesian pose for a robot" alt="" coords="411,3,552,18"/>
+<area shape="rect" id="node5" href="#curobo.rollout.arm_reacher.ArmReacher" target="_top" title=".. inheritance&#45;diagram:: curobo.rollout.arm_reacher.ArmReacher" alt="" coords="602,18,765,32"/>
+<area shape="rect" id="node2" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutBase" target="_top" title="curobo.rollout.rollout_base.RolloutBase" alt="" coords="198,3,359,18"/>
+<area shape="rect" id="node3" href="curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmBaseConfig" target="_top" title="ArmBaseConfig(tensor_args: &#39;TensorDeviceType&#39;, model_cfg: curobo.rollout.dynamics_model.kinematic_model.KinematicModelConfig, cost_cfg: curobo.rollout.arm_base.ArmCostConfig, constraint_cfg: curobo.rollout.arm_base.ArmCostConfig, convergence_cfg: curobo.rollout.arm_base.ArmCostConfig, world_coll_checker: Optional[curobo.geom.sdf.world.WorldCollision] = None)" alt="" coords="196,32,361,46"/>
+<area shape="rect" id="node6" href="#curobo.rollout.arm_reacher.ArmReacherConfig" target="_top" title="ArmReacherConfig(tensor_args: &#39;TensorDeviceType&#39;, model_cfg: curobo.rollout.dynamics_model.kinematic_model.KinematicModelConfig, cost_cfg: curobo.rollout.arm_reacher.ArmReacherCostConfig, constraint_cfg: curobo.rollout.arm_reacher.ArmReacherCostConfig, convergence_cfg: curobo.rollout.arm_reacher.ArmReacherCostConfig, world_coll_checker: Optional[curobo.geom.sdf.world.WorldCollision] = None)" alt="" coords="388,32,575,46"/>
+<area shape="rect" id="node4" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutConfig" target="_top" title="RolloutConfig(tensor_args: &#39;TensorDeviceType&#39;)" alt="" coords="3,32,169,46"/>
+</map><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>config</strong> (<a class="reference internal" href="#curobo.rollout.arm_reacher.ArmReacherConfig" title="curobo.rollout.arm_reacher.ArmReacherConfig"><em>ArmReacherConfig</em></a><em> | </em><em>None</em>) – </p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.rollout.arm_reacher.ArmReacher.cost_fn">
+<span class="sig-name descname"><span class="pre">cost_fn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">action_batch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.arm_reacher.ArmReacher.cost_fn" title="Link to this definition"></a></dt>
+<dd><p>Compute cost given that state dictionary and actions</p>
+<p><code class="xref py py-class docutils literal notranslate"><span class="pre">curobo.rollout.cost.PoseCost</span></code>
+<code class="xref py py-class docutils literal notranslate"><span class="pre">curobo.rollout.cost.DistCost</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>state</strong> (<a class="reference internal" href="curobo.rollout.dynamics_model.kinematic_model.html#curobo.rollout.dynamics_model.kinematic_model.KinematicModelState" title="curobo.rollout.dynamics_model.kinematic_model.KinematicModelState"><em>KinematicModelState</em></a>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.rollout.arm_reacher.ArmReacher.convergence_fn">
+<span class="sig-name descname"><span class="pre">convergence_fn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_metrics</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.arm_reacher.ArmReacher.convergence_fn" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>state</strong> (<a class="reference internal" href="curobo.rollout.dynamics_model.kinematic_model.html#curobo.rollout.dynamics_model.kinematic_model.KinematicModelState" title="curobo.rollout.dynamics_model.kinematic_model.KinematicModelState"><em>KinematicModelState</em></a>) – </p></li>
+<li><p><strong>out_metrics</strong> (<a class="reference internal" href="#curobo.rollout.arm_reacher.ArmReacherMetrics" title="curobo.rollout.arm_reacher.ArmReacherMetrics"><em>ArmReacherMetrics</em></a><em> | </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#curobo.rollout.arm_reacher.ArmReacherMetrics" title="curobo.rollout.arm_reacher.ArmReacherMetrics"><em>ArmReacherMetrics</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.rollout.arm_reacher.ArmReacher.update_params">
+<span class="sig-name descname"><span class="pre">update_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">goal</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.arm_reacher.ArmReacher.update_params" title="Link to this definition"></a></dt>
+<dd><p>Update params for the cost terms and dynamics model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>goal</strong> (<a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal" title="curobo.rollout.rollout_base.Goal"><em>Goal</em></a>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.rollout.arm_reacher.ArmReacher.enable_pose_cost">
+<span class="sig-name descname"><span class="pre">enable_pose_cost</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">enable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.arm_reacher.ArmReacher.enable_pose_cost" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>enable</strong> (<em>bool</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.rollout.arm_reacher.ArmReacher.enable_cspace_cost">
+<span class="sig-name descname"><span class="pre">enable_cspace_cost</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">enable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.arm_reacher.ArmReacher.enable_cspace_cost" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>enable</strong> (<em>bool</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="curobo.rollout.arm_base.html" class="btn btn-neutral float-left" title="curobo.rollout.arm_base module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="curobo.rollout.rollout_base.html" class="btn btn-neutral float-right" title="curobo.rollout.rollout_base module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, NVIDIA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(250);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

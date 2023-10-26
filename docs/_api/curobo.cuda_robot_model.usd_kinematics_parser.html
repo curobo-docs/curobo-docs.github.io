@@ -1,0 +1,245 @@
+<!--
+-- Copyright (c) 2023 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+--
+-- NVIDIA CORPORATION, its affiliates and licensors retain all intellectual
+-- property and proprietary rights in and to this material, related
+-- documentation and any modifications thereto. Any use, reproduction,
+-- disclosure or distribution of this material and related documentation
+-- without an express license agreement from NVIDIA CORPORATION or
+-- its affiliates is strictly prohibited.
+-->
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>curobo.cuda_robot_model.usd_kinematics_parser module &mdash; CuRobo  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="curobo.geom package" href="curobo.geom.html" />
+    <link rel="prev" title="curobo.cuda_robot_model.urdf_kinematics_parser module" href="curobo.cuda_robot_model.urdf_kinematics_parser.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CuRobo
+              <img src="../_static/nvidia_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Research</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/research/research.html">Technical Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/research/research_using_curobo.html">Research using CuRobo</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Library Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/1_install_instructions.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/1a_quick_overview.html">Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2a_python_examples.html">Using in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2b_isaacsim_examples.html">Using with Isaac Sim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2c_world_collision.html">Collision World Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2d_nvblox_demo.html">Using with Depth Camera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2e_torch_layer_example.html">Using in a Neural Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/4_benchmarks.html">Benchmarks &amp; Profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/5_docker_development.html">Docker Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/6_known_issues.html">Known Issues</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Advanced Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2a_batch_env.html">Batched Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2b_block_stacking_example.html">Block Stacking</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/tutorials/1_robot_configuration.html">Configuring a New Robot</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/01_robot_list.html">Supported Robots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/02_numerical_optimization.html">Numerical Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/04_cuda_kernels.html">CUDA Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/05_usd_api.html">USD for Robot and World Representation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">Python API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CuRobo</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../api.html">Python API</a></li>
+          <li class="breadcrumb-item"><a href="curobo.cuda_robot_model.html">curobo.cuda_robot_model package</a></li>
+      <li class="breadcrumb-item active">curobo.cuda_robot_model.usd_kinematics_parser module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/_api/curobo.cuda_robot_model.usd_kinematics_parser.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-curobo.cuda_robot_model.usd_kinematics_parser">
+<span id="curobo-cuda-robot-model-usd-kinematics-parser-module"></span><h1>curobo.cuda_robot_model.usd_kinematics_parser module<a class="headerlink" href="#module-curobo.cuda_robot_model.usd_kinematics_parser" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.usd_kinematics_parser.UsdKinematicsParser">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">curobo.cuda_robot_model.usd_kinematics_parser.</span></span><span class="sig-name descname"><span class="pre">UsdKinematicsParser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">usd_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flip_joints</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flip_joint_limits</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">usd_robot_root</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'robot'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tensor_args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">TensorDeviceType(device=device(type='cuda',</span> <span class="pre">index=0),</span> <span class="pre">dtype=torch.float32)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra_links</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.cuda_robot_model.usd_kinematics_parser.UsdKinematicsParser" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="curobo.cuda_robot_model.kinematics_parser.html#curobo.cuda_robot_model.kinematics_parser.KinematicsParser" title="curobo.cuda_robot_model.kinematics_parser.KinematicsParser"><code class="xref py py-class docutils literal notranslate"><span class="pre">KinematicsParser</span></code></a></p>
+<p>An experimental kinematics parser from USD.
+NOTE: A more complete solution will be available in a future release. Current implementation
+does not account for link geometry transformations after a joints.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>usd_path</strong> (<em>str</em>) – </p></li>
+<li><p><strong>flip_joints</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – </p></li>
+<li><p><strong>flip_joint_limits</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – </p></li>
+<li><p><strong>usd_robot_root</strong> (<em>str</em>) – </p></li>
+<li><p><strong>tensor_args</strong> (<a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType" title="curobo.types.base.TensorDeviceType"><em>TensorDeviceType</em></a>) – </p></li>
+<li><p><strong>extra_links</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><a class="reference internal" href="curobo.cuda_robot_model.kinematics_parser.html#curobo.cuda_robot_model.kinematics_parser.LinkParams" title="curobo.cuda_robot_model.kinematics_parser.LinkParams"><em>LinkParams</em></a><em>] </em><em>| </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py property">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.usd_kinematics_parser.UsdKinematicsParser.robot_prim_root">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">robot_prim_root</span></span><a class="headerlink" href="#curobo.cuda_robot_model.usd_kinematics_parser.UsdKinematicsParser.robot_prim_root" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.usd_kinematics_parser.UsdKinematicsParser.build_link_parent">
+<span class="sig-name descname"><span class="pre">build_link_parent</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.cuda_robot_model.usd_kinematics_parser.UsdKinematicsParser.build_link_parent" title="Link to this definition"></a></dt>
+<dd><p>Build a map of parent links to each link in the kinematic tree.</p>
+<p>NOTE: Use this function to fill self._parent_map.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.usd_kinematics_parser.UsdKinematicsParser.get_link_parameters">
+<span class="sig-name descname"><span class="pre">get_link_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">link_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.cuda_robot_model.usd_kinematics_parser.UsdKinematicsParser.get_link_parameters" title="Link to this definition"></a></dt>
+<dd><p>Get Link parameters from usd stage.</p>
+<p>NOTE: USD kinematics “X” axis joints map to “Z” in URDF. Specifically,
+uniform token physics:axis = “X” value only matches “Z” in URDF. This is because of usd
+files assuming Y axis as up while urdf files assume Z axis as up.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>link_name</strong> (<em>str</em>) – Name of link.</p></li>
+<li><p><strong>base</strong> (<em>bool</em><em>, </em><em>optional</em>) – flag to specify base link. Defaults to False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>obtained link parameters.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="curobo.cuda_robot_model.kinematics_parser.html#curobo.cuda_robot_model.kinematics_parser.LinkParams" title="curobo.cuda_robot_model.kinematics_parser.LinkParams">LinkParams</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.usd_kinematics_parser.get_links_for_joint">
+<span class="sig-prename descclassname"><span class="pre">curobo.cuda_robot_model.usd_kinematics_parser.</span></span><span class="sig-name descname"><span class="pre">get_links_for_joint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prim</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.cuda_robot_model.usd_kinematics_parser.get_links_for_joint" title="Link to this definition"></a></dt>
+<dd><p>Get all link prims from the given joint prim.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This assumes that the <cite>body0_rel_targets</cite> and <cite>body1_rel_targets</cite> are configured such
+that the parent link is specified in <cite>body0_rel_targets</cite> and the child links is specified
+in <cite>body1_rel_targets</cite>.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>prim</strong> (<em>Prim</em>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>Tuple</em>[<em>Prim</em> | None, <em>Prim</em> | None]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="curobo.cuda_robot_model.urdf_kinematics_parser.html" class="btn btn-neutral float-left" title="curobo.cuda_robot_model.urdf_kinematics_parser module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="curobo.geom.html" class="btn btn-neutral float-right" title="curobo.geom package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, NVIDIA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(250);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

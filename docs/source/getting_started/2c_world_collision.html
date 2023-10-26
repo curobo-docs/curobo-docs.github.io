@@ -1,0 +1,673 @@
+<!--
+-- Copyright (c) 2023 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+--
+-- NVIDIA CORPORATION, its affiliates and licensors retain all intellectual
+-- property and proprietary rights in and to this material, related
+-- documentation and any modifications thereto. Any use, reproduction,
+-- disclosure or distribution of this material and related documentation
+-- without an express license agreement from NVIDIA CORPORATION or
+-- its affiliates is strictly prohibited.
+-->
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Collision World Representation &mdash; CuRobo  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"T": ["{\\textsf{T}}", 0], "abs": ["{\\left\\lvert#1\\right\\rvert}", 1], "norm": ["{\\left\\lVert#1\\right\\rVert}", 1], "det": ["{\\left\\lvert#1\\right\\rvert}", 1], "innerprod": ["{\\left\\langle#1,#2\\right\\rangle}", 2], "vector": ["{[#1_1,\\ldots,#1_{#2}]}", 2], "N": "{\\mathbb{N}}", "Z": "{\\mathbb{Z}}", "R": "{\\mathbb{R}}", "C": "{\\mathbb{C}}", "Im": ["{\\mathcal{R}(#1)}", 1], "Ker": ["{\\mathcal{N}(#1)}", 1], "Tr": "{\\text{Tr}}", "pd": ["{\\frac{\\partial{#1}}{\\partial{#2}}}", 2], "E": ["{\\mathbf{E}\\left[#1\\right]}", 1], "V": ["{\\mathbf{V}\\left[#1\\right]}", 1], "U": "{\\mathcal{U}}", "half": "{\\frac{1}{2}}", "ceil": ["{\\left \\lceil{#1}\\right \\rceil}", 1], "floor": ["{\\left \\lfloor{#1}\\right \\rfloor}", 1]}}})</script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Using with Depth Camera" href="2d_nvblox_demo.html" />
+    <link rel="prev" title="Using with Isaac Sim" href="2b_isaacsim_examples.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            CuRobo
+              <img src="../../_static/nvidia_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Research</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../research/research.html">Technical Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../research/research_using_curobo.html">Research using CuRobo</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Library Overview</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="1_install_instructions.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1a_quick_overview.html">Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2a_python_examples.html">Using in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2b_isaacsim_examples.html">Using with Isaac Sim</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Collision World Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2d_nvblox_demo.html">Using with Depth Camera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2e_torch_layer_example.html">Using in a Neural Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_benchmarks.html">Benchmarks &amp; Profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_docker_development.html">Docker Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_known_issues.html">Known Issues</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Advanced Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_examples/2a_batch_env.html">Batched Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_examples/2b_block_stacking_example.html">Block Stacking</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/1_robot_configuration.html">Configuring a New Robot</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../notes/01_robot_list.html">Supported Robots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/02_numerical_optimization.html">Numerical Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/04_cuda_kernels.html">CUDA Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/05_usd_api.html">USD for Robot and World Representation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">Python API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">CuRobo</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Collision World Representation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/source/getting_started/2c_world_collision.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="collision-world-representation">
+<span id="world-collision"></span><h1>Collision World Representation<a class="headerlink" href="#collision-world-representation" title="Link to this heading"></a></h1>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#world-representation" id="id7">World Representation</a></p></li>
+<li><p><a class="reference internal" href="#world-collision-checkers" id="id8">World Collision Checkers</a></p>
+<ul>
+<li><p><a class="reference internal" href="#batched-environments" id="id9">Batched Environments</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#collision-checking-implementation" id="id10">Collision Checking Implementation</a></p>
+<ul>
+<li><p><a class="reference internal" href="#collision-metric" id="id11">Collision Metric</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#geometry-approximation-to-spheres" id="id12">Geometry Approximation to Spheres</a></p></li>
+</ul>
+</nav>
+<section id="world-representation">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">World Representation</a><a class="headerlink" href="#world-representation" title="Link to this heading"></a></h2>
+<p>CuRobo represents the world with an instance of <a class="reference internal" href="../../_api/curobo.geom.types.html#curobo.geom.types.WorldConfig" title="curobo.geom.types.WorldConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">curobo.geom.types.WorldConfig</span></code></a> which
+can store world objects as primitives, meshes, and depth images using nvblox or voxelization.
+CuRobo has GPU accelerated functions for collision queries with cuboids, meshes, and nvblox maps.
+Other primitive types can be approximated to a cuboid or a mesh using helper functions described
+later in this page. An overview of the world representation and collision checkers is illustrated below.</p>
+<div class="graphviz"><img src="../../_images/graphviz-72506f25349dc737afab99e2bcc1b72fa7f813b4.png" alt="digraph {
+edge [color = &quot;#2B4162&quot;; fontsize=10];
+node [shape=&quot;box&quot;, style=&quot;rounded, filled&quot;, fontsize=12, color=&quot;grey&quot;]
+&quot;Cuboid[]&quot; [color=&quot;#76b900&quot;, fontcolor=&quot;#FFFFFF&quot;]
+&quot;Mesh[]&quot; [color=&quot;#76b900&quot;, fontcolor=&quot;#FFFFFF&quot;]
+
+&quot;BloxMap[]&quot; [color=&quot;#76b900&quot;, fontcolor=&quot;#FFFFFF&quot;]
+&quot;WorldConfig&quot; [color=&quot;#76b900&quot;, fontcolor=&quot;#FFFFFF&quot;]
+&quot;WorldConfig&quot; -&gt; &quot;Cuboid[]&quot;;
+&quot;WorldConfig&quot; -&gt; &quot;Mesh[]&quot;;
+&quot;WorldConfig&quot; -&gt; &quot;BloxMap[]&quot;;
+&quot;WorldConfig&quot; -&gt; &quot;Sphere[]&quot;;
+&quot;WorldConfig&quot; -&gt; &quot;Cylinder[]&quot;;
+&quot;WorldConfig&quot; -&gt; &quot;Capsule[]&quot;;
+&quot;Cuboid[]&quot; -&gt; &quot;WorldCollision&quot;;
+&quot;Mesh[]&quot; -&gt; WorldMeshCollision;
+&quot;BloxMap[]&quot; -&gt; WorldBloxCollision;
+subgraph cluster_collision{
+label=&quot;Collision Checker&quot;;
+&quot;WorldCollision&quot; [label=&quot;WorldPrimitiveCollision&quot;, color=&quot;#76b900&quot;, fontcolor=&quot;#FFFFFF&quot;]
+&quot;WorldMeshCollision&quot; [color=&quot;#76b900&quot;, fontcolor=&quot;#FFFFFF&quot;]
+&quot;WorldBloxCollision&quot; [color=&quot;#76b900&quot;, fontcolor=&quot;#FFFFFF&quot;]
+&quot;WorldCollision&quot; -&gt; &quot;WorldMeshCollision&quot; [label=&quot;inheritance&quot;, style=&quot;dashed&quot;,
+color=&quot;#76b900&quot;];
+&quot;WorldMeshCollision&quot; -&gt; &quot;WorldBloxCollision&quot; [label=&quot;inheritance&quot;, style=&quot;dashed&quot;,
+color=&quot;#76b900&quot;];
+
+}
+
+}" class="graphviz" /></div>
+<video autoplay="True" loop="True" preload="auto" width="690"><source src="../../videos/collision_demo.mp4" type="video/mp4"></video><div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>We will look at some examples in python. First, we will load a world that contains one object of
+each type,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">curobo.geom.types</span> <span class="kn">import</span> <span class="n">WorldConfig</span><span class="p">,</span> <span class="n">Cuboid</span><span class="p">,</span> <span class="n">Mesh</span><span class="p">,</span> <span class="n">Capsule</span><span class="p">,</span> <span class="n">Cylinder</span><span class="p">,</span> <span class="n">Sphere</span>
+<span class="kn">from</span> <span class="nn">curobo.util_file</span> <span class="kn">import</span> <span class="n">get_assets_path</span><span class="p">,</span> <span class="n">join_path</span>
+
+<span class="n">obstacle_1</span> <span class="o">=</span> <span class="n">Cuboid</span><span class="p">(</span>
+     <span class="n">name</span><span class="o">=</span><span class="s2">&quot;cube_1&quot;</span><span class="p">,</span>
+     <span class="n">pose</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.043</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.471</span><span class="p">,</span> <span class="mf">0.284</span><span class="p">,</span> <span class="mf">0.834</span><span class="p">],</span>
+     <span class="n">dims</span><span class="o">=</span><span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">],</span>
+     <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span>
+ <span class="p">)</span>
+
+<span class="c1"># describe a mesh obstacle</span>
+<span class="c1"># import a mesh file:</span>
+
+<span class="n">mesh_file</span> <span class="o">=</span> <span class="n">join_path</span><span class="p">(</span><span class="n">get_assets_path</span><span class="p">(),</span> <span class="s2">&quot;scene/nvblox/srl_ur10_bins.obj&quot;</span><span class="p">)</span>
+
+<span class="n">obstacle_2</span> <span class="o">=</span> <span class="n">Mesh</span><span class="p">(</span>
+   <span class="n">name</span><span class="o">=</span><span class="s2">&quot;mesh_1&quot;</span><span class="p">,</span>
+   <span class="n">pose</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.043</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.471</span><span class="p">,</span> <span class="mf">0.284</span><span class="p">,</span> <span class="mf">0.834</span><span class="p">],</span>
+   <span class="n">file_path</span><span class="o">=</span><span class="n">mesh_file</span><span class="p">,</span>
+   <span class="n">scale</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span>
+<span class="p">)</span>
+
+<span class="n">obstacle_3</span> <span class="o">=</span> <span class="n">Capsule</span><span class="p">(</span>
+   <span class="n">name</span><span class="o">=</span><span class="s2">&quot;capsule&quot;</span><span class="p">,</span>
+   <span class="n">radius</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+   <span class="n">base</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+   <span class="n">tip</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span>
+   <span class="n">pose</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.043</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.471</span><span class="p">,</span> <span class="mf">0.284</span><span class="p">,</span> <span class="mf">0.834</span><span class="p">],</span>
+   <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span>
+<span class="p">)</span>
+
+<span class="n">obstacle_4</span> <span class="o">=</span> <span class="n">Cylinder</span><span class="p">(</span>
+   <span class="n">name</span><span class="o">=</span><span class="s2">&quot;cylinder_1&quot;</span><span class="p">,</span>
+   <span class="n">radius</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+   <span class="n">height</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+   <span class="n">pose</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.043</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.471</span><span class="p">,</span> <span class="mf">0.284</span><span class="p">,</span> <span class="mf">0.834</span><span class="p">],</span>
+   <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span>
+<span class="p">)</span>
+
+<span class="n">obstacle_5</span> <span class="o">=</span> <span class="n">Sphere</span><span class="p">(</span>
+   <span class="n">name</span><span class="o">=</span><span class="s2">&quot;sphere_1&quot;</span><span class="p">,</span>
+   <span class="n">radius</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+   <span class="n">pose</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.043</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.471</span><span class="p">,</span> <span class="mf">0.284</span><span class="p">,</span> <span class="mf">0.834</span><span class="p">],</span>
+   <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span>
+<span class="p">)</span>
+
+<span class="n">world_model</span> <span class="o">=</span> <span class="n">WorldConfig</span><span class="p">(</span>
+   <span class="n">mesh</span><span class="o">=</span><span class="p">[</span><span class="n">obstacle_2</span><span class="p">],</span>
+   <span class="n">cuboid</span><span class="o">=</span><span class="p">[</span><span class="n">obstacle_1</span><span class="p">],</span>
+   <span class="n">capsule</span><span class="o">=</span><span class="p">[</span><span class="n">obstacle_3</span><span class="p">],</span>
+   <span class="n">cylinder</span><span class="o">=</span><span class="p">[</span><span class="n">obstacle_4</span><span class="p">],</span>
+   <span class="n">sphere</span><span class="o">=</span><span class="p">[</span><span class="n">obstacle_5</span><span class="p">],</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>We can visualize the world by saving the objects to a mesh file and loading using a mesh viewer
+such as <a class="reference external" href="https://www.meshlab.net/">meshlab</a>. We assign a random color to each mesh and save it
+to a file,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># assign random color to each obstacle for visualization</span>
+<span class="n">world_model</span><span class="o">.</span><span class="n">randomize_color</span><span class="p">(</span><span class="n">r</span><span class="o">=</span><span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">],</span> <span class="n">g</span><span class="o">=</span><span class="p">[</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span>
+
+<span class="n">file_path</span> <span class="o">=</span> <span class="s2">&quot;debug_mesh.obj&quot;</span>
+<span class="n">world_model</span><span class="o">.</span><span class="n">save_world_as_mesh</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+</pre></div>
+</div>
+<figure class="align-default" id="id2">
+<a class="reference internal image-reference" href="../../_images/world_representation.png"><img alt="../../_images/world_representation.png" src="../../_images/world_representation.png" style="width: 690px;" /></a>
+<figcaption>
+<p><span class="caption-text">Five object types that are available in CuRobo’s WorldConfig are visualized, with Cuboid, Mesh,
+Capsule, Cylinder, and Sphere from left to right.</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>To use this world in a collision checker, we need to approximate some object types as CuRobo
+currently only provides a collision checker for cuboids and meshes. Capsules, cylinders, and spheres
+can be approximated to cuboids using <a class="reference internal" href="../../_api/curobo.geom.types.html#curobo.geom.types.WorldConfig.create_obb_world" title="curobo.geom.types.WorldConfig.create_obb_world"><code class="xref py py-class docutils literal notranslate"><span class="pre">curobo.geom.types.WorldConfig.create_obb_world</span></code></a>,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># convert all objects into cuboids (oriented bounding boxes OBB)</span>
+<span class="n">cuboid_world</span> <span class="o">=</span> <span class="n">WorldConfig</span><span class="o">.</span><span class="n">create_obb_world</span><span class="p">(</span><span class="n">world_model</span><span class="p">)</span>
+
+<span class="n">cuboid_world</span><span class="o">.</span><span class="n">save_world_as_mesh</span><span class="p">(</span><span class="s2">&quot;debug_collision_cuboid.obj&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<figure class="align-default" id="id3">
+<a class="reference internal image-reference" href="../../_images/world_approximation.png"><img alt="../../_images/world_approximation.png" src="../../_images/world_approximation.png" style="width: 690px;" /></a>
+<figcaption>
+<p><span class="caption-text">cuboid approximation of different object types are visulaized in the bottom row.</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>Alternatively, the objects can also be approximated as meshes, which are more accurate using,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Keep cuboid objects as cuboids, nvblox as nvblox,  and convert all others to meshes.</span>
+<span class="n">collision_supported_world</span> <span class="o">=</span> <span class="n">WorldConfig</span><span class="o">.</span><span class="n">create_collision_support_world</span><span class="p">(</span><span class="n">world_model</span><span class="p">)</span>
+<span class="n">collision_support_world</span><span class="o">.</span><span class="n">save_world_as_mesh</span><span class="p">(</span><span class="s2">&quot;debug_collision_mesh.obj&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>CuRobo’s cuboid collision checker is 4x faster than the mesh collision checker, so approximate
+objects to cuboids when possible to save compute time.</p>
+</div>
+</section>
+<section id="world-collision-checkers">
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">World Collision Checkers</a><a class="headerlink" href="#world-collision-checkers" title="Link to this heading"></a></h2>
+<p>There are three collision checkers available in CuRobo, all starting from an abstract base class
+<a class="reference internal" href="../../_api/curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldCollision" title="curobo.geom.sdf.world.WorldCollision"><code class="xref py py-class docutils literal notranslate"><span class="pre">curobo.geom.sdf.world.WorldCollision</span></code></a>.  The cuboid collision checker is in
+<a class="reference internal" href="../../_api/curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldPrimitiveCollision" title="curobo.geom.sdf.world.WorldPrimitiveCollision"><code class="xref py py-class docutils literal notranslate"><span class="pre">curobo.geom.sdf.world.WorldPrimitiveCollision</span></code></a> which uses custom CUDA kernels to compute
+collision and signed distance between query spheres and world cuboids. The mesh collision checker is
+in <a class="reference internal" href="../../_api/curobo.geom.sdf.world_mesh.html#curobo.geom.sdf.world_mesh.WorldMeshCollision" title="curobo.geom.sdf.world_mesh.WorldMeshCollision"><code class="xref py py-class docutils literal notranslate"><span class="pre">curobo.geom.sdf.world_mesh.WorldMeshCollision</span></code></a>, which uses a BVH traversal method to find
+the closest point on a mesh given query spheres leveraging implementations available in <a class="reference external" href="https://developer.nvidia.com/warp-python">NVIDIA Warp</a>. CuRobo also provides a nvblox based collision checker
+in <a class="reference internal" href="../../_api/curobo.geom.sdf.world_blox.html#curobo.geom.sdf.world_blox.WorldBloxCollision" title="curobo.geom.sdf.world_blox.WorldBloxCollision"><code class="xref py py-class docutils literal notranslate"><span class="pre">curobo.geom.sdf.world_blox.WorldBloxCollision</span></code></a> that can compute collisions with a list of
+nvblox map instances that integrate camera depth images. CuRobo leverages python inheritance to
+combine collision checkers, where the nvblox collision checker inherits from the mesh collision
+checker and the mesh collision checker inherits from the cuboid collision checker.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>CuRobo does not provide mesh to mesh collision queries. Instead, collision checking is performed
+by approximating one object to spheres and performing closest point queries on meshes. CuRobo
+provides some approximation algorithms for converting meshes to spheres.</p>
+</div>
+<p>CuRobo’s collision checkers take as a input spheres which are of shape <code class="docutils literal notranslate"><span class="pre">[batch,</span> <span class="pre">horizon,</span> <span class="pre">n,</span> <span class="pre">4]</span></code>, where
+n represents the number of spheres for one entity. CuRobo uses <code class="docutils literal notranslate"><span class="pre">horizon</span></code> to represent the trajectory
+of a sphere, which is leveraged in CuRobo’s continuous collision checker. The output signed distance
+will be of shape <code class="docutils literal notranslate"><span class="pre">[batch,</span> <span class="pre">horizon,</span> <span class="pre">n]</span></code>, which can then be summed based on your use case. CuRobo
+uses <code class="docutils literal notranslate"><span class="pre">batch</span></code> in two ways, (1) to parallelize across different rollouts such as in trajectory optimization, and
+(2) to parallelize across different environments when available.</p>
+<p>We can pass a world model to CuRobo’s collision checker and perform collision queries,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">world_config</span> <span class="o">=</span> <span class="n">WorldCollisionConfig</span><span class="p">(</span><span class="n">tensor_args</span><span class="p">,</span> <span class="n">world_model</span><span class="o">=</span><span class="n">collision_support_world</span><span class="p">)</span>
+<span class="n">world_ccheck</span> <span class="o">=</span> <span class="n">WorldMeshCollision</span><span class="p">(</span><span class="n">world_config</span><span class="p">)</span>
+<span class="n">world_ccheck</span><span class="o">.</span><span class="n">create_collision_cache</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+
+<span class="n">new_mesh</span> <span class="o">=</span> <span class="n">Mesh</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;test_mesh&quot;</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="n">mesh_file</span><span class="p">,</span> <span class="n">pose</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">world_ccheck</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span>
+   <span class="n">new_mesh</span><span class="p">,</span>
+   <span class="n">env_idx</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">query_spheres</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="o">**</span><span class="nb">vars</span><span class="p">(</span><span class="n">tensor_args</span><span class="p">))</span>
+
+<span class="n">out</span> <span class="o">=</span> <span class="n">world_ccheck</span><span class="o">.</span><span class="n">get_sphere_distance</span><span class="p">(</span><span class="n">query_spheres</span><span class="p">,</span> <span class="n">collision_buffer</span><span class="p">,</span>
+<span class="n">act_distance</span><span class="p">,</span>
+<span class="n">weight</span><span class="p">)</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">out</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Internally, each collision checker creates a tensorized object buffer on the GPU. Each object in the buffer will contain the object’s pose with respect to the robot’s base frame, geometry data, and a enable flag. This enable flag is used inside the collision kernels to know if
+the object is enabled for collision checking.</p>
+<div align="center" class="align-center"><div class="graphviz"><img src="../../_images/graphviz-2ac58f9a46fd2f63dc4de44b3591641b9e0488cf.png" alt="digraph {
+   edge [color = &quot;#2B4162&quot;; fontsize=10];
+   node [shape=&quot;box&quot;, style=&quot;rounded, filled&quot;, fontsize=12, color=&quot;grey&quot;]
+   &quot;Obstacle&quot; -&gt; &quot;Pose&quot;;
+   &quot;Obstacle&quot; -&gt; &quot;Enable&quot;;
+   &quot;Obstacle&quot; -&gt; &quot;Data&quot;;
+}" class="graphviz" /></div>
+</div>
+<p>This object buffer is initialized based on the objects passed in through the <cite>world_model</cite> parameter in <a class="reference internal" href="../../_api/curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldCollisionConfig" title="curobo.geom.sdf.world.WorldCollisionConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">curobo.geom.sdf.world.WorldCollisionConfig</span></code></a>. Optionally, you can set the buffer
+size by passing a dictionary of number of objects per collision checker using the <cite>cache</cite> parameter
+in <a class="reference internal" href="../../_api/curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldCollisionConfig" title="curobo.geom.sdf.world.WorldCollisionConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">curobo.geom.sdf.world.WorldCollisionConfig</span></code></a>. CuRobo leverages this cache to load objects
+later without having to recreate tensors, thereby not breaking any CUDAGraphs already built. This buffer is what enables the drag and drop interface in Isaac Sim, which is explained in <a class="reference internal" href="2b_isaacsim_examples.html#overview-isaacsim"><span class="std std-ref">Using with Isaac Sim</span></a> page.</p>
+<p>For example, you can create a cuboid object
+buffer of 10 objects and mesh object buffer of 3 objects using <code class="docutils literal notranslate"><span class="pre">cache={&quot;obb&quot;:10,</span> <span class="pre">&quot;mesh&quot;:</span> <span class="pre">3}</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">world_collision_config</span> <span class="o">=</span> <span class="n">WorldCollisionConfig</span><span class="p">(</span><span class="n">tensor_args</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;obb&quot;</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span> <span class="s2">&quot;mesh&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">})</span>
+<span class="n">world_ccheck</span> <span class="o">=</span> <span class="n">WorldMeshCollision</span><span class="p">(</span><span class="n">world_collision_config</span><span class="p">)</span>
+
+<span class="n">new_cuboid</span> <span class="o">=</span> <span class="n">Cuboid</span><span class="p">(</span>
+  <span class="n">name</span><span class="o">=</span><span class="s2">&quot;cube_1&quot;</span><span class="p">,</span>
+  <span class="n">pose</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.043</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.471</span><span class="p">,</span> <span class="mf">0.284</span><span class="p">,</span> <span class="mf">0.834</span><span class="p">],</span>
+  <span class="n">dims</span><span class="o">=</span><span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">],</span>
+  <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span>
+<span class="p">)</span>
+
+
+<span class="n">world_ccheck</span><span class="o">.</span><span class="n">add_cuboid</span><span class="p">(</span>
+   <span class="n">new_cuboid</span>
+<span class="p">)</span>
+
+<span class="n">new_mesh</span> <span class="o">=</span> <span class="n">Mesh</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;test_mesh&quot;</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="n">mesh_file</span><span class="p">,</span> <span class="n">pose</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+
+<span class="n">world_ccheck</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span>
+   <span class="n">new_mesh</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">query_spheres</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="o">**</span><span class="nb">vars</span><span class="p">(</span><span class="n">tensor_args</span><span class="p">))</span>
+
+<span class="n">out</span> <span class="o">=</span> <span class="n">world_ccheck</span><span class="o">.</span><span class="n">get_sphere_distance</span><span class="p">(</span><span class="n">query_spheres</span><span class="p">,</span> <span class="n">collision_buffer</span><span class="p">,</span>
+<span class="n">act_distance</span><span class="p">,</span>
+<span class="n">weight</span><span class="p">)</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">out</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We can update the pose of objects that are in the cache by specifying the name of the object,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># update a cuboid obstacle pose</span>
+<span class="kn">from</span> <span class="nn">curobo.types.math</span> <span class="kn">import</span> <span class="n">Pose</span>
+
+<span class="n">new_pose</span> <span class="o">=</span> <span class="n">Pose</span><span class="o">.</span><span class="n">from_list</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">tensor_args</span><span class="o">=</span><span class="n">tensor_args</span><span class="p">)</span>
+<span class="n">world_ccheck</span><span class="o">.</span><span class="n">update_obstacle_pose</span><span class="p">(</span><span class="n">new_pose</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;cube_1&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We can toggle an object’s use in collision checking by using the <cite>enable_obstacle</cite> function,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">world_ccheck</span><span class="o">.</span><span class="n">enable_obstacle</span><span class="p">(</span><span class="s2">&quot;cube_1&quot;</span><span class="p">,</span> <span class="n">enable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>CuRobo’s signed distance queries return a positive value when the sphere is inside an obstacle or
+within activation distance. If outside this range, the distance value will be zero.</p>
+</div>
+<section id="batched-environments">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">Batched Environments</a><a class="headerlink" href="#batched-environments" title="Link to this heading"></a></h3>
+<p>CuRobo also provides batched world representation, where many worlds can be setup, and collision queries
+are mapped based on batch index of the spheres. We will look at a short python example below. A
+more thorough suite of examples are available in <a class="reference internal" href="../advanced_examples/2a_batch_env.html#tut-batch-env"><span class="std std-ref">Batched Environments</span></a>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tensor_args</span> <span class="o">=</span> <span class="n">TensorDeviceType</span><span class="p">()</span>
+<span class="n">world_config_1</span> <span class="o">=</span> <span class="n">WorldConfig</span><span class="p">(</span>
+   <span class="n">cuboid</span><span class="o">=</span><span class="p">[</span>
+      <span class="n">Cuboid</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;cube_env_1&quot;</span><span class="p">,</span>
+            <span class="n">pose</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+            <span class="n">dims</span><span class="o">=</span><span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">],</span>
+            <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span>
+      <span class="p">)</span>
+   <span class="p">]</span>
+<span class="p">)</span>
+<span class="n">world_config_2</span> <span class="o">=</span> <span class="n">WorldConfig</span><span class="p">(</span>
+   <span class="n">cuboid</span><span class="o">=</span><span class="p">[</span>
+      <span class="n">Cuboid</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;cube_env_2&quot;</span><span class="p">,</span>
+            <span class="n">pose</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+            <span class="n">dims</span><span class="o">=</span><span class="p">[</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">],</span>
+            <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span>
+      <span class="p">)</span>
+   <span class="p">]</span>
+<span class="p">)</span>
+
+<span class="n">world_coll_config</span> <span class="o">=</span> <span class="n">WorldCollisionConfig</span><span class="p">(</span>
+   <span class="n">tensor_args</span><span class="p">,</span> <span class="n">world_model</span><span class="o">=</span><span class="p">[</span><span class="n">world_config_1</span><span class="p">,</span> <span class="n">world_config_2</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="n">world_ccheck</span> <span class="o">=</span> <span class="n">WorldPrimitiveCollision</span><span class="p">(</span><span class="n">world_coll_config</span><span class="p">)</span>
+
+<span class="n">x_sph</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">device</span><span class="o">=</span><span class="n">tensor_args</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tensor_args</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+<span class="n">x_sph</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.1</span>
+
+<span class="n">query_buffer</span> <span class="o">=</span> <span class="n">CollisionQueryBuffer</span><span class="o">.</span><span class="n">initialize_from_shape</span><span class="p">(</span>
+   <span class="n">x_sph</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">tensor_args</span><span class="p">,</span> <span class="n">world_ccheck</span><span class="o">.</span><span class="n">collision_types</span>
+<span class="p">)</span>
+<span class="n">act_distance</span> <span class="o">=</span> <span class="n">tensor_args</span><span class="o">.</span><span class="n">to_device</span><span class="p">([</span><span class="mf">0.0</span><span class="p">])</span>
+
+<span class="n">weight</span> <span class="o">=</span> <span class="n">tensor_args</span><span class="o">.</span><span class="n">to_device</span><span class="p">([</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>querying sphere distance by default will only check with environment 0,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">world_ccheck</span><span class="o">.</span><span class="n">get_sphere_distance</span><span class="p">(</span>
+   <span class="n">x_sph</span><span class="p">,</span>
+   <span class="n">query_buffer</span><span class="p">,</span>
+   <span class="n">weight</span><span class="p">,</span>
+   <span class="n">act_distance</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="k">assert</span> <span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mf">0.2</span> <span class="ow">and</span> <span class="n">d</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mf">0.2</span>
+</pre></div>
+</div>
+<p>passing an environment index, which contains the index of the collision environment per batch will
+query the spheres w.r.t. to the specified environment,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">env_query_idx</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">x_sph</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">device</span><span class="o">=</span><span class="n">tensor_args</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">int32</span><span class="p">)</span>
+<span class="n">env_query_idx</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">world_ccheck</span><span class="o">.</span><span class="n">get_sphere_distance</span><span class="p">(</span>
+   <span class="n">x_sph</span><span class="p">,</span> <span class="n">query_buffer</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="n">act_distance</span><span class="p">,</span> <span class="n">env_query_idx</span><span class="o">=</span><span class="n">env_query_idx</span>
+<span class="p">)</span>
+
+<span class="k">assert</span> <span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mf">0.2</span> <span class="ow">and</span> <span class="n">d</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mf">0.0</span>
+</pre></div>
+</div>
+<p>Note that this environment is per batch and the query spheres shape is <code class="docutils literal notranslate"><span class="pre">[batch,</span> <span class="pre">horizon,</span> <span class="pre">n,</span> <span class="pre">4]</span></code>.</p>
+<p>To perform collision checking with live depth images, refer to <a class="reference internal" href="2d_nvblox_demo.html#depth-image-example"><span class="std std-ref">Using with Depth Camera</span></a> tutorial.</p>
+</section>
+</section>
+<section id="collision-checking-implementation">
+<span id="collision-checking-note"></span><h2><a class="toc-backref" href="#id10" role="doc-backlink">Collision Checking Implementation</a><a class="headerlink" href="#collision-checking-implementation" title="Link to this heading"></a></h2>
+<p>We want to be able to update the pose of obstacles without requiring additional post processing. To acheive this, we provide each obstacle type with a pose and project each query point to each obstacle’s local frame of reference to perform collision queries. While this can be slow on very large scenes as we would have to iterate over all objects, we found this to be better when working on less than 50 obstacles. This process is shown in the below flow chart. We leave using a fast world bvh (bounding volume hierarchy) for a later release (contributions welcome!).</p>
+<p>We also implement a continuous collision checker that only requires a closest point function to implement. We dive into this algorithm in our technical report and only illustrate the computation flow below.</p>
+<figure class="align-center" id="id4">
+<div class="graphviz"><img src="../../_images/graphviz-9bc770cdf600852f1e4af4347a5accf0943c203a.png" alt="digraph{
+
+bgcolor = &quot;#fefefe&quot;
+edge [color = &quot;#2B4162&quot;; fontsize=10];
+node [shape=&quot;box&quot;, style=&quot;rounded, filled&quot;, fontsize=12, color=&quot;grey&quot;]
+bquery [label=&quot;Batch of Spheres&quot;, style=&quot;rounded&quot;, shape=&quot;plain&quot;]
+
+query [label=&quot;query sphere&quot;, style=&quot;rounded&quot;, shape=&quot;plain&quot;]
+transform [label=&quot;Transform Sphere to Obj. Frame&quot;, color=&quot;#76b900&quot;, fontcolor=&quot;#FFFFFF&quot;]
+check [label=&quot;Check collision&quot;, color=&quot;#76b900&quot;, fontcolor=&quot;#FFFFFF&quot;]
+clpt [label=&quot;Compute Closest Point on object to sphere&quot;, color=&quot;#76b900&quot;, fontcolor=&quot;#FFFFFF&quot;]
+cost [label=&quot;Compute cost  &amp; gradient&quot;, color=&quot;#76b900&quot;, fontcolor=&quot;#FFFFFF&quot;]
+
+inv_transform [label=&quot;Transform gradient to World Frame&quot;, color=&quot;#76b900&quot;, fontcolor=&quot;#FFFFFF&quot;]
+sum_cost [label=&quot;Sum Cost &amp; Gradient&quot;, color=&quot;#76b900&quot;, fontcolor=&quot;#FFFFFF&quot;]
+write [label=&quot;Write Cost &amp; Gradient&quot;, color=&quot;#76b900&quot;, fontcolor=&quot;#FFFFFF&quot;]
+sum_all [label=&quot;Sum Cost across Spheres&quot;, color=&quot;#76b900&quot;, fontcolor=&quot;#FFFFFF&quot;]
+enable [label=&quot;Obstacle Enabled?&quot;, color=&quot;#76b900&quot;, fontcolor=&quot;#FFFFFF&quot;]
+bquery -&gt; query;
+
+subgraph cluster_kernel{
+label=&quot;1 Thread per Sphere&quot;;
+color=&quot;#76b900&quot;;
+query -&gt; enable ;
+
+subgraph cluster_object {
+color=&quot;#2B4162&quot;;
+
+label=&quot;For loop over objects in sphere environment&quot;;
+enable -&gt; transform[label=&quot;only when enabled&quot;];
+transform -&gt; check [label=&quot;sphere in object frame&quot;];
+check -&gt; clpt[style=&quot;dashed&quot;];
+
+subgraph cluster_collision {
+color=&quot;#2B4162&quot;;
+label=&quot;If in collision&quot;;
+style=&quot;dashed&quot;;
+clpt -&gt; cost[style=&quot;dashed&quot;];
+cost -&gt; inv_transform [style=&quot;dashed&quot;];
+inv_transform -&gt; sum_cost [label=&quot;gradient in world frame&quot;, style=&quot;dashed&quot;];
+}
+}
+sum_cost -&gt; write;
+}
+write -&gt; sum_all;
+
+
+}" class="graphviz" /></div>
+<figcaption>
+<p><span class="caption-text">Collision checking process is illustrated.</span><a class="headerlink" href="#id4" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id5">
+<div class="graphviz"><img src="../../_images/graphviz-60968ba2fa7bdafbb4188091842add48649dac74.png" alt="digraph{
+bgcolor = &quot;#fefefe&quot;
+edge [color = &quot;#2B4162&quot;; fontsize=10];
+node [shape=&quot;box&quot;, style=&quot;rounded, filled&quot;, fontsize=12, color=&quot;grey&quot;]
+bquery [label=&quot;Batch of Trajectories of Spheres &quot;, style=&quot;rounded&quot;, shape=&quot;plain&quot;]
+
+query [label=&quot;query sphere at [t-1, t, t+1]&quot;, style=&quot;rounded&quot;, shape=&quot;plain&quot;]
+transform [label=&quot;Transform Spheres to Obj. Frame&quot;, color=&quot;#76b900&quot;, fontcolor=&quot;#FFFFFF&quot;]
+check [label=&quot;Continuous Collision Algorithm&quot;, color=&quot;#76b900&quot;, fontcolor=&quot;#FFFFFF&quot;]
+speed [label=&quot;Speed Metric&quot;, color=&quot;#76b900&quot;, fontcolor=&quot;#FFFFFF&quot;]
+
+inv_transform [label=&quot;Transform gradient to World Frame&quot;, color=&quot;#76b900&quot;, fontcolor=&quot;#FFFFFF&quot;]
+sum_cost [label=&quot;Sum Cost &amp; Gradient&quot;, color=&quot;#76b900&quot;, fontcolor=&quot;#FFFFFF&quot;]
+write [label=&quot;Write Cost &amp; Gradient&quot;, color=&quot;#76b900&quot;, fontcolor=&quot;#FFFFFF&quot;]
+sum_all [label=&quot;Sum Cost across Trajectories of Spheres&quot;, color=&quot;#76b900&quot;, fontcolor=&quot;#FFFFFF&quot;]
+enable [label=&quot;Obstacle Enabled?&quot;, color=&quot;#76b900&quot;, fontcolor=&quot;#FFFFFF&quot;]
+bquery -&gt; query;
+
+subgraph cluster_kernel{
+label=&quot;1 Thread per Sphere&quot;;
+color=&quot;#76b900&quot;;
+query -&gt; enable ;
+
+subgraph cluster_object {
+color=&quot;#2B4162&quot;;
+
+label=&quot;For loop over objects in sphere environment&quot;;
+enable -&gt; transform[label=&quot;only when enabled&quot;];
+transform -&gt; check [label=&quot;sphere in object frame&quot;];
+check -&gt; inv_transform[label=&quot;gradient in object frame&quot;];
+
+inv_transform -&gt; sum_cost [label=&quot;gradient in world frame&quot;];
+}
+sum_cost -&gt; speed;
+speed -&gt; write;
+}
+write -&gt; sum_all;
+
+
+}" class="graphviz" /></div>
+<figcaption>
+<p><span class="caption-text">Continuous collision checking process is illustrated.</span><a class="headerlink" href="#id5" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<section id="collision-metric">
+<h3><a class="toc-backref" href="#id11" role="doc-backlink">Collision Metric</a><a class="headerlink" href="#collision-metric" title="Link to this heading"></a></h3>
+<p>Our collision cost contains several configurable weights as listed in <a class="reference internal" href="../../_api/curobo.rollout.cost.primitive_collision_cost.html#curobo.rollout.cost.primitive_collision_cost.PrimitiveCollisionCostConfig" title="curobo.rollout.cost.primitive_collision_cost.PrimitiveCollisionCostConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">curobo.rollout.cost.primitive_collision_cost.PrimitiveCollisionCostConfig</span></code></a>.
+There are two main parameters, an activation distance <span class="math notranslate nohighlight">\(\eta\)</span> which determines how far away from a collision should the collision
+cost needs to be computed, motivated by results from <a class="reference external" href="https://www.nathanratliff.com/thesis-research/chomp">CHOMP</a>. This is computed using the below
+equation where <span class="math notranslate nohighlight">\(d\)</span> is the signed distance and is positive when in collision and negative outside collision,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\text{cost}(d) = \begin{cases}
+0 &amp; d \leq -\eta\\
+\frac{1}{\eta} (d + \eta)^2  &amp; - \eta &lt; d \leq 0 \\
+d + 0.5 \eta &amp; d &gt; 0
+\end{cases}\end{split}\]</div>
+<a class="reference internal image-reference" href="../../_images/cost_barrier.svg"><img alt="../../_images/cost_barrier.svg" class="align-center" src="../../_images/cost_barrier.svg" width="500" /></a>
+<p>The second parameter we use is the speed metric, which was also introduced in <a class="reference external" href="https://www.nathanratliff.com/thesis-research/chomp">CHOMP</a>. While
+in CHOMP, the speed metric was used with a discrete collision checker, CuRobo implements a continuous collision checker to account for thin obstacles.
+The speed metric is combined with this continuous collision checker to avoid obstacles in trajectory optimization. We show below the benefit of using the speed metric on a trajectory optimization problem. The left robot uses speed metric to push itself away from a thin wall while the right robot which does not have speed metric tries to rush through the collision as a way to reduce the overall cost incurred during trajectory
+optimization.</p>
+<video controls="True" preload="auto" width="690"><source src="../../videos/sweep.mp4" type="video/mp4"></video><div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+</section>
+<section id="geometry-approximation-to-spheres">
+<span id="attach-object-note"></span><h2><a class="toc-backref" href="#id12" role="doc-backlink">Geometry Approximation to Spheres</a><a class="headerlink" href="#geometry-approximation-to-spheres" title="Link to this heading"></a></h2>
+<p>In manipulation tasks, we often need to grasp objects and relocate them to a different location. During the motion
+of the grasped object, we would need to avoid collisions between the attached object and the world. Since CuRobo’s
+collision checkers can only check between spheres and objects, we provide sphere generation techniques to approximate
+geometries to a set of spheres. These techniques require a large number of spheres (100+) to approximate complex geometry.
+We hence do not use these techniques to approximate robot geometry and rather use a tool in NVIDIA Isaac Sim to generate
+manually robots as described in <a class="reference internal" href="../tutorials/1_robot_configuration.html#tut-robot-configuration"><span class="std std-ref">Configuring a New Robot</span></a>. However, the techniques can be used to approximate
+grasped objects during pick and place tasks.</p>
+<p>Here is an example of fitting 500 spheres to approximate a capsule,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">curobo.geom.sphere_fit</span> <span class="kn">import</span> <span class="n">SphereFitType</span>
+<span class="kn">from</span> <span class="nn">curobo.geom.types</span> <span class="kn">import</span> <span class="n">Capsule</span><span class="p">,</span> <span class="n">WorldConfig</span>
+
+<span class="n">obstacle_capsule</span> <span class="o">=</span> <span class="n">Capsule</span><span class="p">(</span>
+   <span class="n">name</span><span class="o">=</span><span class="s2">&quot;capsule&quot;</span><span class="p">,</span>
+   <span class="n">radius</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+   <span class="n">base</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+   <span class="n">tip</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span>
+   <span class="n">pose</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.043</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.471</span><span class="p">,</span> <span class="mf">0.284</span><span class="p">,</span> <span class="mf">0.834</span><span class="p">],</span>
+   <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span>
+<span class="p">)</span>
+
+<span class="n">sph</span> <span class="o">=</span> <span class="n">obstacle_capsule</span><span class="o">.</span><span class="n">get_bounding_spheres</span><span class="p">(</span><span class="n">n_spheres</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+
+<span class="n">WorldConfig</span><span class="p">(</span><span class="n">spheres</span><span class="o">=</span><span class="n">sph</span><span class="p">)</span><span class="o">.</span><span class="n">save_world_as_mesh</span><span class="p">(</span><span class="s2">&quot;bounding_spheres.obj&quot;</span><span class="p">)</span>
+
+<span class="n">WorldConfig</span><span class="p">(</span><span class="n">capsule</span><span class="o">=</span><span class="p">[</span><span class="n">obstacle_capsule</span><span class="p">])</span><span class="o">.</span><span class="n">save_world_as_mesh</span><span class="p">(</span><span class="s2">&quot;capsule.obj&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>CuRobo provides five different methods to fit spheres to geometry as listed in
+<a class="reference internal" href="../../_api/curobo.geom.sphere_fit.html#curobo.geom.sphere_fit.SphereFitType" title="curobo.geom.sphere_fit.SphereFitType"><code class="xref py py-class docutils literal notranslate"><span class="pre">curobo.geom.sphere_fit.SphereFitType</span></code></a>. The fit types leverage voxelization of geometry and
+surface sampling to approximate a geometry. In short,</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">SAMPLE_SURFACE</span></code> samples the surface of the mesh to approximate geometry.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VOXEL_SURFACE</span></code> voxelizes the volume and returns voxel positions that are intersecting with surface.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VOXEL_VOLUME_INSIDE</span></code> voxelizes the volume and returns voxel positions that are inside the surface of the geometry.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VOXEL_VOLUME</span></code> voxelizes the volume and returns all ocupioed voxel positions.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VOXEL_VOLUME_SAMPLE_SURFACE</span></code> voxelizes the volume and returns voxel positions that are inside the surface, along with surface sampled positions.</p></li>
+</ul>
+<p>The effect of each fit type on YCB objects is visualized
+below,</p>
+<figure class="align-default" id="id6">
+<a class="reference internal image-reference" href="../../_images/sphere_approx.png"><img alt="../../_images/sphere_approx.png" src="../../_images/sphere_approx.png" style="width: 690px;" /></a>
+<figcaption>
+<p><span class="caption-text">From left to right: SAMPLE_SURFACE,  VOXEL_VOLUME_SAMPLE_SURFACE, Mesh, VOXEL_SURFACE, VOXEL_VOLUME_INSIDE, VOXEL_VOLUME.</span><a class="headerlink" href="#id6" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="2b_isaacsim_examples.html" class="btn btn-neutral float-left" title="Using with Isaac Sim" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="2d_nvblox_demo.html" class="btn btn-neutral float-right" title="Using with Depth Camera" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, NVIDIA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(250);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

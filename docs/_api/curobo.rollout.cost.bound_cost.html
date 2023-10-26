@@ -1,0 +1,586 @@
+<!--
+-- Copyright (c) 2023 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+--
+-- NVIDIA CORPORATION, its affiliates and licensors retain all intellectual
+-- property and proprietary rights in and to this material, related
+-- documentation and any modifications thereto. Any use, reproduction,
+-- disclosure or distribution of this material and related documentation
+-- without an express license agreement from NVIDIA CORPORATION or
+-- its affiliates is strictly prohibited.
+-->
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>curobo.rollout.cost.bound_cost module &mdash; CuRobo  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="curobo.rollout.cost.cost_base module" href="curobo.rollout.cost.cost_base.html" />
+    <link rel="prev" title="curobo.rollout.cost package" href="curobo.rollout.cost.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CuRobo
+              <img src="../_static/nvidia_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Research</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/research/research.html">Technical Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/research/research_using_curobo.html">Research using CuRobo</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Library Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/1_install_instructions.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/1a_quick_overview.html">Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2a_python_examples.html">Using in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2b_isaacsim_examples.html">Using with Isaac Sim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2c_world_collision.html">Collision World Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2d_nvblox_demo.html">Using with Depth Camera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2e_torch_layer_example.html">Using in a Neural Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/4_benchmarks.html">Benchmarks &amp; Profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/5_docker_development.html">Docker Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/6_known_issues.html">Known Issues</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Advanced Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2a_batch_env.html">Batched Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2b_block_stacking_example.html">Block Stacking</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/tutorials/1_robot_configuration.html">Configuring a New Robot</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/01_robot_list.html">Supported Robots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/02_numerical_optimization.html">Numerical Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/04_cuda_kernels.html">CUDA Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/05_usd_api.html">USD for Robot and World Representation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">Python API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CuRobo</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../api.html">Python API</a></li>
+          <li class="breadcrumb-item"><a href="curobo.rollout.html">curobo.rollout package</a></li>
+          <li class="breadcrumb-item"><a href="curobo.rollout.cost.html">curobo.rollout.cost package</a></li>
+      <li class="breadcrumb-item active">curobo.rollout.cost.bound_cost module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/_api/curobo.rollout.cost.bound_cost.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-curobo.rollout.cost.bound_cost">
+<span id="curobo-rollout-cost-bound-cost-module"></span><h1>curobo.rollout.cost.bound_cost module<a class="headerlink" href="#module-curobo.rollout.cost.bound_cost" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="curobo.rollout.cost.bound_cost.BoundCostType">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">curobo.rollout.cost.bound_cost.</span></span><span class="sig-name descname"><span class="pre">BoundCostType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.cost.bound_cost.BoundCostType" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>An enumeration.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.rollout.cost.bound_cost.BoundCostType.POSITION">
+<span class="sig-name descname"><span class="pre">POSITION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#curobo.rollout.cost.bound_cost.BoundCostType.POSITION" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.rollout.cost.bound_cost.BoundCostType.BOUNDS">
+<span class="sig-name descname"><span class="pre">BOUNDS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#curobo.rollout.cost.bound_cost.BoundCostType.BOUNDS" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.rollout.cost.bound_cost.BoundCostType.BOUNDS_SMOOTH">
+<span class="sig-name descname"><span class="pre">BOUNDS_SMOOTH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#curobo.rollout.cost.bound_cost.BoundCostType.BOUNDS_SMOOTH" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="curobo.rollout.cost.bound_cost.BoundCostConfig">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">curobo.rollout.cost.bound_cost.</span></span><span class="sig-name descname"><span class="pre">BoundCostConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">weight</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">torch.Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tensor_args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType" title="curobo.types.base.TensorDeviceType"><span class="pre">curobo.types.base.TensorDeviceType</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance_threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classify</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">terminal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run_weight</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dof</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">7</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vec_weight</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">torch.Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">NoneType</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hinge_value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vec_convergence</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold_value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_loss</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">joint_limits</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.JointLimits" title="curobo.cuda_robot_model.types.JointLimits"><span class="pre">curobo.cuda_robot_model.types.JointLimits</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smooth_weight</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run_weight_velocity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run_weight_acceleration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run_weight_jerk</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cspace_distance_weight</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional[Annotated[torch.Tensor,</span> <span class="pre">{'__torchtyping__':</span> <span class="pre">True,</span> <span class="pre">'details':</span> <span class="pre">('dof',</span> <span class="pre">torch.float32),</span> <span class="pre">'cls_name':</span> <span class="pre">'TensorType'}]]</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cost_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#curobo.rollout.cost.bound_cost.BoundCostType" title="curobo.rollout.cost.bound_cost.BoundCostType"><span class="pre">curobo.rollout.cost.bound_cost.BoundCostType</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">activation_distance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">torch.Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_finite_difference_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'BACKWARD'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">null_space_weight</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.cost.bound_cost.BoundCostConfig" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="curobo.rollout.cost.cost_base.html#curobo.rollout.cost.cost_base.CostConfig" title="curobo.rollout.cost.cost_base.CostConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">CostConfig</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>weight</strong> (<em>Tensor</em><em> | </em><em>float</em><em> | </em><em>List</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+<li><p><strong>tensor_args</strong> (<a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType" title="curobo.types.base.TensorDeviceType"><em>TensorDeviceType</em></a>) – </p></li>
+<li><p><strong>distance_threshold</strong> (<em>float</em>) – </p></li>
+<li><p><strong>classify</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>terminal</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>run_weight</strong> (<em>float</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>dof</strong> (<em>int</em>) – </p></li>
+<li><p><strong>vec_weight</strong> (<em>Tensor</em><em> | </em><em>List</em><em>[</em><em>float</em><em>] </em><em>| </em><em>float</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>max_value</strong> (<em>float</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>hinge_value</strong> (<em>float</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>vec_convergence</strong> (<em>List</em><em>[</em><em>float</em><em>] </em><em>| </em><em>None</em>) – </p></li>
+<li><p><strong>threshold_value</strong> (<em>float</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>return_loss</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>joint_limits</strong> (<a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.JointLimits" title="curobo.cuda_robot_model.types.JointLimits"><em>JointLimits</em></a><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>smooth_weight</strong> (<em>List</em><em>[</em><em>float</em><em>] </em><em>| </em><em>None</em>) – </p></li>
+<li><p><strong>run_weight_velocity</strong> (<em>float</em>) – </p></li>
+<li><p><strong>run_weight_acceleration</strong> (<em>float</em>) – </p></li>
+<li><p><strong>run_weight_jerk</strong> (<em>float</em>) – </p></li>
+<li><p><strong>cspace_distance_weight</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>cost_type</strong> (<a class="reference internal" href="#curobo.rollout.cost.bound_cost.BoundCostType" title="curobo.rollout.cost.bound_cost.BoundCostType"><em>BoundCostType</em></a><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>activation_distance</strong> (<em>Tensor</em><em> | </em><em>float</em>) – </p></li>
+<li><p><strong>state_finite_difference_mode</strong> (<em>str</em>) – </p></li>
+<li><p><strong>null_space_weight</strong> (<em>List</em><em>[</em><em>float</em><em>] </em><em>| </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.rollout.cost.bound_cost.BoundCostConfig.joint_limits">
+<span class="sig-name descname"><span class="pre">joint_limits</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.JointLimits" title="curobo.cuda_robot_model.types.JointLimits"><span class="pre">JointLimits</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.rollout.cost.bound_cost.BoundCostConfig.joint_limits" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.rollout.cost.bound_cost.BoundCostConfig.smooth_weight">
+<span class="sig-name descname"><span class="pre">smooth_weight</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.rollout.cost.bound_cost.BoundCostConfig.smooth_weight" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.rollout.cost.bound_cost.BoundCostConfig.run_weight_velocity">
+<span class="sig-name descname"><span class="pre">run_weight_velocity</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></em><a class="headerlink" href="#curobo.rollout.cost.bound_cost.BoundCostConfig.run_weight_velocity" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.rollout.cost.bound_cost.BoundCostConfig.run_weight_acceleration">
+<span class="sig-name descname"><span class="pre">run_weight_acceleration</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></em><a class="headerlink" href="#curobo.rollout.cost.bound_cost.BoundCostConfig.run_weight_acceleration" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.rollout.cost.bound_cost.BoundCostConfig.run_weight_jerk">
+<span class="sig-name descname"><span class="pre">run_weight_jerk</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></em><a class="headerlink" href="#curobo.rollout.cost.bound_cost.BoundCostConfig.run_weight_jerk" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.rollout.cost.bound_cost.BoundCostConfig.cspace_distance_weight">
+<span class="sig-name descname"><span class="pre">cspace_distance_weight</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.rollout.cost.bound_cost.BoundCostConfig.cspace_distance_weight" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.rollout.cost.bound_cost.BoundCostConfig.cost_type">
+<span class="sig-name descname"><span class="pre">cost_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#curobo.rollout.cost.bound_cost.BoundCostType" title="curobo.rollout.cost.bound_cost.BoundCostType"><span class="pre">BoundCostType</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.rollout.cost.bound_cost.BoundCostConfig.cost_type" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.rollout.cost.bound_cost.BoundCostConfig.activation_distance">
+<span class="sig-name descname"><span class="pre">activation_distance</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></em><a class="headerlink" href="#curobo.rollout.cost.bound_cost.BoundCostConfig.activation_distance" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.rollout.cost.bound_cost.BoundCostConfig.state_finite_difference_mode">
+<span class="sig-name descname"><span class="pre">state_finite_difference_mode</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'BACKWARD'</span></em><a class="headerlink" href="#curobo.rollout.cost.bound_cost.BoundCostConfig.state_finite_difference_mode" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.rollout.cost.bound_cost.BoundCostConfig.null_space_weight">
+<span class="sig-name descname"><span class="pre">null_space_weight</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.rollout.cost.bound_cost.BoundCostConfig.null_space_weight" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.rollout.cost.bound_cost.BoundCostConfig.set_bounds">
+<span class="sig-name descname"><span class="pre">set_bounds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bounds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">teleport_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.cost.bound_cost.BoundCostConfig.set_bounds" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>bounds</strong> (<a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.JointLimits" title="curobo.cuda_robot_model.types.JointLimits"><em>JointLimits</em></a>) – </p></li>
+<li><p><strong>teleport_mode</strong> (<em>bool</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="curobo.rollout.cost.bound_cost.BoundCost">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">curobo.rollout.cost.bound_cost.</span></span><span class="sig-name descname"><span class="pre">BoundCost</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.cost.bound_cost.BoundCost" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="curobo.rollout.cost.cost_base.html#curobo.rollout.cost.cost_base.CostBase" title="curobo.rollout.cost.cost_base.CostBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">CostBase</span></code></a>, <a class="reference internal" href="#curobo.rollout.cost.bound_cost.BoundCostConfig" title="curobo.rollout.cost.bound_cost.BoundCostConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">BoundCostConfig</span></code></a></p>
+<p>Initialize class</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>config</strong> (<em>Optional</em><em>[</em><a class="reference internal" href="curobo.rollout.cost.cost_base.html#curobo.rollout.cost.cost_base.CostConfig" title="curobo.rollout.cost.cost_base.CostConfig"><em>CostConfig</em></a><em>]</em><em>, </em><em>optional</em>) – To initialize this class directly, pass a config.</p></li>
+<li><p><strong>class</strong> (<em>If this is a base</em>) – </p></li>
+<li><p><strong>CostConfig.</strong> (<em>it's assumed that you will initialize the child class with</em>) – </p></li>
+<li><p><strong>None.</strong> (<em>Defaults to</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.rollout.cost.bound_cost.BoundCost.update_batch_size">
+<span class="sig-name descname"><span class="pre">update_batch_size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">horizon</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dof</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.cost.bound_cost.BoundCost.update_batch_size" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.rollout.cost.bound_cost.BoundCost.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state_batch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retract_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retract_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.cost.bound_cost.BoundCost.forward" title="Link to this definition"></a></dt>
+<dd><p>Defines the computation performed at every call.</p>
+<p>Should be overridden by all subclasses.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Although the recipe for forward pass needs to be defined within
+this function, one should call the <code class="xref py py-class docutils literal notranslate"><span class="pre">Module</span></code> instance afterwards
+instead of this since the former takes care of running the
+registered hooks while the latter silently ignores them.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>state_batch</strong> (<a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><em>JointState</em></a>) – </p></li>
+<li><p><strong>retract_config</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>retract_idx</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.rollout.cost.bound_cost.BoundCost.update_dt">
+<span class="sig-name descname"><span class="pre">update_dt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dt</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.cost.bound_cost.BoundCost.update_dt" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dt</strong> (<em>float</em><em> | </em><em>Tensor</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="curobo.rollout.cost.bound_cost.WarpBoundSmoothFunction">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">curobo.rollout.cost.bound_cost.</span></span><span class="sig-name descname"><span class="pre">WarpBoundSmoothFunction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.cost.bound_cost.WarpBoundSmoothFunction" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Function</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.rollout.cost.bound_cost.WarpBoundSmoothFunction.forward">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">acc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jerk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retract_config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retract_idx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p_b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v_b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a_b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">j_b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">activation_distance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smooth_weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cspace_weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">null_space_weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vec_weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run_weight_vel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run_weight_acc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run_weight_jerk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_cost</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_gp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_gv</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_ga</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_gj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.cost.bound_cost.WarpBoundSmoothFunction.forward" title="Link to this definition"></a></dt>
+<dd><p>This function is to be overridden by all subclasses. There are two ways
+to define forward:</p>
+<p>Usage 1 (Combined forward and ctx):</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="err">@</span><span class="n">staticmethod</span>
+<span class="n">def</span><span class="w"> </span><span class="n">forward</span><span class="p">(</span><span class="n">ctx</span><span class="o">:</span><span class="w"> </span><span class="n">Any</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">args</span><span class="o">:</span><span class="w"> </span><span class="n">Any</span><span class="p">,</span><span class="w"> </span><span class="o">**</span><span class="n">kwargs</span><span class="o">:</span><span class="w"> </span><span class="n">Any</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">Any</span><span class="o">:</span>
+<span class="w">    </span><span class="n">pass</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>It must accept a context ctx as the first argument, followed by any
+number of arguments (tensors or other types).</p></li>
+<li><p>See <span class="xref std std-ref">combining-forward-context</span> for more details</p></li>
+</ul>
+<p>Usage 2 (Separate forward and ctx):</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="err">@</span><span class="n">staticmethod</span>
+<span class="n">def</span><span class="w"> </span><span class="n">forward</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="o">:</span><span class="w"> </span><span class="n">Any</span><span class="p">,</span><span class="w"> </span><span class="o">**</span><span class="n">kwargs</span><span class="o">:</span><span class="w"> </span><span class="n">Any</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">Any</span><span class="o">:</span>
+<span class="w">    </span><span class="n">pass</span>
+
+<span class="err">@</span><span class="n">staticmethod</span>
+<span class="n">def</span><span class="w"> </span><span class="n">setup_context</span><span class="p">(</span><span class="n">ctx</span><span class="o">:</span><span class="w"> </span><span class="n">Any</span><span class="p">,</span><span class="w"> </span><span class="n">inputs</span><span class="o">:</span><span class="w"> </span><span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span><span class="w"> </span><span class="p">...],</span><span class="w"> </span><span class="n">output</span><span class="o">:</span><span class="w"> </span><span class="n">Any</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">None</span><span class="o">:</span>
+<span class="w">    </span><span class="n">pass</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>The forward no longer accepts a ctx argument.</p></li>
+<li><p>Instead, you must also override the <code class="xref py py-meth docutils literal notranslate"><span class="pre">torch.autograd.Function.setup_context</span></code>
+staticmethod to handle setting up the <code class="docutils literal notranslate"><span class="pre">ctx</span></code> object.
+<code class="docutils literal notranslate"><span class="pre">output</span></code> is the output of the forward, <code class="docutils literal notranslate"><span class="pre">inputs</span></code> are a Tuple of inputs
+to the forward.</p></li>
+<li><p>See <span class="xref std std-ref">extending-autograd</span> for more details</p></li>
+</ul>
+<p>The context can be used to store arbitrary data that can be then
+retrieved during the backward pass. Tensors should not be stored
+directly on <cite>ctx</cite> (though this is not currently enforced for
+backward compatibility). Instead, tensors should be saved either with
+<code class="xref py py-func docutils literal notranslate"><span class="pre">ctx.save_for_backward</span></code> if they are intended to be used in
+<code class="docutils literal notranslate"><span class="pre">backward</span></code> (equivalently, <code class="docutils literal notranslate"><span class="pre">vjp</span></code>) or <code class="xref py py-func docutils literal notranslate"><span class="pre">ctx.save_for_forward</span></code>
+if they are intended to be used for in <code class="docutils literal notranslate"><span class="pre">jvp</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.rollout.cost.bound_cost.WarpBoundSmoothFunction.backward">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">backward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grad_out_cost</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.cost.bound_cost.WarpBoundSmoothFunction.backward" title="Link to this definition"></a></dt>
+<dd><p>Defines a formula for differentiating the operation with backward mode
+automatic differentiation (alias to the vjp function).</p>
+<p>This function is to be overridden by all subclasses.</p>
+<p>It must accept a context <code class="xref py py-attr docutils literal notranslate"><span class="pre">ctx</span></code> as the first argument, followed by
+as many outputs as the <a class="reference internal" href="#curobo.rollout.cost.bound_cost.WarpBoundSmoothFunction.forward" title="curobo.rollout.cost.bound_cost.WarpBoundSmoothFunction.forward"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward</span></code></a> returned (None will be passed in
+for non tensor outputs of the forward function),
+and it should return as many tensors, as there were inputs to
+<a class="reference internal" href="#curobo.rollout.cost.bound_cost.WarpBoundSmoothFunction.forward" title="curobo.rollout.cost.bound_cost.WarpBoundSmoothFunction.forward"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward</span></code></a>. Each argument is the gradient w.r.t the given output,
+and each returned value should be the gradient w.r.t. the
+corresponding input. If an input is not a Tensor or is a Tensor not
+requiring grads, you can just pass None as a gradient for that input.</p>
+<p>The context can be used to retrieve tensors saved during the forward
+pass. It also has an attribute <code class="xref py py-attr docutils literal notranslate"><span class="pre">ctx.needs_input_grad</span></code> as a tuple
+of booleans representing whether each input needs gradient. E.g.,
+<a class="reference internal" href="#curobo.rollout.cost.bound_cost.WarpBoundSmoothFunction.backward" title="curobo.rollout.cost.bound_cost.WarpBoundSmoothFunction.backward"><code class="xref py py-func docutils literal notranslate"><span class="pre">backward</span></code></a> will have <code class="docutils literal notranslate"><span class="pre">ctx.needs_input_grad[0]</span> <span class="pre">=</span> <span class="pre">True</span></code> if the
+first input to <a class="reference internal" href="#curobo.rollout.cost.bound_cost.WarpBoundSmoothFunction.forward" title="curobo.rollout.cost.bound_cost.WarpBoundSmoothFunction.forward"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward</span></code></a> needs gradient computed w.r.t. the
+output.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="curobo.rollout.cost.bound_cost.WarpBoundFunction">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">curobo.rollout.cost.bound_cost.</span></span><span class="sig-name descname"><span class="pre">WarpBoundFunction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.cost.bound_cost.WarpBoundFunction" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Function</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.rollout.cost.bound_cost.WarpBoundFunction.forward">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">acc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jerk</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retract_config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retract_idx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p_b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v_b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a_b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">j_b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">activation_distance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">null_space_weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vec_weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_cost</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_gp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_gv</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_ga</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_gj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.cost.bound_cost.WarpBoundFunction.forward" title="Link to this definition"></a></dt>
+<dd><p>This function is to be overridden by all subclasses. There are two ways
+to define forward:</p>
+<p>Usage 1 (Combined forward and ctx):</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="err">@</span><span class="n">staticmethod</span>
+<span class="n">def</span><span class="w"> </span><span class="n">forward</span><span class="p">(</span><span class="n">ctx</span><span class="o">:</span><span class="w"> </span><span class="n">Any</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">args</span><span class="o">:</span><span class="w"> </span><span class="n">Any</span><span class="p">,</span><span class="w"> </span><span class="o">**</span><span class="n">kwargs</span><span class="o">:</span><span class="w"> </span><span class="n">Any</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">Any</span><span class="o">:</span>
+<span class="w">    </span><span class="n">pass</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>It must accept a context ctx as the first argument, followed by any
+number of arguments (tensors or other types).</p></li>
+<li><p>See <span class="xref std std-ref">combining-forward-context</span> for more details</p></li>
+</ul>
+<p>Usage 2 (Separate forward and ctx):</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="err">@</span><span class="n">staticmethod</span>
+<span class="n">def</span><span class="w"> </span><span class="n">forward</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="o">:</span><span class="w"> </span><span class="n">Any</span><span class="p">,</span><span class="w"> </span><span class="o">**</span><span class="n">kwargs</span><span class="o">:</span><span class="w"> </span><span class="n">Any</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">Any</span><span class="o">:</span>
+<span class="w">    </span><span class="n">pass</span>
+
+<span class="err">@</span><span class="n">staticmethod</span>
+<span class="n">def</span><span class="w"> </span><span class="n">setup_context</span><span class="p">(</span><span class="n">ctx</span><span class="o">:</span><span class="w"> </span><span class="n">Any</span><span class="p">,</span><span class="w"> </span><span class="n">inputs</span><span class="o">:</span><span class="w"> </span><span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span><span class="w"> </span><span class="p">...],</span><span class="w"> </span><span class="n">output</span><span class="o">:</span><span class="w"> </span><span class="n">Any</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">None</span><span class="o">:</span>
+<span class="w">    </span><span class="n">pass</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>The forward no longer accepts a ctx argument.</p></li>
+<li><p>Instead, you must also override the <code class="xref py py-meth docutils literal notranslate"><span class="pre">torch.autograd.Function.setup_context</span></code>
+staticmethod to handle setting up the <code class="docutils literal notranslate"><span class="pre">ctx</span></code> object.
+<code class="docutils literal notranslate"><span class="pre">output</span></code> is the output of the forward, <code class="docutils literal notranslate"><span class="pre">inputs</span></code> are a Tuple of inputs
+to the forward.</p></li>
+<li><p>See <span class="xref std std-ref">extending-autograd</span> for more details</p></li>
+</ul>
+<p>The context can be used to store arbitrary data that can be then
+retrieved during the backward pass. Tensors should not be stored
+directly on <cite>ctx</cite> (though this is not currently enforced for
+backward compatibility). Instead, tensors should be saved either with
+<code class="xref py py-func docutils literal notranslate"><span class="pre">ctx.save_for_backward</span></code> if they are intended to be used in
+<code class="docutils literal notranslate"><span class="pre">backward</span></code> (equivalently, <code class="docutils literal notranslate"><span class="pre">vjp</span></code>) or <code class="xref py py-func docutils literal notranslate"><span class="pre">ctx.save_for_forward</span></code>
+if they are intended to be used for in <code class="docutils literal notranslate"><span class="pre">jvp</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.rollout.cost.bound_cost.WarpBoundFunction.backward">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">backward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grad_out_cost</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.cost.bound_cost.WarpBoundFunction.backward" title="Link to this definition"></a></dt>
+<dd><p>Defines a formula for differentiating the operation with backward mode
+automatic differentiation (alias to the vjp function).</p>
+<p>This function is to be overridden by all subclasses.</p>
+<p>It must accept a context <code class="xref py py-attr docutils literal notranslate"><span class="pre">ctx</span></code> as the first argument, followed by
+as many outputs as the <a class="reference internal" href="#curobo.rollout.cost.bound_cost.WarpBoundFunction.forward" title="curobo.rollout.cost.bound_cost.WarpBoundFunction.forward"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward</span></code></a> returned (None will be passed in
+for non tensor outputs of the forward function),
+and it should return as many tensors, as there were inputs to
+<a class="reference internal" href="#curobo.rollout.cost.bound_cost.WarpBoundFunction.forward" title="curobo.rollout.cost.bound_cost.WarpBoundFunction.forward"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward</span></code></a>. Each argument is the gradient w.r.t the given output,
+and each returned value should be the gradient w.r.t. the
+corresponding input. If an input is not a Tensor or is a Tensor not
+requiring grads, you can just pass None as a gradient for that input.</p>
+<p>The context can be used to retrieve tensors saved during the forward
+pass. It also has an attribute <code class="xref py py-attr docutils literal notranslate"><span class="pre">ctx.needs_input_grad</span></code> as a tuple
+of booleans representing whether each input needs gradient. E.g.,
+<a class="reference internal" href="#curobo.rollout.cost.bound_cost.WarpBoundFunction.backward" title="curobo.rollout.cost.bound_cost.WarpBoundFunction.backward"><code class="xref py py-func docutils literal notranslate"><span class="pre">backward</span></code></a> will have <code class="docutils literal notranslate"><span class="pre">ctx.needs_input_grad[0]</span> <span class="pre">=</span> <span class="pre">True</span></code> if the
+first input to <a class="reference internal" href="#curobo.rollout.cost.bound_cost.WarpBoundFunction.forward" title="curobo.rollout.cost.bound_cost.WarpBoundFunction.forward"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward</span></code></a> needs gradient computed w.r.t. the
+output.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="curobo.rollout.cost.bound_cost.WarpBoundPosFunction">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">curobo.rollout.cost.bound_cost.</span></span><span class="sig-name descname"><span class="pre">WarpBoundPosFunction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.cost.bound_cost.WarpBoundPosFunction" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Function</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.rollout.cost.bound_cost.WarpBoundPosFunction.forward">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retract_config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retract_idx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p_l</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">activation_distance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">null_space_weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vec_weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_cost</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_gp</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.cost.bound_cost.WarpBoundPosFunction.forward" title="Link to this definition"></a></dt>
+<dd><p>This function is to be overridden by all subclasses. There are two ways
+to define forward:</p>
+<p>Usage 1 (Combined forward and ctx):</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="err">@</span><span class="n">staticmethod</span>
+<span class="n">def</span><span class="w"> </span><span class="n">forward</span><span class="p">(</span><span class="n">ctx</span><span class="o">:</span><span class="w"> </span><span class="n">Any</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">args</span><span class="o">:</span><span class="w"> </span><span class="n">Any</span><span class="p">,</span><span class="w"> </span><span class="o">**</span><span class="n">kwargs</span><span class="o">:</span><span class="w"> </span><span class="n">Any</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">Any</span><span class="o">:</span>
+<span class="w">    </span><span class="n">pass</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>It must accept a context ctx as the first argument, followed by any
+number of arguments (tensors or other types).</p></li>
+<li><p>See <span class="xref std std-ref">combining-forward-context</span> for more details</p></li>
+</ul>
+<p>Usage 2 (Separate forward and ctx):</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="err">@</span><span class="n">staticmethod</span>
+<span class="n">def</span><span class="w"> </span><span class="n">forward</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="o">:</span><span class="w"> </span><span class="n">Any</span><span class="p">,</span><span class="w"> </span><span class="o">**</span><span class="n">kwargs</span><span class="o">:</span><span class="w"> </span><span class="n">Any</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">Any</span><span class="o">:</span>
+<span class="w">    </span><span class="n">pass</span>
+
+<span class="err">@</span><span class="n">staticmethod</span>
+<span class="n">def</span><span class="w"> </span><span class="n">setup_context</span><span class="p">(</span><span class="n">ctx</span><span class="o">:</span><span class="w"> </span><span class="n">Any</span><span class="p">,</span><span class="w"> </span><span class="n">inputs</span><span class="o">:</span><span class="w"> </span><span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span><span class="w"> </span><span class="p">...],</span><span class="w"> </span><span class="n">output</span><span class="o">:</span><span class="w"> </span><span class="n">Any</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">None</span><span class="o">:</span>
+<span class="w">    </span><span class="n">pass</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>The forward no longer accepts a ctx argument.</p></li>
+<li><p>Instead, you must also override the <code class="xref py py-meth docutils literal notranslate"><span class="pre">torch.autograd.Function.setup_context</span></code>
+staticmethod to handle setting up the <code class="docutils literal notranslate"><span class="pre">ctx</span></code> object.
+<code class="docutils literal notranslate"><span class="pre">output</span></code> is the output of the forward, <code class="docutils literal notranslate"><span class="pre">inputs</span></code> are a Tuple of inputs
+to the forward.</p></li>
+<li><p>See <span class="xref std std-ref">extending-autograd</span> for more details</p></li>
+</ul>
+<p>The context can be used to store arbitrary data that can be then
+retrieved during the backward pass. Tensors should not be stored
+directly on <cite>ctx</cite> (though this is not currently enforced for
+backward compatibility). Instead, tensors should be saved either with
+<code class="xref py py-func docutils literal notranslate"><span class="pre">ctx.save_for_backward</span></code> if they are intended to be used in
+<code class="docutils literal notranslate"><span class="pre">backward</span></code> (equivalently, <code class="docutils literal notranslate"><span class="pre">vjp</span></code>) or <code class="xref py py-func docutils literal notranslate"><span class="pre">ctx.save_for_forward</span></code>
+if they are intended to be used for in <code class="docutils literal notranslate"><span class="pre">jvp</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.rollout.cost.bound_cost.WarpBoundPosFunction.backward">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">backward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grad_out_cost</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.cost.bound_cost.WarpBoundPosFunction.backward" title="Link to this definition"></a></dt>
+<dd><p>Defines a formula for differentiating the operation with backward mode
+automatic differentiation (alias to the vjp function).</p>
+<p>This function is to be overridden by all subclasses.</p>
+<p>It must accept a context <code class="xref py py-attr docutils literal notranslate"><span class="pre">ctx</span></code> as the first argument, followed by
+as many outputs as the <a class="reference internal" href="#curobo.rollout.cost.bound_cost.WarpBoundPosFunction.forward" title="curobo.rollout.cost.bound_cost.WarpBoundPosFunction.forward"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward</span></code></a> returned (None will be passed in
+for non tensor outputs of the forward function),
+and it should return as many tensors, as there were inputs to
+<a class="reference internal" href="#curobo.rollout.cost.bound_cost.WarpBoundPosFunction.forward" title="curobo.rollout.cost.bound_cost.WarpBoundPosFunction.forward"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward</span></code></a>. Each argument is the gradient w.r.t the given output,
+and each returned value should be the gradient w.r.t. the
+corresponding input. If an input is not a Tensor or is a Tensor not
+requiring grads, you can just pass None as a gradient for that input.</p>
+<p>The context can be used to retrieve tensors saved during the forward
+pass. It also has an attribute <code class="xref py py-attr docutils literal notranslate"><span class="pre">ctx.needs_input_grad</span></code> as a tuple
+of booleans representing whether each input needs gradient. E.g.,
+<a class="reference internal" href="#curobo.rollout.cost.bound_cost.WarpBoundPosFunction.backward" title="curobo.rollout.cost.bound_cost.WarpBoundPosFunction.backward"><code class="xref py py-func docutils literal notranslate"><span class="pre">backward</span></code></a> will have <code class="docutils literal notranslate"><span class="pre">ctx.needs_input_grad[0]</span> <span class="pre">=</span> <span class="pre">True</span></code> if the
+first input to <a class="reference internal" href="#curobo.rollout.cost.bound_cost.WarpBoundPosFunction.forward" title="curobo.rollout.cost.bound_cost.WarpBoundPosFunction.forward"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward</span></code></a> needs gradient computed w.r.t. the
+output.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="curobo.rollout.cost.bound_cost.WarpBoundPosLoss">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">curobo.rollout.cost.bound_cost.</span></span><span class="sig-name descname"><span class="pre">WarpBoundPosLoss</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.cost.bound_cost.WarpBoundPosLoss" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#curobo.rollout.cost.bound_cost.WarpBoundPosFunction" title="curobo.rollout.cost.bound_cost.WarpBoundPosFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">WarpBoundPosFunction</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.rollout.cost.bound_cost.WarpBoundPosLoss.backward">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">backward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grad_out_cost</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.cost.bound_cost.WarpBoundPosLoss.backward" title="Link to this definition"></a></dt>
+<dd><p>Defines a formula for differentiating the operation with backward mode
+automatic differentiation (alias to the vjp function).</p>
+<p>This function is to be overridden by all subclasses.</p>
+<p>It must accept a context <code class="xref py py-attr docutils literal notranslate"><span class="pre">ctx</span></code> as the first argument, followed by
+as many outputs as the <code class="xref py py-func docutils literal notranslate"><span class="pre">forward</span></code> returned (None will be passed in
+for non tensor outputs of the forward function),
+and it should return as many tensors, as there were inputs to
+<code class="xref py py-func docutils literal notranslate"><span class="pre">forward</span></code>. Each argument is the gradient w.r.t the given output,
+and each returned value should be the gradient w.r.t. the
+corresponding input. If an input is not a Tensor or is a Tensor not
+requiring grads, you can just pass None as a gradient for that input.</p>
+<p>The context can be used to retrieve tensors saved during the forward
+pass. It also has an attribute <code class="xref py py-attr docutils literal notranslate"><span class="pre">ctx.needs_input_grad</span></code> as a tuple
+of booleans representing whether each input needs gradient. E.g.,
+<a class="reference internal" href="#curobo.rollout.cost.bound_cost.WarpBoundPosLoss.backward" title="curobo.rollout.cost.bound_cost.WarpBoundPosLoss.backward"><code class="xref py py-func docutils literal notranslate"><span class="pre">backward</span></code></a> will have <code class="docutils literal notranslate"><span class="pre">ctx.needs_input_grad[0]</span> <span class="pre">=</span> <span class="pre">True</span></code> if the
+first input to <code class="xref py py-func docutils literal notranslate"><span class="pre">forward</span></code> needs gradient computed w.r.t. the
+output.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="curobo.rollout.cost.html" class="btn btn-neutral float-left" title="curobo.rollout.cost package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="curobo.rollout.cost.cost_base.html" class="btn btn-neutral float-right" title="curobo.rollout.cost.cost_base module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, NVIDIA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(250);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

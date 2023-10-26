@@ -1,0 +1,225 @@
+<!--
+-- Copyright (c) 2023 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+--
+-- NVIDIA CORPORATION, its affiliates and licensors retain all intellectual
+-- property and proprietary rights in and to this material, related
+-- documentation and any modifications thereto. Any use, reproduction,
+-- disclosure or distribution of this material and related documentation
+-- without an express license agreement from NVIDIA CORPORATION or
+-- its affiliates is strictly prohibited.
+-->
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>curobo.graph.graph_nx module &mdash; CuRobo  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="curobo.graph.prm module" href="curobo.graph.prm.html" />
+    <link rel="prev" title="curobo.graph.graph_base module" href="curobo.graph.graph_base.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CuRobo
+              <img src="../_static/nvidia_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Research</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/research/research.html">Technical Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/research/research_using_curobo.html">Research using CuRobo</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Library Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/1_install_instructions.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/1a_quick_overview.html">Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2a_python_examples.html">Using in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2b_isaacsim_examples.html">Using with Isaac Sim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2c_world_collision.html">Collision World Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2d_nvblox_demo.html">Using with Depth Camera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2e_torch_layer_example.html">Using in a Neural Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/4_benchmarks.html">Benchmarks &amp; Profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/5_docker_development.html">Docker Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/6_known_issues.html">Known Issues</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Advanced Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2a_batch_env.html">Batched Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2b_block_stacking_example.html">Block Stacking</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/tutorials/1_robot_configuration.html">Configuring a New Robot</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/01_robot_list.html">Supported Robots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/02_numerical_optimization.html">Numerical Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/04_cuda_kernels.html">CUDA Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/05_usd_api.html">USD for Robot and World Representation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">Python API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CuRobo</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../api.html">Python API</a></li>
+          <li class="breadcrumb-item"><a href="curobo.graph.html">curobo.graph package</a></li>
+      <li class="breadcrumb-item active">curobo.graph.graph_nx module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/_api/curobo.graph.graph_nx.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-curobo.graph.graph_nx">
+<span id="curobo-graph-graph-nx-module"></span><h1>curobo.graph.graph_nx module<a class="headerlink" href="#module-curobo.graph.graph_nx" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="curobo.graph.graph_nx.NetworkxGraph">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">curobo.graph.graph_nx.</span></span><span class="sig-name descname"><span class="pre">NetworkxGraph</span></span><a class="headerlink" href="#curobo.graph.graph_nx.NetworkxGraph" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.graph.graph_nx.NetworkxGraph.reset_graph">
+<span class="sig-name descname"><span class="pre">reset_graph</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_nx.NetworkxGraph.reset_graph" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.graph.graph_nx.NetworkxGraph.add_node">
+<span class="sig-name descname"><span class="pre">add_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_nx.NetworkxGraph.add_node" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.graph.graph_nx.NetworkxGraph.add_edges">
+<span class="sig-name descname"><span class="pre">add_edges</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">edge_list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_nx.NetworkxGraph.add_edges" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.graph.graph_nx.NetworkxGraph.add_nodes">
+<span class="sig-name descname"><span class="pre">add_nodes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_nx.NetworkxGraph.add_nodes" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.graph.graph_nx.NetworkxGraph.add_edge">
+<span class="sig-name descname"><span class="pre">add_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_i</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_i</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_nx.NetworkxGraph.add_edge" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.graph.graph_nx.NetworkxGraph.update_graph">
+<span class="sig-name descname"><span class="pre">update_graph</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_nx.NetworkxGraph.update_graph" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.graph.graph_nx.NetworkxGraph.get_edges">
+<span class="sig-name descname"><span class="pre">get_edges</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attribue</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'weight'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_nx.NetworkxGraph.get_edges" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.graph.graph_nx.NetworkxGraph.path_exists">
+<span class="sig-name descname"><span class="pre">path_exists</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_node_idx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">goal_node_idx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_nx.NetworkxGraph.path_exists" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.graph.graph_nx.NetworkxGraph.get_shortest_path">
+<span class="sig-name descname"><span class="pre">get_shortest_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_node_idx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">goal_node_idx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_nx.NetworkxGraph.get_shortest_path" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.graph.graph_nx.NetworkxGraph.get_path_lengths">
+<span class="sig-name descname"><span class="pre">get_path_lengths</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">goal_node_idx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_nx.NetworkxGraph.get_path_lengths" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="curobo.graph.graph_base.html" class="btn btn-neutral float-left" title="curobo.graph.graph_base module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="curobo.graph.prm.html" class="btn btn-neutral float-right" title="curobo.graph.prm module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, NVIDIA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(250);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

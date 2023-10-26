@@ -1,0 +1,458 @@
+<!--
+-- Copyright (c) 2023 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+--
+-- NVIDIA CORPORATION, its affiliates and licensors retain all intellectual
+-- property and proprietary rights in and to this material, related
+-- documentation and any modifications thereto. Any use, reproduction,
+-- disclosure or distribution of this material and related documentation
+-- without an express license agreement from NVIDIA CORPORATION or
+-- its affiliates is strictly prohibited.
+-->
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Using in a Neural Network &mdash; CuRobo  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Benchmarks &amp; Profiling" href="4_benchmarks.html" />
+    <link rel="prev" title="Using with Depth Camera" href="2d_nvblox_demo.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            CuRobo
+              <img src="../../_static/nvidia_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Research</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../research/research.html">Technical Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../research/research_using_curobo.html">Research using CuRobo</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Library Overview</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="1_install_instructions.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1a_quick_overview.html">Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2a_python_examples.html">Using in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2b_isaacsim_examples.html">Using with Isaac Sim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2c_world_collision.html">Collision World Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2d_nvblox_demo.html">Using with Depth Camera</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Using in a Neural Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_benchmarks.html">Benchmarks &amp; Profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_docker_development.html">Docker Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_known_issues.html">Known Issues</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Advanced Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_examples/2a_batch_env.html">Batched Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_examples/2b_block_stacking_example.html">Block Stacking</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/1_robot_configuration.html">Configuring a New Robot</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../notes/01_robot_list.html">Supported Robots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/02_numerical_optimization.html">Numerical Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/04_cuda_kernels.html">CUDA Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/05_usd_api.html">USD for Robot and World Representation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">Python API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">CuRobo</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Using in a Neural Network</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/source/getting_started/2e_torch_layer_example.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="using-in-a-neural-network">
+<span id="curobo-torch-layer"></span><h1>Using in a Neural Network<a class="headerlink" href="#using-in-a-neural-network" title="Link to this heading"></a></h1>
+<p>CuRobo’s differentiable functions (e.g., kinematics, signed distance) can be used as part of a
+neural network pipeline. As an example, we show how to use CuRobo’s functions as a layer in a neural
+network and also in a loss function.</p>
+<div class="graphviz"><img src="../../_images/graphviz-41bd8adeeef92678bb4de2c1827fc1d8a143d039.png" alt="digraph {
+rankdir=LR;
+edge [color = &quot;#708090&quot;; fontsize=10];
+node [shape=&quot;box&quot;, style=&quot;rounded, filled&quot;, fontsize=12]
+nn [label=&quot;Neural Network&quot;, color=&quot;grey&quot;]
+input [label=&quot;Input&quot;, shape=&quot;plain&quot;, style=&quot;rounded&quot;]
+output[label=&quot;Prediction&quot;, shape=&quot;plain&quot;, style=&quot;rounded&quot;]
+cu_features[label=&quot;CuRobo Layer&quot;, color=&quot;#76b900&quot;,fontcolor=&quot;white&quot;]
+input -&gt; nn;
+input -&gt; cu_features;
+cu_features -&gt; nn;
+output -&gt; loss [dir=&quot;both&quot;, style=&quot;dashed&quot;];
+nn -&gt; output;
+subgraph cluster_training {
+label=&quot;Training&quot;;
+style=&quot;dashed&quot;;
+cu_loss[label=&quot;CuRobo Loss&quot;, color=&quot;#76b900&quot;,fontcolor=&quot;white&quot;]
+loss [label=&quot;Loss Function&quot;, color=&quot;grey&quot;]
+loss -&gt; cu_loss[dir=&quot;both&quot;,style=&quot;dashed&quot;];
+}
+}" class="graphviz" /></div>
+<p>The <a class="reference internal" href="../../_api/curobo.wrap.model.robot_world.html#curobo.wrap.model.robot_world.RobotWorld" title="curobo.wrap.model.robot_world.RobotWorld"><code class="xref py py-class docutils literal notranslate"><span class="pre">curobo.wrap.model.robot_world.RobotWorld</span></code></a> provides a training friendly wrapper for computing kinematics, and signed distance.
+CuRobo computes signed distance between the robot and the world by first computing the position of the spheres that approximate the robot’s geometry in space given the joint configuration and then using a sphere to world signed distance function to compute the distance to obstacles.</p>
+<div class="graphviz"><img src="../../_images/graphviz-c413e0a699bb6ac89948882722fadf322a498fd9.png" alt="digraph{
+rankdir=LR;
+
+subgraph cluster_class{
+label=&quot;RobotWorld&quot;;
+edge [color =&quot;#708090&quot;; fontsize=10];
+node [shape=&quot;box&quot;, color=&quot;grey&quot;,style=&quot;rounded, filled&quot;, fontsize=12]
+get_kin[label=&quot;get_kinematics()&quot;,color=&quot;#76b900&quot;, fontcolor=&quot;white&quot;]
+get_collision_distance[label=&quot;get_collision_distance()&quot;,color=&quot;#76b900&quot;, fontcolor=&quot;white&quot;]
+get_self_coll[label=&quot;get_self_collision_distance()&quot;,color=&quot;#76b900&quot;, fontcolor=&quot;white&quot;]
+q[label=&quot;joint angles&quot;, shape=&quot;plain&quot;, style=&quot;rounded&quot;]
+ee_pose[label=&quot;Link Poses&quot;]
+spheres[label=&quot;Robot Spheres&quot;]
+world[label=&quot;World Collision Checker&quot;]
+world_config[label=&quot;WorldConfig&quot;, style=&quot;rounded&quot;, shape=&quot;plain&quot;]
+load_collision_model[label=&quot;load_collision_model()&quot;]
+q -&gt; get_kin;
+get_kin -&gt; {ee_pose, spheres};
+spheres -&gt; {get_collision_distance, get_self_coll};
+world -&gt; get_collision_distance;
+world_config -&gt; load_collision_model;
+load_collision_model -&gt; world;
+}
+}" class="graphviz" /></div>
+<p>An instance of RobotWorld can be created as below, where <code class="docutils literal notranslate"><span class="pre">world_config_file</span></code> can be swapped with an instance of <a class="reference internal" href="../../_api/curobo.geom.types.html#curobo.geom.types.WorldConfig" title="curobo.geom.types.WorldConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">curobo.geom.types.WorldConfig</span></code></a> that
+describes your world obstacles.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">curobo.wrap.model.robot_world</span> <span class="kn">import</span> <span class="n">RobotWorld</span><span class="p">,</span> <span class="n">RobotWorldConfig</span>
+<span class="n">robot_file</span> <span class="o">=</span> <span class="s2">&quot;franka.yml&quot;</span>
+<span class="n">world_config_file</span> <span class="o">=</span> <span class="s2">&quot;collision_table.yml&quot;</span>
+<span class="n">config</span> <span class="o">=</span> <span class="n">RobotWorldConfig</span><span class="o">.</span><span class="n">load_from_config</span><span class="p">(</span>
+    <span class="n">robot_file</span><span class="p">,</span> <span class="n">world_config_file</span><span class="p">,</span> <span class="n">pose_weight</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="n">curobo_wrapper</span> <span class="o">=</span> <span class="n">RobotWorld</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Next, we will go over an example provided in <code class="docutils literal notranslate"><span class="pre">examples/torch_layers_example.py</span></code>. Import the following packages,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Standard Library</span>
+<span class="kn">import</span> <span class="nn">uuid</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
+
+<span class="c1"># Third Party</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">nn</span>
+<span class="kn">from</span> <span class="nn">torch.utils.tensorboard</span> <span class="kn">import</span> <span class="n">SummaryWriter</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+
+<span class="c1"># CuRobo</span>
+<span class="kn">from</span> <span class="nn">curobo.geom.sdf.world</span> <span class="kn">import</span> <span class="n">WorldConfig</span>
+<span class="kn">from</span> <span class="nn">curobo.geom.types</span> <span class="kn">import</span> <span class="n">Mesh</span>
+<span class="kn">from</span> <span class="nn">curobo.types.math</span> <span class="kn">import</span> <span class="n">Pose</span>
+<span class="kn">from</span> <span class="nn">curobo.types.state</span> <span class="kn">import</span> <span class="n">JointState</span>
+<span class="kn">from</span> <span class="nn">curobo.util.usd_helper</span> <span class="kn">import</span> <span class="n">UsdHelper</span>
+<span class="kn">from</span> <span class="nn">curobo.util_file</span> <span class="kn">import</span> <span class="n">get_assets_path</span><span class="p">,</span> <span class="n">get_world_configs_path</span><span class="p">,</span> <span class="n">join_path</span><span class="p">,</span> <span class="n">load_yaml</span>
+<span class="kn">from</span> <span class="nn">curobo.wrap.model.robot_world</span> <span class="kn">import</span> <span class="n">RobotWorld</span><span class="p">,</span> <span class="n">RobotWorldConfig</span>
+</pre></div>
+</div>
+<p>We will create a class that holds the neural network and loss functions, subclassing
+<code class="docutils literal notranslate"><span class="pre">torch.nn.Module</span></code>, which takes as input an instance of
+<a class="reference internal" href="../../_api/curobo.wrap.model.robot_world.html#curobo.wrap.model.robot_world.RobotWorld" title="curobo.wrap.model.robot_world.RobotWorld"><code class="xref py py-class docutils literal notranslate"><span class="pre">curobo.wrap.model.robot_world.RobotWorld</span></code></a>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">CuroboTorch</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">robot_world</span><span class="p">:</span> <span class="n">RobotWorld</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Build a simple structured NN:</span>
+
+<span class="sd">        q_current -&gt; kinematics -&gt; sdf -&gt; features</span>
+<span class="sd">        [features, x_des] -&gt; NN -&gt; kinematics -&gt; sdf -&gt; [sdf, pose_distance] -&gt; NN -&gt; q_out</span>
+<span class="sd">        loss = (fk(q_out) - x_des) + (q_current - q_out) + valid(q_out)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">CuroboTorch</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="n">feature_dims</span> <span class="o">=</span> <span class="n">robot_world</span><span class="o">.</span><span class="n">kinematics</span><span class="o">.</span><span class="n">kinematics_config</span><span class="o">.</span><span class="n">link_spheres</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">+</span> <span class="mi">7</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">q_feature_dims</span> <span class="o">=</span> <span class="mi">7</span>
+        <span class="n">final_feature_dims</span> <span class="o">=</span> <span class="n">feature_dims</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">+</span> <span class="mi">7</span>
+        <span class="n">output_dims</span> <span class="o">=</span> <span class="n">robot_world</span><span class="o">.</span><span class="n">kinematics</span><span class="o">.</span><span class="n">get_dof</span><span class="p">()</span>
+
+        <span class="c1"># build neural network:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_robot_world</span> <span class="o">=</span> <span class="n">robot_world</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_feature_mlp</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">q_feature_dims</span><span class="p">,</span> <span class="mi">512</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU6</span><span class="p">(),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">512</span><span class="p">,</span> <span class="mi">512</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU6</span><span class="p">(),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">512</span><span class="p">,</span> <span class="mi">512</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU6</span><span class="p">(),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">512</span><span class="p">,</span> <span class="n">output_dims</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Tanh</span><span class="p">(),</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_final_mlp</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">final_feature_dims</span><span class="p">,</span> <span class="mi">256</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU6</span><span class="p">(),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="mi">256</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU6</span><span class="p">(),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="mi">64</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU6</span><span class="p">(),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="n">output_dims</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Tanh</span><span class="p">(),</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_features</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">q</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">x_des</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Pose</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Compute a CuRobo Layer that computes features given joint angle.&quot;&quot;&quot;</span>
+        <span class="n">kin_state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_robot_world</span><span class="o">.</span><span class="n">get_kinematics</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+        <span class="n">spheres</span> <span class="o">=</span> <span class="n">kin_state</span><span class="o">.</span><span class="n">link_spheres_tensor</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">q_sdf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_robot_world</span><span class="o">.</span><span class="n">get_collision_distance</span><span class="p">(</span><span class="n">spheres</span><span class="p">)</span>
+        <span class="n">q_self</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_robot_world</span><span class="o">.</span><span class="n">get_collision_distance</span><span class="p">(</span>
+            <span class="n">kin_state</span><span class="o">.</span><span class="n">link_spheres_tensor</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="n">features</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">kin_state</span><span class="o">.</span><span class="n">link_spheres_tensor</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">q</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span>
+            <span class="n">q_sdf</span><span class="p">,</span>
+            <span class="n">q_self</span><span class="p">,</span>
+            <span class="n">kin_state</span><span class="o">.</span><span class="n">ee_position</span><span class="p">,</span>
+            <span class="n">kin_state</span><span class="o">.</span><span class="n">ee_quaternion</span><span class="p">,</span>
+        <span class="p">]</span>
+        <span class="k">if</span> <span class="n">x_des</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">pose_distance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_robot_world</span><span class="o">.</span><span class="n">pose_distance</span><span class="p">(</span><span class="n">x_des</span><span class="p">,</span> <span class="n">kin_state</span><span class="o">.</span><span class="n">ee_pose</span><span class="p">)</span>
+            <span class="n">features</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pose_distance</span><span class="p">)</span>
+            <span class="n">features</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x_des</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
+            <span class="n">features</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x_des</span><span class="o">.</span><span class="n">quaternion</span><span class="p">)</span>
+        <span class="n">features</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">features</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">q</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">x_des</span><span class="p">:</span> <span class="n">Pose</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Forward for neural network</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            q (torch.Tensor): _description_</span>
+<span class="sd">            x_des (torch.Tensor): _description_</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># get features for input:</span>
+        <span class="n">in_features</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">x_des</span><span class="o">.</span><span class="n">position</span><span class="p">,</span> <span class="n">x_des</span><span class="o">.</span><span class="n">quaternion</span><span class="p">],</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="c1"># pass through initial mlp:</span>
+        <span class="n">q_mid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_feature_mlp</span><span class="p">(</span><span class="n">in_features</span><span class="p">)</span>
+
+        <span class="n">q_scale</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_robot_world</span><span class="o">.</span><span class="n">bound_scale</span> <span class="o">*</span> <span class="n">q_mid</span>
+        <span class="c1"># get new features:</span>
+        <span class="n">mid_features</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_features</span><span class="p">(</span><span class="n">q_scale</span><span class="p">,</span> <span class="n">x_des</span><span class="o">=</span><span class="n">x_des</span><span class="p">)</span>
+        <span class="n">q_out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_final_mlp</span><span class="p">(</span><span class="n">mid_features</span><span class="p">)</span>
+        <span class="n">q_out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_robot_world</span><span class="o">.</span><span class="n">bound_scale</span> <span class="o">*</span> <span class="n">q_out</span>
+        <span class="k">return</span> <span class="n">q_out</span>
+
+    <span class="k">def</span> <span class="nf">loss</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_des</span><span class="p">:</span> <span class="n">Pose</span><span class="p">,</span> <span class="n">q</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">q_in</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Compute training loss &quot;&quot;&quot;</span>
+        <span class="n">kin_state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_robot_world</span><span class="o">.</span><span class="n">get_kinematics</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+        <span class="n">distance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_robot_world</span><span class="o">.</span><span class="n">pose_distance</span><span class="p">(</span><span class="n">x_des</span><span class="p">,</span> <span class="n">kin_state</span><span class="o">.</span><span class="n">ee_pose</span><span class="p">)</span>
+        <span class="n">d_sdf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_robot_world</span><span class="o">.</span><span class="n">collision_constraint</span><span class="p">(</span><span class="n">kin_state</span><span class="o">.</span><span class="n">link_spheres_tensor</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">d_self</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_robot_world</span><span class="o">.</span><span class="n">self_collision_cost</span><span class="p">(</span><span class="n">kin_state</span><span class="o">.</span><span class="n">link_spheres_tensor</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">loss</span> <span class="o">=</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">q_in</span> <span class="o">-</span> <span class="n">q</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">distance</span> <span class="o">+</span> <span class="mf">100.0</span> <span class="o">*</span> <span class="p">(</span><span class="n">d_self</span> <span class="o">+</span> <span class="n">d_sdf</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">loss</span>
+
+    <span class="k">def</span> <span class="nf">val_loss</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_des</span><span class="p">:</span> <span class="n">Pose</span><span class="p">,</span> <span class="n">q</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">q_in</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Compute validatin loss &quot;&quot;&quot;</span>
+        <span class="n">kin_state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_robot_world</span><span class="o">.</span><span class="n">get_kinematics</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+        <span class="n">distance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_robot_world</span><span class="o">.</span><span class="n">pose_distance</span><span class="p">(</span><span class="n">x_des</span><span class="p">,</span> <span class="n">kin_state</span><span class="o">.</span><span class="n">ee_pose</span><span class="p">)</span>
+        <span class="n">d_sdf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_robot_world</span><span class="o">.</span><span class="n">collision_constraint</span><span class="p">(</span><span class="n">kin_state</span><span class="o">.</span><span class="n">link_spheres_tensor</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">d_self</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_robot_world</span><span class="o">.</span><span class="n">self_collision_cost</span><span class="p">(</span><span class="n">kin_state</span><span class="o">.</span><span class="n">link_spheres_tensor</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">loss</span> <span class="o">=</span> <span class="mf">10.0</span> <span class="o">*</span> <span class="p">(</span><span class="n">d_self</span> <span class="o">+</span> <span class="n">d_sdf</span><span class="p">)</span> <span class="o">+</span> <span class="n">distance</span>
+        <span class="k">return</span> <span class="n">loss</span>
+</pre></div>
+</div>
+<p>We train a network to output collision-free inverse kinematics given a goal pose below,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">update_goal</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">write_usd</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">writer</span> <span class="o">=</span> <span class="n">SummaryWriter</span><span class="p">(</span><span class="s2">&quot;log/runs/ik/&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">()))</span>
+    <span class="n">robot_file</span> <span class="o">=</span> <span class="s2">&quot;franka.yml&quot;</span>
+    <span class="n">world_file</span> <span class="o">=</span> <span class="s2">&quot;collision_table.yml&quot;</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">RobotWorldConfig</span><span class="o">.</span><span class="n">load_from_config</span><span class="p">(</span>
+        <span class="n">robot_file</span><span class="p">,</span> <span class="n">world_file</span><span class="p">,</span> <span class="n">pose_weight</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="n">curobo_fn</span> <span class="o">=</span> <span class="n">RobotWorld</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+
+    <span class="n">model</span> <span class="o">=</span> <span class="n">CuroboTorch</span><span class="p">(</span><span class="n">curobo_fn</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+        <span class="c1"># q_train = curobo_fn.sample(10000)</span>
+        <span class="n">q_val</span> <span class="o">=</span> <span class="n">curobo_fn</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+        <span class="n">q_train</span> <span class="o">=</span> <span class="n">curobo_fn</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span> <span class="o">*</span> <span class="mi">2048</span><span class="p">)</span>
+    <span class="n">usd_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span> <span class="n">weight_decay</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">)</span>
+    <span class="n">batch_size</span> <span class="o">=</span> <span class="mi">512</span>
+    <span class="n">batch_start</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">q_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">batch_size</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+        <span class="n">x_des</span> <span class="o">=</span> <span class="n">curobo_fn</span><span class="o">.</span><span class="n">get_kinematics</span><span class="p">(</span><span class="n">q_train</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span><span class="o">.</span><span class="n">ee_pose</span>
+        <span class="n">x_des_train</span> <span class="o">=</span> <span class="n">curobo_fn</span><span class="o">.</span><span class="n">get_kinematics</span><span class="p">(</span><span class="n">q_train</span><span class="p">)</span><span class="o">.</span><span class="n">ee_pose</span>
+        <span class="n">x_des_val</span> <span class="o">=</span> <span class="n">x_des</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">q_val</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">q_debug</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">bar</span> <span class="o">=</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">500</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">bar</span><span class="p">:</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">batch_start</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+            <span class="n">x_train</span> <span class="o">=</span> <span class="n">q_train</span><span class="p">[</span><span class="n">batch_start</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="p">:</span> <span class="n">batch_start</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">batch_size</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">x_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">batch_size</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="n">x_des_batch</span> <span class="o">=</span> <span class="n">x_des_train</span><span class="p">[</span><span class="n">batch_start</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="p">:</span> <span class="n">batch_start</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">batch_size</span><span class="p">]</span>
+            <span class="n">q</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">x_des_batch</span><span class="p">)</span>
+            <span class="n">loss</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">loss</span><span class="p">(</span><span class="n">x_des_batch</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">x_train</span><span class="p">)</span>
+            <span class="n">loss</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">loss</span><span class="p">)</span>
+
+            <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+            <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+            <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+        <span class="n">writer</span><span class="o">.</span><span class="n">add_scalar</span><span class="p">(</span><span class="s2">&quot;training loss&quot;</span><span class="p">,</span> <span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span> <span class="n">e</span><span class="p">)</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+            <span class="n">q_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">forward</span><span class="p">(</span><span class="n">q_val</span><span class="p">,</span> <span class="n">x_des_val</span><span class="p">)</span>
+            <span class="n">val_loss</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">val_loss</span><span class="p">(</span><span class="n">x_des_val</span><span class="p">,</span> <span class="n">q_pred</span><span class="p">,</span> <span class="n">q_val</span><span class="p">)</span>
+            <span class="n">val_loss</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">val_loss</span><span class="p">)</span>
+            <span class="n">q_debug</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">q_pred</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">clone</span><span class="p">())</span>
+        <span class="n">writer</span><span class="o">.</span><span class="n">add_scalar</span><span class="p">(</span><span class="s2">&quot;validation loss&quot;</span><span class="p">,</span> <span class="n">val_loss</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span> <span class="n">e</span><span class="p">)</span>
+        <span class="n">bar</span><span class="o">.</span><span class="n">set_description</span><span class="p">(</span><span class="s2">&quot;t: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">val_loss</span><span class="o">.</span><span class="n">item</span><span class="p">()))</span>
+        <span class="k">if</span> <span class="n">e</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">q_debug</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">write_usd</span><span class="p">:</span> <span class="c1"># store ik solution in a animated usd.</span>
+                <span class="n">q_traj</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">q_debug</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+                <span class="n">world_model</span> <span class="o">=</span> <span class="n">WorldConfig</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span>
+                    <span class="n">load_yaml</span><span class="p">(</span><span class="n">join_path</span><span class="p">(</span><span class="n">get_world_configs_path</span><span class="p">(),</span> <span class="n">world_file</span><span class="p">))</span>
+                <span class="p">)</span>
+                <span class="n">gripper_mesh</span> <span class="o">=</span> <span class="n">Mesh</span><span class="p">(</span>
+                    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;target_gripper&quot;</span><span class="p">,</span>
+                    <span class="n">file_path</span><span class="o">=</span><span class="n">join_path</span><span class="p">(</span>
+                        <span class="n">get_assets_path</span><span class="p">(),</span>
+                        <span class="s2">&quot;robot/franka_description/meshes/visual/hand_ee_link.dae&quot;</span><span class="p">,</span>
+                    <span class="p">),</span>
+                    <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span>
+                    <span class="n">pose</span><span class="o">=</span><span class="n">x_des</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+                <span class="p">)</span>
+                <span class="n">world_model</span><span class="o">.</span><span class="n">add_obstacle</span><span class="p">(</span><span class="n">gripper_mesh</span><span class="p">)</span>
+                <span class="n">save_name</span> <span class="o">=</span> <span class="s2">&quot;e_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+                <span class="n">UsdHelper</span><span class="o">.</span><span class="n">write_trajectory_animation_with_robot_usd</span><span class="p">(</span>
+                    <span class="s2">&quot;franka.yml&quot;</span><span class="p">,</span>
+                    <span class="n">world_model</span><span class="p">,</span>
+                    <span class="n">JointState</span><span class="p">(</span><span class="n">position</span><span class="o">=</span><span class="n">q_traj</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
+                    <span class="n">JointState</span><span class="p">(</span><span class="n">position</span><span class="o">=</span><span class="n">q_traj</span><span class="p">),</span>
+                    <span class="n">dt</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+                    <span class="n">visualize_robot_spheres</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                    <span class="n">save_path</span><span class="o">=</span><span class="n">save_name</span> <span class="o">+</span> <span class="s2">&quot;.usd&quot;</span><span class="p">,</span>
+                    <span class="n">base_frame</span><span class="o">=</span><span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">save_name</span><span class="p">,</span>
+                <span class="p">)</span>
+                <span class="n">usd_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">save_name</span> <span class="o">+</span> <span class="s2">&quot;.usd&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">update_goal</span><span class="p">:</span>
+                <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+                    <span class="n">rand_perm</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randperm</span><span class="p">(</span><span class="n">q_val</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                    <span class="n">q_val</span> <span class="o">=</span> <span class="n">q_val</span><span class="p">[</span><span class="n">rand_perm</span><span class="p">]</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
+                    <span class="n">x_des</span> <span class="o">=</span> <span class="n">curobo_fn</span><span class="o">.</span><span class="n">get_kinematics</span><span class="p">(</span><span class="n">q_val</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">ee_pose</span>
+                    <span class="n">x_des_val</span> <span class="o">=</span> <span class="n">x_des</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">q_val</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">q_debug</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># create a grid of animated usds:</span>
+    <span class="k">if</span> <span class="n">write_usd</span><span class="p">:</span>
+        <span class="n">UsdHelper</span><span class="o">.</span><span class="n">create_grid_usd</span><span class="p">(</span>
+            <span class="n">usd_list</span><span class="p">,</span>
+            <span class="s2">&quot;epoch_grid.usd&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;/world&quot;</span><span class="p">,</span>
+            <span class="n">max_envs</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">usd_list</span><span class="p">),</span>
+            <span class="n">max_timecode</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">q_debug</span><span class="p">),</span>
+            <span class="n">x_space</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span>
+            <span class="n">y_space</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span>
+            <span class="n">x_per_row</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">usd_list</span><span class="p">)))</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="n">local_asset_path</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="n">dt</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="p">)</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="2d_nvblox_demo.html" class="btn btn-neutral float-left" title="Using with Depth Camera" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="4_benchmarks.html" class="btn btn-neutral float-right" title="Benchmarks &amp; Profiling" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, NVIDIA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(250);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

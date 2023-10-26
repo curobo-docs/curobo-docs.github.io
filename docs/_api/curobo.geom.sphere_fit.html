@@ -1,0 +1,331 @@
+<!--
+-- Copyright (c) 2023 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+--
+-- NVIDIA CORPORATION, its affiliates and licensors retain all intellectual
+-- property and proprietary rights in and to this material, related
+-- documentation and any modifications thereto. Any use, reproduction,
+-- disclosure or distribution of this material and related documentation
+-- without an express license agreement from NVIDIA CORPORATION or
+-- its affiliates is strictly prohibited.
+-->
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>curobo.geom.sphere_fit module &mdash; CuRobo  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="curobo.geom.transform module" href="curobo.geom.transform.html" />
+    <link rel="prev" title="curobo.geom.sdf.world_mesh module" href="curobo.geom.sdf.world_mesh.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CuRobo
+              <img src="../_static/nvidia_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Research</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/research/research.html">Technical Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/research/research_using_curobo.html">Research using CuRobo</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Library Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/1_install_instructions.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/1a_quick_overview.html">Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2a_python_examples.html">Using in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2b_isaacsim_examples.html">Using with Isaac Sim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2c_world_collision.html">Collision World Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2d_nvblox_demo.html">Using with Depth Camera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2e_torch_layer_example.html">Using in a Neural Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/4_benchmarks.html">Benchmarks &amp; Profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/5_docker_development.html">Docker Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/6_known_issues.html">Known Issues</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Advanced Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2a_batch_env.html">Batched Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2b_block_stacking_example.html">Block Stacking</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/tutorials/1_robot_configuration.html">Configuring a New Robot</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/01_robot_list.html">Supported Robots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/02_numerical_optimization.html">Numerical Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/04_cuda_kernels.html">CUDA Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/05_usd_api.html">USD for Robot and World Representation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">Python API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CuRobo</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../api.html">Python API</a></li>
+          <li class="breadcrumb-item"><a href="curobo.geom.html">curobo.geom package</a></li>
+      <li class="breadcrumb-item active">curobo.geom.sphere_fit module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/_api/curobo.geom.sphere_fit.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-curobo.geom.sphere_fit">
+<span id="curobo-geom-sphere-fit-module"></span><h1>curobo.geom.sphere_fit module<a class="headerlink" href="#module-curobo.geom.sphere_fit" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="curobo.geom.sphere_fit.SphereFitType">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">curobo.geom.sphere_fit.</span></span><span class="sig-name descname"><span class="pre">SphereFitType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sphere_fit.SphereFitType" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
+<p>Supported sphere fit types are listed here. VOXEL_VOLUME_SAMPLE_SURFACE works best.</p>
+<p>See <a class="reference internal" href="../source/getting_started/2c_world_collision.html#attach-object-note"><span class="std std-ref">Geometry Approximation to Spheres</span></a> for more details.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.geom.sphere_fit.SphereFitType.SAMPLE_SURFACE">
+<span class="sig-name descname"><span class="pre">SAMPLE_SURFACE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sample_surface'</span></em><a class="headerlink" href="#curobo.geom.sphere_fit.SphereFitType.SAMPLE_SURFACE" title="Link to this definition"></a></dt>
+<dd><p>samples the surface of the mesh to approximate geometry</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.geom.sphere_fit.SphereFitType.VOXEL_SURFACE">
+<span class="sig-name descname"><span class="pre">VOXEL_SURFACE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'voxel_surface'</span></em><a class="headerlink" href="#curobo.geom.sphere_fit.SphereFitType.VOXEL_SURFACE" title="Link to this definition"></a></dt>
+<dd><p>voxelizes the volume and returns voxel positions that are intersecting with surface.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.geom.sphere_fit.SphereFitType.VOXEL_VOLUME">
+<span class="sig-name descname"><span class="pre">VOXEL_VOLUME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'voxel_volume'</span></em><a class="headerlink" href="#curobo.geom.sphere_fit.SphereFitType.VOXEL_VOLUME" title="Link to this definition"></a></dt>
+<dd><p>voxelizes the volume and returns all ocupioed voxel positions.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.geom.sphere_fit.SphereFitType.VOXEL_VOLUME_INSIDE">
+<span class="sig-name descname"><span class="pre">VOXEL_VOLUME_INSIDE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'voxel_volume_inside'</span></em><a class="headerlink" href="#curobo.geom.sphere_fit.SphereFitType.VOXEL_VOLUME_INSIDE" title="Link to this definition"></a></dt>
+<dd><p>voxelizes the volume and returns voxel positions that are inside the surface of the geometry</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.geom.sphere_fit.SphereFitType.VOXEL_VOLUME_SAMPLE_SURFACE">
+<span class="sig-name descname"><span class="pre">VOXEL_VOLUME_SAMPLE_SURFACE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'voxel_volume_sample_surface'</span></em><a class="headerlink" href="#curobo.geom.sphere_fit.SphereFitType.VOXEL_VOLUME_SAMPLE_SURFACE" title="Link to this definition"></a></dt>
+<dd><p>voxelizes the volume and returns voxel positions that are inside the surface,
+along with surface sampled positions</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="curobo.geom.sphere_fit.sample_even_fit_mesh">
+<span class="sig-prename descclassname"><span class="pre">curobo.geom.sphere_fit.</span></span><span class="sig-name descname"><span class="pre">sample_even_fit_mesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_spheres</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sphere_radius</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sphere_fit.sample_even_fit_mesh" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mesh</strong> (<em>Trimesh</em>) – </p></li>
+<li><p><strong>n_spheres</strong> (<em>int</em>) – </p></li>
+<li><p><strong>sphere_radius</strong> (<em>float</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="curobo.geom.sphere_fit.get_voxel_pitch">
+<span class="sig-prename descclassname"><span class="pre">curobo.geom.sphere_fit.</span></span><span class="sig-name descname"><span class="pre">get_voxel_pitch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_cubes</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sphere_fit.get_voxel_pitch" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mesh</strong> (<em>Trimesh</em>) – </p></li>
+<li><p><strong>n_cubes</strong> (<em>int</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="curobo.geom.sphere_fit.voxel_fit_surface_mesh">
+<span class="sig-prename descclassname"><span class="pre">curobo.geom.sphere_fit.</span></span><span class="sig-name descname"><span class="pre">voxel_fit_surface_mesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_spheres</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sphere_radius</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">voxelize_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ray'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sphere_fit.voxel_fit_surface_mesh" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mesh</strong> (<em>Trimesh</em>) – </p></li>
+<li><p><strong>n_spheres</strong> (<em>int</em>) – </p></li>
+<li><p><strong>sphere_radius</strong> (<em>float</em>) – </p></li>
+<li><p><strong>voxelize_method</strong> (<em>str</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="curobo.geom.sphere_fit.get_voxelgrid_from_mesh">
+<span class="sig-prename descclassname"><span class="pre">curobo.geom.sphere_fit.</span></span><span class="sig-name descname"><span class="pre">get_voxelgrid_from_mesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_spheres</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">voxelize_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ray'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sphere_fit.get_voxelgrid_from_mesh" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mesh</strong> (<em>Trimesh</em>) – </p></li>
+<li><p><strong>n_spheres</strong> (<em>int</em>) – </p></li>
+<li><p><strong>voxelize_method</strong> (<em>str</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="curobo.geom.sphere_fit.voxel_fit_mesh">
+<span class="sig-prename descclassname"><span class="pre">curobo.geom.sphere_fit.</span></span><span class="sig-name descname"><span class="pre">voxel_fit_mesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_spheres</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">surface_sphere_radius</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">voxelize_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ray'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sphere_fit.voxel_fit_mesh" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mesh</strong> (<em>Trimesh</em>) – </p></li>
+<li><p><strong>n_spheres</strong> (<em>int</em>) – </p></li>
+<li><p><strong>surface_sphere_radius</strong> (<em>float</em>) – </p></li>
+<li><p><strong>voxelize_method</strong> (<em>str</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="curobo.geom.sphere_fit.voxel_fit_volume_sample_surface_mesh">
+<span class="sig-prename descclassname"><span class="pre">curobo.geom.sphere_fit.</span></span><span class="sig-name descname"><span class="pre">voxel_fit_volume_sample_surface_mesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_spheres</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">surface_sphere_radius</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">voxelize_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ray'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sphere_fit.voxel_fit_volume_sample_surface_mesh" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mesh</strong> (<em>Trimesh</em>) – </p></li>
+<li><p><strong>n_spheres</strong> (<em>int</em>) – </p></li>
+<li><p><strong>surface_sphere_radius</strong> (<em>float</em>) – </p></li>
+<li><p><strong>voxelize_method</strong> (<em>str</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="curobo.geom.sphere_fit.voxel_fit_volume_inside_mesh">
+<span class="sig-prename descclassname"><span class="pre">curobo.geom.sphere_fit.</span></span><span class="sig-name descname"><span class="pre">voxel_fit_volume_inside_mesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_spheres</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">voxelize_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ray'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sphere_fit.voxel_fit_volume_inside_mesh" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mesh</strong> (<em>Trimesh</em>) – </p></li>
+<li><p><strong>n_spheres</strong> (<em>int</em>) – </p></li>
+<li><p><strong>voxelize_method</strong> (<em>str</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="curobo.geom.sphere_fit.fit_spheres_to_mesh">
+<span class="sig-prename descclassname"><span class="pre">curobo.geom.sphere_fit.</span></span><span class="sig-name descname"><span class="pre">fit_spheres_to_mesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_spheres</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">surface_sphere_radius</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fit_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">SphereFitType.VOXEL_VOLUME_SAMPLE_SURFACE</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">voxelize_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ray'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sphere_fit.fit_spheres_to_mesh" title="Link to this definition"></a></dt>
+<dd><p>Approximate a mesh with spheres. See <a class="reference internal" href="../source/getting_started/2c_world_collision.html#attach-object-note"><span class="std std-ref">Geometry Approximation to Spheres</span></a> for more details.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mesh</strong> (<em>Trimesh</em>) – Input trimesh</p></li>
+<li><p><strong>n_spheres</strong> (<em>int</em>) – _description_</p></li>
+<li><p><strong>surface_sphere_radius</strong> (<em>float</em>) – _description_. Defaults to 0.01.</p></li>
+<li><p><strong>fit_type</strong> (<a class="reference internal" href="#curobo.geom.sphere_fit.SphereFitType" title="curobo.geom.sphere_fit.SphereFitType"><em>SphereFitType</em></a>) – _description_. Defaults to SphereFitType.VOXEL_VOLUME_SAMPLE_SURFACE.</p></li>
+<li><p><strong>voxelize_method</strong> (<em>str</em>) – _description_. Defaults to “ray”.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>_description_</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>Tuple</em>[<em>ndarray</em>, <em>List</em>[float]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="curobo.geom.sdf.world_mesh.html" class="btn btn-neutral float-left" title="curobo.geom.sdf.world_mesh module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="curobo.geom.transform.html" class="btn btn-neutral float-right" title="curobo.geom.transform module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, NVIDIA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(250);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

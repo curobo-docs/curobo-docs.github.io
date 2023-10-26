@@ -1,0 +1,568 @@
+<!--
+-- Copyright (c) 2023 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+--
+-- NVIDIA CORPORATION, its affiliates and licensors retain all intellectual
+-- property and proprietary rights in and to this material, related
+-- documentation and any modifications thereto. Any use, reproduction,
+-- disclosure or distribution of this material and related documentation
+-- without an express license agreement from NVIDIA CORPORATION or
+-- its affiliates is strictly prohibited.
+-->
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>curobo.types.state module &mdash; CuRobo  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="curobo.types.tensor module" href="curobo.types.tensor.html" />
+    <link rel="prev" title="curobo.types.robot module" href="curobo.types.robot.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CuRobo
+              <img src="../_static/nvidia_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Research</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/research/research.html">Technical Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/research/research_using_curobo.html">Research using CuRobo</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Library Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/1_install_instructions.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/1a_quick_overview.html">Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2a_python_examples.html">Using in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2b_isaacsim_examples.html">Using with Isaac Sim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2c_world_collision.html">Collision World Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2d_nvblox_demo.html">Using with Depth Camera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2e_torch_layer_example.html">Using in a Neural Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/4_benchmarks.html">Benchmarks &amp; Profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/5_docker_development.html">Docker Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/6_known_issues.html">Known Issues</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Advanced Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2a_batch_env.html">Batched Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2b_block_stacking_example.html">Block Stacking</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/tutorials/1_robot_configuration.html">Configuring a New Robot</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/01_robot_list.html">Supported Robots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/02_numerical_optimization.html">Numerical Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/04_cuda_kernels.html">CUDA Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/05_usd_api.html">USD for Robot and World Representation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">Python API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CuRobo</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../api.html">Python API</a></li>
+          <li class="breadcrumb-item"><a href="modules.html">curobo</a></li>
+          <li class="breadcrumb-item"><a href="curobo.html">curobo package</a></li>
+          <li class="breadcrumb-item"><a href="curobo.types.html">curobo.types package</a></li>
+      <li class="breadcrumb-item active">curobo.types.state module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/_api/curobo.types.state.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-curobo.types.state">
+<span id="curobo-types-state-module"></span><h1>curobo.types.state module<a class="headerlink" href="#module-curobo.types.state" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="curobo.types.state.FilterCoeff">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">curobo.types.state.</span></span><span class="sig-name descname"><span class="pre">FilterCoeff</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'float'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'float'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">acceleration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'float'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jerk</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'float'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.state.FilterCoeff" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>position</strong> (<em>float</em>) – </p></li>
+<li><p><strong>velocity</strong> (<em>float</em>) – </p></li>
+<li><p><strong>acceleration</strong> (<em>float</em>) – </p></li>
+<li><p><strong>jerk</strong> (<em>float</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.types.state.FilterCoeff.position">
+<span class="sig-name descname"><span class="pre">position</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></em><a class="headerlink" href="#curobo.types.state.FilterCoeff.position" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.types.state.FilterCoeff.velocity">
+<span class="sig-name descname"><span class="pre">velocity</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></em><a class="headerlink" href="#curobo.types.state.FilterCoeff.velocity" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.types.state.FilterCoeff.acceleration">
+<span class="sig-name descname"><span class="pre">acceleration</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></em><a class="headerlink" href="#curobo.types.state.FilterCoeff.acceleration" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.types.state.FilterCoeff.jerk">
+<span class="sig-name descname"><span class="pre">jerk</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></em><a class="headerlink" href="#curobo.types.state.FilterCoeff.jerk" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="curobo.types.state.State">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">curobo.types.state.</span></span><span class="sig-name descname"><span class="pre">State</span></span><a class="headerlink" href="#curobo.types.state.State" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></p>
+<dl class="field-list simple">
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.types.state.State.blend">
+<span class="sig-name descname"><span class="pre">blend</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coeff</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_state</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.state.State.blend" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>coeff</strong> (<a class="reference internal" href="#curobo.types.state.FilterCoeff" title="curobo.types.state.FilterCoeff"><em>FilterCoeff</em></a>) – </p></li>
+<li><p><strong>new_state</strong> (<a class="reference internal" href="#curobo.types.state.State" title="curobo.types.state.State"><em>State</em></a>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.types.state.State.to">
+<span class="sig-name descname"><span class="pre">to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tensor_args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.state.State.to" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>tensor_args</strong> (<a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType" title="curobo.types.base.TensorDeviceType"><em>TensorDeviceType</em></a>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.types.state.State.get_state_tensor">
+<span class="sig-name descname"><span class="pre">get_state_tensor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.state.State.get_state_tensor" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.types.state.State.apply_kernel">
+<span class="sig-name descname"><span class="pre">apply_kernel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kernel_mat</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.state.State.apply_kernel" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.types.state.State.clone">
+<span class="sig-name descname"><span class="pre">clone</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.state.State.clone" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="curobo.types.state.JointState">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">curobo.types.state.</span></span><span class="sig-name descname"><span class="pre">JointState</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Union[List[float],</span> <span class="pre">T_DOF]'</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Union[List[float],</span> <span class="pre">T_DOF,</span> <span class="pre">None]'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">acceleration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Union[List[float],</span> <span class="pre">T_DOF,</span> <span class="pre">None]'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">joint_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Optional[List[str]]'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jerk</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'Union[List[float],</span> <span class="pre">T_DOF,</span> <span class="pre">None]'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tensor_args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="s"><span class="pre">'TensorDeviceType'</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">TensorDeviceType(device=device(type='cuda',</span> <span class="pre">index=0),</span> <span class="pre">dtype=torch.float32)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.state.JointState" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#curobo.types.state.State" title="curobo.types.state.State"><code class="xref py py-class docutils literal notranslate"><span class="pre">State</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>position</strong> (<em>List</em><em>[</em><em>float</em><em>] </em><em>| </em><em>Tensor</em>) – </p></li>
+<li><p><strong>velocity</strong> (<em>List</em><em>[</em><em>float</em><em>] </em><em>| </em><em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>acceleration</strong> (<em>List</em><em>[</em><em>float</em><em>] </em><em>| </em><em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>joint_names</strong> (<em>List</em><em>[</em><em>str</em><em>] </em><em>| </em><em>None</em>) – </p></li>
+<li><p><strong>jerk</strong> (<em>List</em><em>[</em><em>float</em><em>] </em><em>| </em><em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>tensor_args</strong> (<a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType" title="curobo.types.base.TensorDeviceType"><em>TensorDeviceType</em></a>) – </p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.types.state.JointState.position">
+<span class="sig-name descname"><span class="pre">position</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tensor</span></em><a class="headerlink" href="#curobo.types.state.JointState.position" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.types.state.JointState.velocity">
+<span class="sig-name descname"><span class="pre">velocity</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.types.state.JointState.velocity" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.types.state.JointState.acceleration">
+<span class="sig-name descname"><span class="pre">acceleration</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.types.state.JointState.acceleration" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.types.state.JointState.joint_names">
+<span class="sig-name descname"><span class="pre">joint_names</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.types.state.JointState.joint_names" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.types.state.JointState.jerk">
+<span class="sig-name descname"><span class="pre">jerk</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.types.state.JointState.jerk" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.types.state.JointState.tensor_args">
+<span class="sig-name descname"><span class="pre">tensor_args</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType" title="curobo.types.base.TensorDeviceType"><span class="pre">TensorDeviceType</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">TensorDeviceType(device=device(type='cuda',</span> <span class="pre">index=0),</span> <span class="pre">dtype=torch.float32)</span></em><a class="headerlink" href="#curobo.types.state.JointState.tensor_args" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.types.state.JointState.from_numpy">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_numpy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">joint_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">acceleration</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jerk</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tensor_args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">TensorDeviceType(device=device(type='cuda',</span> <span class="pre">index=0),</span> <span class="pre">dtype=torch.float32)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.state.JointState.from_numpy" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>joint_names</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – </p></li>
+<li><p><strong>position</strong> (<em>np.ndarry</em>) – </p></li>
+<li><p><strong>velocity</strong> (<em>Optional</em><em>[</em><em>np.ndarray</em><em>]</em>) – </p></li>
+<li><p><strong>acceleration</strong> (<em>Optional</em><em>[</em><em>np.ndarray</em><em>]</em>) – </p></li>
+<li><p><strong>jerk</strong> (<em>Optional</em><em>[</em><em>np.ndarray</em><em>]</em>) – </p></li>
+<li><p><strong>tensor_args</strong> (<a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType" title="curobo.types.base.TensorDeviceType"><em>TensorDeviceType</em></a>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.types.state.JointState.from_position">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">joint_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.state.JointState.from_position" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>position</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>joint_names</strong> (<em>List</em><em>[</em><em>str</em><em>] </em><em>| </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.types.state.JointState.apply_kernel">
+<span class="sig-name descname"><span class="pre">apply_kernel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kernel_mat</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.state.JointState.apply_kernel" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.types.state.JointState.repeat_seeds">
+<span class="sig-name descname"><span class="pre">repeat_seeds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_seeds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.state.JointState.repeat_seeds" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>num_seeds</strong> (<em>int</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.types.state.JointState.to">
+<span class="sig-name descname"><span class="pre">to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tensor_args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.state.JointState.to" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>tensor_args</strong> (<a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType" title="curobo.types.base.TensorDeviceType"><em>TensorDeviceType</em></a>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.types.state.JointState.clone">
+<span class="sig-name descname"><span class="pre">clone</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.state.JointState.clone" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.types.state.JointState.blend">
+<span class="sig-name descname"><span class="pre">blend</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coeff</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_state</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.state.JointState.blend" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>coeff</strong> (<a class="reference internal" href="#curobo.types.state.FilterCoeff" title="curobo.types.state.FilterCoeff"><em>FilterCoeff</em></a>) – </p></li>
+<li><p><strong>new_state</strong> (<a class="reference internal" href="#curobo.types.state.JointState" title="curobo.types.state.JointState"><em>JointState</em></a>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.types.state.JointState.get_state_tensor">
+<span class="sig-name descname"><span class="pre">get_state_tensor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.state.JointState.get_state_tensor" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.types.state.JointState.from_state_tensor">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_state_tensor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state_tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">joint_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dof</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">7</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.state.JointState.from_state_tensor" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.types.state.JointState.stack">
+<span class="sig-name descname"><span class="pre">stack</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_state</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.state.JointState.stack" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>new_state</strong> (<a class="reference internal" href="#curobo.types.state.JointState" title="curobo.types.state.JointState"><em>JointState</em></a>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.types.state.JointState.from_list">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">acceleration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tensor_args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.state.JointState.from_list" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>tensor_args</strong> (<a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType" title="curobo.types.base.TensorDeviceType"><em>TensorDeviceType</em></a><em>(</em><em>)</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.types.state.JointState.copy_at_index">
+<span class="sig-name descname"><span class="pre">copy_at_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">in_joint_state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">idx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.state.JointState.copy_at_index" title="Link to this definition"></a></dt>
+<dd><p>Copy joint state to specific index</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>in_joint_state</strong> (<a class="reference internal" href="#curobo.types.state.JointState" title="curobo.types.state.JointState"><em>JointState</em></a>) – _description_</p></li>
+<li><p><strong>idx</strong> (<em>Union</em><em>[</em><em>int</em><em>,</em><em>torch.Tensor</em><em>]</em>) – _description_</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.types.state.JointState.copy_data">
+<span class="sig-name descname"><span class="pre">copy_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">in_joint_state</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.state.JointState.copy_data" title="Link to this definition"></a></dt>
+<dd><p>Copy data from in_joint_state to self</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>in_joint_state</strong> (<a class="reference internal" href="#curobo.types.state.JointState" title="curobo.types.state.JointState"><em>JointState</em></a>) – _description_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.types.state.JointState.copy_">
+<span class="sig-name descname"><span class="pre">copy_</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">in_joint_state</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.state.JointState.copy_" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>in_joint_state</strong> (<a class="reference internal" href="#curobo.types.state.JointState" title="curobo.types.state.JointState"><em>JointState</em></a>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.types.state.JointState.unsqueeze">
+<span class="sig-name descname"><span class="pre">unsqueeze</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">idx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.state.JointState.unsqueeze" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>idx</strong> (<em>int</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.types.state.JointState.squeeze">
+<span class="sig-name descname"><span class="pre">squeeze</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.state.JointState.squeeze" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dim</strong> (<em>int</em><em> | </em><em>None</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.types.state.JointState.calculate_fd_from_position">
+<span class="sig-name descname"><span class="pre">calculate_fd_from_position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dt</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.state.JointState.calculate_fd_from_position" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dt</strong> (<em>Tensor</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.types.state.JointState.zeros">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">zeros</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tensor_args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">joint_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.state.JointState.zeros" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>size</strong> (<em>Tuple</em><em>[</em><em>int</em><em>]</em>) – </p></li>
+<li><p><strong>tensor_args</strong> (<a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType" title="curobo.types.base.TensorDeviceType"><em>TensorDeviceType</em></a>) – </p></li>
+<li><p><strong>joint_names</strong> (<em>List</em><em>[</em><em>str</em><em>] </em><em>| </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.types.state.JointState.detach">
+<span class="sig-name descname"><span class="pre">detach</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.state.JointState.detach" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.types.state.JointState.get_ordered_joint_state">
+<span class="sig-name descname"><span class="pre">get_ordered_joint_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ordered_joint_names</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.state.JointState.get_ordered_joint_state" title="Link to this definition"></a></dt>
+<dd><p>Return joint state with a ordered joint names
+:param ordered_joint_names: _description_
+:type ordered_joint_names: List[str]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>_description_</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>_type_</p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ordered_joint_names</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.types.state.JointState.inplace_reindex">
+<span class="sig-name descname"><span class="pre">inplace_reindex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">joint_names</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.state.JointState.inplace_reindex" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>joint_names</strong> (<em>List</em><em>[</em><em>str</em><em>]</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.types.state.JointState.get_augmented_joint_state">
+<span class="sig-name descname"><span class="pre">get_augmented_joint_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">joint_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lock_joints</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.state.JointState.get_augmented_joint_state" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>lock_joints</strong> (<a class="reference internal" href="#curobo.types.state.JointState" title="curobo.types.state.JointState"><em>JointState</em></a><em> | </em><em>None</em>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#curobo.types.state.JointState" title="curobo.types.state.JointState"><em>JointState</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.types.state.JointState.append_joints">
+<span class="sig-name descname"><span class="pre">append_joints</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">js</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.state.JointState.append_joints" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>js</strong> (<a class="reference internal" href="#curobo.types.state.JointState" title="curobo.types.state.JointState"><em>JointState</em></a>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.types.state.JointState.trim_trajectory">
+<span class="sig-name descname"><span class="pre">trim_trajectory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_idx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.state.JointState.trim_trajectory" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start_idx</strong> (<em>int</em>) – </p></li>
+<li><p><strong>end_idx</strong> (<em>int</em><em> | </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.types.state.JointState.scale">
+<span class="sig-name descname"><span class="pre">scale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dt</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.types.state.JointState.scale" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dt</strong> (<em>float</em><em> | </em><em>Tensor</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="curobo.types.state.JointState.shape">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">shape</span></span><a class="headerlink" href="#curobo.types.state.JointState.shape" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="curobo.types.robot.html" class="btn btn-neutral float-left" title="curobo.types.robot module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="curobo.types.tensor.html" class="btn btn-neutral float-right" title="curobo.types.tensor module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, NVIDIA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(250);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

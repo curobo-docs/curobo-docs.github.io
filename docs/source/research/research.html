@@ -1,0 +1,213 @@
+<!--
+-- Copyright (c) 2023 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+--
+-- NVIDIA CORPORATION, its affiliates and licensors retain all intellectual
+-- property and proprietary rights in and to this material, related
+-- documentation and any modifications thereto. Any use, reproduction,
+-- disclosure or distribution of this material and related documentation
+-- without an express license agreement from NVIDIA CORPORATION or
+-- its affiliates is strictly prohibited.
+-->
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Technical Report &mdash; CuRobo  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Research using CuRobo" href="research_using_curobo.html" />
+    <link rel="prev" title="CuRobo: CUDA Accelerated Robot Library" href="../../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            CuRobo
+              <img src="../../_static/nvidia_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Research</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Technical Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="research_using_curobo.html">Research using CuRobo</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Library Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/1_install_instructions.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/1a_quick_overview.html">Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/2a_python_examples.html">Using in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/2b_isaacsim_examples.html">Using with Isaac Sim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/2c_world_collision.html">Collision World Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/2d_nvblox_demo.html">Using with Depth Camera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/2e_torch_layer_example.html">Using in a Neural Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/4_benchmarks.html">Benchmarks &amp; Profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/5_docker_development.html">Docker Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/6_known_issues.html">Known Issues</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Advanced Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_examples/2a_batch_env.html">Batched Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_examples/2b_block_stacking_example.html">Block Stacking</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/1_robot_configuration.html">Configuring a New Robot</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../notes/01_robot_list.html">Supported Robots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/02_numerical_optimization.html">Numerical Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/04_cuda_kernels.html">CUDA Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/05_usd_api.html">USD for Robot and World Representation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">Python API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">CuRobo</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Technical Report</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/source/research/research.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="technical-report">
+<span id="research-page"></span><h1>Technical Report<a class="headerlink" href="#technical-report" title="Link to this heading"></a></h1>
+<section id="curobo-parallelized-collision-free-minimum-jerk-robot-motion-generation">
+<h2>CuRobo: Parallelized Collision-Free Minimum-Jerk Robot Motion Generation<a class="headerlink" href="#curobo-parallelized-collision-free-minimum-jerk-robot-motion-generation" title="Link to this heading"></a></h2>
+<p><em>Balakumar Sundaralingam,
+Siva Kumar Sastry Hari,
+Adam Fishman,
+Caelan Garrett,
+Karl Van Wyk,
+Valts Blukis,
+Alexander Millane,
+Helen Oleynikova,
+Ankur Handa,
+Fabio Ramos,
+Nathan Ratliff,
+Dieter Fox</em></p>
+<p>[<a class="reference external" href="../../reports/curobo_report.pdf">PDF</a>]</p>
+<p>This paper explores the problem of collision-free motion generation for manipulators by formulating it as a global motion optimization problem. We develop a parallel optimization technique to solve this problem  and demonstrate its effectiveness on massively parallel GPUs. We show that combining simple optimization techniques with many parallel seeds leads to solving difficult motion generation problems within 50ms on average, 60x faster than state-of-the-art (SOTA) trajectory optimization methods. We achieve SOTA performance by combining L-BFGS step direction estimation with a novel parallel noisy line search scheme and a particle-based optimization solver. To further aid trajectory optimization, we develop a parallel geometric planner that is 101x faster than SOTA RRTConnect implementations and also introduce a collision-free IK solver that can solve over 7000 queries/s. We package our contributions into a state of the art GPU accelerated motion generation library, CuRobo and release it to enrich the robotics community.</p>
+</section>
+<section id="citation">
+<h2>Citation<a class="headerlink" href="#citation" title="Link to this heading"></a></h2>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="err">@</span><span class="n">article</span><span class="p">{</span><span class="n">curobo_report23</span><span class="p">,</span>
+<span class="n">title</span><span class="o">=</span><span class="p">{</span><span class="n">CuRobo</span><span class="o">:</span><span class="w"> </span><span class="n">Parallelized</span><span class="w"> </span><span class="n">Collision</span><span class="o">-</span><span class="n">Free</span><span class="w"> </span><span class="n">Minimum</span><span class="o">-</span><span class="n">Jerk</span><span class="w"> </span><span class="n">Robot</span><span class="w"> </span><span class="n">Motion</span><span class="w"> </span><span class="n">Generation</span><span class="p">},</span>
+<span class="n">author</span><span class="o">=</span><span class="p">{</span><span class="n">Sundaralingam</span><span class="p">,</span><span class="w"> </span><span class="n">Balakumar</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">Hari</span><span class="p">,</span><span class="w"> </span><span class="n">Siva</span><span class="w"> </span><span class="n">Kumar</span><span class="w"> </span><span class="n">Sastry</span><span class="w"> </span><span class="k">and</span>
+<span class="w">        </span><span class="n">Fishman</span><span class="p">,</span><span class="w"> </span><span class="n">Adam</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">Garrett</span><span class="p">,</span><span class="w"> </span><span class="n">Caelan</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">Van</span><span class="w"> </span><span class="n">Wyk</span><span class="p">,</span><span class="w"> </span><span class="n">Karl</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">Blukis</span><span class="p">,</span><span class="w"> </span><span class="n">Valts</span><span class="w"> </span><span class="k">and</span>
+<span class="w">        </span><span class="n">Millane</span><span class="p">,</span><span class="w"> </span><span class="n">Alexander</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">Oleynikova</span><span class="p">,</span><span class="w"> </span><span class="n">Helen</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">Handa</span><span class="p">,</span><span class="w"> </span><span class="n">Ankur</span><span class="w"> </span><span class="k">and</span>
+<span class="w">        </span><span class="n">Ramos</span><span class="p">,</span><span class="w"> </span><span class="n">Fabio</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">Ratliff</span><span class="p">,</span><span class="w"> </span><span class="n">Nathan</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">Fox</span><span class="p">,</span><span class="w"> </span><span class="n">Dieter</span><span class="p">},</span>
+<span class="n">journal</span><span class="o">=</span><span class="p">{</span><span class="n">arXiv</span><span class="w"> </span><span class="n">preprint</span><span class="p">},</span>
+<span class="n">year</span><span class="o">=</span><span class="p">{</span><span class="mi">2023</span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>An initial implementation of CuRobo without minimum jerk optimization was published at ICRA 2023, citation below</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="err">@</span><span class="n">INPROCEEDINGS</span><span class="p">{</span><span class="n">curobo_icra23</span><span class="p">,</span>
+<span class="n">author</span><span class="o">=</span><span class="p">{</span><span class="n">Sundaralingam</span><span class="p">,</span><span class="w"> </span><span class="n">Balakumar</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">Hari</span><span class="p">,</span><span class="w"> </span><span class="n">Siva</span><span class="w"> </span><span class="n">Kumar</span><span class="w"> </span><span class="n">Sastry</span><span class="w"> </span><span class="k">and</span>
+<span class="w">        </span><span class="n">Fishman</span><span class="p">,</span><span class="w"> </span><span class="n">Adam</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">Garrett</span><span class="p">,</span><span class="w"> </span><span class="n">Caelan</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">Van</span><span class="w"> </span><span class="n">Wyk</span><span class="p">,</span><span class="w"> </span><span class="n">Karl</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">Blukis</span><span class="p">,</span><span class="w"> </span><span class="n">Valts</span><span class="w"> </span><span class="k">and</span>
+<span class="w">        </span><span class="n">Millane</span><span class="p">,</span><span class="w"> </span><span class="n">Alexander</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">Oleynikova</span><span class="p">,</span><span class="w"> </span><span class="n">Helen</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">Handa</span><span class="p">,</span><span class="w"> </span><span class="n">Ankur</span><span class="w"> </span><span class="k">and</span>
+<span class="w">        </span><span class="n">Ramos</span><span class="p">,</span><span class="w"> </span><span class="n">Fabio</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">Ratliff</span><span class="p">,</span><span class="w"> </span><span class="n">Nathan</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">Fox</span><span class="p">,</span><span class="w"> </span><span class="n">Dieter</span><span class="p">},</span>
+<span class="n">booktitle</span><span class="o">=</span><span class="p">{</span><span class="mi">2023</span><span class="w"> </span><span class="n">IEEE</span><span class="w"> </span><span class="n">International</span><span class="w"> </span><span class="n">Conference</span><span class="w"> </span><span class="n">on</span><span class="w"> </span><span class="n">Robotics</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">Automation</span><span class="w"> </span><span class="p">(</span><span class="n">ICRA</span><span class="p">)},</span>
+<span class="n">title</span><span class="o">=</span><span class="p">{</span><span class="n">CuRobo</span><span class="o">:</span><span class="w"> </span><span class="n">Parallelized</span><span class="w"> </span><span class="n">Collision</span><span class="o">-</span><span class="n">Free</span><span class="w"> </span><span class="n">Robot</span><span class="w"> </span><span class="n">Motion</span><span class="w"> </span><span class="n">Generation</span><span class="p">},</span>
+<span class="n">year</span><span class="o">=</span><span class="p">{</span><span class="mi">2023</span><span class="p">},</span>
+<span class="n">volume</span><span class="o">=</span><span class="p">{},</span>
+<span class="n">number</span><span class="o">=</span><span class="p">{},</span>
+<span class="n">pages</span><span class="o">=</span><span class="p">{</span><span class="mi">8112-8119</span><span class="p">},</span>
+<span class="n">doi</span><span class="o">=</span><span class="p">{</span><span class="mf">10.1109</span><span class="o">/</span><span class="n">ICRA48891</span><span class="mf">.2023.10160765</span><span class="p">}}</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../../index.html" class="btn btn-neutral float-left" title="CuRobo: CUDA Accelerated Robot Library" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="research_using_curobo.html" class="btn btn-neutral float-right" title="Research using CuRobo" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, NVIDIA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(250);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>
