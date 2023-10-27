@@ -134,20 +134,19 @@ Ankur Handa,
 Fabio Ramos,
 Nathan Ratliff,
 Dieter Fox</em></p>
-<p>[<a class="reference external" href="../../reports/curobo_report.pdf">PDF</a>]</p>
-<p>This paper explores the problem of collision-free motion generation for manipulators by formulating it as a global motion optimization problem. We develop a parallel optimization technique to solve this problem  and demonstrate its effectiveness on massively parallel GPUs. We show that combining simple optimization techniques with many parallel seeds leads to solving difficult motion generation problems within 50ms on average, 60x faster than state-of-the-art (SOTA) trajectory optimization methods. We achieve SOTA performance by combining L-BFGS step direction estimation with a novel parallel noisy line search scheme and a particle-based optimization solver. To further aid trajectory optimization, we develop a parallel geometric planner that is 101x faster than SOTA RRTConnect implementations and also introduce a collision-free IK solver that can solve over 7000 queries/s. We package our contributions into a state of the art GPU accelerated motion generation library, CuRobo and release it to enrich the robotics community.</p>
+<p>[<a class="reference external" href="https://arxiv.org/abs/2310.17274">Arxiv</a>] [<a class="reference external" href="../../reports/curobo_report.pdf">PDF</a>]</p>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/PiVnIrkx4Ws?si=7l5Ib3OXR3fEmczW&amp;rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; modestbranding" allowfullscreen></iframe><p>This paper explores the problem of collision-free motion generation for manipulators by formulating it as a global motion optimization problem. We develop a parallel optimization technique to solve this problem  and demonstrate its effectiveness on massively parallel GPUs. We show that combining simple optimization techniques with many parallel seeds leads to solving difficult motion generation problems within 50ms on average, 60x faster than state-of-the-art (SOTA) trajectory optimization methods. We achieve SOTA performance by combining L-BFGS step direction estimation with a novel parallel noisy line search scheme and a particle-based optimization solver. To further aid trajectory optimization, we develop a parallel geometric planner that is 101x faster than SOTA RRTConnect implementations and also introduce a collision-free IK solver that can solve over 7000 queries/s. We package our contributions into a state of the art GPU accelerated motion generation library, CuRobo and release it to enrich the robotics community.</p>
 </section>
 <section id="citation">
 <h2>Citation<a class="headerlink" href="#citation" title="Link to this heading"></a></h2>
-<div class="highlight-bibtex notranslate"><div class="highlight"><pre><span></span><span class="nc">@article</span><span class="p">{</span><span class="nl">curobo_report23</span><span class="p">,</span>
-<span class="na">title</span><span class="p">=</span><span class="s">{CuRobo: Parallelized Collision-Free Minimum-Jerk Robot Motion Generation}</span><span class="p">,</span>
-<span class="na">author</span><span class="p">=</span><span class="s">{Sundaralingam, Balakumar and Hari, Siva Kumar Sastry and</span>
-<span class="s">        Fishman, Adam and Garrett, Caelan and Van Wyk, Karl and Blukis, Valts and</span>
-<span class="s">        Millane, Alexander and Oleynikova, Helen and Handa, Ankur and</span>
-<span class="s">        Ramos, Fabio and Ratliff, Nathan and Fox, Dieter}</span><span class="p">,</span>
-<span class="na">journal</span><span class="p">=</span><span class="s">{arXiv preprint}</span><span class="p">,</span>
-<span class="na">year</span><span class="p">=</span><span class="s">{2023}</span>
-<span class="p">}</span>
+<div class="highlight-bibtex notranslate"><div class="highlight"><pre><span></span><span class="nc">@misc</span><span class="p">{</span><span class="nl">curobo_report23</span><span class="p">,</span>
+<span class="w">  </span><span class="na">title</span><span class="p">=</span><span class="s">{CuRobo: Parallelized Collision-Free Minimum-Jerk Robot Motion Generation}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">author</span><span class="p">=</span><span class="s">{Balakumar Sundaralingam and Siva Kumar Sastry Hari and Adam Fishman and Caelan Garrett and Karl Van Wyk and Valts Blukis and Alexander Millane and Helen Oleynikova and Ankur Handa and Fabio Ramos and Nathan Ratliff and Dieter Fox}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">year</span><span class="p">=</span><span class="s">{2023}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">eprint</span><span class="p">=</span><span class="s">{2310.17274}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">archivePrefix</span><span class="p">=</span><span class="s">{arXiv}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">primaryClass</span><span class="p">=</span><span class="s">{cs.RO}</span>
+<span class="w"> </span><span class="p">}</span>
 </pre></div>
 </div>
 <p>An initial implementation of CuRobo without minimum jerk optimization was published at ICRA 2023, citation below</p>

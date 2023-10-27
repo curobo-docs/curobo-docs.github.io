@@ -214,3 +214,9 @@ nav .hidden-section {
 .indent {
     margin-left: 24px;
 }
+
+iframe {
+	aspect-ratio: 16 / 9;
+	height: 100%;
+	width: 100%;
+}
