@@ -126,17 +126,16 @@
 <h2>Building your own docker image with CuRobo<a class="headerlink" href="#building-your-own-docker-image-with-curobo" title="Link to this heading"></a></h2>
 <ol class="arabic">
 <li><p>Add default nvidia runtime to enable cuda compilation during docker
-build:</p>
-<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">Edit</span><span class="o">/</span><span class="n">create</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">docker</span><span class="o">/</span><span class="n">daemon</span><span class="p">.</span><span class="n">json</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">content</span><span class="o">:</span>
-<span class="w">    </span><span class="p">{</span>
-<span class="w">    </span><span class="s">&quot;runtimes&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="s">&quot;nvidia&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="s">&quot;path&quot;</span><span class="o">:</span><span class="w"> </span><span class="s">&quot;/usr/bin/nvidia-container-runtime&quot;</span><span class="p">,</span>
-<span class="w">            </span><span class="s">&quot;runtimeArgs&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">[]</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="s">&quot;default-runtime&quot;</span><span class="o">:</span><span class="w"> </span><span class="s">&quot;nvidia&quot;</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="n">ADD</span><span class="w"> </span><span class="k">this</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="p">(</span><span class="n">the</span><span class="w"> </span><span class="n">above</span><span class="w"> </span><span class="n">lines</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">already</span><span class="w"> </span><span class="n">exist</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">json</span><span class="w"> </span><span class="n">file</span><span class="p">)</span>
-<span class="w">    </span><span class="p">}</span>
+build by editing or creating file at path <code class="docutils literal notranslate"><span class="pre">/etc/docker/daemon.json</span></code> with:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">{</span>
+<span class="s">&quot;runtimes&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">{</span>
+<span class="w">    </span><span class="s">&quot;nvidia&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">{</span>
+<span class="w">        </span><span class="s">&quot;path&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;/usr/bin/nvidia-container-runtime&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">        </span><span class="s">&quot;runtimeArgs&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
+<span class="w">    </span><span class="p p-Indicator">}</span>
+<span class="p p-Indicator">},</span>
+<span class="s">&quot;default-runtime&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;nvidia&quot;</span><span class="w"> </span><span class="c1"># ADD this line (the above lines will already exist in your json file)</span>
+<span class="p p-Indicator">}</span>
 </pre></div>
 </div>
 </li>
