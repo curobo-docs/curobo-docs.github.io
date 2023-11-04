@@ -14,7 +14,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Known Issues &mdash; CuRobo  documentation</title>
+  <title>Known Issues &mdash; cuRobo  documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
@@ -44,7 +44,7 @@
           
           
           <a href="../../index.html" class="icon icon-home">
-            CuRobo
+            cuRobo
               <img src="../../_static/nvidia_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
@@ -58,7 +58,7 @@
               <p class="caption" role="heading"><span class="caption-text">Research</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../research/research.html">Technical Report</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../research/research_using_curobo.html">Research using CuRobo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../research/research_using_curobo.html">Research using cuRobo</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Library Overview</span></p>
 <ul class="current">
@@ -100,7 +100,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">CuRobo</a>
+          <a href="../../index.html">cuRobo</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -120,13 +120,30 @@
              
   <section id="known-issues">
 <h1>Known Issues<a class="headerlink" href="#known-issues" title="Link to this heading"></a></h1>
+<section id="python">
+<h2>Python<a class="headerlink" href="#python" title="Link to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p><cite>pytest==6.2.5</cite> has a conflict with typeguard which is installed with torchtyping. This will
 cause the repo to not work with a pytorch container <cite>&lt;22.09</cite>.</p></li>
 <li><p>Once a cuda graph is generated, we cannot change the dimensions of any of the tensors (e.g., dof,
-timesteps, number of seeds). While CuRobo library is designed to regenerate the cuda graph
+timesteps, number of seeds). While cuRobo library is designed to regenerate the cuda graph
 if a change in dimension is detected, pytorch crashes when <cite>CUDAGraph.reset()</cite> is called.</p></li>
 </ol>
+</section>
+<section id="isaac-sim">
+<h2>Isaac Sim<a class="headerlink" href="#isaac-sim" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Headless mode works reliably with Omniverse Streaming Client by setting <code class="docutils literal notranslate"><span class="pre">--headless_mode=native</span></code>
+for examples in <a class="reference internal" href="2b_isaacsim_examples.html#overview-isaacsim"><span class="std std-ref">Using with Isaac Sim</span></a>. WebSocket and WebRTC can have issues.</p></li>
+</ol>
+<section id="isaac-sim-2023-1-0">
+<h3>Isaac Sim 2023.1.0<a class="headerlink" href="#isaac-sim-2023-1-0" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="../advanced_examples/2b_block_stacking_example.html#tut-block-stacking"><span class="std std-ref">Block Stacking</span></a> is unstable and can have contact issues during cube placement. We have
+yet to find the physx parameters that match the performance we get with Isaac Sim 2022.2.1.</p></li>
+</ol>
+</section>
+</section>
 </section>
 
 

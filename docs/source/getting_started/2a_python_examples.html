@@ -14,7 +14,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Using in Python &mdash; CuRobo  documentation</title>
+  <title>Using in Python &mdash; cuRobo  documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
@@ -44,7 +44,7 @@
           
           
           <a href="../../index.html" class="icon icon-home">
-            CuRobo
+            cuRobo
               <img src="../../_static/nvidia_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
@@ -58,7 +58,7 @@
               <p class="caption" role="heading"><span class="caption-text">Research</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../research/research.html">Technical Report</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../research/research_using_curobo.html">Research using CuRobo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../research/research_using_curobo.html">Research using cuRobo</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Library Overview</span></p>
 <ul class="current">
@@ -100,7 +100,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">CuRobo</a>
+          <a href="../../index.html">cuRobo</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -120,7 +120,7 @@
              
   <section id="using-in-python">
 <span id="python-examples"></span><h1>Using in Python<a class="headerlink" href="#using-in-python" title="Link to this heading"></a></h1>
-<p>We will go over some python snippets to access some of the core functionalities in CuRobo.</p>
+<p>We will go over some python snippets to access some of the core functionalities in cuRobo.</p>
 <nav class="contents local" id="contents">
 <ul class="simple">
 <li><p><a class="reference internal" href="#forward-kinematics" id="id1">Forward Kinematics</a></p></li>
@@ -136,7 +136,7 @@ position of the collision spheres. To compute Forward kinematics from a urdf fil
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Third Party</span>
 <span class="kn">import</span> <span class="nn">torch</span>
 
-<span class="c1"># CuRobo</span>
+<span class="c1"># cuRobo</span>
 <span class="kn">from</span> <span class="nn">curobo.cuda_robot_model.cuda_robot_model</span> <span class="kn">import</span> <span class="n">CudaRobotModel</span><span class="p">,</span> <span class="n">CudaRobotModelConfig</span>
 <span class="kn">from</span> <span class="nn">curobo.types.base</span> <span class="kn">import</span> <span class="n">TensorDeviceType</span>
 <span class="kn">from</span> <span class="nn">curobo.types.robot</span> <span class="kn">import</span> <span class="n">RobotConfig</span>
@@ -168,13 +168,13 @@ position of the collision spheres. To compute Forward kinematics from a urdf fil
 </pre></div>
 </div>
 <p>When loading a robot from a urdf file, we do not have any collision sphere information and hence collision checking
-is not possible. To load collision spheres for a robot, convert your robot urdf to a CuRobo robot configuration file
+is not possible. To load collision spheres for a robot, convert your robot urdf to a cuRobo robot configuration file
 following <a class="reference internal" href="../tutorials/1_robot_configuration.html#tut-robot-configuration"><span class="std std-ref">Configuring a New Robot</span></a>.</p>
 <p>You can load forward kinematics from a robot configuration file as below,</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Third Party</span>
 <span class="kn">import</span> <span class="nn">torch</span>
 
-<span class="c1"># CuRobo</span>
+<span class="c1"># cuRobo</span>
 <span class="kn">from</span> <span class="nn">curobo.cuda_robot_model.cuda_robot_model</span> <span class="kn">import</span> <span class="n">CudaRobotModel</span><span class="p">,</span> <span class="n">CudaRobotModelConfig</span>
 <span class="kn">from</span> <span class="nn">curobo.types.base</span> <span class="kn">import</span> <span class="n">TensorDeviceType</span>
 <span class="kn">from</span> <span class="nn">curobo.types.robot</span> <span class="kn">import</span> <span class="n">RobotConfig</span>
@@ -197,7 +197,7 @@ following <a class="reference internal" href="../tutorials/1_robot_configuration
 </section>
 <section id="collision-checking">
 <h2><a class="toc-backref" href="#id2" role="doc-backlink">Collision Checking</a><a class="headerlink" href="#collision-checking" title="Link to this heading"></a></h2>
-<p>CuRobo provides a convenience class <a class="reference internal" href="../../_api/curobo.wrap.model.robot_world.html#curobo.wrap.model.robot_world.RobotWorld" title="curobo.wrap.model.robot_world.RobotWorld"><code class="xref py py-class docutils literal notranslate"><span class="pre">curobo.wrap.model.robot_world.RobotWorld</span></code></a> for computing
+<p>cuRobo provides a convenience class <a class="reference internal" href="../../_api/curobo.wrap.model.robot_world.html#curobo.wrap.model.robot_world.RobotWorld" title="curobo.wrap.model.robot_world.RobotWorld"><code class="xref py py-class docutils literal notranslate"><span class="pre">curobo.wrap.model.robot_world.RobotWorld</span></code></a> for computing
 signed distance between a robot and the world. It can also be used to query signed distance for
 arbitrary spheres, robot self-collision distance, and robot kinematics functions.
 We explain the different components of this class and also how to use in a learning pipeline in
@@ -209,7 +209,7 @@ here for collision checking.</p>
 a world built from a dictionary,</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Third Party</span>
 <span class="kn">import</span> <span class="nn">torch</span>
-<span class="c1"># CuRobo</span>
+<span class="c1"># cuRobo</span>
 <span class="kn">from</span> <span class="nn">curobo.types.base</span> <span class="kn">import</span> <span class="n">TensorDeviceType</span>
 <span class="kn">from</span> <span class="nn">curobo.wrap.model.robot_world</span> <span class="kn">import</span> <span class="n">RobotWorld</span><span class="p">,</span> <span class="n">RobotWorldConfig</span>
 
@@ -255,8 +255,8 @@ a world built from a dictionary,</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>CuRobo computes signed distance as penetration depth, so a positive distance means that there
-is collision. CuRobo currently does not provide distance outside of collision, however if you
+<p>cuRobo computes signed distance as penetration depth, so a positive distance means that there
+is collision. cuRobo currently does not provide distance outside of collision, however if you
 want to add a buffer for safety, you can make <code class="docutils literal notranslate"><span class="pre">collision_activation_distance</span></code> greater than
 zero, which will return distance upto the specified distance outside collision.</p>
 </div>
@@ -267,7 +267,7 @@ zero, which will return distance upto the specified distance outside collision.<
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Third Party</span>
 <span class="kn">import</span> <span class="nn">torch</span>
 
-<span class="c1"># CuRobo</span>
+<span class="c1"># cuRobo</span>
 <span class="kn">from</span> <span class="nn">curobo.types.base</span> <span class="kn">import</span> <span class="n">TensorDeviceType</span>
 <span class="kn">from</span> <span class="nn">curobo.types.math</span> <span class="kn">import</span> <span class="n">Pose</span>
 <span class="kn">from</span> <span class="nn">curobo.types.robot</span> <span class="kn">import</span> <span class="n">RobotConfig</span>
@@ -309,7 +309,7 @@ zero, which will return distance upto the specified distance outside collision.<
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Third Party</span>
 <span class="kn">import</span> <span class="nn">torch</span>
 
-<span class="c1"># CuRobo</span>
+<span class="c1"># cuRobo</span>
 <span class="kn">from</span> <span class="nn">curobo.geom.types</span> <span class="kn">import</span> <span class="n">WorldConfig</span>
 <span class="kn">from</span> <span class="nn">curobo.types.base</span> <span class="kn">import</span> <span class="n">TensorDeviceType</span>
 <span class="kn">from</span> <span class="nn">curobo.types.math</span> <span class="kn">import</span> <span class="n">Pose</span>
@@ -350,7 +350,7 @@ zero, which will return distance upto the specified distance outside collision.<
 <span class="n">q_solution</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">solution</span><span class="p">[</span><span class="n">result</span><span class="o">.</span><span class="n">success</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>CuRobo’s <a class="reference internal" href="../../_api/curobo.wrap.reacher.ik_solver.html#curobo.wrap.reacher.ik_solver.IKSolver" title="curobo.wrap.reacher.ik_solver.IKSolver"><code class="xref py py-class docutils literal notranslate"><span class="pre">curobo.wrap.reacher.ik_solver.IKSolver</span></code></a> returns
+<p>cuRobo’s <a class="reference internal" href="../../_api/curobo.wrap.reacher.ik_solver.html#curobo.wrap.reacher.ik_solver.IKSolver" title="curobo.wrap.reacher.ik_solver.IKSolver"><code class="xref py py-class docutils literal notranslate"><span class="pre">curobo.wrap.reacher.ik_solver.IKSolver</span></code></a> returns
 <a class="reference internal" href="../../_api/curobo.wrap.reacher.ik_solver.html#curobo.wrap.reacher.ik_solver.IKResult" title="curobo.wrap.reacher.ik_solver.IKResult"><code class="xref py py-class docutils literal notranslate"><span class="pre">curobo.wrap.reacher.ik_solver.IKResult</span></code></a> which also provides errors and success metrics.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -358,13 +358,13 @@ zero, which will return distance upto the specified distance outside collision.<
 <cite>IKSolverConfig</cite>. This will run slower, can take upto 10x more time. Enabling cuda graph allows
 for capturing all cuda kernel calls in a CUDAGraph and only calling this recorded graph to run
 the IKSolver for a new problem set. However, we cannot change the shape of any tensor once the
-graph is recorded. Hence, CUDAGraph is only available for fixed size queries in CuRobo.</p>
+graph is recorded. Hence, CUDAGraph is only available for fixed size queries in cuRobo.</p>
 </div>
 </section>
 <section id="motion-generation">
 <h2><a class="toc-backref" href="#id4" role="doc-backlink">Motion Generation</a><a class="headerlink" href="#motion-generation" title="Link to this heading"></a></h2>
 <p>To obtain collision-free trajectories,</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># CuRobo</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># cuRobo</span>
 <span class="kn">from</span> <span class="nn">curobo.geom.sdf.world</span> <span class="kn">import</span> <span class="n">CollisionCheckerType</span>
 <span class="kn">from</span> <span class="nn">curobo.types.base</span> <span class="kn">import</span> <span class="n">TensorDeviceType</span>
 <span class="kn">from</span> <span class="nn">curobo.types.math</span> <span class="kn">import</span> <span class="n">Pose</span>
@@ -408,7 +408,7 @@ graph is recorded. Hence, CUDAGraph is only available for fixed size queries in 
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>In all above examples, we loaded the world from a <code class="docutils literal notranslate"><span class="pre">yaml</span></code> file. CuRobo consumes world representation
+<p>In all above examples, we loaded the world from a <code class="docutils literal notranslate"><span class="pre">yaml</span></code> file. cuRobo consumes world representation
 from an instance of <a class="reference internal" href="../../_api/curobo.geom.types.html#curobo.geom.types.WorldConfig" title="curobo.geom.types.WorldConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">curobo.geom.types.WorldConfig</span></code></a>. You can store your world as a dictionary
 in a <code class="docutils literal notranslate"><span class="pre">yaml</span></code> file and load from disk or build the world programmatically. See <a class="reference internal" href="2c_world_collision.html#world-collision"><span class="std std-ref">Collision World Representation</span></a> for a more details.</p>
 </div>

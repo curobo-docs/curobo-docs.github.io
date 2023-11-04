@@ -14,7 +14,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Basics &mdash; CuRobo  documentation</title>
+  <title>Basics &mdash; cuRobo  documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
@@ -44,7 +44,7 @@
           
           
           <a href="../../index.html" class="icon icon-home">
-            CuRobo
+            cuRobo
               <img src="../../_static/nvidia_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
@@ -58,7 +58,7 @@
               <p class="caption" role="heading"><span class="caption-text">Research</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../research/research.html">Technical Report</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../research/research_using_curobo.html">Research using CuRobo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../research/research_using_curobo.html">Research using cuRobo</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Library Overview</span></p>
 <ul class="current">
@@ -100,7 +100,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">CuRobo</a>
+          <a href="../../index.html">cuRobo</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -120,34 +120,34 @@
              
   <section id="basics">
 <h1>Basics<a class="headerlink" href="#basics" title="Link to this heading"></a></h1>
-<p>CuRobo represents the robot as a kinematic tree with spheres attached to each link to approximate the
-robot’s geometry for collision/distance queries. CuRobo can load the kinematic tree from a urdf or a
-usd (experimental). CuRobo provides configuration files for several robots, listed in
+<p>cuRobo represents the robot as a kinematic tree with spheres attached to each link to approximate the
+robot’s geometry for collision/distance queries. cuRobo can load the kinematic tree from a urdf or a
+usd (experimental). cuRobo provides configuration files for several robots, listed in
 <a class="reference internal" href="../notes/01_robot_list.html#available-robot-list"><span class="std std-ref">Supported Robots</span></a>. If your robot is not in the list, you can follow
 <a class="reference internal" href="../tutorials/1_robot_configuration.html#tut-robot-configuration"><span class="std std-ref">Configuring a New Robot</span></a> to generate the configuration file for your own robot.</p>
 <figure class="align-center" id="id1">
 <a class="reference internal image-reference" href="../../_images/robot_representation.png"><img alt="../../_images/robot_representation.png" src="../../_images/robot_representation.png" style="width: 400px;" /></a>
 <figcaption>
-<p><span class="caption-text">Robot representation in CuRobo is shown for the Franka Panda robot.</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
+<p><span class="caption-text">Robot representation in cuRobo is shown for the Franka Panda robot.</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
 </figcaption>
 </figure>
-<p>CuRobo’s world can be represented by Cuboids, Meshes, and nvblox maps (which can be built
+<p>cuRobo’s world can be represented by Cuboids, Meshes, and nvblox maps (which can be built
 from depth images), a detailed discussion is in
 <a class="reference internal" href="2c_world_collision.html#world-collision"><span class="std std-ref">Collision World Representation</span></a>.</p>
-<p>Next, read <a class="reference internal" href="2a_python_examples.html#python-examples"><span class="std std-ref">Using in Python</span></a> for how to use CuRobo in a python pipeline.
+<p>Next, read <a class="reference internal" href="2a_python_examples.html#python-examples"><span class="std std-ref">Using in Python</span></a> for how to use cuRobo in a python pipeline.
 If you want to use in Isaac Sim, skip to <a class="reference internal" href="2b_isaacsim_examples.html#overview-isaacsim"><span class="std std-ref">Using with Isaac Sim</span></a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>CuRobo represents Pose with <a class="reference internal" href="../../_api/curobo.types.math.html#curobo.types.math.Pose" title="curobo.types.math.Pose"><code class="xref py py-class docutils literal notranslate"><span class="pre">curobo.types.math.Pose</span></code></a>, with quaternion in the format wxyz.</p>
+<p>cuRobo represents Pose with <a class="reference internal" href="../../_api/curobo.types.math.html#curobo.types.math.Pose" title="curobo.types.math.Pose"><code class="xref py py-class docutils literal notranslate"><span class="pre">curobo.types.math.Pose</span></code></a>, with quaternion in the format wxyz.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>CuRobo leverages CUDAGraphs to run optimization iterations 10x faster than a native run.
+<p>cuRobo leverages CUDAGraphs to run optimization iterations 10x faster than a native run.
 CUDAGraphs enable recording all cuda kernel calls in a compute graph and during subsequent
 calls, the recorded compute graph is replayed with new data in the referenced tensors. Read this
 aricle <a class="reference external" href="https://pytorch.org/blog/accelerating-pytorch-with-cuda-graphs/">PyTorch CUDAGraph Blog</a>
 for more information. One caveat with using CUDAGraphs is that we cannot change the shape of any
-tensor once the graph is recorded. Hence, when enabling CUDAGraph in CuRobo’s tools, changing
+tensor once the graph is recorded. Hence, when enabling CUDAGraph in cuRobo’s tools, changing
 the problem size between calls can lead to crashes. More details on CUDAGraph constraints are at
 <a class="reference external" href="https://pytorch.org/docs/stable/notes/cuda.html#capture-constraints">CUDA Capture Constraints</a>.</p>
 </div>

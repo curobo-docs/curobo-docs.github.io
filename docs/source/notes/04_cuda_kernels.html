@@ -14,7 +14,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CUDA Notes &mdash; CuRobo  documentation</title>
+  <title>CUDA Notes &mdash; cuRobo  documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
@@ -44,7 +44,7 @@
           
           
           <a href="../../index.html" class="icon icon-home">
-            CuRobo
+            cuRobo
               <img src="../../_static/nvidia_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
@@ -58,7 +58,7 @@
               <p class="caption" role="heading"><span class="caption-text">Research</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../research/research.html">Technical Report</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../research/research_using_curobo.html">Research using CuRobo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../research/research_using_curobo.html">Research using cuRobo</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Library Overview</span></p>
 <ul>
@@ -100,7 +100,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">CuRobo</a>
+          <a href="../../index.html">cuRobo</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -135,10 +135,12 @@ goals/worlds to be different per batch item in a batched call. Some rough notes 
 given below.</p>
 <p>Batched Goal Costs: Assuming that all pose costs will be written at a kernel level, we avoid repeating
 goal tensors and instead store a batch index tensor that maps from a batch to location in memory.</p>
-<p>Batched Environment Collision Checking:
-To optimize across different environments, we keep track of the mapping between an index in the
+</section>
+<section id="batched-environment-collision-checking">
+<h2>Batched Environment Collision Checking<a class="headerlink" href="#batched-environment-collision-checking" title="Link to this heading"></a></h2>
+<p>To optimize across different environments, we keep track of the mapping between an index in the
 query tensor and the environment. Every query to distance should now have two mapping tensors,
-<code class="docutils literal notranslate"><span class="pre">batch_env_idx</span></code> (n_batch), and <a href="#id1"><span class="problematic" id="id2">``</span></a>enable_obs_env``(n_env, n_obs).</p>
+<code class="docutils literal notranslate"><span class="pre">batch_env_idx</span></code> (n_batch), and <code class="docutils literal notranslate"><span class="pre">enable_obs_env</span></code> (n_env, n_obs).</p>
 <p><code class="docutils literal notranslate"><span class="pre">batch_env_idx</span></code>: This stores the environment index per query sphere</p>
 <p><code class="docutils literal notranslate"><span class="pre">enable_obs_env</span></code>: This contains a 1 if the obstacle is enabled in a given environment</p>
 <p>If you want to have an obstacle enabled for some problems and disabled for others, duplicate the environment.</p>

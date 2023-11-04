@@ -14,7 +14,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CuRobo: CUDA Accelerated Robot Library &mdash; CuRobo  documentation</title>
+  <title>cuRobo: CUDA Accelerated Robot Library &mdash; cuRobo  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
@@ -42,7 +42,7 @@
           
           
           <a href="index.html" class="icon icon-home">
-            CuRobo
+            cuRobo
               <img src="_static/nvidia_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
@@ -56,7 +56,7 @@
               <p class="caption" role="heading"><span class="caption-text">Research</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="source/research/research.html">Technical Report</a></li>
-<li class="toctree-l1"><a class="reference internal" href="source/research/research_using_curobo.html">Research using CuRobo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="source/research/research_using_curobo.html">Research using cuRobo</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Library Overview</span></p>
 <ul>
@@ -98,7 +98,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">CuRobo</a>
+          <a href="index.html">cuRobo</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -106,7 +106,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">CuRobo: CUDA Accelerated Robot Library</li>
+      <li class="breadcrumb-item active">cuRobo: CUDA Accelerated Robot Library</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/readme.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -117,32 +117,37 @@
            <div itemprop="articleBody">
              
   <section id="curobo-cuda-accelerated-robot-library">
-<h1>CuRobo: CUDA Accelerated Robot Library<a class="headerlink" href="#curobo-cuda-accelerated-robot-library" title="Link to this heading"></a></h1>
+<h1>cuRobo: CUDA Accelerated Robot Library<a class="headerlink" href="#curobo-cuda-accelerated-robot-library" title="Link to this heading"></a></h1>
 <p>[<a class="reference internal" href="source/research/research.html#research-page"><span class="std std-ref">Research</span></a>] [<a class="reference external" href="https://github.com/nvlabs/curobo">Code</a>] [<a class="reference external" href="https://arxiv.org/abs/2310.17274">Arxiv</a>] [<a class="reference external" href="reports/curobo_report.pdf">PDF</a>]</p>
 <p><em>This is a Preview Release highlighting the results obtained in our</em> <a class="reference internal" href="source/research/research.html#research-page"><span class="std std-ref">Technical Report</span></a></p>
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/PiVnIrkx4Ws?si=7l5Ib3OXR3fEmczW&amp;rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; modestbranding" allowfullscreen></iframe><div class="line-block">
+<p>For business inquiries, please visit submit this form: <a class="reference external" href="https://www.nvidia.com/en-us/research/inquiries/">NVIDIA Research Licensing</a></p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Ux9tFBRLR-A?si=S7-SAAn_TJyaF0bz&amp;rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; modestbranding" allowfullscreen></iframe><div class="line-block">
 <div class="line"><br /></div>
 </div>
 <section id="updates">
 <h2>Updates<a class="headerlink" href="#updates" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p>Oct 2023: Released CuRobo Technical Report and Source Code.</p></li>
+<li><p>Nov 2023: Added support for Isaac Sim 2023.1.0, x86, aarch64, and isaac sim dockerfiles.</p></li>
+<li><p>Oct 2023: Released cuRobo Technical Report and Source Code.</p></li>
 </ul>
 </section>
 <section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
-<p>CuRobo is a CUDA accelerated library containing a suite of robotics algorithms that run significantly faster than existing implementations leveraging parallel compute. CuRobo currently provides the following algorithms: (1) forward and inverse kinematics,
+<p>cuRobo is a CUDA accelerated library containing a suite of robotics algorithms that run significantly faster than existing implementations leveraging parallel compute. cuRobo currently provides the following algorithms: (1) forward and inverse kinematics,
 (2) collision checking between robot and world, with the world represented as Cuboids, Meshes, and Depth images, (3) numerical optimization with gradient descent, L-BFGS, and MPPI, (4) geometric planning, (5) trajectory optimization, (6) motion generation that combines inverse kinematics, geometric planning, and trajectory optimization to generate global motions within 30ms.</p>
 <p>
 <video autoplay="True" loop="True" muted="True" preload="auto" width="100%"><source src="videos/ur10_real_timer.mp4" type="video/mp4"></video>
-</p><p>CuRobo generates motions for a UR10 within 100ms on a NVIDIA Jetson Orin.</p>
-<p>CuRobo performs trajectory optimization across many seeds in parallle to find a solution. CuRobo’s trajectory optimization penalizes jerk and accelerations, encouraging smoother and shorter trajectories.</p>
+</p><p>cuRobo generates motions for a UR10 within 100ms on a NVIDIA Jetson Orin.</p>
+<p>cuRobo performs trajectory optimization across many seeds in parallle to find a solution. cuRobo’s trajectory optimization penalizes jerk and accelerations, encouraging smoother and shorter trajectories.</p>
 <p>
 <video autoplay="True" loop="True" muted="True" preload="auto" width="100%"><source src="videos/rrt_compare.mp4" type="video/mp4"></video>
-</p><p>Comparison of CuRobo’s motion generation on the left to a BiRRT planner on a pick and place task.</p>
+</p><p>Comparison of cuRobo’s motion generation on the left to a BiRRT planner for the motion planning phases in a pick and place task.</p>
 <p>
 <video autoplay="True" loop="True" muted="True" preload="auto" width="100%"><source src="videos/benchmark_curobo.mp4" type="video/mp4"></video>
-</p><p>Example motions generated by CuRobo on the motionbenchmaker and motion policy networks datasets.</p>
+</p><p>Example motions generated by cuRobo on the motionbenchmaker and motion policy networks datasets.</p>
+<p>
+<video autoplay="True" loop="True" muted="True" preload="auto" width="100%"><source src="videos/reacher_voxel_clip.mp4" type="video/mp4"></video>
+</p><p>cuRobo leverages <a class="reference external" href="https://github.com/nvidia-isaac/nvblox">nvblox</a> for collision avoidance with obstacles from a Depth camera.</p>
 </section>
 </section>
 

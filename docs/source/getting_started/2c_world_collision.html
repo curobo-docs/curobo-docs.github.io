@@ -14,7 +14,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Collision World Representation &mdash; CuRobo  documentation</title>
+  <title>Collision World Representation &mdash; cuRobo  documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
@@ -46,7 +46,7 @@
           
           
           <a href="../../index.html" class="icon icon-home">
-            CuRobo
+            cuRobo
               <img src="../../_static/nvidia_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
@@ -60,7 +60,7 @@
               <p class="caption" role="heading"><span class="caption-text">Research</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../research/research.html">Technical Report</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../research/research_using_curobo.html">Research using CuRobo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../research/research_using_curobo.html">Research using cuRobo</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Library Overview</span></p>
 <ul class="current">
@@ -102,7 +102,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">CuRobo</a>
+          <a href="../../index.html">cuRobo</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -140,14 +140,15 @@
 </nav>
 <section id="world-representation">
 <h2><a class="toc-backref" href="#id7" role="doc-backlink">World Representation</a><a class="headerlink" href="#world-representation" title="Link to this heading"></a></h2>
-<p>CuRobo represents the world with an instance of <a class="reference internal" href="../../_api/curobo.geom.types.html#curobo.geom.types.WorldConfig" title="curobo.geom.types.WorldConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">curobo.geom.types.WorldConfig</span></code></a> which
+<p>cuRobo represents the world with an instance of <a class="reference internal" href="../../_api/curobo.geom.types.html#curobo.geom.types.WorldConfig" title="curobo.geom.types.WorldConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">curobo.geom.types.WorldConfig</span></code></a> which
 can store world objects as primitives, meshes, and depth images using nvblox or voxelization.
-CuRobo has GPU accelerated functions for collision queries with cuboids, meshes, and nvblox maps.
+cuRobo has GPU accelerated functions for collision queries with cuboids, meshes, and nvblox maps.
 Other primitive types can be approximated to a cuboid or a mesh using helper functions described
 later in this page. An overview of the world representation and collision checkers is illustrated below.</p>
-<div class="graphviz"><img src="../../_images/graphviz-72506f25349dc737afab99e2bcc1b72fa7f813b4.png" alt="digraph {
+<div class="graphviz"><object data="../../_images/graphviz-d8090e0a317ecf84a8fa2b6f9bf9b9c4930064c5.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph {
 edge [color = &quot;#2B4162&quot;; fontsize=10];
-node [shape=&quot;box&quot;, style=&quot;rounded, filled&quot;, fontsize=12, color=&quot;grey&quot;]
+node [shape=&quot;box&quot;, style=&quot;rounded, filled&quot;, fontsize=12, color=&quot;#cccccc&quot;]
 &quot;Cuboid[]&quot; [color=&quot;#76b900&quot;, fontcolor=&quot;#FFFFFF&quot;]
 &quot;Mesh[]&quot; [color=&quot;#76b900&quot;, fontcolor=&quot;#FFFFFF&quot;]
 
@@ -174,7 +175,7 @@ color=&quot;#76b900&quot;];
 
 }
 
-}" class="graphviz" /></div>
+}</p></object></div>
 <p>
 <video autoplay="True" loop="True" muted="True" preload="auto" width="100%"><source src="../../videos/collision_demo.mp4" type="video/mp4"></video>
 </p><p>We will look at some examples in python. First, we will load a world that contains one object of
@@ -247,11 +248,11 @@ to a file,</p>
 <figure class="align-default" id="id2">
 <a class="reference internal image-reference" href="../../_images/world_representation.png"><img alt="../../_images/world_representation.png" src="../../_images/world_representation.png" style="width: 690px;" /></a>
 <figcaption>
-<p><span class="caption-text">Five object types that are available in CuRobo’s WorldConfig are visualized, with Cuboid, Mesh,
+<p><span class="caption-text">Five object types that are available in cuRobo’s WorldConfig are visualized, with Cuboid, Mesh,
 Capsule, Cylinder, and Sphere from left to right.</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
 </figcaption>
 </figure>
-<p>To use this world in a collision checker, we need to approximate some object types as CuRobo
+<p>To use this world in a collision checker, we need to approximate some object types as cuRobo
 currently only provides a collision checker for cuboids and meshes. Capsules, cylinders, and spheres
 can be approximated to cuboids using <a class="reference internal" href="../../_api/curobo.geom.types.html#curobo.geom.types.WorldConfig.create_obb_world" title="curobo.geom.types.WorldConfig.create_obb_world"><code class="xref py py-class docutils literal notranslate"><span class="pre">curobo.geom.types.WorldConfig.create_obb_world</span></code></a>,</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># convert all objects into cuboids (oriented bounding boxes OBB)</span>
@@ -274,35 +275,35 @@ can be approximated to cuboids using <a class="reference internal" href="../../_
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>CuRobo’s cuboid collision checker is 4x faster than the mesh collision checker, so approximate
+<p>cuRobo’s cuboid collision checker is 4x faster than the mesh collision checker, so approximate
 objects to cuboids when possible to save compute time.</p>
 </div>
 </section>
 <section id="world-collision-checkers">
 <h2><a class="toc-backref" href="#id8" role="doc-backlink">World Collision Checkers</a><a class="headerlink" href="#world-collision-checkers" title="Link to this heading"></a></h2>
-<p>There are three collision checkers available in CuRobo, all starting from an abstract base class
+<p>There are three collision checkers available in cuRobo, all starting from an abstract base class
 <a class="reference internal" href="../../_api/curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldCollision" title="curobo.geom.sdf.world.WorldCollision"><code class="xref py py-class docutils literal notranslate"><span class="pre">curobo.geom.sdf.world.WorldCollision</span></code></a>.  The cuboid collision checker is in
 <a class="reference internal" href="../../_api/curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldPrimitiveCollision" title="curobo.geom.sdf.world.WorldPrimitiveCollision"><code class="xref py py-class docutils literal notranslate"><span class="pre">curobo.geom.sdf.world.WorldPrimitiveCollision</span></code></a> which uses custom CUDA kernels to compute
 collision and signed distance between query spheres and world cuboids. The mesh collision checker is
 in <a class="reference internal" href="../../_api/curobo.geom.sdf.world_mesh.html#curobo.geom.sdf.world_mesh.WorldMeshCollision" title="curobo.geom.sdf.world_mesh.WorldMeshCollision"><code class="xref py py-class docutils literal notranslate"><span class="pre">curobo.geom.sdf.world_mesh.WorldMeshCollision</span></code></a>, which uses a BVH traversal method to find
-the closest point on a mesh given query spheres leveraging implementations available in <a class="reference external" href="https://developer.nvidia.com/warp-python">NVIDIA Warp</a>. CuRobo also provides a nvblox based collision checker
+the closest point on a mesh given query spheres leveraging implementations available in <a class="reference external" href="https://developer.nvidia.com/warp-python">NVIDIA Warp</a>. cuRobo also provides a nvblox based collision checker
 in <a class="reference internal" href="../../_api/curobo.geom.sdf.world_blox.html#curobo.geom.sdf.world_blox.WorldBloxCollision" title="curobo.geom.sdf.world_blox.WorldBloxCollision"><code class="xref py py-class docutils literal notranslate"><span class="pre">curobo.geom.sdf.world_blox.WorldBloxCollision</span></code></a> that can compute collisions with a list of
-nvblox map instances that integrate camera depth images. CuRobo leverages python inheritance to
+nvblox map instances that integrate camera depth images. cuRobo leverages python inheritance to
 combine collision checkers, where the nvblox collision checker inherits from the mesh collision
 checker and the mesh collision checker inherits from the cuboid collision checker.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>CuRobo does not provide mesh to mesh collision queries. Instead, collision checking is performed
-by approximating one object to spheres and performing closest point queries on meshes. CuRobo
+<p>cuRobo does not provide mesh to mesh collision queries. Instead, collision checking is performed
+by approximating one object to spheres and performing closest point queries on meshes. cuRobo
 provides some approximation algorithms for converting meshes to spheres.</p>
 </div>
-<p>CuRobo’s collision checkers take as a input spheres which are of shape <code class="docutils literal notranslate"><span class="pre">[batch,</span> <span class="pre">horizon,</span> <span class="pre">n,</span> <span class="pre">4]</span></code>, where
-n represents the number of spheres for one entity. CuRobo uses <code class="docutils literal notranslate"><span class="pre">horizon</span></code> to represent the trajectory
-of a sphere, which is leveraged in CuRobo’s continuous collision checker. The output signed distance
-will be of shape <code class="docutils literal notranslate"><span class="pre">[batch,</span> <span class="pre">horizon,</span> <span class="pre">n]</span></code>, which can then be summed based on your use case. CuRobo
+<p>cuRobo’s collision checkers take as a input spheres which are of shape <code class="docutils literal notranslate"><span class="pre">[batch,</span> <span class="pre">horizon,</span> <span class="pre">n,</span> <span class="pre">4]</span></code>, where
+n represents the number of spheres for one entity. cuRobo uses <code class="docutils literal notranslate"><span class="pre">horizon</span></code> to represent the trajectory
+of a sphere, which is leveraged in cuRobo’s continuous collision checker. The output signed distance
+will be of shape <code class="docutils literal notranslate"><span class="pre">[batch,</span> <span class="pre">horizon,</span> <span class="pre">n]</span></code>, which can then be summed based on your use case. cuRobo
 uses <code class="docutils literal notranslate"><span class="pre">batch</span></code> in two ways, (1) to parallelize across different rollouts such as in trajectory optimization, and
 (2) to parallelize across different environments when available.</p>
-<p>We can pass a world model to CuRobo’s collision checker and perform collision queries,</p>
+<p>We can pass a world model to cuRobo’s collision checker and perform collision queries,</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">world_config</span> <span class="o">=</span> <span class="n">WorldCollisionConfig</span><span class="p">(</span><span class="n">tensor_args</span><span class="p">,</span> <span class="n">world_model</span><span class="o">=</span><span class="n">collision_support_world</span><span class="p">)</span>
 <span class="n">world_ccheck</span> <span class="o">=</span> <span class="n">WorldMeshCollision</span><span class="p">(</span><span class="n">world_config</span><span class="p">)</span>
 <span class="n">world_ccheck</span><span class="o">.</span><span class="n">create_collision_cache</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
@@ -323,17 +324,18 @@ uses <code class="docutils literal notranslate"><span class="pre">batch</span></
 </div>
 <p>Internally, each collision checker creates a tensorized object buffer on the GPU. Each object in the buffer will contain the object’s pose with respect to the robot’s base frame, geometry data, and a enable flag. This enable flag is used inside the collision kernels to know if
 the object is enabled for collision checking.</p>
-<div align="center" class="align-center"><div class="graphviz"><img src="../../_images/graphviz-2ac58f9a46fd2f63dc4de44b3591641b9e0488cf.png" alt="digraph {
+<div align="center" class="align-center"><div class="graphviz"><object data="../../_images/graphviz-4bea26413702088ff4aa7a3498ca56e429e02244.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph {
    edge [color = &quot;#2B4162&quot;; fontsize=10];
-   node [shape=&quot;box&quot;, style=&quot;rounded, filled&quot;, fontsize=12, color=&quot;grey&quot;]
+   node [shape=&quot;box&quot;, style=&quot;rounded, filled&quot;, fontsize=12, color=&quot;#cccccc&quot;]
    &quot;Obstacle&quot; -&gt; &quot;Pose&quot;;
    &quot;Obstacle&quot; -&gt; &quot;Enable&quot;;
    &quot;Obstacle&quot; -&gt; &quot;Data&quot;;
-}" class="graphviz" /></div>
+}</p></object></div>
 </div>
 <p>This object buffer is initialized based on the objects passed in through the <cite>world_model</cite> parameter in <a class="reference internal" href="../../_api/curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldCollisionConfig" title="curobo.geom.sdf.world.WorldCollisionConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">curobo.geom.sdf.world.WorldCollisionConfig</span></code></a>. Optionally, you can set the buffer
 size by passing a dictionary of number of objects per collision checker using the <cite>cache</cite> parameter
-in <a class="reference internal" href="../../_api/curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldCollisionConfig" title="curobo.geom.sdf.world.WorldCollisionConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">curobo.geom.sdf.world.WorldCollisionConfig</span></code></a>. CuRobo leverages this cache to load objects
+in <a class="reference internal" href="../../_api/curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldCollisionConfig" title="curobo.geom.sdf.world.WorldCollisionConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">curobo.geom.sdf.world.WorldCollisionConfig</span></code></a>. cuRobo leverages this cache to load objects
 later without having to recreate tensors, thereby not breaking any CUDAGraphs already built. This buffer is what enables the drag and drop interface in Isaac Sim, which is explained in <a class="reference internal" href="2b_isaacsim_examples.html#overview-isaacsim"><span class="std std-ref">Using with Isaac Sim</span></a> page.</p>
 <p>For example, you can create a cuboid object
 buffer of 10 objects and mesh object buffer of 3 objects using <code class="docutils literal notranslate"><span class="pre">cache={&quot;obb&quot;:10,</span> <span class="pre">&quot;mesh&quot;:</span> <span class="pre">3}</span></code>.</p>
@@ -380,12 +382,12 @@ buffer of 10 objects and mesh object buffer of 3 objects using <code class="docu
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>CuRobo’s signed distance queries return a positive value when the sphere is inside an obstacle or
+<p>cuRobo’s signed distance queries return a positive value when the sphere is inside an obstacle or
 within activation distance. If outside this range, the distance value will be zero.</p>
 </div>
 <section id="batched-environments">
 <h3><a class="toc-backref" href="#id9" role="doc-backlink">Batched Environments</a><a class="headerlink" href="#batched-environments" title="Link to this heading"></a></h3>
-<p>CuRobo also provides batched world representation, where many worlds can be setup, and collision queries
+<p>cuRobo also provides batched world representation, where many worlds can be setup, and collision queries
 are mapped based on batch index of the spheres. We will look at a short python example below. A
 more thorough suite of examples are available in <a class="reference internal" href="../advanced_examples/2a_batch_env.html#tut-batch-env"><span class="std std-ref">Batched Environments</span></a>.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">tensor_args</span> <span class="o">=</span> <span class="n">TensorDeviceType</span><span class="p">()</span>
@@ -458,11 +460,12 @@ query the spheres w.r.t. to the specified environment,</p>
 <p>We want to be able to update the pose of obstacles without requiring additional post processing. To acheive this, we provide each obstacle type with a pose and project each query point to each obstacle’s local frame of reference to perform collision queries. While this can be slow on very large scenes as we would have to iterate over all objects, we found this to be better when working on less than 50 obstacles. This process is shown in the below flow chart. We leave using a fast world bvh (bounding volume hierarchy) for a later release (contributions welcome!).</p>
 <p>We also implement a continuous collision checker that only requires a closest point function to implement. We dive into this algorithm in our technical report and only illustrate the computation flow below.</p>
 <figure class="align-center" id="id4">
-<div class="graphviz"><img src="../../_images/graphviz-9bc770cdf600852f1e4af4347a5accf0943c203a.png" alt="digraph{
+<div class="graphviz"><object data="../../_images/graphviz-1800bd384f71eadf8e93af74f5ebef1a10391759.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph{
 
 bgcolor = &quot;#fefefe&quot;
 edge [color = &quot;#2B4162&quot;; fontsize=10];
-node [shape=&quot;box&quot;, style=&quot;rounded, filled&quot;, fontsize=12, color=&quot;grey&quot;]
+node [shape=&quot;box&quot;, style=&quot;rounded, filled&quot;, fontsize=12, color=&quot;#cccccc&quot;]
 bquery [label=&quot;Batch of Spheres&quot;, style=&quot;rounded&quot;, shape=&quot;plain&quot;]
 
 query [label=&quot;query sphere&quot;, style=&quot;rounded&quot;, shape=&quot;plain&quot;]
@@ -505,16 +508,17 @@ sum_cost -&gt; write;
 write -&gt; sum_all;
 
 
-}" class="graphviz" /></div>
+}</p></object></div>
 <figcaption>
 <p><span class="caption-text">Collision checking process is illustrated.</span><a class="headerlink" href="#id4" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <figure class="align-center" id="id5">
-<div class="graphviz"><img src="../../_images/graphviz-60968ba2fa7bdafbb4188091842add48649dac74.png" alt="digraph{
+<div class="graphviz"><object data="../../_images/graphviz-e2576a43ebc28670500f7b156c148f8f1c43b879.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph{
 bgcolor = &quot;#fefefe&quot;
 edge [color = &quot;#2B4162&quot;; fontsize=10];
-node [shape=&quot;box&quot;, style=&quot;rounded, filled&quot;, fontsize=12, color=&quot;grey&quot;]
+node [shape=&quot;box&quot;, style=&quot;rounded, filled&quot;, fontsize=12, color=&quot;#cccccc&quot;]
 bquery [label=&quot;Batch of Trajectories of Spheres &quot;, style=&quot;rounded&quot;, shape=&quot;plain&quot;]
 
 query [label=&quot;query sphere at [t-1, t, t+1]&quot;, style=&quot;rounded&quot;, shape=&quot;plain&quot;]
@@ -550,7 +554,7 @@ speed -&gt; write;
 write -&gt; sum_all;
 
 
-}" class="graphviz" /></div>
+}</p></object></div>
 <figcaption>
 <p><span class="caption-text">Continuous collision checking process is illustrated.</span><a class="headerlink" href="#id5" title="Link to this image"></a></p>
 </figcaption>
@@ -569,7 +573,7 @@ d + 0.5 \eta &amp; d &gt; 0
 \end{cases}\end{split}\]</div>
 <a class="reference internal image-reference" href="../../_images/cost_barrier.svg"><img alt="../../_images/cost_barrier.svg" class="align-center" src="../../_images/cost_barrier.svg" width="500" /></a>
 <p>The second parameter we use is the speed metric, which was also introduced in <a class="reference external" href="https://www.nathanratliff.com/thesis-research/chomp">CHOMP</a>. While
-in CHOMP, the speed metric was used with a discrete collision checker, CuRobo implements a continuous collision checker to account for thin obstacles.
+in CHOMP, the speed metric was used with a discrete collision checker, cuRobo implements a continuous collision checker to account for thin obstacles.
 The speed metric is combined with this continuous collision checker to avoid obstacles in trajectory optimization. We show below the benefit of using the speed metric on a trajectory optimization problem. The left robot uses speed metric to push itself away from a thin wall while the right robot which does not have speed metric tries to rush through the collision as a way to reduce the overall cost incurred during trajectory
 optimization.</p>
 <p>
@@ -579,7 +583,7 @@ optimization.</p>
 <section id="geometry-approximation-to-spheres">
 <span id="attach-object-note"></span><h2><a class="toc-backref" href="#id12" role="doc-backlink">Geometry Approximation to Spheres</a><a class="headerlink" href="#geometry-approximation-to-spheres" title="Link to this heading"></a></h2>
 <p>In manipulation tasks, we often need to grasp objects and relocate them to a different location. During the motion
-of the grasped object, we would need to avoid collisions between the attached object and the world. Since CuRobo’s
+of the grasped object, we would need to avoid collisions between the attached object and the world. Since cuRobo’s
 collision checkers can only check between spheres and objects, we provide sphere generation techniques to approximate
 geometries to a set of spheres. These techniques require a large number of spheres (100+) to approximate complex geometry.
 We hence do not use these techniques to approximate robot geometry and rather use a tool in NVIDIA Isaac Sim to generate
@@ -605,7 +609,7 @@ grasped objects during pick and place tasks.</p>
 <span class="n">WorldConfig</span><span class="p">(</span><span class="n">capsule</span><span class="o">=</span><span class="p">[</span><span class="n">obstacle_capsule</span><span class="p">])</span><span class="o">.</span><span class="n">save_world_as_mesh</span><span class="p">(</span><span class="s2">&quot;capsule.obj&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>CuRobo provides five different methods to fit spheres to geometry as listed in
+<p>cuRobo provides five different methods to fit spheres to geometry as listed in
 <a class="reference internal" href="../../_api/curobo.geom.sphere_fit.html#curobo.geom.sphere_fit.SphereFitType" title="curobo.geom.sphere_fit.SphereFitType"><code class="xref py py-class docutils literal notranslate"><span class="pre">curobo.geom.sphere_fit.SphereFitType</span></code></a>. The fit types leverage voxelization of geometry and
 surface sampling to approximate a geometry. In short,</p>
 <ul class="simple">
