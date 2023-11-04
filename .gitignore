@@ -1,3 +1,6 @@
 docs/_sources
 
 .hypothesis/*
+*.doctree
+docs/.doctrees/*
+*.buildinfo

@@ -14,7 +14,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Using in a Neural Network &mdash; CuRobo  documentation</title>
+  <title>Using in a Neural Network &mdash; cuRobo  documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
@@ -44,7 +44,7 @@
           
           
           <a href="../../index.html" class="icon icon-home">
-            CuRobo
+            cuRobo
               <img src="../../_static/nvidia_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
@@ -58,7 +58,7 @@
               <p class="caption" role="heading"><span class="caption-text">Research</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../research/research.html">Technical Report</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../research/research_using_curobo.html">Research using CuRobo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../research/research_using_curobo.html">Research using cuRobo</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Library Overview</span></p>
 <ul class="current">
@@ -100,7 +100,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">CuRobo</a>
+          <a href="../../index.html">cuRobo</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -120,17 +120,18 @@
              
   <section id="using-in-a-neural-network">
 <span id="curobo-torch-layer"></span><h1>Using in a Neural Network<a class="headerlink" href="#using-in-a-neural-network" title="Link to this heading"></a></h1>
-<p>CuRobo’s differentiable functions (e.g., kinematics, signed distance) can be used as part of a
-neural network pipeline. As an example, we show how to use CuRobo’s functions as a layer in a neural
+<p>cuRobo’s differentiable functions (e.g., kinematics, signed distance) can be used as part of a
+neural network pipeline. As an example, we show how to use cuRobo’s functions as a layer in a neural
 network and also in a loss function.</p>
-<div class="graphviz"><img src="../../_images/graphviz-41bd8adeeef92678bb4de2c1827fc1d8a143d039.png" alt="digraph {
+<div class="graphviz"><object data="../../_images/graphviz-cfe0bc728eb8045544db277b98cd3c71418104f1.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph {
 rankdir=LR;
 edge [color = &quot;#708090&quot;; fontsize=10];
 node [shape=&quot;box&quot;, style=&quot;rounded, filled&quot;, fontsize=12]
-nn [label=&quot;Neural Network&quot;, color=&quot;grey&quot;]
+nn [label=&quot;Neural Network&quot;, color=&quot;#cccccc&quot;]
 input [label=&quot;Input&quot;, shape=&quot;plain&quot;, style=&quot;rounded&quot;]
 output[label=&quot;Prediction&quot;, shape=&quot;plain&quot;, style=&quot;rounded&quot;]
-cu_features[label=&quot;CuRobo Layer&quot;, color=&quot;#76b900&quot;,fontcolor=&quot;white&quot;]
+cu_features[label=&quot;cuRobo Layer&quot;, color=&quot;#76b900&quot;,fontcolor=&quot;white&quot;]
 input -&gt; nn;
 input -&gt; cu_features;
 cu_features -&gt; nn;
@@ -139,20 +140,21 @@ nn -&gt; output;
 subgraph cluster_training {
 label=&quot;Training&quot;;
 style=&quot;dashed&quot;;
-cu_loss[label=&quot;CuRobo Loss&quot;, color=&quot;#76b900&quot;,fontcolor=&quot;white&quot;]
-loss [label=&quot;Loss Function&quot;, color=&quot;grey&quot;]
+cu_loss[label=&quot;cuRobo Loss&quot;, color=&quot;#76b900&quot;,fontcolor=&quot;white&quot;]
+loss [label=&quot;Loss Function&quot;, color=&quot;#cccccc&quot;]
 loss -&gt; cu_loss[dir=&quot;both&quot;,style=&quot;dashed&quot;];
 }
-}" class="graphviz" /></div>
+}</p></object></div>
 <p>The <a class="reference internal" href="../../_api/curobo.wrap.model.robot_world.html#curobo.wrap.model.robot_world.RobotWorld" title="curobo.wrap.model.robot_world.RobotWorld"><code class="xref py py-class docutils literal notranslate"><span class="pre">curobo.wrap.model.robot_world.RobotWorld</span></code></a> provides a training friendly wrapper for computing kinematics, and signed distance.
-CuRobo computes signed distance between the robot and the world by first computing the position of the spheres that approximate the robot’s geometry in space given the joint configuration and then using a sphere to world signed distance function to compute the distance to obstacles.</p>
-<div class="graphviz"><img src="../../_images/graphviz-c413e0a699bb6ac89948882722fadf322a498fd9.png" alt="digraph{
+cuRobo computes signed distance between the robot and the world by first computing the position of the spheres that approximate the robot’s geometry in space given the joint configuration and then using a sphere to world signed distance function to compute the distance to obstacles.</p>
+<div class="graphviz"><object data="../../_images/graphviz-8736077ba8cb5d3aaad338bc396178957136310b.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph{
 rankdir=LR;
 
 subgraph cluster_class{
 label=&quot;RobotWorld&quot;;
 edge [color =&quot;#708090&quot;; fontsize=10];
-node [shape=&quot;box&quot;, color=&quot;grey&quot;,style=&quot;rounded, filled&quot;, fontsize=12]
+node [shape=&quot;box&quot;, color=&quot;#cccccc&quot;,style=&quot;rounded, filled&quot;, fontsize=12]
 get_kin[label=&quot;get_kinematics()&quot;,color=&quot;#76b900&quot;, fontcolor=&quot;white&quot;]
 get_collision_distance[label=&quot;get_collision_distance()&quot;,color=&quot;#76b900&quot;, fontcolor=&quot;white&quot;]
 get_self_coll[label=&quot;get_self_collision_distance()&quot;,color=&quot;#76b900&quot;, fontcolor=&quot;white&quot;]
@@ -169,7 +171,7 @@ world -&gt; get_collision_distance;
 world_config -&gt; load_collision_model;
 load_collision_model -&gt; world;
 }
-}" class="graphviz" /></div>
+}</p></object></div>
 <p>An instance of RobotWorld can be created as below, where <code class="docutils literal notranslate"><span class="pre">world_config_file</span></code> can be swapped with an instance of <a class="reference internal" href="../../_api/curobo.geom.types.html#curobo.geom.types.WorldConfig" title="curobo.geom.types.WorldConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">curobo.geom.types.WorldConfig</span></code></a> that
 describes your world obstacles.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">curobo.wrap.model.robot_world</span> <span class="kn">import</span> <span class="n">RobotWorld</span><span class="p">,</span> <span class="n">RobotWorldConfig</span>
@@ -193,7 +195,7 @@ describes your world obstacles.</p>
 <span class="kn">from</span> <span class="nn">torch.utils.tensorboard</span> <span class="kn">import</span> <span class="n">SummaryWriter</span>
 <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
 
-<span class="c1"># CuRobo</span>
+<span class="c1"># cuRobo</span>
 <span class="kn">from</span> <span class="nn">curobo.geom.sdf.world</span> <span class="kn">import</span> <span class="n">WorldConfig</span>
 <span class="kn">from</span> <span class="nn">curobo.geom.types</span> <span class="kn">import</span> <span class="n">Mesh</span>
 <span class="kn">from</span> <span class="nn">curobo.types.math</span> <span class="kn">import</span> <span class="n">Pose</span>
@@ -246,7 +248,7 @@ describes your world obstacles.</p>
         <span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">get_features</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">q</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">x_des</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Pose</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot; Compute a CuRobo Layer that computes features given joint angle.&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; Compute a cuRobo Layer that computes features given joint angle.&quot;&quot;&quot;</span>
         <span class="n">kin_state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_robot_world</span><span class="o">.</span><span class="n">get_kinematics</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
         <span class="n">spheres</span> <span class="o">=</span> <span class="n">kin_state</span><span class="o">.</span><span class="n">link_spheres_tensor</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
         <span class="n">q_sdf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_robot_world</span><span class="o">.</span><span class="n">get_collision_distance</span><span class="p">(</span><span class="n">spheres</span><span class="p">)</span>

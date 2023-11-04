@@ -14,7 +14,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Block Stacking &mdash; CuRobo  documentation</title>
+  <title>Block Stacking &mdash; cuRobo  documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
@@ -44,7 +44,7 @@
           
           
           <a href="../../index.html" class="icon icon-home">
-            CuRobo
+            cuRobo
               <img src="../../_static/nvidia_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
@@ -58,7 +58,7 @@
               <p class="caption" role="heading"><span class="caption-text">Research</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../research/research.html">Technical Report</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../research/research_using_curobo.html">Research using CuRobo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../research/research_using_curobo.html">Research using cuRobo</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Library Overview</span></p>
 <ul>
@@ -100,7 +100,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">CuRobo</a>
+          <a href="../../index.html">cuRobo</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -120,24 +120,25 @@
              
   <section id="block-stacking">
 <span id="tut-block-stacking"></span><h1>Block Stacking<a class="headerlink" href="#block-stacking" title="Link to this heading"></a></h1>
-<p>A long horizon manipulation task leveraging CuRobo is implemented as an
+<p>A long horizon manipulation task leveraging cuRobo is implemented as an
 example in this library. The block stacking task starts with 9 cubes in front of the robot,
 with the goal being to stack all the cubes into a tower as seen below.</p>
 <p>
 <video autoplay="True" loop="True" muted="True" preload="auto" width="100%"><source src="../../videos/cube_stacking.mp4" type="video/mp4"></video>
 </p><p>The key componenet in this task is to design a Pick Place Sequence as shown in the graph below,
 which consists of moving the robot to a grasp pose, followed by closing the gripper, attaching the
-grasped object to CuRobo’s robot model, moving the object to a location on top of another cube,
-opening the gripper, and deleting the object from CuRobo’s robot model. Once this sequence is designed
+grasped object to cuRobo’s robot model, moving the object to a location on top of another cube,
+opening the gripper, and deleting the object from cuRobo’s robot model. Once this sequence is designed
 and implemented, the block stacking task can be completed by calling this sequence on all the objects
-one by one. After each placement, CuRobo updates its world reprensentation by reading the USD stage
+one by one. After each placement, cuRobo updates its world reprensentation by reading the USD stage
 from Isaac Sim.</p>
-<div class="graphviz"><img src="../../_images/graphviz-edeaaaee5f12ef1d1a373a76ec682b219feeec07.png" alt="digraph {
+<div class="graphviz"><object data="../../_images/graphviz-63ae42e2bf29650e3d7ab447522cd6bc30875168.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph {
       edge [color = &quot;#2B4162&quot;; fontsize=10];
-      node [shape=&quot;box&quot;, style=&quot;rounded, filled&quot;, fontsize=12, color=&quot;grey&quot;]
-      &quot;Isaac Sim&quot; [label=&quot;Isaac Sim&quot;, shape=&quot;box&quot;, color=&quot;grey&quot;, style=&quot;rounded,filled&quot;]
-      world_coll [label=&quot;CuRobo WorldCollision&quot;,shape=&quot;box&quot;,color=&quot;#76b900&quot;, style=&quot;filled, rounded&quot;, fontcolor=&quot;white&quot;]
-      motion_gen [label=&quot;CuRobo MotionGen&quot;, shape=&quot;box&quot;,shape=&quot;box&quot;,color=&quot;#76b900&quot;, style=&quot;filled, rounded&quot;, fontcolor=&quot;white&quot;]
+      node [shape=&quot;box&quot;, style=&quot;rounded, filled&quot;, fontsize=12, color=&quot;#cccccc&quot;]
+      &quot;Isaac Sim&quot; [label=&quot;Isaac Sim&quot;, shape=&quot;box&quot;, color=&quot;#cccccc&quot;, style=&quot;rounded,filled&quot;]
+      world_coll [label=&quot;cuRobo WorldCollision&quot;,shape=&quot;box&quot;,color=&quot;#76b900&quot;, style=&quot;filled, rounded&quot;, fontcolor=&quot;white&quot;]
+      motion_gen [label=&quot;cuRobo MotionGen&quot;, shape=&quot;box&quot;,shape=&quot;box&quot;,color=&quot;#76b900&quot;, style=&quot;filled, rounded&quot;, fontcolor=&quot;white&quot;]
       T -&gt; world_coll;
       {C, G} -&gt; motion_gen;
       {E, P} -&gt; motion_gen;
@@ -167,7 +168,7 @@ from Isaac Sim.</p>
          P -&gt; Q;
       }
       subgraph cluster_world_monitor {
-      label= &quot;CuRobo World Monitor&quot;;
+      label= &quot;cuRobo World Monitor&quot;;
          T [label=&quot;WorldConfig&quot;,   shape=&quot;box&quot;, color=&quot;#76b900&quot;, fontcolor=&quot;white&quot;]
          usd_help [label=&quot;UsdHelper&quot;,shape=&quot;box&quot;, color=&quot;#76b900&quot;, style=&quot;filled, rounded&quot;, fontcolor=&quot;white&quot;]
 
@@ -175,18 +176,19 @@ from Isaac Sim.</p>
 
       }
 
-   }" class="graphviz" /></div>
+   }</p></object></div>
 <section id="attaching-object-to-robot">
 <h2>Attaching Object to Robot<a class="headerlink" href="#attaching-object-to-robot" title="Link to this heading"></a></h2>
-<p>CuRobo implements an attach object feature to enable reasoning about collisions between a grasped object
-and the world while the robot is moving. Since CuRobo represents the robot with spheres, CuRobo automatically
+<p>cuRobo implements an attach object feature to enable reasoning about collisions between a grasped object
+and the world while the robot is moving. Since cuRobo represents the robot with spheres, cuRobo automatically
 computes bounding spheres (see <a class="reference internal" href="../getting_started/2c_world_collision.html#attach-object-note"><span class="std std-ref">Geometry Approximation to Spheres</span></a>) for an object to attach to the robot. When attaching the object to the robot,
 the object is also deleted from the world. Similarly when the object is detached, the spheres are disabled
 and the object is enabled in the world model. This sequence of actions is shown in the graph below.</p>
-<div class="graphviz"><img src="../../_images/graphviz-280925ff6de21051ddab7a05f86c4ef8ba0b9ae4.png" alt="digraph {
+<div class="graphviz"><object data="../../_images/graphviz-cf9f1587a3ea06c6c32fb75fc39d69b3fc58757f.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph {
       edge [color = &quot;#708090&quot;; fontsize=10];
-      node [shape=&quot;box&quot;, style=&quot;rounded, filled&quot;, fontsize=12, color=&quot;grey&quot;]
-      world_coll [label=&quot;CuRobo WorldCollision&quot;,shape=&quot;box&quot;,color=&quot;#76b900&quot;, style=&quot;filled, rounded&quot;, fontcolor=&quot;white&quot;]
+      node [shape=&quot;box&quot;, style=&quot;rounded, filled&quot;, fontsize=12, color=&quot;#cccccc&quot;]
+      world_coll [label=&quot;cuRobo WorldCollision&quot;,shape=&quot;box&quot;,color=&quot;#76b900&quot;, style=&quot;filled, rounded&quot;, fontcolor=&quot;white&quot;]
       cu_kin [label=&quot;CudaRobotModel&quot;,shape=&quot;box&quot;,color=&quot;#76b900&quot;, style=&quot;filled, rounded&quot;, fontcolor=&quot;white&quot;]
       {K,N} -&gt; cu_kin;
       {L, O} -&gt; world_coll;
@@ -209,7 +211,7 @@ and the object is enabled in the world model. This sequence of actions is shown 
       }
 
 
-   }" class="graphviz" /></div>
+   }</p></object></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Detach object currently deletes all spheres attached to a link.</p>

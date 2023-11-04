@@ -14,7 +14,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Docker Development &mdash; CuRobo  documentation</title>
+  <title>Docker Development &mdash; cuRobo  documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
@@ -44,7 +44,7 @@
           
           
           <a href="../../index.html" class="icon icon-home">
-            CuRobo
+            cuRobo
               <img src="../../_static/nvidia_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
@@ -58,7 +58,7 @@
               <p class="caption" role="heading"><span class="caption-text">Research</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../research/research.html">Technical Report</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../research/research_using_curobo.html">Research using CuRobo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../research/research_using_curobo.html">Research using cuRobo</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Library Overview</span></p>
 <ul class="current">
@@ -100,7 +100,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">CuRobo</a>
+          <a href="../../index.html">cuRobo</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -119,30 +119,95 @@
            <div itemprop="articleBody">
              
   <section id="docker-development">
-<h1>Docker Development<a class="headerlink" href="#docker-development" title="Link to this heading"></a></h1>
-<p>CuRobo will work on most docker images that have pytorch. We provide some example dockerfiles in
-<code class="docutils literal notranslate"><span class="pre">curobo/docker</span></code> for reference.</p>
+<span id="docker-dev"></span><h1>Docker Development<a class="headerlink" href="#docker-development" title="Link to this heading"></a></h1>
+<p>cuRobo will work on most docker images that have pytorch. We provide some example dockerfiles in
+<code class="docutils literal notranslate"><span class="pre">curobo/docker</span></code> for reference. The dockerfiles are described in the below table.</p>
+<table class="docutils align-center">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 60%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Tag</p></th>
+<th class="head"><p>File</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>x86</p></td>
+<td><p>x86.dockerfile</p></td>
+<td><p>Dockerfile that builds cuRobo with a pytorch base container.</p></td>
+</tr>
+<tr class="row-odd"><td><p>aarch64</p></td>
+<td><p>aarch64.dockerfile</p></td>
+<td><p>Dockerfile that builds cuRobo with a pytorch base container for using on a NVIDIA Jetson. This
+container can only be built on a NVIDIA Jetson. This also requires compiling warp, instructions are
+provided in <a class="reference internal" href="#warp-jetson"><span class="std std-ref">Build Warp for NVIDIA Jetson</span></a>.</p></td>
+</tr>
+<tr class="row-even"><td><p>isaac_sim_VERSION</p></td>
+<td><p>isaac_sim.dockerfile</p></td>
+<td><p>Dockerfile that builds cuRobo with NVIDIA Isaac Sim VERSION and vulkan. This docker can run
+Isaac sim with native GUI or headless. Replace <code class="docutils literal notranslate"><span class="pre">VERSION</span></code> with <code class="docutils literal notranslate"><span class="pre">2022.2.1</span></code> or <code class="docutils literal notranslate"><span class="pre">2023.1.0</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
 <section id="building-your-own-docker-image-with-curobo">
-<h2>Building your own docker image with CuRobo<a class="headerlink" href="#building-your-own-docker-image-with-curobo" title="Link to this heading"></a></h2>
+<h2>Building your own docker image with cuRobo<a class="headerlink" href="#building-your-own-docker-image-with-curobo" title="Link to this heading"></a></h2>
 <ol class="arabic">
 <li><p>Add default nvidia runtime to enable cuda compilation during docker
-build by editing or creating file at path <code class="docutils literal notranslate"><span class="pre">/etc/docker/daemon.json</span></code> with:</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">{</span>
-<span class="s">&quot;runtimes&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">{</span>
-<span class="w">    </span><span class="s">&quot;nvidia&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">{</span>
-<span class="w">        </span><span class="s">&quot;path&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;/usr/bin/nvidia-container-runtime&quot;</span><span class="p p-Indicator">,</span>
-<span class="w">        </span><span class="s">&quot;runtimeArgs&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
-<span class="w">    </span><span class="p p-Indicator">}</span>
-<span class="p p-Indicator">},</span>
-<span class="s">&quot;default-runtime&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;nvidia&quot;</span><span class="w"> </span><span class="c1"># ADD this line (the above lines will already exist in your json file)</span>
-<span class="p p-Indicator">}</span>
+build:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>Edit/create<span class="w"> </span>the<span class="w"> </span>/etc/docker/daemon.json<span class="w"> </span>with<span class="w"> </span>content:
+<span class="w">    </span><span class="o">{</span>
+<span class="w">    </span><span class="s2">&quot;runtimes&quot;</span>:<span class="w"> </span><span class="o">{</span>
+<span class="w">        </span><span class="s2">&quot;nvidia&quot;</span>:<span class="w"> </span><span class="o">{</span>
+<span class="w">            </span><span class="s2">&quot;path&quot;</span>:<span class="w"> </span><span class="s2">&quot;/usr/bin/nvidia-container-runtime&quot;</span>,
+<span class="w">            </span><span class="s2">&quot;runtimeArgs&quot;</span>:<span class="w"> </span><span class="o">[]</span>
+<span class="w">        </span><span class="o">}</span>
+<span class="w">    </span><span class="o">}</span>,
+<span class="w">    </span><span class="s2">&quot;default-runtime&quot;</span>:<span class="w"> </span><span class="s2">&quot;nvidia&quot;</span><span class="w"> </span><span class="c1"># ADD this line (the above lines will already exist in your json file)</span>
+<span class="w">    </span><span class="o">}</span>
 </pre></div>
 </div>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">bash</span> <span class="pre">build_dev_docker.sh</span></code></p></li>
-<li><p>Change the docker image name in <code class="docutils literal notranslate"><span class="pre">user.dockerfile</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">sh</span> <span class="pre">build_user_docker.sh</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">sh</span> <span class="pre">start_docker_x86.sh</span></code> will start the docker</p></li>
+<li><p>If you are building a docker with isaac sim, setup a NGC account following instructions in <a class="reference external" href="https://docs.omniverse.nvidia.com/isaacsim/latest/installation/install_container.html">Isaac Sim Container Setup</a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bash</span> <span class="pre">build_dev_docker.sh</span> <span class="pre">TAG</span></code>, replace <code class="docutils literal notranslate"><span class="pre">TAG</span></code> with a name from the <code class="docutils literal notranslate"><span class="pre">tag</span></code> column in the above table.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bash</span> <span class="pre">start_docker.sh</span> <span class="pre">TAG</span></code> to launch the built docker.</p></li>
+</ol>
+<p>If you want to have a docker that also enables development by mounting a folder, you can create a user docker with
+the below commands (skip step 4 above). This will mount a folder <code class="docutils literal notranslate"><span class="pre">/home/${USER}/code</span></code> into the docker container where you can do your
+development.</p>
+<ol class="arabic simple" start="4">
+<li><p><code class="docutils literal notranslate"><span class="pre">bash</span> <span class="pre">build_user_docker.sh</span> <span class="pre">$UID</span> <span class="pre">TAG</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bash</span> <span class="pre">start_dev_docker.sh</span> <span class="pre">TAG</span></code> will start the docker.</p></li>
+</ol>
+</section>
+<section id="build-warp-for-nvidia-jetson">
+<span id="warp-jetson"></span><h2>Build Warp for NVIDIA Jetson<a class="headerlink" href="#build-warp-for-nvidia-jetson" title="Link to this heading"></a></h2>
+<p>NVIDIA Warp requires 11.5+ CUDA to compile and NVIDIA Jetson ships with CUDA 11.4. We will install
+a new version of CUDA and then compile the library (<code class="docutils literal notranslate"><span class="pre">.so</span></code>) file  for using warp on NVIDIA Jetson.</p>
+<ol class="arabic">
+<li><p>Install a newer version of cuda using the below commands (<a class="reference external" href="https://developer.nvidia.com/cuda-11-8-0-download-archive?target_os=Linux&amp;target_arch=aarch64-jetson&amp;Compilation=Native&amp;Distribution=Ubuntu&amp;target_version=20.04&amp;target_type=deb_local">details</a>):</p>
+<blockquote>
+<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>wget<span class="w"> </span>https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/arm64/cuda-ubuntu2004.pin
+sudo<span class="w"> </span>mv<span class="w"> </span>cuda-ubuntu2004.pin<span class="w"> </span>/etc/apt/preferences.d/cuda-repository-pin-600
+wget<span class="w"> </span>https://developer.download.nvidia.com/compute/cuda/11.8.0/local_installers/cuda-tegra-repo-ubuntu2004-11-8-local_11.8.<span class="w"> </span><span class="m">0</span>-1_arm64.deb
+sudo<span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </span>cuda-tegra-repo-ubuntu2004-11-8-local_11.8.0-1_arm64.deb
+sudo<span class="w"> </span>cp<span class="w"> </span>/var/cuda-tegra-repo-ubuntu2004-11-8-local/cuda-*-keyring.gpg<span class="w"> </span>/usr/share/keyrings/
+sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+sudo<span class="w"> </span>apt-get<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>cuda
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Download and compile warp inside a clone of curobo for use inside a dockerfile later:</p>
+<blockquote>
+<div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/NVlabs/curobo.git<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>curobo<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mkdir<span class="w"> </span>pkgs<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>pkgs
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/NVIDIA/warp.git<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>python3<span class="w"> </span>build_lib.py
+</pre></div>
+</div>
+</div></blockquote>
+</li>
 </ol>
 </section>
 </section>

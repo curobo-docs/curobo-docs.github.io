@@ -14,7 +14,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Using with Depth Camera &mdash; CuRobo  documentation</title>
+  <title>Using with Depth Camera &mdash; cuRobo  documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
@@ -44,7 +44,7 @@
           
           
           <a href="../../index.html" class="icon icon-home">
-            CuRobo
+            cuRobo
               <img src="../../_static/nvidia_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
@@ -58,7 +58,7 @@
               <p class="caption" role="heading"><span class="caption-text">Research</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../research/research.html">Technical Report</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../research/research_using_curobo.html">Research using CuRobo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../research/research_using_curobo.html">Research using cuRobo</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Library Overview</span></p>
 <ul class="current">
@@ -100,7 +100,7 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">CuRobo</a>
+          <a href="../../index.html">cuRobo</a>
       </nav>
 
       <div class="wy-nav-content">
@@ -120,7 +120,7 @@
              
   <section id="using-with-depth-camera">
 <span id="depth-image-example"></span><h1>Using with Depth Camera<a class="headerlink" href="#using-with-depth-camera" title="Link to this heading"></a></h1>
-<p>For working with camera depth images, we use <a class="reference external" href="https://github.com/nvidia-isaac/nvblox">nvblox</a>. Nvblox takes as input depth images with camera poses and builds a Euclidean Signed Distance Field~(ESDF). nvblox is implemented to support many layers of ESDF, with segmented camera images going to different layers. In addition, nvblox enables decaying occupancy in layers, which we leverage to account for dynamic obstacles. Since a single layer with a fixed voxel size is not ideal for manipulation environments, we design a wrapper for nvblox that creates many layers with different voxel sizes, integration types, and history. This allows us to load static world objects in a base layer, dynamic obstacles in a dynamic layer, and interaction objects in a high resolution map. We pass all these layers to a single cuda kernel which iterates through all layers and returns the collision distances. We also expose APIs to update the layers with new depth images. We also provide the option to load nvblox layers from disk. We developed an pytorch interface to nvblox which is available at <a class="reference external" href="https://github.com/nvlabs/nvblox_torch">nvblox_torch</a> that we use in CuRobo for signed distance queries. The collision checking wrapper is implemented in <a class="reference internal" href="../../_api/curobo.geom.sdf.world_blox.html#curobo.geom.sdf.world_blox.WorldBloxCollision" title="curobo.geom.sdf.world_blox.WorldBloxCollision"><code class="xref py py-class docutils literal notranslate"><span class="pre">curobo.geom.sdf.world_blox.WorldBloxCollision</span></code></a>.</p>
+<p>For working with camera depth images, we use <a class="reference external" href="https://github.com/nvidia-isaac/nvblox">nvblox</a>. Nvblox takes as input depth images with camera poses and builds a Euclidean Signed Distance Field~(ESDF). nvblox is implemented to support many layers of ESDF, with segmented camera images going to different layers. In addition, nvblox enables decaying occupancy in layers, which we leverage to account for dynamic obstacles. Since a single layer with a fixed voxel size is not ideal for manipulation environments, we design a wrapper for nvblox that creates many layers with different voxel sizes, integration types, and history. This allows us to load static world objects in a base layer, dynamic obstacles in a dynamic layer, and interaction objects in a high resolution map. We pass all these layers to a single cuda kernel which iterates through all layers and returns the collision distances. We also expose APIs to update the layers with new depth images. We also provide the option to load nvblox layers from disk. We developed an pytorch interface to nvblox which is available at <cite>nvblox_torch &lt;https://github.com/nvlabs/nvblox_torch&gt;_</cite> that we use in cuRobo for signed distance queries. The collision checking wrapper is implemented in <a class="reference internal" href="../../_api/curobo.geom.sdf.world_blox.html#curobo.geom.sdf.world_blox.WorldBloxCollision" title="curobo.geom.sdf.world_blox.WorldBloxCollision"><code class="xref py py-class docutils literal notranslate"><span class="pre">curobo.geom.sdf.world_blox.WorldBloxCollision</span></code></a>.</p>
 <p>We will first walk through some examples that use a pre-generated nvblox map followed by reactive examples that require a depth camera.</p>
 <nav class="contents local" id="contents">
 <ul class="simple">
@@ -140,7 +140,7 @@
 </li>
 </ul>
 </nav>
-<p>Install CuRobo with Isaac sim following <a class="reference internal" href="1_install_instructions.html#isaac-sim-installation"><span class="std std-ref">Install for use in Isaac Sim</span></a>. Then install nvblox following instructions in
+<p>Install cuRobo with Isaac sim following <a class="reference internal" href="1_install_instructions.html#isaac-sim-installation"><span class="std std-ref">Install for use in Isaac Sim</span></a>. Then install nvblox following instructions in
 <a class="reference internal" href="1_install_instructions.html#nvblox-isaac-sim-install"><span class="std std-ref">Installing nvblox with Isaac Sim</span></a>.</p>
 <section id="demos-with-an-existing-map">
 <h2><a class="toc-backref" href="#id4" role="doc-backlink">Demos with an existing map</a><a class="headerlink" href="#demos-with-an-existing-map" title="Link to this heading"></a></h2>
@@ -178,15 +178,16 @@ show the clipped RGB and depth image stream. In Isaac Sim, you will see voxels b
 <figure class="align-center">
 <a class="reference internal image-reference" href="../../_images/realsense_setup.png"><img alt="../../_images/realsense_setup.png" src="../../_images/realsense_setup.png" style="width: 690px;" /></a>
 </figure>
-<p>We interface a depth camera (e.g., realsense) with CuRobo through <a class="reference internal" href="../../_api/curobo.geom.sdf.world_blox.html#curobo.geom.sdf.world_blox.WorldBloxCollision" title="curobo.geom.sdf.world_blox.WorldBloxCollision"><code class="xref py py-class docutils literal notranslate"><span class="pre">curobo.geom.sdf.world_blox.WorldBloxCollision</span></code></a> and send depth images at every simulation step.
-The collision class will integrate the depth images into nvblox’s ESDF representation and enable collision queries for CuRobo’s motion generation techniques.</p>
-<div align="center" class="align-center"><div class="graphviz"><img src="../../_images/graphviz-bc5820f0e2f5dd0ba92e2a2facf5f958ef683778.png" alt="digraph {
+<p>We interface a depth camera (e.g., realsense) with cuRobo through <a class="reference internal" href="../../_api/curobo.geom.sdf.world_blox.html#curobo.geom.sdf.world_blox.WorldBloxCollision" title="curobo.geom.sdf.world_blox.WorldBloxCollision"><code class="xref py py-class docutils literal notranslate"><span class="pre">curobo.geom.sdf.world_blox.WorldBloxCollision</span></code></a> and send depth images at every simulation step.
+The collision class will integrate the depth images into nvblox’s ESDF representation and enable collision queries for cuRobo’s motion generation techniques.</p>
+<div align="center" class="align-center"><div class="graphviz"><object data="../../_images/graphviz-3138b35c56225b4f3ec059df4d05acb484047b99.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph {
   edge [color = &quot;#708090&quot;; fontsize=10];
   node [shape=&quot;box&quot;, style=&quot;rounded, filled&quot;, fontsize=12]
-  &quot;Isaac Sim&quot; [label=&quot;Isaac Sim&quot;, shape=&quot;box&quot;, color=&quot;grey&quot;, style=&quot;rounded,filled&quot;]
-  world_coll [label=&quot;CuRobo WorldBloxCollision&quot;,shape=&quot;box&quot;,color=&quot;#76b900&quot;, style=&quot;filled, rounded&quot;, fontcolor=&quot;white&quot;]
-  motion_gen [label=&quot;CuRobo MotionGen / MPC&quot;, shape=&quot;box&quot;,shape=&quot;box&quot;,color=&quot;#76b900&quot;, style=&quot;filled, rounded&quot;, fontcolor=&quot;white&quot;]
-  realsense [label=&quot;Realsense Camera&quot;, shape=&quot;box&quot;, color=&quot;grey&quot;, style=&quot;rounded,filled&quot;]
+  &quot;Isaac Sim&quot; [label=&quot;Isaac Sim&quot;, shape=&quot;box&quot;, color=&quot;#cccccc&quot;, style=&quot;rounded,filled&quot;]
+  world_coll [label=&quot;cuRobo WorldBloxCollision&quot;,shape=&quot;box&quot;,color=&quot;#76b900&quot;, style=&quot;filled, rounded&quot;, fontcolor=&quot;white&quot;]
+  motion_gen [label=&quot;cuRobo MotionGen / MPC&quot;, shape=&quot;box&quot;,shape=&quot;box&quot;,color=&quot;#76b900&quot;, style=&quot;filled, rounded&quot;, fontcolor=&quot;white&quot;]
+  realsense [label=&quot;Realsense Camera&quot;, shape=&quot;box&quot;, color=&quot;#cccccc&quot;, style=&quot;rounded,filled&quot;]
   realsense -&gt; world_coll;
   world_coll -&gt; &quot;Isaac Sim&quot; [label=&quot;Voxels&quot;];
 
@@ -195,10 +196,10 @@ The collision class will integrate the depth images into nvblox’s ESDF represe
   &quot;Isaac Sim&quot; -&gt; motion_gen [label=&quot;Goal Pose&quot;];
   motion_gen -&gt; &quot;Isaac Sim&quot;[label=&quot;Joint Action&quot;];
   world_coll -&gt; motion_gen;
-  label=&quot;CuRobo NVBLOX Interface&quot;
+  label=&quot;cuRobo NVBLOX Interface&quot;
   labelloc=top
   labeljust=center
-}" class="graphviz" /></div>
+}</p></object></div>
 </div>
 <section id="id1">
 <h3><a class="toc-backref" href="#id9" role="doc-backlink">Collision Checking</a><a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
