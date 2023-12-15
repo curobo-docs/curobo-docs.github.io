@@ -9,17 +9,18 @@
 -- its affiliates is strictly prohibited.
 -->
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Known Issues &mdash; cuRobo  documentation</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
-    <link rel="canonical" href="https://curobo.org/source/getting_started/6_known_issues.html" />
+  <title>Known Issues</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=097e10a7" />
+
+  
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -121,6 +122,15 @@
              
   <section id="known-issues">
 <h1>Known Issues<a class="headerlink" href="#known-issues" title="Link to this heading"></a></h1>
+<section id="curobo">
+<h2>cuRobo<a class="headerlink" href="#curobo" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Collision-free planning with the world represented by camera perception is an open research
+problem. cuRobo provides integration with nvblox for querying closest points between the robot and
+a voxelized map. We found that this works well in sparse obstacle environments. But as we increased
+the density of obstacles, the occlusions in perception can cause many failures.</p></li>
+</ol>
+</section>
 <section id="python">
 <h2>Python<a class="headerlink" href="#python" title="Link to this heading"></a></h2>
 <ol class="arabic simple">
@@ -131,19 +141,26 @@ timesteps, number of seeds). While cuRobo library is designed to regenerate the 
 if a change in dimension is detected, pytorch crashes when <cite>CUDAGraph.reset()</cite> is called.</p></li>
 </ol>
 </section>
+<section id="nvblox">
+<h2>nvblox<a class="headerlink" href="#nvblox" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Compiling nvblox as redistributable with <code class="docutils literal notranslate"><span class="pre">cxx11_ABI=1</span></code> does not work as cmake links to global glog library instead of the
+local one. Hence compile nvblox as standard when using with <cite>cxx11_ABI=1</cite> as apt install glog is also compiled with this flag.</p></li>
+<li><p>Voxel sizes less then 1 cm (<code class="docutils literal notranslate"><span class="pre">&lt;0.01</span></code>) can hit GPU memory limits very quickly.</p></li>
+<li><p>Continuous collision checking is not implemented, so success rate can be lower in environments with very thin obstacles compared to using
+meshes or cuboids as obstacles.</p></li>
+<li><p>Reinitializing nvblox inside a python script can cause CUDA errors. Instead of reinitializing nvblox mapper instance, clear the existing map.</p></li>
+</ol>
+</section>
 <section id="isaac-sim">
 <h2>Isaac Sim<a class="headerlink" href="#isaac-sim" title="Link to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p>Headless mode works reliably with Omniverse Streaming Client by setting <code class="docutils literal notranslate"><span class="pre">--headless_mode=native</span></code>
 for examples in <a class="reference internal" href="2b_isaacsim_examples.html#overview-isaacsim"><span class="std std-ref">Using with Isaac Sim</span></a>. WebSocket and WebRTC can have issues.</p></li>
+<li><p>When using development docker, webrtc headless mode does not work. Use <code class="docutils literal notranslate"><span class="pre">--headless_mode=native</span></code>.</p></li>
+<li><p>Mimic joints cannot be loaded from a urdf in some kinematic chain instances. cuRobo also does not support mimic joints, hence convert
+your robot’s mimic joints as independently actuated joints or fixed joints. This is a limitation of cuRobo.</p></li>
 </ol>
-<section id="isaac-sim-2023-1-0">
-<h3>Isaac Sim 2023.1.0<a class="headerlink" href="#isaac-sim-2023-1-0" title="Link to this heading"></a></h3>
-<ol class="arabic simple">
-<li><p><a class="reference internal" href="../advanced_examples/2b_block_stacking_example.html#tut-block-stacking"><span class="std std-ref">Block Stacking</span></a> is unstable and can have contact issues during cube placement. We have
-yet to find the physx parameters that match the performance we get with Isaac Sim 2022.2.1.</p></li>
-</ol>
-</section>
 </section>
 </section>
 
