@@ -198,6 +198,7 @@ sudo<span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </spa
 sudo<span class="w"> </span>cp<span class="w"> </span>/var/cuda-tegra-repo-ubuntu2004-11-8-local/cuda-*-keyring.gpg<span class="w"> </span>/usr/share/keyrings/
 sudo<span class="w"> </span>apt-get<span class="w"> </span>update
 sudo<span class="w"> </span>apt-get<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>cuda
+<span class="nb">export</span><span class="w"> </span><span class="nv">CUDA_HOME</span><span class="o">=</span>/usr/local/cuda-11.8/
 </pre></div>
 </div>
 </div></blockquote>
@@ -213,7 +214,9 @@ git<span class="w"> </span>clone<span class="w"> </span>https://github.com/NVIDI
 </ol>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Newer versions of warp (&gt;0.9.0) might also work on jetson, we have only tested 0.9.0.</p>
+<p>Newer versions of warp (&gt;0.9.0) might also work on jetson, we have only tested 0.9.0. Make sure
+when running <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">build_lib.py</span></code> for warp, it’s compiling the CUDA kernels. warp looks for cuda toolkit at
+<code class="docutils literal notranslate"><span class="pre">CUDA_HOME</span></code> so set it to your cuda toolkit path before running <code class="docutils literal notranslate"><span class="pre">build_lib.py</span></code>.</p>
 </div>
 </section>
 </section>
