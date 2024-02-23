@@ -32,9 +32,7 @@
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="curobo.opt.newton package" href="curobo.opt.newton.html" />
-    <link rel="prev" title="curobo.geom.types module" href="curobo.geom.types.html" /> 
+    <link rel="search" title="Search" href="../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -74,11 +72,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../source/getting_started/4_benchmarks.html">Benchmarks &amp; Profiling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/getting_started/5_docker_development.html">Docker Development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/getting_started/6_known_issues.html">Known Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/7_api.html">Python API</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Advanced Examples</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2a_batch_env.html">Batched Environments</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2b_block_stacking_example.html">Block Stacking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/1_batch_env.html">Batched Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2_block_stacking_example.html">Block Stacking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/3_constrained_planning.html">Constrained Planning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/4_robot_segmentation.html">Robot Segmentation</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
@@ -90,10 +91,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/02_numerical_optimization.html">Numerical Optimization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/04_cuda_kernels.html">CUDA Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/05_usd_api.html">USD for Robot and World Representation</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">API</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../api.html">Python API</a></li>
 </ul>
 
         </div>
@@ -110,7 +107,6 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../api.html">Python API</a></li>
       <li class="breadcrumb-item active">curobo.opt package</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/_api/curobo.opt.rst.txt" rel="nofollow"> View page source</a>
@@ -123,6 +119,14 @@
              
   <section id="module-curobo.opt">
 <span id="curobo-opt-package"></span><h1>curobo.opt package<a class="headerlink" href="#module-curobo.opt" title="Link to this heading"></a></h1>
+<p>Optimization module containing several numerical solvers.</p>
+<p>Base for an opimization solver is at <a class="reference internal" href="curobo.opt.opt_base.html#curobo.opt.opt_base.Optimizer" title="curobo.opt.opt_base.Optimizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">opt_base.Optimizer</span></code></a>. cuRobo provides two base classes
+for implementing two popular ways to optimize, (1) using particles
+with <a class="reference internal" href="curobo.opt.particle.particle_opt_base.html#curobo.opt.particle.particle_opt_base.ParticleOptBase" title="curobo.opt.particle.particle_opt_base.ParticleOptBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">particle.particle_opt_base.ParticleOptBase</span></code></a> and (2) using Newton/Quasi-Newton solvers
+with <a class="reference internal" href="curobo.opt.newton.newton_base.html#curobo.opt.newton.newton_base.NewtonOptBase" title="curobo.opt.newton.newton_base.NewtonOptBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">newton.newton_base.NewtonOptBase</span></code></a>. <a class="reference internal" href="curobo.opt.newton.newton_base.html#curobo.opt.newton.newton_base.NewtonOptBase" title="curobo.opt.newton.newton_base.NewtonOptBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">newton.newton_base.NewtonOptBase</span></code></a> contains
+implementations of several line search schemes. Note that these line search schemes are approximate
+as cuRobo tries different line search magnitudes in parallel and chooses the largest that satisfies
+line search conditions.</p>
 <section id="subpackages">
 <h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading"></a></h2>
 <div class="toctree-wrapper compound">
@@ -196,19 +200,19 @@
 <li class="toctree-l3"><a class="reference internal" href="curobo.opt.opt_base.html#curobo.opt.opt_base.OptimizerConfig.d_action"><code class="docutils literal notranslate"><span class="pre">OptimizerConfig.d_action</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.opt.opt_base.html#curobo.opt.opt_base.OptimizerConfig.action_lows"><code class="docutils literal notranslate"><span class="pre">OptimizerConfig.action_lows</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.opt.opt_base.html#curobo.opt.opt_base.OptimizerConfig.action_highs"><code class="docutils literal notranslate"><span class="pre">OptimizerConfig.action_highs</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.opt_base.html#curobo.opt.opt_base.OptimizerConfig.action_horizon"><code class="docutils literal notranslate"><span class="pre">OptimizerConfig.action_horizon</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.opt.opt_base.html#curobo.opt.opt_base.OptimizerConfig.horizon"><code class="docutils literal notranslate"><span class="pre">OptimizerConfig.horizon</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.opt.opt_base.html#curobo.opt.opt_base.OptimizerConfig.n_iters"><code class="docutils literal notranslate"><span class="pre">OptimizerConfig.n_iters</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.opt_base.html#curobo.opt.opt_base.OptimizerConfig.cold_start_n_iters"><code class="docutils literal notranslate"><span class="pre">OptimizerConfig.cold_start_n_iters</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.opt.opt_base.html#curobo.opt.opt_base.OptimizerConfig.rollout_fn"><code class="docutils literal notranslate"><span class="pre">OptimizerConfig.rollout_fn</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.opt.opt_base.html#curobo.opt.opt_base.OptimizerConfig.tensor_args"><code class="docutils literal notranslate"><span class="pre">OptimizerConfig.tensor_args</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.opt.opt_base.html#curobo.opt.opt_base.OptimizerConfig.use_cuda_graph"><code class="docutils literal notranslate"><span class="pre">OptimizerConfig.use_cuda_graph</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.opt.opt_base.html#curobo.opt.opt_base.OptimizerConfig.store_debug"><code class="docutils literal notranslate"><span class="pre">OptimizerConfig.store_debug</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.opt.opt_base.html#curobo.opt.opt_base.OptimizerConfig.debug_info"><code class="docutils literal notranslate"><span class="pre">OptimizerConfig.debug_info</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="curobo.opt.opt_base.html#curobo.opt.opt_base.OptimizerConfig.cold_start_n_iters"><code class="docutils literal notranslate"><span class="pre">OptimizerConfig.cold_start_n_iters</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.opt_base.html#curobo.opt.opt_base.OptimizerConfig.n_problems"><code class="docutils literal notranslate"><span class="pre">OptimizerConfig.n_problems</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.opt.opt_base.html#curobo.opt.opt_base.OptimizerConfig.num_particles"><code class="docutils literal notranslate"><span class="pre">OptimizerConfig.num_particles</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="curobo.opt.opt_base.html#curobo.opt.opt_base.OptimizerConfig.n_envs"><code class="docutils literal notranslate"><span class="pre">OptimizerConfig.n_envs</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.opt.opt_base.html#curobo.opt.opt_base.OptimizerConfig.sync_cuda_time"><code class="docutils literal notranslate"><span class="pre">OptimizerConfig.sync_cuda_time</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.opt.opt_base.html#curobo.opt.opt_base.OptimizerConfig.use_coo_sparse"><code class="docutils literal notranslate"><span class="pre">OptimizerConfig.use_coo_sparse</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="curobo.opt.opt_base.html#curobo.opt.opt_base.OptimizerConfig.action_horizon"><code class="docutils literal notranslate"><span class="pre">OptimizerConfig.action_horizon</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.opt.opt_base.html#curobo.opt.opt_base.OptimizerConfig.create_data_dict"><code class="docutils literal notranslate"><span class="pre">OptimizerConfig.create_data_dict</span></code></a></li>
 </ul>
 </li>
@@ -216,11 +220,15 @@
 <li class="toctree-l3"><a class="reference internal" href="curobo.opt.opt_base.html#curobo.opt.opt_base.Optimizer.optimize"><code class="docutils literal notranslate"><span class="pre">Optimizer.optimize</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.opt.opt_base.html#curobo.opt.opt_base.Optimizer.update_params"><code class="docutils literal notranslate"><span class="pre">Optimizer.update_params</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.opt.opt_base.html#curobo.opt.opt_base.Optimizer.reset"><code class="docutils literal notranslate"><span class="pre">Optimizer.reset</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="curobo.opt.opt_base.html#curobo.opt.opt_base.Optimizer.update_nenvs"><code class="docutils literal notranslate"><span class="pre">Optimizer.update_nenvs</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="curobo.opt.opt_base.html#curobo.opt.opt_base.Optimizer.get_nenv_tensor"><code class="docutils literal notranslate"><span class="pre">Optimizer.get_nenv_tensor</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.opt_base.html#curobo.opt.opt_base.Optimizer.update_nproblems"><code class="docutils literal notranslate"><span class="pre">Optimizer.update_nproblems</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.opt_base.html#curobo.opt.opt_base.Optimizer.get_nproblem_tensor"><code class="docutils literal notranslate"><span class="pre">Optimizer.get_nproblem_tensor</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.opt.opt_base.html#curobo.opt.opt_base.Optimizer.reset_seed"><code class="docutils literal notranslate"><span class="pre">Optimizer.reset_seed</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.opt.opt_base.html#curobo.opt.opt_base.Optimizer.reset_cuda_graph"><code class="docutils literal notranslate"><span class="pre">Optimizer.reset_cuda_graph</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.opt_base.html#curobo.opt.opt_base.Optimizer.reset_shape"><code class="docutils literal notranslate"><span class="pre">Optimizer.reset_shape</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.opt.opt_base.html#curobo.opt.opt_base.Optimizer.get_all_rollout_instances"><code class="docutils literal notranslate"><span class="pre">Optimizer.get_all_rollout_instances</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.opt_base.html#curobo.opt.opt_base.Optimizer._optimize"><code class="docutils literal notranslate"><span class="pre">Optimizer._optimize</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.opt_base.html#curobo.opt.opt_base.Optimizer._shift"><code class="docutils literal notranslate"><span class="pre">Optimizer._shift</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.opt_base.html#curobo.opt.opt_base.Optimizer._update_problem_kernel"><code class="docutils literal notranslate"><span class="pre">Optimizer._update_problem_kernel</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -233,10 +241,7 @@
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="curobo.geom.types.html" class="btn btn-neutral float-left" title="curobo.geom.types module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="curobo.opt.newton.html" class="btn btn-neutral float-right" title="curobo.opt.newton package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+          <footer>
 
   <hr/>
 

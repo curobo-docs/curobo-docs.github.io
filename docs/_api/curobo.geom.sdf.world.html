@@ -32,9 +32,7 @@
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="curobo.geom.sdf.world_blox module" href="curobo.geom.sdf.world_blox.html" />
-    <link rel="prev" title="curobo.geom.sdf.warp_primitives module" href="curobo.geom.sdf.warp_primitives.html" /> 
+    <link rel="search" title="Search" href="../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -74,11 +72,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../source/getting_started/4_benchmarks.html">Benchmarks &amp; Profiling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/getting_started/5_docker_development.html">Docker Development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/getting_started/6_known_issues.html">Known Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/7_api.html">Python API</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Advanced Examples</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2a_batch_env.html">Batched Environments</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2b_block_stacking_example.html">Block Stacking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/1_batch_env.html">Batched Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2_block_stacking_example.html">Block Stacking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/3_constrained_planning.html">Constrained Planning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/4_robot_segmentation.html">Robot Segmentation</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
@@ -90,10 +91,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/02_numerical_optimization.html">Numerical Optimization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/04_cuda_kernels.html">CUDA Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/05_usd_api.html">USD for Robot and World Representation</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">API</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../api.html">Python API</a></li>
 </ul>
 
         </div>
@@ -110,9 +107,6 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../api.html">Python API</a></li>
-          <li class="breadcrumb-item"><a href="curobo.geom.html">curobo.geom package</a></li>
-          <li class="breadcrumb-item"><a href="curobo.geom.sdf.html">curobo.geom.sdf package</a></li>
       <li class="breadcrumb-item active">curobo.geom.sdf.world module</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/_api/curobo.geom.sdf.world.rst.txt" rel="nofollow"> View page source</a>
@@ -162,6 +156,19 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="curobo.geom.sdf.world.CollisionBuffer.initialize_from_shape">
 <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">initialize_from_shape</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tensor_args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world.CollisionBuffer.initialize_from_shape" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>shape</strong> (<em>Size</em>) – </p></li>
+<li><p><strong>tensor_args</strong> (<a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType" title="curobo.types.base.TensorDeviceType"><em>TensorDeviceType</em></a>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.sdf.world.CollisionBuffer._update_from_shape">
+<span class="sig-name descname"><span class="pre">_update_from_shape</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tensor_args</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world.CollisionBuffer._update_from_shape" title="Link to this definition"></a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -495,11 +502,19 @@ If no cache is setup, we use the number from the first call of load_collision_mo
 </dd>
 </dl>
 <dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.sdf.world.WorldPrimitiveCollision._init_cache">
+<span class="sig-name descname"><span class="pre">_init_cache</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world.WorldPrimitiveCollision._init_cache" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="curobo.geom.sdf.world.WorldPrimitiveCollision.load_collision_model">
-<span class="sig-name descname"><span class="pre">load_collision_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">world_config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world.WorldPrimitiveCollision.load_collision_model" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">load_collision_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">world_config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fix_cache_reference</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world.WorldPrimitiveCollision.load_collision_model" title="Link to this definition"></a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>world_config</strong> (<a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig" title="curobo.geom.types.WorldConfig"><em>WorldConfig</em></a>) – </p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>world_config</strong> (<a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig" title="curobo.geom.types.WorldConfig"><em>WorldConfig</em></a>) – </p></li>
+<li><p><strong>fix_cache_reference</strong> (<em>bool</em>) – </p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -514,6 +529,25 @@ If no cache is setup, we use the number from the first call of load_collision_mo
 </dd>
 </dl>
 </dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.sdf.world.WorldPrimitiveCollision._load_collision_model_in_cache">
+<span class="sig-name descname"><span class="pre">_load_collision_model_in_cache</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">world_config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fix_cache_reference</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world.WorldPrimitiveCollision._load_collision_model_in_cache" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>world_config</strong> (<a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig" title="curobo.geom.types.WorldConfig"><em>WorldConfig</em></a>) – </p></li>
+<li><p><strong>env_idx</strong> (<em>int</em>) – </p></li>
+<li><p><strong>fix_cache_reference</strong> (<em>bool</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.sdf.world.WorldPrimitiveCollision._create_obb_cache">
+<span class="sig-name descname"><span class="pre">_create_obb_cache</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obb_cache</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world.WorldPrimitiveCollision._create_obb_cache" title="Link to this definition"></a></dt>
+<dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="curobo.geom.sdf.world.WorldPrimitiveCollision.add_obb_from_raw">
@@ -627,6 +661,19 @@ obj_idx:</p>
 <li><p><strong>name</strong> (<em>str</em><em> | </em><em>None</em>) – </p></li>
 <li><p><strong>env_obj_idx</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
 <li><p><strong>env_idx</strong> (<em>int</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.sdf.world.WorldPrimitiveCollision._get_obstacle_poses">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">_get_obstacle_poses</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">w_obj_pose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obj_w_pose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world.WorldPrimitiveCollision._get_obstacle_poses" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>w_obj_pose</strong> (<a class="reference internal" href="curobo.types.math.html#curobo.types.math.Pose" title="curobo.types.math.Pose"><em>Pose</em></a><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>obj_w_pose</strong> (<a class="reference internal" href="curobo.types.math.html#curobo.types.math.Pose" title="curobo.types.math.Pose"><em>Pose</em></a><em> | </em><em>None</em>) – </p></li>
 </ul>
 </dd>
 </dl>
@@ -769,10 +816,7 @@ tensor_sphere: b, n, 4</p>
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="curobo.geom.sdf.warp_primitives.html" class="btn btn-neutral float-left" title="curobo.geom.sdf.warp_primitives module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="curobo.geom.sdf.world_blox.html" class="btn btn-neutral float-right" title="curobo.geom.sdf.world_blox module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+          <footer>
 
   <hr/>
 

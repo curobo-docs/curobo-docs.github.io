@@ -32,9 +32,7 @@
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="curobo.cuda_robot_model.cuda_robot_generator module" href="curobo.cuda_robot_model.cuda_robot_generator.html" />
-    <link rel="prev" title="Python API" href="../api.html" /> 
+    <link rel="search" title="Search" href="../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -74,11 +72,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../source/getting_started/4_benchmarks.html">Benchmarks &amp; Profiling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/getting_started/5_docker_development.html">Docker Development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/getting_started/6_known_issues.html">Known Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/7_api.html">Python API</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Advanced Examples</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2a_batch_env.html">Batched Environments</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2b_block_stacking_example.html">Block Stacking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/1_batch_env.html">Batched Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2_block_stacking_example.html">Block Stacking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/3_constrained_planning.html">Constrained Planning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/4_robot_segmentation.html">Robot Segmentation</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
@@ -90,10 +91,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/02_numerical_optimization.html">Numerical Optimization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/04_cuda_kernels.html">CUDA Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/05_usd_api.html">USD for Robot and World Representation</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">API</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../api.html">Python API</a></li>
 </ul>
 
         </div>
@@ -110,7 +107,6 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../api.html">Python API</a></li>
       <li class="breadcrumb-item active">curobo.cuda_robot_model package</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/_api/curobo.cuda_robot_model.rst.txt" rel="nofollow"> View page source</a>
@@ -186,6 +182,7 @@ configuration. To reduce memory overhead, you can pass one instance of
 <li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.external_robot_configs_path"><code class="docutils literal notranslate"><span class="pre">CudaRobotGeneratorConfig.external_robot_configs_path</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.extra_collision_spheres"><code class="docutils literal notranslate"><span class="pre">CudaRobotGeneratorConfig.extra_collision_spheres</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.cspace"><code class="docutils literal notranslate"><span class="pre">CudaRobotGeneratorConfig.cspace</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.load_meshes"><code class="docutils literal notranslate"><span class="pre">CudaRobotGeneratorConfig.load_meshes</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGenerator"><code class="docutils literal notranslate"><span class="pre">CudaRobotGenerator</span></code></a><ul>
@@ -195,7 +192,18 @@ configuration. To reduce memory overhead, you can pass one instance of
 <li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGenerator.initialize_tensors"><code class="docutils literal notranslate"><span class="pre">CudaRobotGenerator.initialize_tensors</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGenerator.add_link"><code class="docutils literal notranslate"><span class="pre">CudaRobotGenerator.add_link</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGenerator.add_fixed_link"><code class="docutils literal notranslate"><span class="pre">CudaRobotGenerator.add_fixed_link</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGenerator._build_chain"><code class="docutils literal notranslate"><span class="pre">CudaRobotGenerator._build_chain</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGenerator._build_kinematics_tensors"><code class="docutils literal notranslate"><span class="pre">CudaRobotGenerator._build_kinematics_tensors</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGenerator._build_kinematics"><code class="docutils literal notranslate"><span class="pre">CudaRobotGenerator._build_kinematics</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGenerator._build_kinematics_with_lock_joints"><code class="docutils literal notranslate"><span class="pre">CudaRobotGenerator._build_kinematics_with_lock_joints</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGenerator._build_collision_model"><code class="docutils literal notranslate"><span class="pre">CudaRobotGenerator._build_collision_model</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGenerator._create_self_collision_thread_data"><code class="docutils literal notranslate"><span class="pre">CudaRobotGenerator._create_self_collision_thread_data</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGenerator._add_body_to_tree"><code class="docutils literal notranslate"><span class="pre">CudaRobotGenerator._add_body_to_tree</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGenerator._get_joint_links"><code class="docutils literal notranslate"><span class="pre">CudaRobotGenerator._get_joint_links</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGenerator._get_link_poses"><code class="docutils literal notranslate"><span class="pre">CudaRobotGenerator._get_link_poses</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGenerator.get_joint_limits"><code class="docutils literal notranslate"><span class="pre">CudaRobotGenerator.get_joint_limits</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGenerator._get_joint_position_velocity_limits"><code class="docutils literal notranslate"><span class="pre">CudaRobotGenerator._get_joint_position_velocity_limits</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGenerator._update_joint_limits"><code class="docutils literal notranslate"><span class="pre">CudaRobotGenerator._update_joint_limits</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -227,6 +235,7 @@ configuration. To reduce memory overhead, you can pass one instance of
 <li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModel.get_robot_as_mesh"><code class="docutils literal notranslate"><span class="pre">CudaRobotModel.get_robot_as_mesh</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModel.get_robot_as_spheres"><code class="docutils literal notranslate"><span class="pre">CudaRobotModel.get_robot_as_spheres</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModel.get_link_poses"><code class="docutils literal notranslate"><span class="pre">CudaRobotModel.get_link_poses</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModel._cuda_forward"><code class="docutils literal notranslate"><span class="pre">CudaRobotModel._cuda_forward</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModel.all_articulated_joint_names"><code class="docutils literal notranslate"><span class="pre">CudaRobotModel.all_articulated_joint_names</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModel.get_self_collision_config"><code class="docutils literal notranslate"><span class="pre">CudaRobotModel.get_self_collision_config</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModel.get_link_mesh"><code class="docutils literal notranslate"><span class="pre">CudaRobotModel.get_link_mesh</span></code></a></li>
@@ -239,6 +248,7 @@ configuration. To reduce memory overhead, you can pass one instance of
 <li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModel.ee_link"><code class="docutils literal notranslate"><span class="pre">CudaRobotModel.ee_link</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModel.base_link"><code class="docutils literal notranslate"><span class="pre">CudaRobotModel.base_link</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModel.update_kinematics_config"><code class="docutils literal notranslate"><span class="pre">CudaRobotModel.update_kinematics_config</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModel.retract_config"><code class="docutils literal notranslate"><span class="pre">CudaRobotModel.retract_config</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -260,6 +270,7 @@ configuration. To reduce memory overhead, you can pass one instance of
 <li class="toctree-l2"><a class="reference internal" href="curobo.cuda_robot_model.kinematics_parser.html#curobo.cuda_robot_model.kinematics_parser.KinematicsParser"><code class="docutils literal notranslate"><span class="pre">KinematicsParser</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.kinematics_parser.html#curobo.cuda_robot_model.kinematics_parser.KinematicsParser.build_link_parent"><code class="docutils literal notranslate"><span class="pre">KinematicsParser.build_link_parent</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.kinematics_parser.html#curobo.cuda_robot_model.kinematics_parser.KinematicsParser.get_chain"><code class="docutils literal notranslate"><span class="pre">KinematicsParser.get_chain</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.kinematics_parser.html#curobo.cuda_robot_model.kinematics_parser.KinematicsParser._get_from_extra_links"><code class="docutils literal notranslate"><span class="pre">KinematicsParser._get_from_extra_links</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.kinematics_parser.html#curobo.cuda_robot_model.kinematics_parser.KinematicsParser.get_link_parameters"><code class="docutils literal notranslate"><span class="pre">KinematicsParser.get_link_parameters</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.kinematics_parser.html#curobo.cuda_robot_model.kinematics_parser.KinematicsParser.add_absolute_path_to_link_meshes"><code class="docutils literal notranslate"><span class="pre">KinematicsParser.add_absolute_path_to_link_meshes</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.kinematics_parser.html#curobo.cuda_robot_model.kinematics_parser.KinematicsParser.get_link_mesh"><code class="docutils literal notranslate"><span class="pre">KinematicsParser.get_link_mesh</span></code></a></li>
@@ -294,6 +305,7 @@ configuration. To reduce memory overhead, you can pass one instance of
 <li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.JointLimits.tensor_args"><code class="docutils literal notranslate"><span class="pre">JointLimits.tensor_args</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.JointLimits.from_data_dict"><code class="docutils literal notranslate"><span class="pre">JointLimits.from_data_dict</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.JointLimits.clone"><code class="docutils literal notranslate"><span class="pre">JointLimits.clone</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.JointLimits.copy_"><code class="docutils literal notranslate"><span class="pre">JointLimits.copy_</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.CSpaceConfig"><code class="docutils literal notranslate"><span class="pre">CSpaceConfig</span></code></a><ul>
@@ -309,6 +321,7 @@ configuration. To reduce memory overhead, you can pass one instance of
 <li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.CSpaceConfig.jerk_scale"><code class="docutils literal notranslate"><span class="pre">CSpaceConfig.jerk_scale</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.CSpaceConfig.position_limit_clip"><code class="docutils literal notranslate"><span class="pre">CSpaceConfig.position_limit_clip</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.CSpaceConfig.inplace_reindex"><code class="docutils literal notranslate"><span class="pre">CSpaceConfig.inplace_reindex</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.CSpaceConfig.copy_"><code class="docutils literal notranslate"><span class="pre">CSpaceConfig.copy_</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.CSpaceConfig.clone"><code class="docutils literal notranslate"><span class="pre">CSpaceConfig.clone</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.CSpaceConfig.scale_joint_limits"><code class="docutils literal notranslate"><span class="pre">CSpaceConfig.scale_joint_limits</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.CSpaceConfig.load_from_joint_limits"><code class="docutils literal notranslate"><span class="pre">CSpaceConfig.load_from_joint_limits</span></code></a></li>
@@ -337,13 +350,18 @@ configuration. To reduce memory overhead, you can pass one instance of
 <li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.KinematicsTensorConfig.cspace"><code class="docutils literal notranslate"><span class="pre">KinematicsTensorConfig.cspace</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.KinematicsTensorConfig.base_link"><code class="docutils literal notranslate"><span class="pre">KinematicsTensorConfig.base_link</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.KinematicsTensorConfig.ee_link"><code class="docutils literal notranslate"><span class="pre">KinematicsTensorConfig.ee_link</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.KinematicsTensorConfig.reference_link_spheres"><code class="docutils literal notranslate"><span class="pre">KinematicsTensorConfig.reference_link_spheres</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.KinematicsTensorConfig.copy_"><code class="docutils literal notranslate"><span class="pre">KinematicsTensorConfig.copy_</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.KinematicsTensorConfig.load_cspace_cfg_from_kinematics"><code class="docutils literal notranslate"><span class="pre">KinematicsTensorConfig.load_cspace_cfg_from_kinematics</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.KinematicsTensorConfig.get_sphere_index_from_link_name"><code class="docutils literal notranslate"><span class="pre">KinematicsTensorConfig.get_sphere_index_from_link_name</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.KinematicsTensorConfig.update_link_spheres"><code class="docutils literal notranslate"><span class="pre">KinematicsTensorConfig.update_link_spheres</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.KinematicsTensorConfig.get_link_spheres"><code class="docutils literal notranslate"><span class="pre">KinematicsTensorConfig.get_link_spheres</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.KinematicsTensorConfig.get_reference_link_spheres"><code class="docutils literal notranslate"><span class="pre">KinematicsTensorConfig.get_reference_link_spheres</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.KinematicsTensorConfig.attach_object"><code class="docutils literal notranslate"><span class="pre">KinematicsTensorConfig.attach_object</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.KinematicsTensorConfig.detach_object"><code class="docutils literal notranslate"><span class="pre">KinematicsTensorConfig.detach_object</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.KinematicsTensorConfig.get_number_of_spheres"><code class="docutils literal notranslate"><span class="pre">KinematicsTensorConfig.get_number_of_spheres</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.KinematicsTensorConfig.disable_link_spheres"><code class="docutils literal notranslate"><span class="pre">KinematicsTensorConfig.disable_link_spheres</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.KinematicsTensorConfig.enable_link_spheres"><code class="docutils literal notranslate"><span class="pre">KinematicsTensorConfig.enable_link_spheres</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.SelfCollisionKinematicsConfig"><code class="docutils literal notranslate"><span class="pre">SelfCollisionKinematicsConfig</span></code></a><ul>
@@ -375,6 +393,8 @@ configuration. To reduce memory overhead, you can pass one instance of
 <li class="toctree-l1"><a class="reference internal" href="curobo.cuda_robot_model.urdf_kinematics_parser.html">curobo.cuda_robot_model.urdf_kinematics_parser module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="curobo.cuda_robot_model.urdf_kinematics_parser.html#curobo.cuda_robot_model.urdf_kinematics_parser.UrdfKinematicsParser"><code class="docutils literal notranslate"><span class="pre">UrdfKinematicsParser</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.urdf_kinematics_parser.html#curobo.cuda_robot_model.urdf_kinematics_parser.UrdfKinematicsParser.build_link_parent"><code class="docutils literal notranslate"><span class="pre">UrdfKinematicsParser.build_link_parent</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.urdf_kinematics_parser.html#curobo.cuda_robot_model.urdf_kinematics_parser.UrdfKinematicsParser._find_parent_joint_of_link"><code class="docutils literal notranslate"><span class="pre">UrdfKinematicsParser._find_parent_joint_of_link</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.urdf_kinematics_parser.html#curobo.cuda_robot_model.urdf_kinematics_parser.UrdfKinematicsParser._get_joint_name"><code class="docutils literal notranslate"><span class="pre">UrdfKinematicsParser._get_joint_name</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.urdf_kinematics_parser.html#curobo.cuda_robot_model.urdf_kinematics_parser.UrdfKinematicsParser.get_link_parameters"><code class="docutils literal notranslate"><span class="pre">UrdfKinematicsParser.get_link_parameters</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.urdf_kinematics_parser.html#curobo.cuda_robot_model.urdf_kinematics_parser.UrdfKinematicsParser.add_absolute_path_to_link_meshes"><code class="docutils literal notranslate"><span class="pre">UrdfKinematicsParser.add_absolute_path_to_link_meshes</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.urdf_kinematics_parser.html#curobo.cuda_robot_model.urdf_kinematics_parser.UrdfKinematicsParser.get_urdf_string"><code class="docutils literal notranslate"><span class="pre">UrdfKinematicsParser.get_urdf_string</span></code></a></li>
@@ -388,6 +408,7 @@ configuration. To reduce memory overhead, you can pass one instance of
 <li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.usd_kinematics_parser.html#curobo.cuda_robot_model.usd_kinematics_parser.UsdKinematicsParser.robot_prim_root"><code class="docutils literal notranslate"><span class="pre">UsdKinematicsParser.robot_prim_root</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.usd_kinematics_parser.html#curobo.cuda_robot_model.usd_kinematics_parser.UsdKinematicsParser.build_link_parent"><code class="docutils literal notranslate"><span class="pre">UsdKinematicsParser.build_link_parent</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.usd_kinematics_parser.html#curobo.cuda_robot_model.usd_kinematics_parser.UsdKinematicsParser.get_link_parameters"><code class="docutils literal notranslate"><span class="pre">UsdKinematicsParser.get_link_parameters</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.cuda_robot_model.usd_kinematics_parser.html#curobo.cuda_robot_model.usd_kinematics_parser.UsdKinematicsParser._get_joint_transform"><code class="docutils literal notranslate"><span class="pre">UsdKinematicsParser._get_joint_transform</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="curobo.cuda_robot_model.usd_kinematics_parser.html#curobo.cuda_robot_model.usd_kinematics_parser.get_links_for_joint"><code class="docutils literal notranslate"><span class="pre">get_links_for_joint</span></code></a></li>
@@ -401,10 +422,7 @@ configuration. To reduce memory overhead, you can pass one instance of
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../api.html" class="btn btn-neutral float-left" title="Python API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="curobo.cuda_robot_model.cuda_robot_generator.html" class="btn btn-neutral float-right" title="curobo.cuda_robot_model.cuda_robot_generator module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+          <footer>
 
   <hr/>
 

@@ -34,7 +34,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Supported Robots" href="../notes/01_robot_list.html" />
-    <link rel="prev" title="Block Stacking" href="../advanced_examples/2b_block_stacking_example.html" /> 
+    <link rel="prev" title="Robot Segmentation" href="../advanced_examples/4_robot_segmentation.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -74,11 +74,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../getting_started/4_benchmarks.html">Benchmarks &amp; Profiling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../getting_started/5_docker_development.html">Docker Development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../getting_started/6_known_issues.html">Known Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/7_api.html">Python API</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Advanced Examples</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../advanced_examples/2a_batch_env.html">Batched Environments</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../advanced_examples/2b_block_stacking_example.html">Block Stacking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_examples/1_batch_env.html">Batched Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_examples/2_block_stacking_example.html">Block Stacking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_examples/3_constrained_planning.html">Constrained Planning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_examples/4_robot_segmentation.html">Robot Segmentation</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul class="current">
@@ -90,10 +93,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../notes/02_numerical_optimization.html">Numerical Optimization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../notes/04_cuda_kernels.html">CUDA Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../notes/05_usd_api.html">USD for Robot and World Representation</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">API</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../api.html">Python API</a></li>
 </ul>
 
         </div>
@@ -371,6 +370,11 @@ duplicate to build your robot configuration file. The template is displayed belo
 <li><p>Once you have the yaml file, copy the <code class="docutils literal notranslate"><span class="pre">collision_spheres:</span></code> section into your <code class="docutils literal notranslate"><span class="pre">ur5e.yml</span></code> file. Remove <code class="docutils literal notranslate"><span class="pre">-</span></code> before each link name as the generated configuration file treats it as a list while cuRobo requires it to be a dictionary.</p></li>
 <li><p>Add the name of all links that you want to perform collision checking to <code class="docutils literal notranslate"><span class="pre">collision_link_names</span></code>.</p></li>
 </ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Reduce the radius of the link of your robot that will attach to the world (e.g., <code class="docutils literal notranslate"><span class="pre">base_link</span></code>) so that when the robot is standing in the ground, it does not trigger a world collision. You can then add an offset for this link in the
+<code class="docutils literal notranslate"><span class="pre">self_collision_buffer</span></code> so that the robot will avoid the link during self collision checking.</p>
+</div>
 <p>Your configuration file should look like below,</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">robot_cfg</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">kinematics</span><span class="p">:</span>
@@ -605,7 +609,7 @@ duplicate to build your robot configuration file. The template is displayed belo
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../advanced_examples/2b_block_stacking_example.html" class="btn btn-neutral float-left" title="Block Stacking" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../advanced_examples/4_robot_segmentation.html" class="btn btn-neutral float-left" title="Robot Segmentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="../notes/01_robot_list.html" class="btn btn-neutral float-right" title="Supported Robots" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

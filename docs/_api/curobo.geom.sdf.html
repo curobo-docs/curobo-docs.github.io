@@ -32,9 +32,7 @@
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="curobo.geom.sdf.sdf_grid module" href="curobo.geom.sdf.sdf_grid.html" />
-    <link rel="prev" title="curobo.geom package" href="curobo.geom.html" /> 
+    <link rel="search" title="Search" href="../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -74,11 +72,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../source/getting_started/4_benchmarks.html">Benchmarks &amp; Profiling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/getting_started/5_docker_development.html">Docker Development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/getting_started/6_known_issues.html">Known Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/7_api.html">Python API</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Advanced Examples</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2a_batch_env.html">Batched Environments</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2b_block_stacking_example.html">Block Stacking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/1_batch_env.html">Batched Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2_block_stacking_example.html">Block Stacking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/3_constrained_planning.html">Constrained Planning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/4_robot_segmentation.html">Robot Segmentation</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
@@ -90,10 +91,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/02_numerical_optimization.html">Numerical Optimization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/04_cuda_kernels.html">CUDA Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/05_usd_api.html">USD for Robot and World Representation</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">API</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../api.html">Python API</a></li>
 </ul>
 
         </div>
@@ -110,8 +107,6 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../api.html">Python API</a></li>
-          <li class="breadcrumb-item"><a href="curobo.geom.html">curobo.geom package</a></li>
       <li class="breadcrumb-item active">curobo.geom.sdf package</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/_api/curobo.geom.sdf.rst.txt" rel="nofollow"> View page source</a>
@@ -139,6 +134,7 @@ fields.</p>
 <li class="toctree-l2"><a class="reference internal" href="curobo.geom.sdf.sdf_grid.html#curobo.geom.sdf.sdf_grid.SDFGrid"><code class="docutils literal notranslate"><span class="pre">SDFGrid</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.sdf_grid.html#curobo.geom.sdf.sdf_grid.SDFGrid.forward"><code class="docutils literal notranslate"><span class="pre">SDFGrid.forward</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.sdf_grid.html#curobo.geom.sdf.sdf_grid.SDFGrid.backward"><code class="docutils literal notranslate"><span class="pre">SDFGrid.backward</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.sdf_grid.html#curobo.geom.sdf.sdf_grid.SDFGrid._backward_cls"><code class="docutils literal notranslate"><span class="pre">SDFGrid._backward_cls</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -151,11 +147,13 @@ fields.</p>
 <li class="toctree-l2"><a class="reference internal" href="curobo.geom.sdf.warp_primitives.html#curobo.geom.sdf.warp_primitives.SdfMeshWarpPy"><code class="docutils literal notranslate"><span class="pre">SdfMeshWarpPy</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.warp_primitives.html#curobo.geom.sdf.warp_primitives.SdfMeshWarpPy.forward"><code class="docutils literal notranslate"><span class="pre">SdfMeshWarpPy.forward</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.warp_primitives.html#curobo.geom.sdf.warp_primitives.SdfMeshWarpPy.backward"><code class="docutils literal notranslate"><span class="pre">SdfMeshWarpPy.backward</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.warp_primitives.html#curobo.geom.sdf.warp_primitives.SdfMeshWarpPy._backward_cls"><code class="docutils literal notranslate"><span class="pre">SdfMeshWarpPy._backward_cls</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="curobo.geom.sdf.warp_primitives.html#curobo.geom.sdf.warp_primitives.SweptSdfMeshWarpPy"><code class="docutils literal notranslate"><span class="pre">SweptSdfMeshWarpPy</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.warp_primitives.html#curobo.geom.sdf.warp_primitives.SweptSdfMeshWarpPy.forward"><code class="docutils literal notranslate"><span class="pre">SweptSdfMeshWarpPy.forward</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.warp_primitives.html#curobo.geom.sdf.warp_primitives.SweptSdfMeshWarpPy.backward"><code class="docutils literal notranslate"><span class="pre">SweptSdfMeshWarpPy.backward</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.warp_primitives.html#curobo.geom.sdf.warp_primitives.SweptSdfMeshWarpPy._backward_cls"><code class="docutils literal notranslate"><span class="pre">SweptSdfMeshWarpPy._backward_cls</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -167,6 +165,7 @@ fields.</p>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.CollisionBuffer.sparsity_index_buffer"><code class="docutils literal notranslate"><span class="pre">CollisionBuffer.sparsity_index_buffer</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.CollisionBuffer.shape"><code class="docutils literal notranslate"><span class="pre">CollisionBuffer.shape</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.CollisionBuffer.initialize_from_shape"><code class="docutils literal notranslate"><span class="pre">CollisionBuffer.initialize_from_shape</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.CollisionBuffer._update_from_shape"><code class="docutils literal notranslate"><span class="pre">CollisionBuffer._update_from_shape</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.CollisionBuffer.update_buffer_shape"><code class="docutils literal notranslate"><span class="pre">CollisionBuffer.update_buffer_shape</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.CollisionBuffer.clone"><code class="docutils literal notranslate"><span class="pre">CollisionBuffer.clone</span></code></a></li>
 </ul>
@@ -209,8 +208,11 @@ fields.</p>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldPrimitiveCollision"><code class="docutils literal notranslate"><span class="pre">WorldPrimitiveCollision</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldPrimitiveCollision._init_cache"><code class="docutils literal notranslate"><span class="pre">WorldPrimitiveCollision._init_cache</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldPrimitiveCollision.load_collision_model"><code class="docutils literal notranslate"><span class="pre">WorldPrimitiveCollision.load_collision_model</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldPrimitiveCollision.load_batch_collision_model"><code class="docutils literal notranslate"><span class="pre">WorldPrimitiveCollision.load_batch_collision_model</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldPrimitiveCollision._load_collision_model_in_cache"><code class="docutils literal notranslate"><span class="pre">WorldPrimitiveCollision._load_collision_model_in_cache</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldPrimitiveCollision._create_obb_cache"><code class="docutils literal notranslate"><span class="pre">WorldPrimitiveCollision._create_obb_cache</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldPrimitiveCollision.add_obb_from_raw"><code class="docutils literal notranslate"><span class="pre">WorldPrimitiveCollision.add_obb_from_raw</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldPrimitiveCollision.add_obb"><code class="docutils literal notranslate"><span class="pre">WorldPrimitiveCollision.add_obb</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldPrimitiveCollision.update_obb_dims"><code class="docutils literal notranslate"><span class="pre">WorldPrimitiveCollision.update_obb_dims</span></code></a></li>
@@ -218,6 +220,7 @@ fields.</p>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldPrimitiveCollision.enable_obb"><code class="docutils literal notranslate"><span class="pre">WorldPrimitiveCollision.enable_obb</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldPrimitiveCollision.update_obstacle_pose"><code class="docutils literal notranslate"><span class="pre">WorldPrimitiveCollision.update_obstacle_pose</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldPrimitiveCollision.update_obb_pose"><code class="docutils literal notranslate"><span class="pre">WorldPrimitiveCollision.update_obb_pose</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldPrimitiveCollision._get_obstacle_poses"><code class="docutils literal notranslate"><span class="pre">WorldPrimitiveCollision._get_obstacle_poses</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldPrimitiveCollision.get_obb_idx"><code class="docutils literal notranslate"><span class="pre">WorldPrimitiveCollision.get_obb_idx</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldPrimitiveCollision.get_sphere_distance"><code class="docutils literal notranslate"><span class="pre">WorldPrimitiveCollision.get_sphere_distance</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldPrimitiveCollision.get_sphere_collision"><code class="docutils literal notranslate"><span class="pre">WorldPrimitiveCollision.get_sphere_collision</span></code></a></li>
@@ -235,6 +238,8 @@ fields.</p>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world_blox.html#curobo.geom.sdf.world_blox.WorldBloxCollision.load_collision_model"><code class="docutils literal notranslate"><span class="pre">WorldBloxCollision.load_collision_model</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world_blox.html#curobo.geom.sdf.world_blox.WorldBloxCollision.clear_cache"><code class="docutils literal notranslate"><span class="pre">WorldBloxCollision.clear_cache</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world_blox.html#curobo.geom.sdf.world_blox.WorldBloxCollision.clear_blox_layer"><code class="docutils literal notranslate"><span class="pre">WorldBloxCollision.clear_blox_layer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world_blox.html#curobo.geom.sdf.world_blox.WorldBloxCollision._get_blox_sdf"><code class="docutils literal notranslate"><span class="pre">WorldBloxCollision._get_blox_sdf</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world_blox.html#curobo.geom.sdf.world_blox.WorldBloxCollision._get_blox_swept_sdf"><code class="docutils literal notranslate"><span class="pre">WorldBloxCollision._get_blox_swept_sdf</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world_blox.html#curobo.geom.sdf.world_blox.WorldBloxCollision.get_sphere_distance"><code class="docutils literal notranslate"><span class="pre">WorldBloxCollision.get_sphere_distance</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world_blox.html#curobo.geom.sdf.world_blox.WorldBloxCollision.get_sphere_collision"><code class="docutils literal notranslate"><span class="pre">WorldBloxCollision.get_sphere_collision</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world_blox.html#curobo.geom.sdf.world_blox.WorldBloxCollision.get_swept_sphere_distance"><code class="docutils literal notranslate"><span class="pre">WorldBloxCollision.get_swept_sphere_distance</span></code></a></li>
@@ -266,11 +271,16 @@ fields.</p>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="curobo.geom.sdf.world_mesh.html#curobo.geom.sdf.world_mesh.WorldMeshCollision"><code class="docutils literal notranslate"><span class="pre">WorldMeshCollision</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world_mesh.html#curobo.geom.sdf.world_mesh.WorldMeshCollision._init_cache"><code class="docutils literal notranslate"><span class="pre">WorldMeshCollision._init_cache</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world_mesh.html#curobo.geom.sdf.world_mesh.WorldMeshCollision.load_collision_model"><code class="docutils literal notranslate"><span class="pre">WorldMeshCollision.load_collision_model</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world_mesh.html#curobo.geom.sdf.world_mesh.WorldMeshCollision.load_batch_collision_model"><code class="docutils literal notranslate"><span class="pre">WorldMeshCollision.load_batch_collision_model</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world_mesh.html#curobo.geom.sdf.world_mesh.WorldMeshCollision._load_mesh_to_warp"><code class="docutils literal notranslate"><span class="pre">WorldMeshCollision._load_mesh_to_warp</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world_mesh.html#curobo.geom.sdf.world_mesh.WorldMeshCollision._load_mesh_into_cache"><code class="docutils literal notranslate"><span class="pre">WorldMeshCollision._load_mesh_into_cache</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world_mesh.html#curobo.geom.sdf.world_mesh.WorldMeshCollision._load_batch_mesh_to_warp"><code class="docutils literal notranslate"><span class="pre">WorldMeshCollision._load_batch_mesh_to_warp</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world_mesh.html#curobo.geom.sdf.world_mesh.WorldMeshCollision.add_mesh"><code class="docutils literal notranslate"><span class="pre">WorldMeshCollision.add_mesh</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world_mesh.html#curobo.geom.sdf.world_mesh.WorldMeshCollision.get_mesh_idx"><code class="docutils literal notranslate"><span class="pre">WorldMeshCollision.get_mesh_idx</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world_mesh.html#curobo.geom.sdf.world_mesh.WorldMeshCollision.create_collision_cache"><code class="docutils literal notranslate"><span class="pre">WorldMeshCollision.create_collision_cache</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world_mesh.html#curobo.geom.sdf.world_mesh.WorldMeshCollision._create_mesh_cache"><code class="docutils literal notranslate"><span class="pre">WorldMeshCollision._create_mesh_cache</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world_mesh.html#curobo.geom.sdf.world_mesh.WorldMeshCollision.update_mesh_pose"><code class="docutils literal notranslate"><span class="pre">WorldMeshCollision.update_mesh_pose</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world_mesh.html#curobo.geom.sdf.world_mesh.WorldMeshCollision.update_all_mesh_pose"><code class="docutils literal notranslate"><span class="pre">WorldMeshCollision.update_all_mesh_pose</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world_mesh.html#curobo.geom.sdf.world_mesh.WorldMeshCollision.update_mesh_pose_env"><code class="docutils literal notranslate"><span class="pre">WorldMeshCollision.update_mesh_pose_env</span></code></a></li>
@@ -278,6 +288,8 @@ fields.</p>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world_mesh.html#curobo.geom.sdf.world_mesh.WorldMeshCollision.update_obstacle_pose"><code class="docutils literal notranslate"><span class="pre">WorldMeshCollision.update_obstacle_pose</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world_mesh.html#curobo.geom.sdf.world_mesh.WorldMeshCollision.enable_obstacle"><code class="docutils literal notranslate"><span class="pre">WorldMeshCollision.enable_obstacle</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world_mesh.html#curobo.geom.sdf.world_mesh.WorldMeshCollision.enable_mesh"><code class="docutils literal notranslate"><span class="pre">WorldMeshCollision.enable_mesh</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world_mesh.html#curobo.geom.sdf.world_mesh.WorldMeshCollision._get_sdf"><code class="docutils literal notranslate"><span class="pre">WorldMeshCollision._get_sdf</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world_mesh.html#curobo.geom.sdf.world_mesh.WorldMeshCollision._get_swept_sdf"><code class="docutils literal notranslate"><span class="pre">WorldMeshCollision._get_swept_sdf</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world_mesh.html#curobo.geom.sdf.world_mesh.WorldMeshCollision.get_sphere_distance"><code class="docutils literal notranslate"><span class="pre">WorldMeshCollision.get_sphere_distance</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world_mesh.html#curobo.geom.sdf.world_mesh.WorldMeshCollision.get_sphere_collision"><code class="docutils literal notranslate"><span class="pre">WorldMeshCollision.get_sphere_collision</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world_mesh.html#curobo.geom.sdf.world_mesh.WorldMeshCollision.get_swept_sphere_distance"><code class="docutils literal notranslate"><span class="pre">WorldMeshCollision.get_swept_sphere_distance</span></code></a></li>
@@ -295,10 +307,7 @@ fields.</p>
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="curobo.geom.html" class="btn btn-neutral float-left" title="curobo.geom package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="curobo.geom.sdf.sdf_grid.html" class="btn btn-neutral float-right" title="curobo.geom.sdf.sdf_grid module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+          <footer>
 
   <hr/>
 

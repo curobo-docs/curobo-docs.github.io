@@ -32,9 +32,7 @@
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="curobo.geom.sphere_fit module" href="curobo.geom.sphere_fit.html" />
-    <link rel="prev" title="curobo.geom.sdf.world_blox module" href="curobo.geom.sdf.world_blox.html" /> 
+    <link rel="search" title="Search" href="../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -74,11 +72,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../source/getting_started/4_benchmarks.html">Benchmarks &amp; Profiling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/getting_started/5_docker_development.html">Docker Development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/getting_started/6_known_issues.html">Known Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/7_api.html">Python API</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Advanced Examples</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2a_batch_env.html">Batched Environments</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2b_block_stacking_example.html">Block Stacking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/1_batch_env.html">Batched Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2_block_stacking_example.html">Block Stacking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/3_constrained_planning.html">Constrained Planning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/4_robot_segmentation.html">Robot Segmentation</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
@@ -90,10 +91,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/02_numerical_optimization.html">Numerical Optimization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/04_cuda_kernels.html">CUDA Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/05_usd_api.html">USD for Robot and World Representation</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">API</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../api.html">Python API</a></li>
 </ul>
 
         </div>
@@ -110,9 +107,6 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../api.html">Python API</a></li>
-          <li class="breadcrumb-item"><a href="curobo.geom.html">curobo.geom package</a></li>
-          <li class="breadcrumb-item"><a href="curobo.geom.sdf.html">curobo.geom.sdf package</a></li>
       <li class="breadcrumb-item active">curobo.geom.sdf.world_mesh module</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/_api/curobo.geom.sdf.world_mesh.rst.txt" rel="nofollow"> View page source</a>
@@ -180,14 +174,20 @@ available when compiled from source.</p>
 </dd>
 </dl>
 <dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.sdf.world_mesh.WorldMeshCollision._init_cache">
+<span class="sig-name descname"><span class="pre">_init_cache</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world_mesh.WorldMeshCollision._init_cache" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="curobo.geom.sdf.world_mesh.WorldMeshCollision.load_collision_model">
-<span class="sig-name descname"><span class="pre">load_collision_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">world_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">load_obb_obs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world_mesh.WorldMeshCollision.load_collision_model" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">load_collision_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">world_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">load_obb_obs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fix_cache_reference</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world_mesh.WorldMeshCollision.load_collision_model" title="Link to this definition"></a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>world_model</strong> (<a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig" title="curobo.geom.types.WorldConfig"><em>WorldConfig</em></a>) – </p></li>
 <li><p><strong>env_idx</strong> (<em>int</em>) – </p></li>
 <li><p><strong>load_obb_obs</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>fix_cache_reference</strong> (<em>bool</em>) – </p></li>
 </ul>
 </dd>
 </dl>
@@ -200,6 +200,39 @@ available when compiled from source.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>world_config_list</strong> (<em>List</em><em>[</em><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig" title="curobo.geom.types.WorldConfig"><em>WorldConfig</em></a><em>]</em>) – list of world configs to load from.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.sdf.world_mesh.WorldMeshCollision._load_mesh_to_warp">
+<span class="sig-name descname"><span class="pre">_load_mesh_to_warp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world_mesh.WorldMeshCollision._load_mesh_to_warp" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>mesh</strong> (<a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Mesh" title="curobo.geom.types.Mesh"><em>Mesh</em></a>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.sdf.world_mesh.WorldMeshCollision._load_mesh_into_cache">
+<span class="sig-name descname"><span class="pre">_load_mesh_into_cache</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world_mesh.WorldMeshCollision._load_mesh_into_cache" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>mesh</strong> (<a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Mesh" title="curobo.geom.types.Mesh"><em>Mesh</em></a>) – </p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#curobo.geom.sdf.world_mesh.WarpMeshData" title="curobo.geom.sdf.world_mesh.WarpMeshData"><em>WarpMeshData</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.sdf.world_mesh.WorldMeshCollision._load_batch_mesh_to_warp">
+<span class="sig-name descname"><span class="pre">_load_batch_mesh_to_warp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh_list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world_mesh.WorldMeshCollision._load_batch_mesh_to_warp" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>mesh_list</strong> (<em>List</em><em>[</em><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Mesh" title="curobo.geom.types.Mesh"><em>Mesh</em></a><em>]</em>) – </p>
 </dd>
 </dl>
 </dd></dl>
@@ -236,6 +269,11 @@ available when compiled from source.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="curobo.geom.sdf.world_mesh.WorldMeshCollision.create_collision_cache">
 <span class="sig-name descname"><span class="pre">create_collision_cache</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh_cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obb_cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_envs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world_mesh.WorldMeshCollision.create_collision_cache" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.sdf.world_mesh.WorldMeshCollision._create_mesh_cache">
+<span class="sig-name descname"><span class="pre">_create_mesh_cache</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh_cache</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world_mesh.WorldMeshCollision._create_mesh_cache" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -352,6 +390,37 @@ available when compiled from source.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.sdf.world_mesh.WorldMeshCollision._get_sdf">
+<span class="sig-name descname"><span class="pre">_get_sdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query_spheres</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collision_query_buffer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">activation_distance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_query_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_loss</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world_mesh.WorldMeshCollision._get_sdf" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>collision_query_buffer</strong> (<a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.CollisionQueryBuffer" title="curobo.geom.sdf.world.CollisionQueryBuffer"><em>CollisionQueryBuffer</em></a>) – </p></li>
+<li><p><strong>weight</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>activation_distance</strong> (<em>Tensor</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.sdf.world_mesh.WorldMeshCollision._get_swept_sdf">
+<span class="sig-name descname"><span class="pre">_get_swept_sdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query_spheres</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collision_query_buffer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">activation_distance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed_dt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sweep_steps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enable_speed_metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_query_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_loss</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world_mesh.WorldMeshCollision._get_swept_sdf" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>collision_query_buffer</strong> (<a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.CollisionQueryBuffer" title="curobo.geom.sdf.world.CollisionQueryBuffer"><em>CollisionQueryBuffer</em></a>) – </p></li>
+<li><p><strong>weight</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>activation_distance</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>speed_dt</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>sweep_steps</strong> (<em>int</em>) – </p></li>
+<li><p><strong>return_loss</strong> (<em>bool</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="curobo.geom.sdf.world_mesh.WorldMeshCollision.get_sphere_distance">
 <span class="sig-name descname"><span class="pre">get_sphere_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query_sphere</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collision_query_buffer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">activation_distance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_query_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_loss</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world_mesh.WorldMeshCollision.get_sphere_distance" title="Link to this definition"></a></dt>
 <dd><p>Computes the signed distance via analytic function
@@ -442,10 +511,7 @@ tensor_sphere: b, n, 4</p>
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="curobo.geom.sdf.world_blox.html" class="btn btn-neutral float-left" title="curobo.geom.sdf.world_blox module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="curobo.geom.sphere_fit.html" class="btn btn-neutral float-right" title="curobo.geom.sphere_fit module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+          <footer>
 
   <hr/>
 

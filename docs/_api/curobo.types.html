@@ -32,9 +32,7 @@
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="curobo.types.base module" href="curobo.types.base.html" />
-    <link rel="prev" title="curobo package" href="curobo.html" /> 
+    <link rel="search" title="Search" href="../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -74,11 +72,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../source/getting_started/4_benchmarks.html">Benchmarks &amp; Profiling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/getting_started/5_docker_development.html">Docker Development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/getting_started/6_known_issues.html">Known Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/7_api.html">Python API</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Advanced Examples</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2a_batch_env.html">Batched Environments</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2b_block_stacking_example.html">Block Stacking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/1_batch_env.html">Batched Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2_block_stacking_example.html">Block Stacking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/3_constrained_planning.html">Constrained Planning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/4_robot_segmentation.html">Robot Segmentation</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
@@ -90,10 +91,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/02_numerical_optimization.html">Numerical Optimization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/04_cuda_kernels.html">CUDA Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/05_usd_api.html">USD for Robot and World Representation</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">API</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../api.html">Python API</a></li>
 </ul>
 
         </div>
@@ -110,9 +107,6 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../api.html">Python API</a></li>
-          <li class="breadcrumb-item"><a href="modules.html">curobo</a></li>
-          <li class="breadcrumb-item"><a href="curobo.html">curobo package</a></li>
       <li class="breadcrumb-item active">curobo.types package</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/_api/curobo.types.rst.txt" rel="nofollow"> View page source</a>
@@ -148,13 +142,19 @@
 <li class="toctree-l3"><a class="reference internal" href="curobo.types.camera.html#curobo.types.camera.CameraObservation.depth_image"><code class="docutils literal notranslate"><span class="pre">CameraObservation.depth_image</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.types.camera.html#curobo.types.camera.CameraObservation.image_segmentation"><code class="docutils literal notranslate"><span class="pre">CameraObservation.image_segmentation</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.types.camera.html#curobo.types.camera.CameraObservation.projection_matrix"><code class="docutils literal notranslate"><span class="pre">CameraObservation.projection_matrix</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.types.camera.html#curobo.types.camera.CameraObservation.projection_rays"><code class="docutils literal notranslate"><span class="pre">CameraObservation.projection_rays</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.types.camera.html#curobo.types.camera.CameraObservation.resolution"><code class="docutils literal notranslate"><span class="pre">CameraObservation.resolution</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.types.camera.html#curobo.types.camera.CameraObservation.pose"><code class="docutils literal notranslate"><span class="pre">CameraObservation.pose</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.types.camera.html#curobo.types.camera.CameraObservation.intrinsics"><code class="docutils literal notranslate"><span class="pre">CameraObservation.intrinsics</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.types.camera.html#curobo.types.camera.CameraObservation.timestamp"><code class="docutils literal notranslate"><span class="pre">CameraObservation.timestamp</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.types.camera.html#curobo.types.camera.CameraObservation.filter_depth"><code class="docutils literal notranslate"><span class="pre">CameraObservation.filter_depth</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.types.camera.html#curobo.types.camera.CameraObservation.shape"><code class="docutils literal notranslate"><span class="pre">CameraObservation.shape</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.types.camera.html#curobo.types.camera.CameraObservation.copy_"><code class="docutils literal notranslate"><span class="pre">CameraObservation.copy_</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.types.camera.html#curobo.types.camera.CameraObservation.clone"><code class="docutils literal notranslate"><span class="pre">CameraObservation.clone</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.types.camera.html#curobo.types.camera.CameraObservation.to"><code class="docutils literal notranslate"><span class="pre">CameraObservation.to</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.types.camera.html#curobo.types.camera.CameraObservation.get_pointcloud"><code class="docutils literal notranslate"><span class="pre">CameraObservation.get_pointcloud</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.types.camera.html#curobo.types.camera.CameraObservation.get_image_from_pointcloud"><code class="docutils literal notranslate"><span class="pre">CameraObservation.get_image_from_pointcloud</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.types.camera.html#curobo.types.camera.CameraObservation.update_projection_rays"><code class="docutils literal notranslate"><span class="pre">CameraObservation.update_projection_rays</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -206,6 +206,9 @@
 <li class="toctree-l3"><a class="reference internal" href="curobo.types.math.html#curobo.types.math.Pose.transform_points"><code class="docutils literal notranslate"><span class="pre">Pose.transform_points</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.types.math.html#curobo.types.math.Pose.batch_transform_points"><code class="docutils literal notranslate"><span class="pre">Pose.batch_transform_points</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.types.math.html#curobo.types.math.Pose.shape"><code class="docutils literal notranslate"><span class="pre">Pose.shape</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.types.math.html#curobo.types.math.Pose.compute_offset_pose"><code class="docutils literal notranslate"><span class="pre">Pose.compute_offset_pose</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.types.math.html#curobo.types.math.Pose.compute_local_pose"><code class="docutils literal notranslate"><span class="pre">Pose.compute_local_pose</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.types.math.html#curobo.types.math.Pose._abc_impl"><code class="docutils literal notranslate"><span class="pre">Pose._abc_impl</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="curobo.types.math.html#curobo.types.math.quat_multiply"><code class="docutils literal notranslate"><span class="pre">quat_multiply</span></code></a></li>
@@ -213,6 +216,7 @@
 <li class="toctree-l3"><a class="reference internal" href="curobo.types.math.html#curobo.types.math.OrientationError.geodesic_distance"><code class="docutils literal notranslate"><span class="pre">OrientationError.geodesic_distance</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.types.math.html#curobo.types.math.OrientationError.forward"><code class="docutils literal notranslate"><span class="pre">OrientationError.forward</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.types.math.html#curobo.types.math.OrientationError.backward"><code class="docutils literal notranslate"><span class="pre">OrientationError.backward</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.types.math.html#curobo.types.math.OrientationError._backward_cls"><code class="docutils literal notranslate"><span class="pre">OrientationError._backward_cls</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -247,6 +251,7 @@
 <li class="toctree-l3"><a class="reference internal" href="curobo.types.state.html#curobo.types.state.State.get_state_tensor"><code class="docutils literal notranslate"><span class="pre">State.get_state_tensor</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.types.state.html#curobo.types.state.State.apply_kernel"><code class="docutils literal notranslate"><span class="pre">State.apply_kernel</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.types.state.html#curobo.types.state.State.clone"><code class="docutils literal notranslate"><span class="pre">State.clone</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.types.state.html#curobo.types.state.State._abc_impl"><code class="docutils literal notranslate"><span class="pre">State._abc_impl</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState"><code class="docutils literal notranslate"><span class="pre">JointState</span></code></a><ul>
@@ -269,6 +274,7 @@
 <li class="toctree-l3"><a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState.from_list"><code class="docutils literal notranslate"><span class="pre">JointState.from_list</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState.copy_at_index"><code class="docutils literal notranslate"><span class="pre">JointState.copy_at_index</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState.copy_data"><code class="docutils literal notranslate"><span class="pre">JointState.copy_data</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState._same_shape"><code class="docutils literal notranslate"><span class="pre">JointState._same_shape</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState.copy_"><code class="docutils literal notranslate"><span class="pre">JointState.copy_</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState.unsqueeze"><code class="docutils literal notranslate"><span class="pre">JointState.unsqueeze</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState.squeeze"><code class="docutils literal notranslate"><span class="pre">JointState.squeeze</span></code></a></li>
@@ -282,6 +288,7 @@
 <li class="toctree-l3"><a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState.trim_trajectory"><code class="docutils literal notranslate"><span class="pre">JointState.trim_trajectory</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState.scale"><code class="docutils literal notranslate"><span class="pre">JointState.scale</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState.shape"><code class="docutils literal notranslate"><span class="pre">JointState.shape</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState._abc_impl"><code class="docutils literal notranslate"><span class="pre">JointState._abc_impl</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -295,10 +302,7 @@
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="curobo.html" class="btn btn-neutral float-left" title="curobo package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="curobo.types.base.html" class="btn btn-neutral float-right" title="curobo.types.base module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+          <footer>
 
   <hr/>
 

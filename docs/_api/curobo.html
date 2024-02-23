@@ -32,9 +32,7 @@
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="curobo.types package" href="curobo.types.html" />
-    <link rel="prev" title="curobo" href="modules.html" /> 
+    <link rel="search" title="Search" href="../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -74,11 +72,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../source/getting_started/4_benchmarks.html">Benchmarks &amp; Profiling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/getting_started/5_docker_development.html">Docker Development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/getting_started/6_known_issues.html">Known Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/7_api.html">Python API</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Advanced Examples</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2a_batch_env.html">Batched Environments</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2b_block_stacking_example.html">Block Stacking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/1_batch_env.html">Batched Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2_block_stacking_example.html">Block Stacking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/3_constrained_planning.html">Constrained Planning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/4_robot_segmentation.html">Robot Segmentation</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
@@ -90,10 +91,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/02_numerical_optimization.html">Numerical Optimization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/04_cuda_kernels.html">CUDA Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/05_usd_api.html">USD for Robot and World Representation</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">API</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../api.html">Python API</a></li>
 </ul>
 
         </div>
@@ -110,8 +107,6 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../api.html">Python API</a></li>
-          <li class="breadcrumb-item"><a href="modules.html">curobo</a></li>
       <li class="breadcrumb-item active">curobo package</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/_api/curobo.rst.txt" rel="nofollow"> View page source</a>
@@ -124,7 +119,21 @@
              
   <section id="module-curobo">
 <span id="curobo-package"></span><h1>curobo package<a class="headerlink" href="#module-curobo" title="Link to this heading"></a></h1>
-<p>CuRobo package.</p>
+<p>cuRobo package is split into several modules:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="curobo.opt.html#module-curobo.opt" title="curobo.opt"><code class="xref py py-mod docutils literal notranslate"><span class="pre">curobo.opt</span></code></a> contains optimization solvers.</p></li>
+<li><p><a class="reference internal" href="curobo.cuda_robot_model.html#module-curobo.cuda_robot_model" title="curobo.cuda_robot_model"><code class="xref py py-mod docutils literal notranslate"><span class="pre">curobo.cuda_robot_model</span></code></a> contains robot kinematics.</p></li>
+<li><p><a class="reference internal" href="curobo.curobolib.html#module-curobo.curobolib" title="curobo.curobolib"><code class="xref py py-mod docutils literal notranslate"><span class="pre">curobo.curobolib</span></code></a> contains the cuda kernels and python bindings for them.</p></li>
+<li><p><a class="reference internal" href="curobo.geom.html#module-curobo.geom" title="curobo.geom"><code class="xref py py-mod docutils literal notranslate"><span class="pre">curobo.geom</span></code></a> contains geometry processing, collision checking and frame transforms.</p></li>
+<li><p><a class="reference internal" href="curobo.graph.html#module-curobo.graph" title="curobo.graph"><code class="xref py py-mod docutils literal notranslate"><span class="pre">curobo.graph</span></code></a> contains geometric planning with graph search methods.</p></li>
+<li><p><a class="reference internal" href="curobo.rollout.html#module-curobo.rollout" title="curobo.rollout"><code class="xref py py-mod docutils literal notranslate"><span class="pre">curobo.rollout</span></code></a> contains methods that map actions to costs. This class wraps instances of
+<a class="reference internal" href="curobo.cuda_robot_model.html#module-curobo.cuda_robot_model" title="curobo.cuda_robot_model"><code class="xref py py-mod docutils literal notranslate"><span class="pre">curobo.cuda_robot_model</span></code></a> and <code class="xref py py-mod docutils literal notranslate"><span class="pre">geom</span></code> to compute costs given trajectory of actions.</p></li>
+<li><p><a class="reference internal" href="curobo.util.html#module-curobo.util" title="curobo.util"><code class="xref py py-mod docutils literal notranslate"><span class="pre">curobo.util</span></code></a> contains utility methods.</p></li>
+<li><p><a class="reference internal" href="curobo.wrap.html#module-curobo.wrap" title="curobo.wrap"><code class="xref py py-mod docutils literal notranslate"><span class="pre">curobo.wrap</span></code></a> adds the user-level api for task programming. Includes implementation of
+collision-free reacher and batched robot world collision checking.</p></li>
+<li><p><a class="reference internal" href="curobo.types.html#module-curobo.types" title="curobo.types"><code class="xref py py-mod docutils literal notranslate"><span class="pre">curobo.types</span></code></a> contains custom dataclasses for common data types in robotics, including
+<a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><code class="xref py py-meth docutils literal notranslate"><span class="pre">types.state.JointState</span></code></a>, <a class="reference internal" href="curobo.types.camera.html#curobo.types.camera.CameraObservation" title="curobo.types.camera.CameraObservation"><code class="xref py py-meth docutils literal notranslate"><span class="pre">types.camera.CameraObservation</span></code></a>, <a class="reference internal" href="curobo.types.math.html#curobo.types.math.Pose" title="curobo.types.math.Pose"><code class="xref py py-meth docutils literal notranslate"><span class="pre">types.math.Pose</span></code></a>.</p></li>
+</ul>
 <section id="subpackages">
 <h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading"></a></h2>
 <div class="toctree-wrapper compound">
@@ -176,6 +185,8 @@
 <li class="toctree-l4"><a class="reference internal" href="curobo.curobolib.geom.html#curobo.curobolib.geom.SelfCollisionDistanceLoss"><code class="docutils literal notranslate"><span class="pre">SelfCollisionDistanceLoss</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="curobo.curobolib.geom.html#curobo.curobolib.geom.get_pose_distance"><code class="docutils literal notranslate"><span class="pre">get_pose_distance</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="curobo.curobolib.geom.html#curobo.curobolib.geom.get_pose_distance_backward"><code class="docutils literal notranslate"><span class="pre">get_pose_distance_backward</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.curobolib.geom.html#curobo.curobolib.geom.PoseErrorDistance"><code class="docutils literal notranslate"><span class="pre">PoseErrorDistance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.curobolib.geom.html#curobo.curobolib.geom.PoseError"><code class="docutils literal notranslate"><span class="pre">PoseError</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="curobo.curobolib.geom.html#curobo.curobolib.geom.SdfSphereOBB"><code class="docutils literal notranslate"><span class="pre">SdfSphereOBB</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="curobo.curobolib.geom.html#curobo.curobolib.geom.SdfSweptSphereOBB"><code class="docutils literal notranslate"><span class="pre">SdfSweptSphereOBB</span></code></a></li>
 </ul>
@@ -259,6 +270,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="curobo.geom.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.cv.html">curobo.geom.cv module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sphere_fit.html">curobo.geom.sphere_fit module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="curobo.geom.sphere_fit.html#curobo.geom.sphere_fit.SphereFitType"><code class="docutils literal notranslate"><span class="pre">SphereFitType</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="curobo.geom.sphere_fit.html#curobo.geom.sphere_fit.sample_even_fit_mesh"><code class="docutils literal notranslate"><span class="pre">sample_even_fit_mesh</span></code></a></li>
@@ -299,6 +311,7 @@
 <li class="toctree-l4"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Sphere"><code class="docutils literal notranslate"><span class="pre">Sphere</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Mesh"><code class="docutils literal notranslate"><span class="pre">Mesh</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.BloxMap"><code class="docutils literal notranslate"><span class="pre">BloxMap</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.PointCloud"><code class="docutils literal notranslate"><span class="pre">PointCloud</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig"><code class="docutils literal notranslate"><span class="pre">WorldConfig</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.tensor_sphere"><code class="docutils literal notranslate"><span class="pre">tensor_sphere</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.tensor_capsule"><code class="docutils literal notranslate"><span class="pre">tensor_capsule</span></code></a></li>
@@ -446,6 +459,11 @@
 <li class="toctree-l4"><a class="reference internal" href="curobo.util.logger.html#curobo.util.logger.log_error"><code class="docutils literal notranslate"><span class="pre">log_error</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.util.metrics.html">curobo.util.metrics module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="curobo.util.metrics.html#curobo.util.metrics.CuroboMetrics"><code class="docutils literal notranslate"><span class="pre">CuroboMetrics</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.util.metrics.html#curobo.util.metrics.CuroboGroupMetrics"><code class="docutils literal notranslate"><span class="pre">CuroboGroupMetrics</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.util.sample_lib.html">curobo.util.sample_lib module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="curobo.util.sample_lib.html#curobo.util.sample_lib.SampleConfig"><code class="docutils literal notranslate"><span class="pre">SampleConfig</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="curobo.util.sample_lib.html#curobo.util.sample_lib.BaseSampleLib"><code class="docutils literal notranslate"><span class="pre">BaseSampleLib</span></code></a></li>
@@ -477,6 +495,7 @@
 <li class="toctree-l4"><a class="reference internal" href="curobo.util.tensor_util.html#curobo.util.tensor_util.check_tensor_shapes"><code class="docutils literal notranslate"><span class="pre">check_tensor_shapes</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="curobo.util.tensor_util.html#curobo.util.tensor_util.copy_tensor"><code class="docutils literal notranslate"><span class="pre">copy_tensor</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="curobo.util.tensor_util.html#curobo.util.tensor_util.copy_if_not_none"><code class="docutils literal notranslate"><span class="pre">copy_if_not_none</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.util.tensor_util.html#curobo.util.tensor_util.clone_if_not_none"><code class="docutils literal notranslate"><span class="pre">clone_if_not_none</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="curobo.util.tensor_util.html#curobo.util.tensor_util.tensor_repeat_seeds"><code class="docutils literal notranslate"><span class="pre">tensor_repeat_seeds</span></code></a></li>
 </ul>
 </li>
@@ -484,6 +503,7 @@
 <li class="toctree-l4"><a class="reference internal" href="curobo.util.torch_utils.html#curobo.util.torch_utils.find_first_idx"><code class="docutils literal notranslate"><span class="pre">find_first_idx</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="curobo.util.torch_utils.html#curobo.util.torch_utils.find_last_idx"><code class="docutils literal notranslate"><span class="pre">find_last_idx</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="curobo.util.torch_utils.html#curobo.util.torch_utils.is_cuda_graph_available"><code class="docutils literal notranslate"><span class="pre">is_cuda_graph_available</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.util.torch_utils.html#curobo.util.torch_utils.is_torch_compile_available"><code class="docutils literal notranslate"><span class="pre">is_torch_compile_available</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.util.trajectory.html">curobo.util.trajectory module</a><ul>
@@ -599,10 +619,7 @@
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="modules.html" class="btn btn-neutral float-left" title="curobo" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="curobo.types.html" class="btn btn-neutral float-right" title="curobo.types package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+          <footer>
 
   <hr/>
 
