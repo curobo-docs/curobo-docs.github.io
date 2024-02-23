@@ -32,9 +32,7 @@
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="curobo.wrap.reacher.evaluator module" href="curobo.wrap.reacher.evaluator.html" />
-    <link rel="prev" title="curobo.wrap.model.robot_world module" href="curobo.wrap.model.robot_world.html" /> 
+    <link rel="search" title="Search" href="../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -74,11 +72,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../source/getting_started/4_benchmarks.html">Benchmarks &amp; Profiling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/getting_started/5_docker_development.html">Docker Development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/getting_started/6_known_issues.html">Known Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/7_api.html">Python API</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Advanced Examples</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2a_batch_env.html">Batched Environments</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2b_block_stacking_example.html">Block Stacking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/1_batch_env.html">Batched Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2_block_stacking_example.html">Block Stacking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/3_constrained_planning.html">Constrained Planning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/4_robot_segmentation.html">Robot Segmentation</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
@@ -90,10 +91,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/02_numerical_optimization.html">Numerical Optimization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/04_cuda_kernels.html">CUDA Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/05_usd_api.html">USD for Robot and World Representation</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">API</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../api.html">Python API</a></li>
 </ul>
 
         </div>
@@ -110,10 +107,6 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../api.html">Python API</a></li>
-          <li class="breadcrumb-item"><a href="modules.html">curobo</a></li>
-          <li class="breadcrumb-item"><a href="curobo.html">curobo package</a></li>
-          <li class="breadcrumb-item"><a href="curobo.wrap.html">curobo.wrap package</a></li>
       <li class="breadcrumb-item active">curobo.wrap.reacher package</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/_api/curobo.wrap.reacher.rst.txt" rel="nofollow"> View page source</a>
@@ -140,6 +133,8 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="curobo.wrap.reacher.evaluator.html#curobo.wrap.reacher.evaluator.TrajEvaluator"><code class="docutils literal notranslate"><span class="pre">TrajEvaluator</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.evaluator.html#curobo.wrap.reacher.evaluator.TrajEvaluator._compute_path_length"><code class="docutils literal notranslate"><span class="pre">TrajEvaluator._compute_path_length</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.evaluator.html#curobo.wrap.reacher.evaluator.TrajEvaluator._check_smoothness"><code class="docutils literal notranslate"><span class="pre">TrajEvaluator._check_smoothness</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.evaluator.html#curobo.wrap.reacher.evaluator.TrajEvaluator.evaluate"><code class="docutils literal notranslate"><span class="pre">TrajEvaluator.evaluate</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.evaluator.html#curobo.wrap.reacher.evaluator.TrajEvaluator.evaluate_interpolated_smootheness"><code class="docutils literal notranslate"><span class="pre">TrajEvaluator.evaluate_interpolated_smootheness</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.evaluator.html#curobo.wrap.reacher.evaluator.TrajEvaluator.evaluate_from_position"><code class="docutils literal notranslate"><span class="pre">TrajEvaluator.evaluate_from_position</span></code></a></li>
@@ -160,6 +155,7 @@
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.ik_solver.html#curobo.wrap.reacher.ik_solver.IKSolverConfig.world_coll_checker"><code class="docutils literal notranslate"><span class="pre">IKSolverConfig.world_coll_checker</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.ik_solver.html#curobo.wrap.reacher.ik_solver.IKSolverConfig.sample_rejection_ratio"><code class="docutils literal notranslate"><span class="pre">IKSolverConfig.sample_rejection_ratio</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.ik_solver.html#curobo.wrap.reacher.ik_solver.IKSolverConfig.tensor_args"><code class="docutils literal notranslate"><span class="pre">IKSolverConfig.tensor_args</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.ik_solver.html#curobo.wrap.reacher.ik_solver.IKSolverConfig.use_cuda_graph"><code class="docutils literal notranslate"><span class="pre">IKSolverConfig.use_cuda_graph</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.ik_solver.html#curobo.wrap.reacher.ik_solver.IKSolverConfig.load_from_robot_config"><code class="docutils literal notranslate"><span class="pre">IKSolverConfig.load_from_robot_config</span></code></a></li>
 </ul>
 </li>
@@ -174,8 +170,10 @@
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.ik_solver.html#curobo.wrap.reacher.ik_solver.IKResult.error"><code class="docutils literal notranslate"><span class="pre">IKResult.error</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.ik_solver.html#curobo.wrap.reacher.ik_solver.IKResult.solve_time"><code class="docutils literal notranslate"><span class="pre">IKResult.solve_time</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.ik_solver.html#curobo.wrap.reacher.ik_solver.IKResult.debug_info"><code class="docutils literal notranslate"><span class="pre">IKResult.debug_info</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.ik_solver.html#curobo.wrap.reacher.ik_solver.IKResult.goalset_index"><code class="docutils literal notranslate"><span class="pre">IKResult.goalset_index</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.ik_solver.html#curobo.wrap.reacher.ik_solver.IKResult.get_unique_solution"><code class="docutils literal notranslate"><span class="pre">IKResult.get_unique_solution</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.ik_solver.html#curobo.wrap.reacher.ik_solver.IKResult.get_batch_unique_solution"><code class="docutils literal notranslate"><span class="pre">IKResult.get_batch_unique_solution</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.ik_solver.html#curobo.wrap.reacher.ik_solver.IKResult._abc_impl"><code class="docutils literal notranslate"><span class="pre">IKResult._abc_impl</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="curobo.wrap.reacher.ik_solver.html#curobo.wrap.reacher.ik_solver.IKSolver"><code class="docutils literal notranslate"><span class="pre">IKSolver</span></code></a><ul>
@@ -203,9 +201,11 @@
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.ik_solver.html#curobo.wrap.reacher.ik_solver.IKSolver.get_all_kinematics_instances"><code class="docutils literal notranslate"><span class="pre">IKSolver.get_all_kinematics_instances</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.ik_solver.html#curobo.wrap.reacher.ik_solver.IKSolver.fk"><code class="docutils literal notranslate"><span class="pre">IKSolver.fk</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.ik_solver.html#curobo.wrap.reacher.ik_solver.IKSolver.reset_cuda_graph"><code class="docutils literal notranslate"><span class="pre">IKSolver.reset_cuda_graph</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.ik_solver.html#curobo.wrap.reacher.ik_solver.IKSolver.reset_shape"><code class="docutils literal notranslate"><span class="pre">IKSolver.reset_shape</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.ik_solver.html#curobo.wrap.reacher.ik_solver.IKSolver.attach_object_to_robot"><code class="docutils literal notranslate"><span class="pre">IKSolver.attach_object_to_robot</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.ik_solver.html#curobo.wrap.reacher.ik_solver.IKSolver.detach_object_from_robot"><code class="docutils literal notranslate"><span class="pre">IKSolver.detach_object_from_robot</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.ik_solver.html#curobo.wrap.reacher.ik_solver.IKSolver.get_retract_config"><code class="docutils literal notranslate"><span class="pre">IKSolver.get_retract_config</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.ik_solver.html#curobo.wrap.reacher.ik_solver.IKSolver.update_pose_cost_metric"><code class="docutils literal notranslate"><span class="pre">IKSolver.update_pose_cost_metric</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -233,6 +233,7 @@
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGenConfig.store_debug_in_result"><code class="docutils literal notranslate"><span class="pre">MotionGenConfig.store_debug_in_result</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGenConfig.interpolation_dt"><code class="docutils literal notranslate"><span class="pre">MotionGenConfig.interpolation_dt</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGenConfig.finetune_dt_scale"><code class="docutils literal notranslate"><span class="pre">MotionGenConfig.finetune_dt_scale</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGenConfig.use_cuda_graph"><code class="docutils literal notranslate"><span class="pre">MotionGenConfig.use_cuda_graph</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGenConfig.load_from_robot_config"><code class="docutils literal notranslate"><span class="pre">MotionGenConfig.load_from_robot_config</span></code></a></li>
 </ul>
 </li>
@@ -259,7 +260,9 @@
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGenResult.trajopt_attempts"><code class="docutils literal notranslate"><span class="pre">MotionGenResult.trajopt_attempts</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGenResult.used_graph"><code class="docutils literal notranslate"><span class="pre">MotionGenResult.used_graph</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGenResult.graph_plan"><code class="docutils literal notranslate"><span class="pre">MotionGenResult.graph_plan</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGenResult.goalset_index"><code class="docutils literal notranslate"><span class="pre">MotionGenResult.goalset_index</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGenResult.clone"><code class="docutils literal notranslate"><span class="pre">MotionGenResult.clone</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGenResult._check_none_and_copy_idx"><code class="docutils literal notranslate"><span class="pre">MotionGenResult._check_none_and_copy_idx</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGenResult.copy_idx"><code class="docutils literal notranslate"><span class="pre">MotionGenResult.copy_idx</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGenResult.get_paths"><code class="docutils literal notranslate"><span class="pre">MotionGenResult.get_paths</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGenResult.get_successful_paths"><code class="docutils literal notranslate"><span class="pre">MotionGenResult.get_successful_paths</span></code></a></li>
@@ -285,19 +288,29 @@
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGenPlanConfig.fail_on_invalid_query"><code class="docutils literal notranslate"><span class="pre">MotionGenPlanConfig.fail_on_invalid_query</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGenPlanConfig.enable_finetune_trajopt"><code class="docutils literal notranslate"><span class="pre">MotionGenPlanConfig.enable_finetune_trajopt</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGenPlanConfig.parallel_finetune"><code class="docutils literal notranslate"><span class="pre">MotionGenPlanConfig.parallel_finetune</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGenPlanConfig.use_start_state_as_retract"><code class="docutils literal notranslate"><span class="pre">MotionGenPlanConfig.use_start_state_as_retract</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGenPlanConfig.pose_cost_metric"><code class="docutils literal notranslate"><span class="pre">MotionGenPlanConfig.pose_cost_metric</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGenPlanConfig.clone"><code class="docutils literal notranslate"><span class="pre">MotionGenPlanConfig.clone</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGen"><code class="docutils literal notranslate"><span class="pre">MotionGen</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGen.update_batch_size"><code class="docutils literal notranslate"><span class="pre">MotionGen.update_batch_size</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGen.solve_ik"><code class="docutils literal notranslate"><span class="pre">MotionGen.solve_ik</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGen._solve_ik_from_solve_state"><code class="docutils literal notranslate"><span class="pre">MotionGen._solve_ik_from_solve_state</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGen._solve_trajopt_from_solve_state"><code class="docutils literal notranslate"><span class="pre">MotionGen._solve_trajopt_from_solve_state</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGen.graph_search"><code class="docutils literal notranslate"><span class="pre">MotionGen.graph_search</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGen._get_solve_state"><code class="docutils literal notranslate"><span class="pre">MotionGen._get_solve_state</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGen._plan_attempts"><code class="docutils literal notranslate"><span class="pre">MotionGen._plan_attempts</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGen._plan_batch_attempts"><code class="docutils literal notranslate"><span class="pre">MotionGen._plan_batch_attempts</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGen.plan_single"><code class="docutils literal notranslate"><span class="pre">MotionGen.plan_single</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGen.plan_goalset"><code class="docutils literal notranslate"><span class="pre">MotionGen.plan_goalset</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGen.plan_batch"><code class="docutils literal notranslate"><span class="pre">MotionGen.plan_batch</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGen.plan_batch_goalset"><code class="docutils literal notranslate"><span class="pre">MotionGen.plan_batch_goalset</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGen.plan_batch_env_goalset"><code class="docutils literal notranslate"><span class="pre">MotionGen.plan_batch_env_goalset</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGen.plan_batch_env"><code class="docutils literal notranslate"><span class="pre">MotionGen.plan_batch_env</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGen._plan_from_solve_state"><code class="docutils literal notranslate"><span class="pre">MotionGen._plan_from_solve_state</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGen._plan_js_from_solve_state"><code class="docutils literal notranslate"><span class="pre">MotionGen._plan_js_from_solve_state</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGen._plan_from_solve_state_batch"><code class="docutils literal notranslate"><span class="pre">MotionGen._plan_from_solve_state_batch</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGen.compute_kinematics"><code class="docutils literal notranslate"><span class="pre">MotionGen.compute_kinematics</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGen.kinematics"><code class="docutils literal notranslate"><span class="pre">MotionGen.kinematics</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGen.dof"><code class="docutils literal notranslate"><span class="pre">MotionGen.dof</span></code></a></li>
@@ -313,9 +326,13 @@
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGen.batch_plan"><code class="docutils literal notranslate"><span class="pre">MotionGen.batch_plan</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGen.solve_trajopt"><code class="docutils literal notranslate"><span class="pre">MotionGen.solve_trajopt</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGen.get_active_js"><code class="docutils literal notranslate"><span class="pre">MotionGen.get_active_js</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGen.update_pose_cost_metric"><code class="docutils literal notranslate"><span class="pre">MotionGen.update_pose_cost_metric</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGen.get_all_rollout_instances"><code class="docutils literal notranslate"><span class="pre">MotionGen.get_all_rollout_instances</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGen.get_all_solver_rollout_instances"><code class="docutils literal notranslate"><span class="pre">MotionGen.get_all_solver_rollout_instances</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGen.get_all_pose_solver_rollout_instances"><code class="docutils literal notranslate"><span class="pre">MotionGen.get_all_pose_solver_rollout_instances</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGen.get_all_kinematics_instances"><code class="docutils literal notranslate"><span class="pre">MotionGen.get_all_kinematics_instances</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGen.attach_objects_to_robot"><code class="docutils literal notranslate"><span class="pre">MotionGen.attach_objects_to_robot</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGen.attach_external_objects_to_robot"><code class="docutils literal notranslate"><span class="pre">MotionGen.attach_external_objects_to_robot</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGen.add_camera_frame"><code class="docutils literal notranslate"><span class="pre">MotionGen.add_camera_frame</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGen.process_camera_frames"><code class="docutils literal notranslate"><span class="pre">MotionGen.process_camera_frames</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGen.attach_bounding_box_from_blox_to_robot"><code class="docutils literal notranslate"><span class="pre">MotionGen.attach_bounding_box_from_blox_to_robot</span></code></a></li>
@@ -329,8 +346,9 @@
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGen.run_finetune_trajopt"><code class="docutils literal notranslate"><span class="pre">MotionGen.run_finetune_trajopt</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGen.world_model"><code class="docutils literal notranslate"><span class="pre">MotionGen.world_model</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGen.world_collision"><code class="docutils literal notranslate"><span class="pre">MotionGen.world_collision</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGen.project_pose_to_goal_frame"><code class="docutils literal notranslate"><span class="pre">MotionGen.project_pose_to_goal_frame</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGen.update_interpolation_type"><code class="docutils literal notranslate"><span class="pre">MotionGen.update_interpolation_type</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGen.update_locked_state"><code class="docutils literal notranslate"><span class="pre">MotionGen.update_locked_state</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGen.update_locked_joints"><code class="docutils literal notranslate"><span class="pre">MotionGen.update_locked_joints</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -345,15 +363,19 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="curobo.wrap.reacher.mpc.html#curobo.wrap.reacher.mpc.MpcSolver"><code class="docutils literal notranslate"><span class="pre">MpcSolver</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.mpc.html#curobo.wrap.reacher.mpc.MpcSolver._update_batch_size"><code class="docutils literal notranslate"><span class="pre">MpcSolver._update_batch_size</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.mpc.html#curobo.wrap.reacher.mpc.MpcSolver.update_goal_buffer"><code class="docutils literal notranslate"><span class="pre">MpcSolver.update_goal_buffer</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.mpc.html#curobo.wrap.reacher.mpc.MpcSolver.step"><code class="docutils literal notranslate"><span class="pre">MpcSolver.step</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.mpc.html#curobo.wrap.reacher.mpc.MpcSolver.step_once"><code class="docutils literal notranslate"><span class="pre">MpcSolver.step_once</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.mpc.html#curobo.wrap.reacher.mpc.MpcSolver._step"><code class="docutils literal notranslate"><span class="pre">MpcSolver._step</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.mpc.html#curobo.wrap.reacher.mpc.MpcSolver._initialize_cuda_graph_step"><code class="docutils literal notranslate"><span class="pre">MpcSolver._initialize_cuda_graph_step</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.mpc.html#curobo.wrap.reacher.mpc.MpcSolver.setup_solve_single"><code class="docutils literal notranslate"><span class="pre">MpcSolver.setup_solve_single</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.mpc.html#curobo.wrap.reacher.mpc.MpcSolver.setup_solve_goalset"><code class="docutils literal notranslate"><span class="pre">MpcSolver.setup_solve_goalset</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.mpc.html#curobo.wrap.reacher.mpc.MpcSolver.setup_solve_batch"><code class="docutils literal notranslate"><span class="pre">MpcSolver.setup_solve_batch</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.mpc.html#curobo.wrap.reacher.mpc.MpcSolver.setup_solve_batch_goalset"><code class="docutils literal notranslate"><span class="pre">MpcSolver.setup_solve_batch_goalset</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.mpc.html#curobo.wrap.reacher.mpc.MpcSolver.setup_solve_batch_env"><code class="docutils literal notranslate"><span class="pre">MpcSolver.setup_solve_batch_env</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.mpc.html#curobo.wrap.reacher.mpc.MpcSolver.setup_solve_batch_env_goalset"><code class="docutils literal notranslate"><span class="pre">MpcSolver.setup_solve_batch_env_goalset</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.mpc.html#curobo.wrap.reacher.mpc.MpcSolver._solve_from_solve_state"><code class="docutils literal notranslate"><span class="pre">MpcSolver._solve_from_solve_state</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.mpc.html#curobo.wrap.reacher.mpc.MpcSolver.fn"><code class="docutils literal notranslate"><span class="pre">MpcSolver.fn</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.mpc.html#curobo.wrap.reacher.mpc.MpcSolver.update_goal"><code class="docutils literal notranslate"><span class="pre">MpcSolver.update_goal</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.mpc.html#curobo.wrap.reacher.mpc.MpcSolver.reset"><code class="docutils literal notranslate"><span class="pre">MpcSolver.reset</span></code></a></li>
@@ -398,6 +420,7 @@
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.trajopt.html#curobo.wrap.reacher.trajopt.TrajOptSolverConfig.trim_steps"><code class="docutils literal notranslate"><span class="pre">TrajOptSolverConfig.trim_steps</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.trajopt.html#curobo.wrap.reacher.trajopt.TrajOptSolverConfig.store_debug_in_result"><code class="docutils literal notranslate"><span class="pre">TrajOptSolverConfig.store_debug_in_result</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.trajopt.html#curobo.wrap.reacher.trajopt.TrajOptSolverConfig.optimize_dt"><code class="docutils literal notranslate"><span class="pre">TrajOptSolverConfig.optimize_dt</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.trajopt.html#curobo.wrap.reacher.trajopt.TrajOptSolverConfig.use_cuda_graph"><code class="docutils literal notranslate"><span class="pre">TrajOptSolverConfig.use_cuda_graph</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.trajopt.html#curobo.wrap.reacher.trajopt.TrajOptSolverConfig.load_from_robot_config"><code class="docutils literal notranslate"><span class="pre">TrajOptSolverConfig.load_from_robot_config</span></code></a></li>
 </ul>
 </li>
@@ -419,6 +442,8 @@
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.trajopt.html#curobo.wrap.reacher.trajopt.TrajResult.optimized_dt"><code class="docutils literal notranslate"><span class="pre">TrajResult.optimized_dt</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.trajopt.html#curobo.wrap.reacher.trajopt.TrajResult.raw_solution"><code class="docutils literal notranslate"><span class="pre">TrajResult.raw_solution</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.trajopt.html#curobo.wrap.reacher.trajopt.TrajResult.raw_action"><code class="docutils literal notranslate"><span class="pre">TrajResult.raw_action</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.trajopt.html#curobo.wrap.reacher.trajopt.TrajResult.goalset_index"><code class="docutils literal notranslate"><span class="pre">TrajResult.goalset_index</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.trajopt.html#curobo.wrap.reacher.trajopt.TrajResult._abc_impl"><code class="docutils literal notranslate"><span class="pre">TrajResult._abc_impl</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="curobo.wrap.reacher.trajopt.html#curobo.wrap.reacher.trajopt.TrajOptSolver"><code class="docutils literal notranslate"><span class="pre">TrajOptSolver</span></code></a><ul>
@@ -436,9 +461,11 @@
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.trajopt.html#curobo.wrap.reacher.trajopt.TrajOptSolver.solve_batch_env"><code class="docutils literal notranslate"><span class="pre">TrajOptSolver.solve_batch_env</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.trajopt.html#curobo.wrap.reacher.trajopt.TrajOptSolver.solve_batch_env_goalset"><code class="docutils literal notranslate"><span class="pre">TrajOptSolver.solve_batch_env_goalset</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.trajopt.html#curobo.wrap.reacher.trajopt.TrajOptSolver.solve"><code class="docutils literal notranslate"><span class="pre">TrajOptSolver.solve</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.trajopt.html#curobo.wrap.reacher.trajopt.TrajOptSolver._get_result"><code class="docutils literal notranslate"><span class="pre">TrajOptSolver._get_result</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.trajopt.html#curobo.wrap.reacher.trajopt.TrajOptSolver.batch_solve"><code class="docutils literal notranslate"><span class="pre">TrajOptSolver.batch_solve</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.trajopt.html#curobo.wrap.reacher.trajopt.TrajOptSolver.get_linear_seed"><code class="docutils literal notranslate"><span class="pre">TrajOptSolver.get_linear_seed</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.trajopt.html#curobo.wrap.reacher.trajopt.TrajOptSolver.get_start_seed"><code class="docutils literal notranslate"><span class="pre">TrajOptSolver.get_start_seed</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.trajopt.html#curobo.wrap.reacher.trajopt.TrajOptSolver._get_seed_numbers"><code class="docutils literal notranslate"><span class="pre">TrajOptSolver._get_seed_numbers</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.trajopt.html#curobo.wrap.reacher.trajopt.TrajOptSolver.get_seed_set"><code class="docutils literal notranslate"><span class="pre">TrajOptSolver.get_seed_set</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.trajopt.html#curobo.wrap.reacher.trajopt.TrajOptSolver.get_seeds"><code class="docutils literal notranslate"><span class="pre">TrajOptSolver.get_seeds</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.trajopt.html#curobo.wrap.reacher.trajopt.TrajOptSolver.get_bias_seed"><code class="docutils literal notranslate"><span class="pre">TrajOptSolver.get_bias_seed</span></code></a></li>
@@ -446,6 +473,7 @@
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.trajopt.html#curobo.wrap.reacher.trajopt.TrajOptSolver.calculate_trajectory_dt"><code class="docutils literal notranslate"><span class="pre">TrajOptSolver.calculate_trajectory_dt</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.trajopt.html#curobo.wrap.reacher.trajopt.TrajOptSolver.reset_seed"><code class="docutils literal notranslate"><span class="pre">TrajOptSolver.reset_seed</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.trajopt.html#curobo.wrap.reacher.trajopt.TrajOptSolver.reset_cuda_graph"><code class="docutils literal notranslate"><span class="pre">TrajOptSolver.reset_cuda_graph</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.trajopt.html#curobo.wrap.reacher.trajopt.TrajOptSolver.reset_shape"><code class="docutils literal notranslate"><span class="pre">TrajOptSolver.reset_shape</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.trajopt.html#curobo.wrap.reacher.trajopt.TrajOptSolver.kinematics"><code class="docutils literal notranslate"><span class="pre">TrajOptSolver.kinematics</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.trajopt.html#curobo.wrap.reacher.trajopt.TrajOptSolver.retract_config"><code class="docutils literal notranslate"><span class="pre">TrajOptSolver.retract_config</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.trajopt.html#curobo.wrap.reacher.trajopt.TrajOptSolver.fk"><code class="docutils literal notranslate"><span class="pre">TrajOptSolver.fk</span></code></a></li>
@@ -453,6 +481,7 @@
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.trajopt.html#curobo.wrap.reacher.trajopt.TrajOptSolver.update_solver_dt"><code class="docutils literal notranslate"><span class="pre">TrajOptSolver.update_solver_dt</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.trajopt.html#curobo.wrap.reacher.trajopt.TrajOptSolver.compute_metrics"><code class="docutils literal notranslate"><span class="pre">TrajOptSolver.compute_metrics</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.trajopt.html#curobo.wrap.reacher.trajopt.TrajOptSolver.get_full_js"><code class="docutils literal notranslate"><span class="pre">TrajOptSolver.get_full_js</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.trajopt.html#curobo.wrap.reacher.trajopt.TrajOptSolver.update_pose_cost_metric"><code class="docutils literal notranslate"><span class="pre">TrajOptSolver.update_pose_cost_metric</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -494,6 +523,7 @@
 <li class="toctree-l3"><a class="reference internal" href="curobo.wrap.reacher.types.html#curobo.wrap.reacher.types.MotionGenSolverState.trajopt_solve_state"><code class="docutils literal notranslate"><span class="pre">MotionGenSolverState.trajopt_solve_state</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.wrap.reacher.types.html#curobo.wrap.reacher.types.get_padded_goalset"><code class="docutils literal notranslate"><span class="pre">get_padded_goalset</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -504,10 +534,7 @@
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="curobo.wrap.model.robot_world.html" class="btn btn-neutral float-left" title="curobo.wrap.model.robot_world module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="curobo.wrap.reacher.evaluator.html" class="btn btn-neutral float-right" title="curobo.wrap.reacher.evaluator module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+          <footer>
 
   <hr/>
 

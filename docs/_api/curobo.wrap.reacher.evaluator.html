@@ -32,9 +32,7 @@
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="curobo.wrap.reacher.mpc module" href="curobo.wrap.reacher.mpc.html" />
-    <link rel="prev" title="curobo.wrap.reacher package" href="curobo.wrap.reacher.html" /> 
+    <link rel="search" title="Search" href="../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -74,11 +72,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../source/getting_started/4_benchmarks.html">Benchmarks &amp; Profiling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/getting_started/5_docker_development.html">Docker Development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/getting_started/6_known_issues.html">Known Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/7_api.html">Python API</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Advanced Examples</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2a_batch_env.html">Batched Environments</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2b_block_stacking_example.html">Block Stacking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/1_batch_env.html">Batched Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2_block_stacking_example.html">Block Stacking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/3_constrained_planning.html">Constrained Planning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/4_robot_segmentation.html">Robot Segmentation</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
@@ -90,10 +91,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/02_numerical_optimization.html">Numerical Optimization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/04_cuda_kernels.html">CUDA Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/05_usd_api.html">USD for Robot and World Representation</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">API</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../api.html">Python API</a></li>
 </ul>
 
         </div>
@@ -110,11 +107,6 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../api.html">Python API</a></li>
-          <li class="breadcrumb-item"><a href="modules.html">curobo</a></li>
-          <li class="breadcrumb-item"><a href="curobo.html">curobo package</a></li>
-          <li class="breadcrumb-item"><a href="curobo.wrap.html">curobo.wrap package</a></li>
-          <li class="breadcrumb-item"><a href="curobo.wrap.reacher.html">curobo.wrap.reacher package</a></li>
       <li class="breadcrumb-item active">curobo.wrap.reacher.evaluator module</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/_api/curobo.wrap.reacher.evaluator.rst.txt" rel="nofollow"> View page source</a>
@@ -178,6 +170,34 @@
 <dd class="field-odd"><p><strong>config</strong> (<a class="reference internal" href="#curobo.wrap.reacher.evaluator.TrajEvaluatorConfig" title="curobo.wrap.reacher.evaluator.TrajEvaluatorConfig"><em>TrajEvaluatorConfig</em></a><em> | </em><em>None</em>) – </p>
 </dd>
 </dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.evaluator.TrajEvaluator._compute_path_length">
+<span class="sig-name descname"><span class="pre">_compute_path_length</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">js</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">traj_dt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cspace_distance_weight</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.evaluator.TrajEvaluator._compute_path_length" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>js</strong> (<a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><em>JointState</em></a>) – </p></li>
+<li><p><strong>traj_dt</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>cspace_distance_weight</strong> (<em>Tensor</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.evaluator.TrajEvaluator._check_smoothness">
+<span class="sig-name descname"><span class="pre">_check_smoothness</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">js</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">traj_dt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_vel</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.evaluator.TrajEvaluator._check_smoothness" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>js</strong> (<a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><em>JointState</em></a>) – </p></li>
+<li><p><strong>traj_dt</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>max_vel</strong> (<em>Tensor</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="curobo.wrap.reacher.evaluator.TrajEvaluator.evaluate">
 <span class="sig-name descname"><span class="pre">evaluate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">js</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">traj_dt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cspace_distance_weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_vel</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.evaluator.TrajEvaluator.evaluate" title="Link to this definition"></a></dt>
@@ -245,10 +265,7 @@
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="curobo.wrap.reacher.html" class="btn btn-neutral float-left" title="curobo.wrap.reacher package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="curobo.wrap.reacher.mpc.html" class="btn btn-neutral float-right" title="curobo.wrap.reacher.mpc module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+          <footer>
 
   <hr/>
 

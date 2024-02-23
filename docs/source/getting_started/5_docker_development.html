@@ -74,11 +74,14 @@
 <li class="toctree-l1"><a class="reference internal" href="4_benchmarks.html">Benchmarks &amp; Profiling</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Docker Development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="6_known_issues.html">Known Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_api.html">Python API</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Advanced Examples</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../advanced_examples/2a_batch_env.html">Batched Environments</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../advanced_examples/2b_block_stacking_example.html">Block Stacking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_examples/1_batch_env.html">Batched Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_examples/2_block_stacking_example.html">Block Stacking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_examples/3_constrained_planning.html">Constrained Planning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_examples/4_robot_segmentation.html">Robot Segmentation</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
@@ -90,10 +93,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../notes/02_numerical_optimization.html">Numerical Optimization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../notes/04_cuda_kernels.html">CUDA Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../notes/05_usd_api.html">USD for Robot and World Representation</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">API</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../api.html">Python API</a></li>
 </ul>
 
         </div>
@@ -144,8 +143,7 @@
 <tr class="row-odd"><td><p>aarch64</p></td>
 <td><p>aarch64.dockerfile</p></td>
 <td><p>Dockerfile that builds cuRobo with a pytorch base container for using on a NVIDIA Jetson. This
-container can only be built on a NVIDIA Jetson. This also requires compiling warp, instructions are
-provided in <a class="reference internal" href="#warp-jetson"><span class="std std-ref">Build Warp for NVIDIA Jetson</span></a>.</p></td>
+container can only be built on a NVIDIA Jetson.</p></td>
 </tr>
 <tr class="row-even"><td><p>isaac_sim_VERSION</p></td>
 <td><p>isaac_sim.dockerfile</p></td>
@@ -184,8 +182,12 @@ development.</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">bash</span> <span class="pre">start_dev_docker.sh</span> <span class="pre">TAG</span></code> will start the docker.</p></li>
 </ol>
 </section>
-<section id="build-warp-for-nvidia-jetson">
-<span id="warp-jetson"></span><h2>Build Warp for NVIDIA Jetson<a class="headerlink" href="#build-warp-for-nvidia-jetson" title="Link to this heading"></a></h2>
+<section id="build-warp-for-nvidia-jetson-deprecated">
+<span id="warp-jetson"></span><h2>Build Warp for NVIDIA Jetson (Deprecated)<a class="headerlink" href="#build-warp-for-nvidia-jetson-deprecated" title="Link to this heading"></a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Warp is available from pypi starting with 0.11.0. The below instructions are not needed anymore.</p>
+</div>
 <p>NVIDIA Warp requires 11.5+ CUDA to compile and NVIDIA Jetson ships with CUDA 11.4. We will install
 a new version of CUDA and then compile the library (<code class="docutils literal notranslate"><span class="pre">.so</span></code>) file  for using warp on NVIDIA Jetson.</p>
 <ol class="arabic">
@@ -206,7 +208,7 @@ sudo<span class="w"> </span>apt-get<span class="w"> </span>-y<span class="w"> </
 <li><p>Download and compile warp inside a clone of curobo for use inside a dockerfile later:</p>
 <blockquote>
 <div><div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/NVlabs/curobo.git<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>curobo<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>mkdir<span class="w"> </span>pkgs<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>pkgs
-git<span class="w"> </span>clone<span class="w"> </span>https://github.com/NVIDIA/warp.git<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>warp<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>v0.9.0<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>python3<span class="w"> </span>build_lib.py
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/NVIDIA/warp.git<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>warp<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>python3<span class="w"> </span>build_lib.py<span class="w"> </span>--no_standalone
 </pre></div>
 </div>
 </div></blockquote>
@@ -214,8 +216,7 @@ git<span class="w"> </span>clone<span class="w"> </span>https://github.com/NVIDI
 </ol>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Newer versions of warp (&gt;0.9.0) might also work on jetson, we have only tested 0.9.0. Make sure
-when running <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">build_lib.py</span></code> for warp, it’s compiling the CUDA kernels. warp looks for cuda toolkit at
+<p>Make sure when running <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">build_lib.py</span></code> for warp, it’s compiling the CUDA kernels. warp looks for cuda toolkit at
 <code class="docutils literal notranslate"><span class="pre">CUDA_HOME</span></code> so set it to your cuda toolkit path before running <code class="docutils literal notranslate"><span class="pre">build_lib.py</span></code>.</p>
 </div>
 </section>

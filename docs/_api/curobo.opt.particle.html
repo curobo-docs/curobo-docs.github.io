@@ -32,9 +32,7 @@
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="curobo.opt.particle.parallel_es module" href="curobo.opt.particle.parallel_es.html" />
-    <link rel="prev" title="curobo.opt.newton.newton_base module" href="curobo.opt.newton.newton_base.html" /> 
+    <link rel="search" title="Search" href="../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -74,11 +72,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../source/getting_started/4_benchmarks.html">Benchmarks &amp; Profiling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/getting_started/5_docker_development.html">Docker Development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/getting_started/6_known_issues.html">Known Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/7_api.html">Python API</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Advanced Examples</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2a_batch_env.html">Batched Environments</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2b_block_stacking_example.html">Block Stacking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/1_batch_env.html">Batched Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2_block_stacking_example.html">Block Stacking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/3_constrained_planning.html">Constrained Planning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/4_robot_segmentation.html">Robot Segmentation</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
@@ -90,10 +91,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/02_numerical_optimization.html">Numerical Optimization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/04_cuda_kernels.html">CUDA Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/05_usd_api.html">USD for Robot and World Representation</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">API</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../api.html">Python API</a></li>
 </ul>
 
         </div>
@@ -110,8 +107,6 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../api.html">Python API</a></li>
-          <li class="breadcrumb-item"><a href="curobo.opt.html">curobo.opt package</a></li>
       <li class="breadcrumb-item active">curobo.opt.particle package</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/_api/curobo.opt.particle.rst.txt" rel="nofollow"> View page source</a>
@@ -134,7 +129,11 @@
 <li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_es.html#curobo.opt.particle.parallel_es.ParallelESConfig.learning_rate"><code class="docutils literal notranslate"><span class="pre">ParallelESConfig.learning_rate</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="curobo.opt.particle.parallel_es.html#curobo.opt.particle.parallel_es.ParallelES"><code class="docutils literal notranslate"><span class="pre">ParallelES</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.opt.particle.parallel_es.html#curobo.opt.particle.parallel_es.ParallelES"><code class="docutils literal notranslate"><span class="pre">ParallelES</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_es.html#curobo.opt.particle.parallel_es.ParallelES._compute_mean"><code class="docutils literal notranslate"><span class="pre">ParallelES._compute_mean</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_es.html#curobo.opt.particle.parallel_es.ParallelES._exp_util"><code class="docutils literal notranslate"><span class="pre">ParallelES._exp_util</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html">curobo.opt.particle.parallel_mppi module</a><ul>
@@ -167,19 +166,27 @@
 <li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPIConfig.alpha"><code class="docutils literal notranslate"><span class="pre">ParallelMPPIConfig.alpha</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPIConfig.gamma"><code class="docutils literal notranslate"><span class="pre">ParallelMPPIConfig.gamma</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPIConfig.kappa"><code class="docutils literal notranslate"><span class="pre">ParallelMPPIConfig.kappa</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPIConfig.sample_per_env"><code class="docutils literal notranslate"><span class="pre">ParallelMPPIConfig.sample_per_env</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPIConfig.sample_per_problem"><code class="docutils literal notranslate"><span class="pre">ParallelMPPIConfig.sample_per_problem</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPIConfig.create_data_dict"><code class="docutils literal notranslate"><span class="pre">ParallelMPPIConfig.create_data_dict</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPI"><code class="docutils literal notranslate"><span class="pre">ParallelMPPI</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPI.get_rollouts"><code class="docutils literal notranslate"><span class="pre">ParallelMPPI.get_rollouts</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPI.reset_distribution"><code class="docutils literal notranslate"><span class="pre">ParallelMPPI.reset_distribution</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPI._compute_total_cost"><code class="docutils literal notranslate"><span class="pre">ParallelMPPI._compute_total_cost</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPI._exp_util"><code class="docutils literal notranslate"><span class="pre">ParallelMPPI._exp_util</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPI._compute_mean"><code class="docutils literal notranslate"><span class="pre">ParallelMPPI._compute_mean</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPI._compute_covariance"><code class="docutils literal notranslate"><span class="pre">ParallelMPPI._compute_covariance</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPI._update_cov_scale"><code class="docutils literal notranslate"><span class="pre">ParallelMPPI._update_cov_scale</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPI._update_distribution"><code class="docutils literal notranslate"><span class="pre">ParallelMPPI._update_distribution</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPI.sample_actions"><code class="docutils literal notranslate"><span class="pre">ParallelMPPI.sample_actions</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPI.update_seed"><code class="docutils literal notranslate"><span class="pre">ParallelMPPI.update_seed</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPI.update_init_mean"><code class="docutils literal notranslate"><span class="pre">ParallelMPPI.update_init_mean</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPI.reset_mean"><code class="docutils literal notranslate"><span class="pre">ParallelMPPI.reset_mean</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPI.reset_covariance"><code class="docutils literal notranslate"><span class="pre">ParallelMPPI.reset_covariance</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPI._get_action_seq"><code class="docutils literal notranslate"><span class="pre">ParallelMPPI._get_action_seq</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPI.generate_noise"><code class="docutils literal notranslate"><span class="pre">ParallelMPPI.generate_noise</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPI._calc_val"><code class="docutils literal notranslate"><span class="pre">ParallelMPPI._calc_val</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPI.reset"><code class="docutils literal notranslate"><span class="pre">ParallelMPPI.reset</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPI.squashed_mean"><code class="docutils literal notranslate"><span class="pre">ParallelMPPI.squashed_mean</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPI.full_cov"><code class="docutils literal notranslate"><span class="pre">ParallelMPPI.full_cov</span></code></a></li>
@@ -214,13 +221,20 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="curobo.opt.particle.particle_opt_base.html#curobo.opt.particle.particle_opt_base.ParticleOptBase"><code class="docutils literal notranslate"><span class="pre">ParticleOptBase</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.particle_opt_base.html#curobo.opt.particle.particle_opt_base.ParticleOptBase._get_action_seq"><code class="docutils literal notranslate"><span class="pre">ParticleOptBase._get_action_seq</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.particle_opt_base.html#curobo.opt.particle.particle_opt_base.ParticleOptBase.sample_actions"><code class="docutils literal notranslate"><span class="pre">ParticleOptBase.sample_actions</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.particle_opt_base.html#curobo.opt.particle.particle_opt_base.ParticleOptBase.update_seed"><code class="docutils literal notranslate"><span class="pre">ParticleOptBase.update_seed</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.particle_opt_base.html#curobo.opt.particle.particle_opt_base.ParticleOptBase._update_distribution"><code class="docutils literal notranslate"><span class="pre">ParticleOptBase._update_distribution</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.particle_opt_base.html#curobo.opt.particle.particle_opt_base.ParticleOptBase.reset"><code class="docutils literal notranslate"><span class="pre">ParticleOptBase.reset</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.particle_opt_base.html#curobo.opt.particle.particle_opt_base.ParticleOptBase._calc_val"><code class="docutils literal notranslate"><span class="pre">ParticleOptBase._calc_val</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.particle_opt_base.html#curobo.opt.particle.particle_opt_base.ParticleOptBase.check_convergence"><code class="docutils literal notranslate"><span class="pre">ParticleOptBase.check_convergence</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.particle_opt_base.html#curobo.opt.particle.particle_opt_base.ParticleOptBase.generate_rollouts"><code class="docutils literal notranslate"><span class="pre">ParticleOptBase.generate_rollouts</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.particle_opt_base.html#curobo.opt.particle.particle_opt_base.ParticleOptBase.update_nenvs"><code class="docutils literal notranslate"><span class="pre">ParticleOptBase.update_nenvs</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.particle_opt_base.html#curobo.opt.particle.particle_opt_base.ParticleOptBase.update_num_particles_per_env"><code class="docutils literal notranslate"><span class="pre">ParticleOptBase.update_num_particles_per_env</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.particle_opt_base.html#curobo.opt.particle.particle_opt_base.ParticleOptBase._optimize"><code class="docutils literal notranslate"><span class="pre">ParticleOptBase._optimize</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.particle_opt_base.html#curobo.opt.particle.particle_opt_base.ParticleOptBase._initialize_cuda_graph"><code class="docutils literal notranslate"><span class="pre">ParticleOptBase._initialize_cuda_graph</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.particle_opt_base.html#curobo.opt.particle.particle_opt_base.ParticleOptBase._call_cuda_opt_iters"><code class="docutils literal notranslate"><span class="pre">ParticleOptBase._call_cuda_opt_iters</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.particle_opt_base.html#curobo.opt.particle.particle_opt_base.ParticleOptBase._run_opt_iters"><code class="docutils literal notranslate"><span class="pre">ParticleOptBase._run_opt_iters</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.particle_opt_base.html#curobo.opt.particle.particle_opt_base.ParticleOptBase.update_nproblems"><code class="docutils literal notranslate"><span class="pre">ParticleOptBase.update_nproblems</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.particle_opt_base.html#curobo.opt.particle.particle_opt_base.ParticleOptBase.update_num_particles_per_problem"><code class="docutils literal notranslate"><span class="pre">ParticleOptBase.update_num_particles_per_problem</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -253,10 +267,7 @@
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="curobo.opt.newton.newton_base.html" class="btn btn-neutral float-left" title="curobo.opt.newton.newton_base module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="curobo.opt.particle.parallel_es.html" class="btn btn-neutral float-right" title="curobo.opt.particle.parallel_es module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+          <footer>
 
   <hr/>
 

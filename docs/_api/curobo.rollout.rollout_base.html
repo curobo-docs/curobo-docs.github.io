@@ -32,9 +32,7 @@
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="curobo.curobolib package" href="curobo.curobolib.html" />
-    <link rel="prev" title="curobo.rollout.arm_reacher module" href="curobo.rollout.arm_reacher.html" /> 
+    <link rel="search" title="Search" href="../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -74,11 +72,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../source/getting_started/4_benchmarks.html">Benchmarks &amp; Profiling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/getting_started/5_docker_development.html">Docker Development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/getting_started/6_known_issues.html">Known Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/7_api.html">Python API</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Advanced Examples</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2a_batch_env.html">Batched Environments</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2b_block_stacking_example.html">Block Stacking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/1_batch_env.html">Batched Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2_block_stacking_example.html">Block Stacking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/3_constrained_planning.html">Constrained Planning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/4_robot_segmentation.html">Robot Segmentation</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
@@ -90,10 +91,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/02_numerical_optimization.html">Numerical Optimization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/04_cuda_kernels.html">CUDA Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/05_usd_api.html">USD for Robot and World Representation</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">API</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../api.html">Python API</a></li>
 </ul>
 
         </div>
@@ -110,8 +107,6 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../api.html">Python API</a></li>
-          <li class="breadcrumb-item"><a href="curobo.rollout.html">curobo.rollout package</a></li>
       <li class="breadcrumb-item active">curobo.rollout.rollout_base module</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/_api/curobo.rollout.rollout_base.rst.txt" rel="nofollow"> View page source</a>
@@ -161,6 +156,11 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="curobo.rollout.rollout_base.RolloutMetrics.clone">
 <span class="sig-name descname"><span class="pre">clone</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">clone_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.rollout_base.RolloutMetrics.clone" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.rollout.rollout_base.RolloutMetrics._abc_impl">
+<span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc._abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#curobo.rollout.rollout_base.RolloutMetrics._abc_impl" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -310,6 +310,11 @@ For case (2), we add a batch_world_idx[0,1,2..].</p>
 <dd></dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="curobo.rollout.rollout_base.Goal._update_batch_size">
+<span class="sig-name descname"><span class="pre">_update_batch_size</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.rollout_base.Goal._update_batch_size" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="curobo.rollout.rollout_base.Goal.repeat_seeds">
 <span class="sig-name descname"><span class="pre">repeat_seeds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_seeds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.rollout_base.Goal.repeat_seeds" title="Link to this definition"></a></dt>
 <dd><dl class="field-list simple">
@@ -322,6 +327,11 @@ For case (2), we add a batch_world_idx[0,1,2..].</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="curobo.rollout.rollout_base.Goal.clone">
 <span class="sig-name descname"><span class="pre">clone</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.rollout_base.Goal.clone" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.rollout.rollout_base.Goal._tensor_repeat_seeds">
+<span class="sig-name descname"><span class="pre">_tensor_repeat_seeds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_seeds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.rollout_base.Goal._tensor_repeat_seeds" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -366,6 +376,16 @@ For case (2), we add a batch_world_idx[0,1,2..].</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="curobo.rollout.rollout_base.Goal._copy_buffer">
+<span class="sig-name descname"><span class="pre">_copy_buffer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ref_buffer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buffer</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.rollout_base.Goal._copy_buffer" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.rollout.rollout_base.Goal._copy_tensor">
+<span class="sig-name descname"><span class="pre">_copy_tensor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ref_buffer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buffer</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.rollout_base.Goal._copy_tensor" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="curobo.rollout.rollout_base.Goal.get_batch_goal_state">
 <span class="sig-name descname"><span class="pre">get_batch_goal_state</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.rollout_base.Goal.get_batch_goal_state" title="Link to this definition"></a></dt>
 <dd></dd></dl>
@@ -402,6 +422,11 @@ For case (2), we add a batch_world_idx[0,1,2..].</p>
 </dl>
 </dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.rollout.rollout_base.Goal._abc_impl">
+<span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc._abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#curobo.rollout.rollout_base.Goal._abc_impl" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -429,6 +454,11 @@ For case (2), we add a batch_world_idx[0,1,2..].</p>
 <dd class="field-odd"><p><strong>config</strong> (<em>Optional</em><em>[</em><a class="reference internal" href="#curobo.rollout.rollout_base.RolloutConfig" title="curobo.rollout.rollout_base.RolloutConfig"><em>RolloutConfig</em></a><em>]</em>) – </p>
 </dd>
 </dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.rollout.rollout_base.RolloutBase._init_after_config_load">
+<span class="sig-name descname"><span class="pre">_init_after_config_load</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.rollout_base.RolloutBase._init_after_config_load" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="curobo.rollout.rollout_base.RolloutBase.cost_fn">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">cost_fn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.rollout_base.RolloutBase.cost_fn" title="Link to this definition"></a></dt>
@@ -631,6 +661,11 @@ For case (2), we add a batch_world_idx[0,1,2..].</p>
 <dd></dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="curobo.rollout.rollout_base.RolloutBase.reset_shape">
+<span class="sig-name descname"><span class="pre">reset_shape</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.rollout_base.RolloutBase.reset_shape" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="curobo.rollout.rollout_base.RolloutBase.get_action_from_state">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_action_from_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.rollout_base.RolloutBase.get_action_from_state" title="Link to this definition"></a></dt>
 <dd><dl class="field-list simple">
@@ -679,10 +714,7 @@ For case (2), we add a batch_world_idx[0,1,2..].</p>
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="curobo.rollout.arm_reacher.html" class="btn btn-neutral float-left" title="curobo.rollout.arm_reacher module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="curobo.curobolib.html" class="btn btn-neutral float-right" title="curobo.curobolib package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+          <footer>
 
   <hr/>
 

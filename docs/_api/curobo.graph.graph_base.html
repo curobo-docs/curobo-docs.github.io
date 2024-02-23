@@ -32,9 +32,7 @@
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="curobo.graph.graph_nx module" href="curobo.graph.graph_nx.html" />
-    <link rel="prev" title="curobo.graph package" href="curobo.graph.html" /> 
+    <link rel="search" title="Search" href="../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -74,11 +72,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../source/getting_started/4_benchmarks.html">Benchmarks &amp; Profiling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/getting_started/5_docker_development.html">Docker Development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/getting_started/6_known_issues.html">Known Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/7_api.html">Python API</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Advanced Examples</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2a_batch_env.html">Batched Environments</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2b_block_stacking_example.html">Block Stacking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/1_batch_env.html">Batched Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2_block_stacking_example.html">Block Stacking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/3_constrained_planning.html">Constrained Planning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/4_robot_segmentation.html">Robot Segmentation</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
@@ -90,10 +91,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/02_numerical_optimization.html">Numerical Optimization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/04_cuda_kernels.html">CUDA Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/05_usd_api.html">USD for Robot and World Representation</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">API</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../api.html">Python API</a></li>
 </ul>
 
         </div>
@@ -110,8 +107,6 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../api.html">Python API</a></li>
-          <li class="breadcrumb-item"><a href="curobo.graph.html">curobo.graph package</a></li>
       <li class="breadcrumb-item active">curobo.graph.graph_base module</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/_api/curobo.graph.graph_base.rst.txt" rel="nofollow"> View page source</a>
@@ -505,6 +500,21 @@
 <dd></dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase._mask_samples_cuda_graph">
+<span class="sig-name descname"><span class="pre">_mask_samples_cuda_graph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_samples</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase._mask_samples_cuda_graph" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase._mask_samples">
+<span class="sig-name descname"><span class="pre">_mask_samples</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_samples</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase._mask_samples" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase._cuda_graph_rollout_constraint">
+<span class="sig-name descname"><span class="pre">_cuda_graph_rollout_constraint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_samples</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_batch_env</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase._cuda_graph_rollout_constraint" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase.get_samples">
 <span class="sig-name descname"><span class="pre">get_samples</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_samples</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounded</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.get_samples" title="Link to this definition"></a></dt>
 <dd><dl class="field-list simple">
@@ -518,6 +528,11 @@
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase._sample_pts">
+<span class="sig-name descname"><span class="pre">_sample_pts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_samples</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounded</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit_ball</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">123</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase._sample_pts" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase.reset_buffer">
 <span class="sig-name descname"><span class="pre">reset_buffer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.reset_buffer" title="Link to this definition"></a></dt>
 <dd></dd></dl>
@@ -525,6 +540,11 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase.get_biased_vertex_set">
 <span class="sig-name descname"><span class="pre">get_biased_vertex_set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_goal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c_min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lazy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.get_biased_vertex_set" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase._compute_rotation_frame">
+<span class="sig-name descname"><span class="pre">_compute_rotation_frame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_goal</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase._compute_rotation_frame" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -551,6 +571,16 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase.get_graph">
 <span class="sig-name descname"><span class="pre">get_graph</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.get_graph" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase._validate_graph">
+<span class="sig-name descname"><span class="pre">_validate_graph</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase._validate_graph" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase._get_graph_shortest_path">
+<span class="sig-name descname"><span class="pre">_get_graph_shortest_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_node_idx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">goal_node_idx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase._get_graph_shortest_path" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -612,6 +642,16 @@
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase._find_paths">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">_find_paths</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_search</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c_search</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_init</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase._find_paths" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#curobo.graph.graph_base.GraphResult" title="curobo.graph.graph_base.GraphResult"><em>GraphResult</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase.compute_path_length">
 <span class="sig-name descname"><span class="pre">compute_path_length</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.compute_path_length" title="Link to this definition"></a></dt>
 <dd></dd></dl>
@@ -622,13 +662,74 @@
 <dd></dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase._distance">
+<span class="sig-name descname"><span class="pre">_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_pts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">norm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase._distance" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase.distance">
 <span class="sig-name descname"><span class="pre">distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_pts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">norm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.distance" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase._hybrid_nearest">
+<span class="sig-name descname"><span class="pre">_hybrid_nearest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sample_node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k_n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase._hybrid_nearest" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase._nearest">
+<span class="sig-name descname"><span class="pre">_nearest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sample_point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_graph</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase._nearest" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase._k_nearest">
+<span class="sig-name descname"><span class="pre">_k_nearest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sample_point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase._k_nearest" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase._batch_k_nearest">
+<span class="sig-name descname"><span class="pre">_batch_k_nearest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sample_point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase._batch_k_nearest" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase._near">
+<span class="sig-name descname"><span class="pre">_near</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sample_point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase._near" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase._batch_steer_and_connect">
+<span class="sig-name descname"><span class="pre">_batch_steer_and_connect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_nodes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">goal_nodes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_steer_pts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lazy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_exact_node</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase._batch_steer_and_connect" title="Link to this definition"></a></dt>
+<dd><blockquote>
+<div><p>Connect node from start to goal where both are batched.</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start_node</strong> (<em>[</em><em>type</em><em>]</em>) – [description]</p></li>
+<li><p><strong>goal_nodes</strong> (<em>[</em><em>type</em><em>]</em>) – [description]</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase._batch_steer">
+<span class="sig-name descname"><span class="pre">_batch_steer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_nodes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">desired_nodes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">steer_radius</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_steer_pts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lazy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase._batch_steer" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase._add_batch_edges_to_graph">
+<span class="sig-name descname"><span class="pre">_add_batch_edges_to_graph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_nodes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_nodes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lazy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_exact_node</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase._add_batch_edges_to_graph" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase.add_nodes_to_graph">
 <span class="sig-name descname"><span class="pre">add_nodes_to_graph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nodes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_exact_node</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.add_nodes_to_graph" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase._add_unique_nodes_to_graph">
+<span class="sig-name descname"><span class="pre">_add_unique_nodes_to_graph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nodes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_exact_node</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_unique_check</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase._add_unique_nodes_to_graph" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -704,10 +805,7 @@
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="curobo.graph.html" class="btn btn-neutral float-left" title="curobo.graph package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="curobo.graph.graph_nx.html" class="btn btn-neutral float-right" title="curobo.graph.graph_nx module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+          <footer>
 
   <hr/>
 

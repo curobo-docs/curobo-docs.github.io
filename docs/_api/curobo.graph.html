@@ -32,9 +32,7 @@
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="curobo.graph.graph_base module" href="curobo.graph.graph_base.html" />
-    <link rel="prev" title="curobo.wrap.reacher.ik_solver module" href="curobo.wrap.reacher.ik_solver.html" /> 
+    <link rel="search" title="Search" href="../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -74,11 +72,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../source/getting_started/4_benchmarks.html">Benchmarks &amp; Profiling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/getting_started/5_docker_development.html">Docker Development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/getting_started/6_known_issues.html">Known Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/7_api.html">Python API</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Advanced Examples</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2a_batch_env.html">Batched Environments</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2b_block_stacking_example.html">Block Stacking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/1_batch_env.html">Batched Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2_block_stacking_example.html">Block Stacking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/3_constrained_planning.html">Constrained Planning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/4_robot_segmentation.html">Robot Segmentation</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
@@ -90,10 +91,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/02_numerical_optimization.html">Numerical Optimization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/04_cuda_kernels.html">CUDA Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/05_usd_api.html">USD for Robot and World Representation</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">API</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../api.html">Python API</a></li>
 </ul>
 
         </div>
@@ -110,7 +107,6 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../api.html">Python API</a></li>
       <li class="breadcrumb-item active">curobo.graph package</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/_api/curobo.graph.rst.txt" rel="nofollow"> View page source</a>
@@ -190,13 +186,20 @@
 <li class="toctree-l3"><a class="reference internal" href="curobo.graph.graph_base.html#curobo.graph.graph_base.GraphPlanBase.check_feasibility"><code class="docutils literal notranslate"><span class="pre">GraphPlanBase.check_feasibility</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.graph.graph_base.html#curobo.graph.graph_base.GraphPlanBase.get_feasible_sample_set"><code class="docutils literal notranslate"><span class="pre">GraphPlanBase.get_feasible_sample_set</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.graph.graph_base.html#curobo.graph.graph_base.GraphPlanBase.mask_samples"><code class="docutils literal notranslate"><span class="pre">GraphPlanBase.mask_samples</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.graph.graph_base.html#curobo.graph.graph_base.GraphPlanBase._mask_samples_cuda_graph"><code class="docutils literal notranslate"><span class="pre">GraphPlanBase._mask_samples_cuda_graph</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.graph.graph_base.html#curobo.graph.graph_base.GraphPlanBase._mask_samples"><code class="docutils literal notranslate"><span class="pre">GraphPlanBase._mask_samples</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.graph.graph_base.html#curobo.graph.graph_base.GraphPlanBase._cuda_graph_rollout_constraint"><code class="docutils literal notranslate"><span class="pre">GraphPlanBase._cuda_graph_rollout_constraint</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.graph.graph_base.html#curobo.graph.graph_base.GraphPlanBase.get_samples"><code class="docutils literal notranslate"><span class="pre">GraphPlanBase.get_samples</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.graph.graph_base.html#curobo.graph.graph_base.GraphPlanBase._sample_pts"><code class="docutils literal notranslate"><span class="pre">GraphPlanBase._sample_pts</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.graph.graph_base.html#curobo.graph.graph_base.GraphPlanBase.reset_buffer"><code class="docutils literal notranslate"><span class="pre">GraphPlanBase.reset_buffer</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.graph.graph_base.html#curobo.graph.graph_base.GraphPlanBase.get_biased_vertex_set"><code class="docutils literal notranslate"><span class="pre">GraphPlanBase.get_biased_vertex_set</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.graph.graph_base.html#curobo.graph.graph_base.GraphPlanBase._compute_rotation_frame"><code class="docutils literal notranslate"><span class="pre">GraphPlanBase._compute_rotation_frame</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.graph.graph_base.html#curobo.graph.graph_base.GraphPlanBase.get_new_vertex_set"><code class="docutils literal notranslate"><span class="pre">GraphPlanBase.get_new_vertex_set</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.graph.graph_base.html#curobo.graph.graph_base.GraphPlanBase.validate_graph"><code class="docutils literal notranslate"><span class="pre">GraphPlanBase.validate_graph</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.graph.graph_base.html#curobo.graph.graph_base.GraphPlanBase.get_graph_edges"><code class="docutils literal notranslate"><span class="pre">GraphPlanBase.get_graph_edges</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.graph.graph_base.html#curobo.graph.graph_base.GraphPlanBase.get_graph"><code class="docutils literal notranslate"><span class="pre">GraphPlanBase.get_graph</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.graph.graph_base.html#curobo.graph.graph_base.GraphPlanBase._validate_graph"><code class="docutils literal notranslate"><span class="pre">GraphPlanBase._validate_graph</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.graph.graph_base.html#curobo.graph.graph_base.GraphPlanBase._get_graph_shortest_path"><code class="docutils literal notranslate"><span class="pre">GraphPlanBase._get_graph_shortest_path</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.graph.graph_base.html#curobo.graph.graph_base.GraphPlanBase.batch_get_graph_shortest_path"><code class="docutils literal notranslate"><span class="pre">GraphPlanBase.batch_get_graph_shortest_path</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.graph.graph_base.html#curobo.graph.graph_base.GraphPlanBase.batch_shortcut_path"><code class="docutils literal notranslate"><span class="pre">GraphPlanBase.batch_shortcut_path</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.graph.graph_base.html#curobo.graph.graph_base.GraphPlanBase.get_node_idx"><code class="docutils literal notranslate"><span class="pre">GraphPlanBase.get_node_idx</span></code></a></li>
@@ -205,10 +208,21 @@
 <li class="toctree-l3"><a class="reference internal" href="curobo.graph.graph_base.html#curobo.graph.graph_base.GraphPlanBase.path_exists"><code class="docutils literal notranslate"><span class="pre">GraphPlanBase.path_exists</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.graph.graph_base.html#curobo.graph.graph_base.GraphPlanBase.batch_path_exists"><code class="docutils literal notranslate"><span class="pre">GraphPlanBase.batch_path_exists</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.graph.graph_base.html#curobo.graph.graph_base.GraphPlanBase.find_paths"><code class="docutils literal notranslate"><span class="pre">GraphPlanBase.find_paths</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.graph.graph_base.html#curobo.graph.graph_base.GraphPlanBase._find_paths"><code class="docutils literal notranslate"><span class="pre">GraphPlanBase._find_paths</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.graph.graph_base.html#curobo.graph.graph_base.GraphPlanBase.compute_path_length"><code class="docutils literal notranslate"><span class="pre">GraphPlanBase.compute_path_length</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.graph.graph_base.html#curobo.graph.graph_base.GraphPlanBase.reset_graph"><code class="docutils literal notranslate"><span class="pre">GraphPlanBase.reset_graph</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.graph.graph_base.html#curobo.graph.graph_base.GraphPlanBase._distance"><code class="docutils literal notranslate"><span class="pre">GraphPlanBase._distance</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.graph.graph_base.html#curobo.graph.graph_base.GraphPlanBase.distance"><code class="docutils literal notranslate"><span class="pre">GraphPlanBase.distance</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.graph.graph_base.html#curobo.graph.graph_base.GraphPlanBase._hybrid_nearest"><code class="docutils literal notranslate"><span class="pre">GraphPlanBase._hybrid_nearest</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.graph.graph_base.html#curobo.graph.graph_base.GraphPlanBase._nearest"><code class="docutils literal notranslate"><span class="pre">GraphPlanBase._nearest</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.graph.graph_base.html#curobo.graph.graph_base.GraphPlanBase._k_nearest"><code class="docutils literal notranslate"><span class="pre">GraphPlanBase._k_nearest</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.graph.graph_base.html#curobo.graph.graph_base.GraphPlanBase._batch_k_nearest"><code class="docutils literal notranslate"><span class="pre">GraphPlanBase._batch_k_nearest</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.graph.graph_base.html#curobo.graph.graph_base.GraphPlanBase._near"><code class="docutils literal notranslate"><span class="pre">GraphPlanBase._near</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.graph.graph_base.html#curobo.graph.graph_base.GraphPlanBase._batch_steer_and_connect"><code class="docutils literal notranslate"><span class="pre">GraphPlanBase._batch_steer_and_connect</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.graph.graph_base.html#curobo.graph.graph_base.GraphPlanBase._batch_steer"><code class="docutils literal notranslate"><span class="pre">GraphPlanBase._batch_steer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.graph.graph_base.html#curobo.graph.graph_base.GraphPlanBase._add_batch_edges_to_graph"><code class="docutils literal notranslate"><span class="pre">GraphPlanBase._add_batch_edges_to_graph</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.graph.graph_base.html#curobo.graph.graph_base.GraphPlanBase.add_nodes_to_graph"><code class="docutils literal notranslate"><span class="pre">GraphPlanBase.add_nodes_to_graph</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.graph.graph_base.html#curobo.graph.graph_base.GraphPlanBase._add_unique_nodes_to_graph"><code class="docutils literal notranslate"><span class="pre">GraphPlanBase._add_unique_nodes_to_graph</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.graph.graph_base.html#curobo.graph.graph_base.GraphPlanBase.connect_nodes"><code class="docutils literal notranslate"><span class="pre">GraphPlanBase.connect_nodes</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.graph.graph_base.html#curobo.graph.graph_base.GraphPlanBase.get_paths"><code class="docutils literal notranslate"><span class="pre">GraphPlanBase.get_paths</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.graph.graph_base.html#curobo.graph.graph_base.GraphPlanBase.get_interpolated_trajectory"><code class="docutils literal notranslate"><span class="pre">GraphPlanBase.get_interpolated_trajectory</span></code></a></li>
@@ -239,6 +253,10 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="curobo.graph.prm.html">curobo.graph.prm module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="curobo.graph.prm.html#curobo.graph.prm.PRMStar"><code class="docutils literal notranslate"><span class="pre">PRMStar</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.graph.prm.html#curobo.graph.prm.PRMStar._find_paths"><code class="docutils literal notranslate"><span class="pre">PRMStar._find_paths</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.graph.prm.html#curobo.graph.prm.PRMStar._add_bias_graph"><code class="docutils literal notranslate"><span class="pre">PRMStar._add_bias_graph</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.graph.prm.html#curobo.graph.prm.PRMStar._find_one_path"><code class="docutils literal notranslate"><span class="pre">PRMStar._find_one_path</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.graph.prm.html#curobo.graph.prm.PRMStar._find_all_path"><code class="docutils literal notranslate"><span class="pre">PRMStar._find_all_path</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.graph.prm.html#curobo.graph.prm.PRMStar.build_graph"><code class="docutils literal notranslate"><span class="pre">PRMStar.build_graph</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.graph.prm.html#curobo.graph.prm.PRMStar.warmup"><code class="docutils literal notranslate"><span class="pre">PRMStar.warmup</span></code></a></li>
 </ul>
@@ -253,10 +271,7 @@
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="curobo.wrap.reacher.ik_solver.html" class="btn btn-neutral float-left" title="curobo.wrap.reacher.ik_solver module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="curobo.graph.graph_base.html" class="btn btn-neutral float-right" title="curobo.graph.graph_base module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+          <footer>
 
   <hr/>
 

@@ -74,11 +74,14 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Benchmarks &amp; Profiling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="5_docker_development.html">Docker Development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="6_known_issues.html">Known Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_api.html">Python API</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Advanced Examples</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../advanced_examples/2a_batch_env.html">Batched Environments</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../advanced_examples/2b_block_stacking_example.html">Block Stacking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_examples/1_batch_env.html">Batched Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_examples/2_block_stacking_example.html">Block Stacking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_examples/3_constrained_planning.html">Constrained Planning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced_examples/4_robot_segmentation.html">Robot Segmentation</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
@@ -90,10 +93,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../notes/02_numerical_optimization.html">Numerical Optimization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../notes/04_cuda_kernels.html">CUDA Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../notes/05_usd_api.html">USD for Robot and World Representation</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">API</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../api.html">Python API</a></li>
 </ul>
 
         </div>
@@ -126,42 +125,139 @@
 <ul class="simple">
 <li><p><a class="reference internal" href="#benchmarks" id="id1">Benchmarks</a></p>
 <ul>
-<li><p><a class="reference internal" href="#kinematics-collision-checking" id="id2">Kinematics &amp; Collision Checking</a></p></li>
-<li><p><a class="reference internal" href="#inverse-kinematics" id="id3">Inverse Kinematics</a></p></li>
-<li><p><a class="reference internal" href="#motion-generation-geometric-planning" id="id4">Motion Generation &amp; Geometric Planning</a></p></li>
+<li><p><a class="reference internal" href="#latest-motion-generation-results" id="id2">Latest Motion Generation Results</a></p></li>
+<li><p><a class="reference internal" href="#running-benchmarks" id="id3">Running Benchmarks</a></p></li>
+<li><p><a class="reference internal" href="#kinematics-collision-checking" id="id4">Kinematics &amp; Collision Checking</a></p></li>
+<li><p><a class="reference internal" href="#inverse-kinematics" id="id5">Inverse Kinematics</a></p></li>
+<li><p><a class="reference internal" href="#motion-generation-geometric-planning" id="id6">Motion Generation &amp; Geometric Planning</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#profiling" id="id5">Profiling</a></p></li>
+<li><p><a class="reference internal" href="#profiling" id="id7">Profiling</a></p></li>
 </ul>
 </nav>
 <section id="benchmarks">
 <h2><a class="toc-backref" href="#id1" role="doc-backlink">Benchmarks</a><a class="headerlink" href="#benchmarks" title="Link to this heading"></a></h2>
+<p>Results in the arxiv paper were obtained from v0.6.0.</p>
+<p>v0.6.2+ has significant changes to improve motion quality with lower motion time, lower path length,
+higher pose accuracy (&lt;1mm) while taking 15ms (RTX 4090) longer to compute solutions. The new
+results are yet to be added to the technical report, see below for the exact results.</p>
+<section id="latest-motion-generation-results">
+<h3><a class="toc-backref" href="#id2" role="doc-backlink">Latest Motion Generation Results</a><a class="headerlink" href="#latest-motion-generation-results" title="Link to this heading"></a></h3>
+<p>Results obtained on February 20 2024.</p>
+<p>Motion Generation on 2600 problems from motion benchmaker and motion policy networks, on a RTX 4090:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Metric</p></th>
+<th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Success %</p></td>
+<td><p>99.84</p></td>
+</tr>
+<tr class="row-odd"><td><p>Plan Time (s)</p></td>
+<td><p>mean: 0.068 ± 0.158 median:0.042 75%: 0.055 98%: 0.246</p></td>
+</tr>
+<tr class="row-even"><td><p>Motion Time (s)</p></td>
+<td><p>mean: 1.169 ± 0.360 median:1.140 75%: 1.381 98%: 2.163</p></td>
+</tr>
+<tr class="row-odd"><td><p>Path Length (rad.)</p></td>
+<td><p>mean: 3.177 ± 1.072 median:3.261 75%: 3.804 98%: 5.376</p></td>
+</tr>
+<tr class="row-even"><td><p>Jerk</p></td>
+<td><p>mean: 97.700 ± 48.630 median:88.993 75%: 126.092 98%: 199.540</p></td>
+</tr>
+<tr class="row-odd"><td><p>Position Error (mm)</p></td>
+<td><p>mean: 0.119 ± 0.341 median:0.027 75%: 0.091 98%: 1.039</p></td>
+</tr>
+</tbody>
+</table>
+<p>Motion Benchmaker (800 problems):</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Metric</p></th>
+<th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Success %</p></td>
+<td><p>100</p></td>
+</tr>
+<tr class="row-odd"><td><p>Plan Time (s)</p></td>
+<td><p>mean: 0.063 ± 0.137 median:0.042 75%: 0.044 98%: 0.206</p></td>
+</tr>
+<tr class="row-even"><td><p>Motion Time (s)</p></td>
+<td><p>mean: 1.429 ± 0.330 median:1.392 75%: 1.501 98%: 2.473</p></td>
+</tr>
+<tr class="row-odd"><td><p>Path Length (rad.)</p></td>
+<td><p>mean: 3.956 ± 0.783 median:3.755 75%: 4.352 98%: 6.041</p></td>
+</tr>
+<tr class="row-even"><td><p>Jerk</p></td>
+<td><p>mean: 67.284 ± 27.788 median:61.853 75%: 83.337 98%: 143.118</p></td>
+</tr>
+<tr class="row-odd"><td><p>Position Error (mm)</p></td>
+<td><p>mean: 0.079 ± 0.139 median:0.032 75%: 0.077 98%: 0.472</p></td>
+</tr>
+</tbody>
+</table>
+<p>Motion Policy Networks (1800 problems):</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Metric</p></th>
+<th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Success %</p></td>
+<td><p>99.77</p></td>
+</tr>
+<tr class="row-odd"><td><p>Plan Time (s)</p></td>
+<td><p>mean: 0.068 ± 0.117 median:0.042 75%: 0.059 98%: 0.243</p></td>
+</tr>
+<tr class="row-even"><td><p>Motion Time (s)</p></td>
+<td><p>mean: 1.051 ± 0.306 median:1.016 75%: 1.226 98%: 1.760</p></td>
+</tr>
+<tr class="row-odd"><td><p>Path Length (rad.)</p></td>
+<td><p>mean: 2.829 ± 1.000 median:2.837 75%: 3.482 98%: 4.905</p></td>
+</tr>
+<tr class="row-even"><td><p>Jerk</p></td>
+<td><p>mean: 110.610 ± 47.586 median:105.271 75%: 141.517 98%: 217.158</p></td>
+</tr>
+<tr class="row-odd"><td><p>Position Error (mm)</p></td>
+<td><p>mean: 0.122 ± 0.343 median:0.024 75%: 0.095 98%: 1.114</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="running-benchmarks">
+<h3><a class="toc-backref" href="#id3" role="doc-backlink">Running Benchmarks</a><a class="headerlink" href="#running-benchmarks" title="Link to this heading"></a></h3>
 <p>We use robometrics to run some of the benchmarks and also provide csv export with pandas.
 Install the following packages before running the benchmarks:</p>
 <ol class="arabic simple">
 <li><p>Install robometrics with <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">&quot;robometrics[evaluator]</span> <span class="pre">&#64;</span> <span class="pre">git+https://github.com/fishbotics/robometrics.git&quot;</span></code></p></li>
 <li><p>Optionally, install pandas if you want csv files with <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">pandas</span></code></p></li>
 </ol>
+</section>
 <section id="kinematics-collision-checking">
-<h3><a class="toc-backref" href="#id2" role="doc-backlink">Kinematics &amp; Collision Checking</a><a class="headerlink" href="#kinematics-collision-checking" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">Kinematics &amp; Collision Checking</a><a class="headerlink" href="#kinematics-collision-checking" title="Link to this heading"></a></h3>
 <p>To measure compute time for kinematics and collision checking, run the below script which will execute for all
 supported robots,</p>
 <p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">benchmark/kinematics_benchmark.py</span> <span class="pre">--save_path=.</span> <span class="pre">--file_name=kinematics</span></code></p>
 <p>This will save the results to <code class="docutils literal notranslate"><span class="pre">kinematics.yml</span></code></p>
 </section>
 <section id="inverse-kinematics">
-<h3><a class="toc-backref" href="#id3" role="doc-backlink">Inverse Kinematics</a><a class="headerlink" href="#inverse-kinematics" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">Inverse Kinematics</a><a class="headerlink" href="#inverse-kinematics" title="Link to this heading"></a></h3>
 <p>To measure success metrics and compute time for inverse kinematics and collision-free inverse kinematics, run</p>
 <p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">benchmark/ik_benchmark.py</span> <span class="pre">--save_path=.</span> <span class="pre">--file_name=ik</span></code></p>
 <p>This will save the results to <code class="docutils literal notranslate"><span class="pre">ik.yml</span></code>.</p>
 </section>
 <section id="motion-generation-geometric-planning">
-<h3><a class="toc-backref" href="#id4" role="doc-backlink">Motion Generation &amp; Geometric Planning</a><a class="headerlink" href="#motion-generation-geometric-planning" title="Link to this heading"></a></h3>
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">Motion Generation &amp; Geometric Planning</a><a class="headerlink" href="#motion-generation-geometric-planning" title="Link to this heading"></a></h3>
 <p>To run benchmarks for motion generation:</p>
 <p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">benchmark/curobo_benchmark.py</span></code></p>
 <p>Pass <code class="docutils literal notranslate"><span class="pre">--mesh</span></code> to run benchmarks with obstacles represented as meshes.</p>
 <p>To run benchmarks for motion generation with obstacles represented using rendered depth images in nvblox:</p>
-<p>1. Install nvblox_torch, following instructions in <a class="reference internal" href="1_install_instructions.html#nvblox-installation"><span class="std std-ref">Install nvblox (optional)</span></a>. You
+<p>1. Install nvblox_torch, following instructions in <a class="reference internal" href="2d_nvblox_demo.html#depth-image-example"><span class="std std-ref">Using with Depth Camera</span></a>. You
 would also need pyrender, install with <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">pyrender</span></code>
 2. Generate sensor images by rendering using: <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">benchmark/generate_nvblox_images.py</span></code>
 3. Run the benchmark with <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">benchmark/curobo_nvblox_benchmark.py</span></code></p>
@@ -171,7 +267,7 @@ would also need pyrender, install with <code class="docutils literal notranslate
 </section>
 </section>
 <section id="profiling">
-<h2><a class="toc-backref" href="#id5" role="doc-backlink">Profiling</a><a class="headerlink" href="#profiling" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Profiling</a><a class="headerlink" href="#profiling" title="Link to this heading"></a></h2>
 <p>For users who want to understand the computational graph and analyze compute bottlenecks, we provide scripts
 that run the motion generation pipeline and dump torch profiling to a json file. This file can be loaded in
 <a class="reference external" href="chrome://tracing">chrome://tracing</a></p>

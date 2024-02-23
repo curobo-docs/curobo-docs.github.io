@@ -32,9 +32,7 @@
         <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="curobo.rollout.dynamics_model package" href="curobo.rollout.dynamics_model.html" />
-    <link rel="prev" title="curobo.rollout.cost.straight_line_cost module" href="curobo.rollout.cost.straight_line_cost.html" /> 
+    <link rel="search" title="Search" href="../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -74,11 +72,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../source/getting_started/4_benchmarks.html">Benchmarks &amp; Profiling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/getting_started/5_docker_development.html">Docker Development</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/getting_started/6_known_issues.html">Known Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/7_api.html">Python API</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Advanced Examples</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2a_batch_env.html">Batched Environments</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2b_block_stacking_example.html">Block Stacking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/1_batch_env.html">Batched Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2_block_stacking_example.html">Block Stacking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/3_constrained_planning.html">Constrained Planning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/4_robot_segmentation.html">Robot Segmentation</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
 <ul>
@@ -90,10 +91,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/02_numerical_optimization.html">Numerical Optimization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/04_cuda_kernels.html">CUDA Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/05_usd_api.html">USD for Robot and World Representation</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">API</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../api.html">Python API</a></li>
 </ul>
 
         </div>
@@ -110,9 +107,6 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../api.html">Python API</a></li>
-          <li class="breadcrumb-item"><a href="curobo.rollout.html">curobo.rollout package</a></li>
-          <li class="breadcrumb-item"><a href="curobo.rollout.cost.html">curobo.rollout.cost package</a></li>
       <li class="breadcrumb-item active">curobo.rollout.cost.zero_cost module</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/_api/curobo.rollout.cost.zero_cost.rst.txt" rel="nofollow"> View page source</a>
@@ -194,6 +188,12 @@ first input to <a class="reference internal" href="#curobo.rollout.cost.zero_cos
 output.</p>
 </dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.rollout.cost.zero_cost.SquaredSum._backward_cls">
+<span class="sig-name descname"><span class="pre">_backward_cls</span></span><a class="headerlink" href="#curobo.rollout.cost.zero_cost.SquaredSum._backward_cls" title="Link to this definition"></a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">SquaredSumBackward</span></code></p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -265,6 +265,12 @@ first input to <a class="reference internal" href="#curobo.rollout.cost.zero_cos
 output.</p>
 </dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.rollout.cost.zero_cost.RunSquaredSum._backward_cls">
+<span class="sig-name descname"><span class="pre">_backward_cls</span></span><a class="headerlink" href="#curobo.rollout.cost.zero_cost.RunSquaredSum._backward_cls" title="Link to this definition"></a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">RunSquaredSumBackward</span></code></p>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -286,7 +292,7 @@ output.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="curobo.rollout.cost.zero_cost.ZeroCost.forward">
 <span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">goal_dist</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.cost.zero_cost.ZeroCost.forward" title="Link to this definition"></a></dt>
-<dd><p>Defines the computation performed at every call.</p>
+<dd><p>Define the computation performed at every call.</p>
 <p>Should be overridden by all subclasses.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -304,10 +310,7 @@ registered hooks while the latter silently ignores them.</p>
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="curobo.rollout.cost.straight_line_cost.html" class="btn btn-neutral float-left" title="curobo.rollout.cost.straight_line_cost module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="curobo.rollout.dynamics_model.html" class="btn btn-neutral float-right" title="curobo.rollout.dynamics_model package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+          <footer>
 
   <hr/>
 

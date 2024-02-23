@@ -1,0 +1,225 @@
+<!--
+-- Copyright (c) 2023 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+--
+-- NVIDIA CORPORATION, its affiliates and licensors retain all intellectual
+-- property and proprietary rights in and to this material, related
+-- documentation and any modifications thereto. Any use, reproduction,
+-- disclosure or distribution of this material and related documentation
+-- without an express license agreement from NVIDIA CORPORATION or
+-- its affiliates is strictly prohibited.
+-->
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Robot Segmentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=097e10a7" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Configuring a New Robot" href="../tutorials/1_robot_configuration.html" />
+    <link rel="prev" title="Constrained Planning" href="3_constrained_planning.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            cuRobo
+              <img src="../../_static/nvidia_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Research</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../research/research.html">Technical Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../research/research_using_curobo.html">Research using cuRobo</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Library Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/1_install_instructions.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/1a_quick_overview.html">Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/2a_python_examples.html">Using in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/2b_isaacsim_examples.html">Using with Isaac Sim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/2c_world_collision.html">Collision World Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/2d_nvblox_demo.html">Using with Depth Camera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/2e_torch_layer_example.html">Using in a Neural Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/4_benchmarks.html">Benchmarks &amp; Profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/5_docker_development.html">Docker Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/6_known_issues.html">Known Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/7_api.html">Python API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Advanced Examples</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="1_batch_env.html">Batched Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_block_stacking_example.html">Block Stacking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_constrained_planning.html">Constrained Planning</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Robot Segmentation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/1_robot_configuration.html">Configuring a New Robot</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../notes/01_robot_list.html">Supported Robots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/02_numerical_optimization.html">Numerical Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/04_cuda_kernels.html">CUDA Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/05_usd_api.html">USD for Robot and World Representation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">cuRobo</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Robot Segmentation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/source/advanced_examples/4_robot_segmentation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="robot-segmentation">
+<span id="tut-robot-segmentation"></span><h1>Robot Segmentation<a class="headerlink" href="#robot-segmentation" title="Link to this heading"></a></h1>
+<figure class="align-left" id="id1">
+<a class="reference internal image-reference" href="../../_images/robot_segmentation.png"><img alt="../../_images/robot_segmentation.png" src="../../_images/robot_segmentation.png" style="width: 690px;" /></a>
+<figcaption>
+<p><span class="caption-text">Steps in filtering a robot using cuRobo’s robot segmentation. The scene shown in left is seen
+by a depth camera. The depth image is converted to a pointcloud and transformed to the robot
+base frame as shown in yellow (second from left). The current joint configuration is
+used in cuRobo’s kinematics to obtain the position of robot’s spheres as seen by the orange
+spheres (third from left). Points within these spheres are subtracted out
+(fourth image from left) and the final pointcloud is obtained with no robot visible
+(rightmost image). This pointcloud is converted back to a depth image and returned, along with
+a mask label.</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+<p>The geometry of a robot in a depth image can be filtered/segmented using cuRobo’s kinematics and
+geometry distance queries. This is available through
+<a class="reference internal" href="../../_api/curobo.wrap.model.robot_segmenter.html#curobo.wrap.model.robot_segmenter.RobotSegmenter" title="curobo.wrap.model.robot_segmenter.RobotSegmenter"><code class="xref py py-meth docutils literal notranslate"><span class="pre">curobo.wrap.model.robot_segmenter.RobotSegmenter</span></code></a> which can be initialized with a robot
+configuration file. Once initialzed, you can pass in <a class="reference internal" href="../../_api/curobo.types.camera.html#curobo.types.camera.CameraObservation" title="curobo.types.camera.CameraObservation"><code class="xref py py-meth docutils literal notranslate"><span class="pre">curobo.types.camera.CameraObservation</span></code></a>
+with <cite>depth_image</cite>, <cite>intrinsics</cite>, and <cite>pose</cite> (with pose of the camera w.r.t. robot’s base frame), and
+the robot’s joint configuration as a <a class="reference internal" href="../../_api/curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><code class="xref py py-meth docutils literal notranslate"><span class="pre">curobo.types.state.JointState</span></code></a>. Internally, the
+function first generates a pointcloud from the depth image using the intrinsics and then transforms
+the pointcloud to the robot’s base frame. Then position of the spheres representing the robot geometry
+are computed using cuRobo’s kinematics. Finally distance between the pointcloud and spheres are
+computed and any point within a distance threshold are treated as robot points and filtered.
+Check <code class="docutils literal notranslate"><span class="pre">examples/robot_image_segmentation_example.py</span></code> for reference. cuRobo’s implementation wraps
+the operations in a CUDA graph to reduce python overheads, achieving 3000hz on a 4090 GPU for
+480x480 images.</p>
+<div class="graphviz"><object data="../../_images/graphviz-fbabb912a61e9b77409981b4ebf9792411312dfc.svg" type="image/svg+xml" class="graphviz">
+<p class="warning">digraph {
+      edge [color = &quot;#708090&quot;; fontsize=10];
+      node [shape=&quot;box&quot;, style=&quot;rounded, filled&quot;, fontsize=12, color=&quot;#cccccc&quot;]
+      depth [label=&quot;Depth Image&quot;,shape=&quot;box&quot;,color=&quot;#76b900&quot;, style=&quot;filled, rounded&quot;, fontcolor=&quot;white&quot;]
+      intrinsics [label=&quot;Camera Intrinsics&quot;,shape=&quot;box&quot;,color=&quot;#76b900&quot;, style=&quot;filled, rounded&quot;, fontcolor=&quot;white&quot;]
+
+      pose [label=&quot;Camera Pose&quot;,shape=&quot;box&quot;,color=&quot;#76b900&quot;, style=&quot;filled, rounded&quot;, fontcolor=&quot;white&quot;]
+      q [label=&quot;Robot Joint Position&quot;,shape=&quot;box&quot;,color=&quot;#76b900&quot;, style=&quot;filled, rounded&quot;, fontcolor=&quot;white&quot;]
+      project [label=&quot;Project PointCloud to Base Frame&quot;,shape=&quot;box&quot;]
+      project_pc [label=&quot;Depth to PointCloud&quot;,shape=&quot;box&quot;]
+
+      depth -&gt; project_pc;
+      intrinsics -&gt; project_pc;
+      project_pc -&gt; project;
+      pose -&gt; project;
+      q -&gt; kinematics ;
+      kinematics -&gt; distance [label=&quot;Robot Spheres&quot;];
+      project -&gt; distance;
+      distance -&gt; mask;
+
+
+
+   }</p></object></div>
+<figure class="align-left" id="id2">
+<a class="reference internal image-reference" href="../../_images/robot_depth_segmentation.png"><img alt="../../_images/robot_depth_segmentation.png" src="../../_images/robot_depth_segmentation.png" style="width: 690px;" /></a>
+<figcaption>
+<p><span class="caption-text">The depth input depth image is shown in the left, followed by the segmented robot in middle
+and world without robot in right.</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="3_constrained_planning.html" class="btn btn-neutral float-left" title="Constrained Planning" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../tutorials/1_robot_configuration.html" class="btn btn-neutral float-right" title="Configuring a New Robot" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, NVIDIA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(250);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>
