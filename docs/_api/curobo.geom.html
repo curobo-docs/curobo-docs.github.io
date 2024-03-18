@@ -91,6 +91,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/02_numerical_optimization.html">Numerical Optimization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/04_cuda_kernels.html">CUDA Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/05_usd_api.html">USD for Robot and World Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/07_environment_variables.html">Environment Variables</a></li>
 </ul>
 
         </div>
@@ -160,6 +161,10 @@ environment collision checking.</p>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world_mesh.html">curobo.geom.sdf.world_mesh module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="curobo.geom.sdf.world_mesh.html#curobo.geom.sdf.world_mesh.WarpMeshData"><code class="docutils literal notranslate"><span class="pre">WarpMeshData</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="curobo.geom.sdf.world_mesh.html#curobo.geom.sdf.world_mesh.WorldMeshCollision"><code class="docutils literal notranslate"><span class="pre">WorldMeshCollision</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world_voxel.html">curobo.geom.sdf.world_voxel module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="curobo.geom.sdf.world_voxel.html#curobo.geom.sdf.world_voxel.WorldVoxelCollision"><code class="docutils literal notranslate"><span class="pre">WorldVoxelCollision</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -330,6 +335,17 @@ environment collision checking.</p>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.PointCloud.get_bounding_spheres"><code class="docutils literal notranslate"><span class="pre">PointCloud.get_bounding_spheres</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.VoxelGrid"><code class="docutils literal notranslate"><span class="pre">VoxelGrid</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.VoxelGrid.dims"><code class="docutils literal notranslate"><span class="pre">VoxelGrid.dims</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.VoxelGrid.voxel_size"><code class="docutils literal notranslate"><span class="pre">VoxelGrid.voxel_size</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.VoxelGrid.feature_tensor"><code class="docutils literal notranslate"><span class="pre">VoxelGrid.feature_tensor</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.VoxelGrid.xyzr_tensor"><code class="docutils literal notranslate"><span class="pre">VoxelGrid.xyzr_tensor</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.VoxelGrid.feature_dtype"><code class="docutils literal notranslate"><span class="pre">VoxelGrid.feature_dtype</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.VoxelGrid.create_xyzr_tensor"><code class="docutils literal notranslate"><span class="pre">VoxelGrid.create_xyzr_tensor</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.VoxelGrid.get_occupied_voxels"><code class="docutils literal notranslate"><span class="pre">VoxelGrid.get_occupied_voxels</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.VoxelGrid.clone"><code class="docutils literal notranslate"><span class="pre">VoxelGrid.clone</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig"><code class="docutils literal notranslate"><span class="pre">WorldConfig</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig.sphere"><code class="docutils literal notranslate"><span class="pre">WorldConfig.sphere</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig.cuboid"><code class="docutils literal notranslate"><span class="pre">WorldConfig.cuboid</span></code></a></li>
@@ -337,6 +353,7 @@ environment collision checking.</p>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig.cylinder"><code class="docutils literal notranslate"><span class="pre">WorldConfig.cylinder</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig.mesh"><code class="docutils literal notranslate"><span class="pre">WorldConfig.mesh</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig.blox"><code class="docutils literal notranslate"><span class="pre">WorldConfig.blox</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig.voxel"><code class="docutils literal notranslate"><span class="pre">WorldConfig.voxel</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig.objects"><code class="docutils literal notranslate"><span class="pre">WorldConfig.objects</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig.clone"><code class="docutils literal notranslate"><span class="pre">WorldConfig.clone</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig.from_dict"><code class="docutils literal notranslate"><span class="pre">WorldConfig.from_dict</span></code></a></li>

@@ -1,0 +1,463 @@
+<!--
+-- Copyright (c) 2023 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+--
+-- NVIDIA CORPORATION, its affiliates and licensors retain all intellectual
+-- property and proprietary rights in and to this material, related
+-- documentation and any modifications thereto. Any use, reproduction,
+-- disclosure or distribution of this material and related documentation
+-- without an express license agreement from NVIDIA CORPORATION or
+-- its affiliates is strictly prohibited.
+-->
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>curobo.geom.sdf.world_voxel module</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=097e10a7" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            cuRobo
+              <img src="../_static/nvidia_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Research</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/research/research.html">Technical Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/research/research_using_curobo.html">Research using cuRobo</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Library Overview</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/1_install_instructions.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/1a_quick_overview.html">Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2a_python_examples.html">Using in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2b_isaacsim_examples.html">Using with Isaac Sim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2c_world_collision.html">Collision World Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2d_nvblox_demo.html">Using with Depth Camera</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/2e_torch_layer_example.html">Using in a Neural Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/4_benchmarks.html">Benchmarks &amp; Profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/5_docker_development.html">Docker Development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/6_known_issues.html">Known Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/getting_started/7_api.html">Python API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Advanced Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/1_batch_env.html">Batched Environments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/2_block_stacking_example.html">Block Stacking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/3_constrained_planning.html">Constrained Planning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/advanced_examples/4_robot_segmentation.html">Robot Segmentation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/tutorials/1_robot_configuration.html">Configuring a New Robot</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Notes</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/01_robot_list.html">Supported Robots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/02_numerical_optimization.html">Numerical Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/04_cuda_kernels.html">CUDA Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/05_usd_api.html">USD for Robot and World Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/07_environment_variables.html">Environment Variables</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">cuRobo</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">curobo.geom.sdf.world_voxel module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/_api/curobo.geom.sdf.world_voxel.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-curobo.geom.sdf.world_voxel">
+<span id="curobo-geom-sdf-world-voxel-module"></span><h1>curobo.geom.sdf.world_voxel module<a class="headerlink" href="#module-curobo.geom.sdf.world_voxel" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="curobo.geom.sdf.world_voxel.WorldVoxelCollision">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">curobo.geom.sdf.world_voxel.</span></span><span class="sig-name descname"><span class="pre">WorldVoxelCollision</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world_voxel.WorldVoxelCollision" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="curobo.geom.sdf.world_mesh.html#curobo.geom.sdf.world_mesh.WorldMeshCollision" title="curobo.geom.sdf.world_mesh.WorldMeshCollision"><code class="xref py py-class docutils literal notranslate"><span class="pre">WorldMeshCollision</span></code></a></p>
+<p>Voxel grid representation of World, with each voxel containing Euclidean Signed Distance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>config</strong> (<a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldCollisionConfig" title="curobo.geom.sdf.world.WorldCollisionConfig"><em>WorldCollisionConfig</em></a>) – </p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.sdf.world_voxel.WorldVoxelCollision._init_cache">
+<span class="sig-name descname"><span class="pre">_init_cache</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world_voxel.WorldVoxelCollision._init_cache" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.sdf.world_voxel.WorldVoxelCollision._create_voxel_cache">
+<span class="sig-name descname"><span class="pre">_create_voxel_cache</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">voxel_cache</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world_voxel.WorldVoxelCollision._create_voxel_cache" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>voxel_cache</strong> (<em>Dict</em><em>[</em><em>str</em><em>, </em><em>Any</em><em>]</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.sdf.world_voxel.WorldVoxelCollision.load_collision_model">
+<span class="sig-name descname"><span class="pre">load_collision_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">world_model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fix_cache_reference</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world_voxel.WorldVoxelCollision.load_collision_model" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>world_model</strong> (<a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig" title="curobo.geom.types.WorldConfig"><em>WorldConfig</em></a>) – </p></li>
+<li><p><strong>fix_cache_reference</strong> (<em>bool</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.sdf.world_voxel.WorldVoxelCollision._load_collision_model_in_cache">
+<span class="sig-name descname"><span class="pre">_load_collision_model_in_cache</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">world_config</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fix_cache_reference</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world_voxel.WorldVoxelCollision._load_collision_model_in_cache" title="Link to this definition"></a></dt>
+<dd><p>TODO:</p>
+<p>_extended_summary_</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>world_config</strong> (<a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig" title="curobo.geom.types.WorldConfig"><em>WorldConfig</em></a>) – _description_</p></li>
+<li><p><strong>env_idx</strong> (<em>int</em>) – _description_</p></li>
+<li><p><strong>fix_cache_reference</strong> (<em>bool</em>) – _description_</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.sdf.world_voxel.WorldVoxelCollision._batch_tensor_voxel">
+<span class="sig-name descname"><span class="pre">_batch_tensor_voxel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pose</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dims</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">voxel_size</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world_voxel.WorldVoxelCollision._batch_tensor_voxel" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pose</strong> (<em>List</em><em>[</em><em>List</em><em>[</em><em>float</em><em>]</em><em>]</em>) – </p></li>
+<li><p><strong>dims</strong> (<em>List</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+<li><p><strong>voxel_size</strong> (<em>List</em><em>[</em><em>float</em><em>]</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.sdf.world_voxel.WorldVoxelCollision.load_batch_collision_model">
+<span class="sig-name descname"><span class="pre">load_batch_collision_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">world_config_list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world_voxel.WorldVoxelCollision.load_batch_collision_model" title="Link to this definition"></a></dt>
+<dd><p>Load voxel grid for batched environments</p>
+<p>_extended_summary_</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>world_config_list</strong> (<em>List</em><em>[</em><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig" title="curobo.geom.types.WorldConfig"><em>WorldConfig</em></a><em>]</em>) – _description_</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>_description_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.sdf.world_voxel.WorldVoxelCollision.enable_obstacle">
+<span class="sig-name descname"><span class="pre">enable_obstacle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world_voxel.WorldVoxelCollision.enable_obstacle" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – </p></li>
+<li><p><strong>enable</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>env_idx</strong> (<em>int</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.sdf.world_voxel.WorldVoxelCollision.enable_voxel">
+<span class="sig-name descname"><span class="pre">enable_voxel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">enable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_obj_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world_voxel.WorldVoxelCollision.enable_voxel" title="Link to this definition"></a></dt>
+<dd><p>Update obstacle dimensions</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>obj_dims</strong> (<em>torch.Tensor</em>) – [dim.x,dim.y, dim.z], give as [b,3]</p></li>
+<li><p><strong>obj_idx</strong> (<em>torch.Tensor</em><em> or </em><em>int</em>) – </p></li>
+<li><p><strong>enable</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>name</strong> (<em>str</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>env_obj_idx</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>env_idx</strong> (<em>int</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.sdf.world_voxel.WorldVoxelCollision.update_obstacle_pose">
+<span class="sig-name descname"><span class="pre">update_obstacle_pose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w_obj_pose</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world_voxel.WorldVoxelCollision.update_obstacle_pose" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – </p></li>
+<li><p><strong>w_obj_pose</strong> (<a class="reference internal" href="curobo.types.math.html#curobo.types.math.Pose" title="curobo.types.math.Pose"><em>Pose</em></a>) – </p></li>
+<li><p><strong>env_idx</strong> (<em>int</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.sdf.world_voxel.WorldVoxelCollision.update_voxel_data">
+<span class="sig-name descname"><span class="pre">update_voxel_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_voxel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world_voxel.WorldVoxelCollision.update_voxel_data" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>new_voxel</strong> (<a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.VoxelGrid" title="curobo.geom.types.VoxelGrid"><em>VoxelGrid</em></a>) – </p></li>
+<li><p><strong>env_idx</strong> (<em>int</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.sdf.world_voxel.WorldVoxelCollision.update_voxel_features">
+<span class="sig-name descname"><span class="pre">update_voxel_features</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">features</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_obj_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world_voxel.WorldVoxelCollision.update_voxel_features" title="Link to this definition"></a></dt>
+<dd><p>Update pose of a specific objects.
+This also updates the signed distance grid to account for the updated object pose.
+Args:
+obj_w_pose: Pose
+obj_idx:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>features</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>name</strong> (<em>str</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>env_obj_idx</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>env_idx</strong> (<em>int</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.sdf.world_voxel.WorldVoxelCollision.update_voxel_pose">
+<span class="sig-name descname"><span class="pre">update_voxel_pose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">w_obj_pose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obj_w_pose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_obj_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world_voxel.WorldVoxelCollision.update_voxel_pose" title="Link to this definition"></a></dt>
+<dd><p>Update pose of a specific objects.
+This also updates the signed distance grid to account for the updated object pose.
+Args:
+obj_w_pose: Pose
+obj_idx:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>w_obj_pose</strong> (<a class="reference internal" href="curobo.types.math.html#curobo.types.math.Pose" title="curobo.types.math.Pose"><em>Pose</em></a><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>obj_w_pose</strong> (<a class="reference internal" href="curobo.types.math.html#curobo.types.math.Pose" title="curobo.types.math.Pose"><em>Pose</em></a><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>name</strong> (<em>str</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>env_obj_idx</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>env_idx</strong> (<em>int</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.sdf.world_voxel.WorldVoxelCollision.get_voxel_idx">
+<span class="sig-name descname"><span class="pre">get_voxel_idx</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world_voxel.WorldVoxelCollision.get_voxel_idx" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – </p></li>
+<li><p><strong>env_idx</strong> (<em>int</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.sdf.world_voxel.WorldVoxelCollision.get_voxel_grid">
+<span class="sig-name descname"><span class="pre">get_voxel_grid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world_voxel.WorldVoxelCollision.get_voxel_grid" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – </p></li>
+<li><p><strong>env_idx</strong> (<em>int</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.sdf.world_voxel.WorldVoxelCollision.get_sphere_distance">
+<span class="sig-name descname"><span class="pre">get_sphere_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query_sphere</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collision_query_buffer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">activation_distance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_query_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_loss</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sum_collisions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compute_esdf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world_voxel.WorldVoxelCollision.get_sphere_distance" title="Link to this definition"></a></dt>
+<dd><p>Computes the signed distance via analytic function
+Args:
+tensor_sphere: b, n, 4</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>collision_query_buffer</strong> (<a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.CollisionQueryBuffer" title="curobo.geom.sdf.world.CollisionQueryBuffer"><em>CollisionQueryBuffer</em></a>) – </p></li>
+<li><p><strong>weight</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>activation_distance</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>env_query_idx</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>sum_collisions</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>compute_esdf</strong> (<em>bool</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.sdf.world_voxel.WorldVoxelCollision.get_sphere_collision">
+<span class="sig-name descname"><span class="pre">get_sphere_collision</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query_sphere</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collision_query_buffer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">activation_distance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_query_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_loss</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world_voxel.WorldVoxelCollision.get_sphere_collision" title="Link to this definition"></a></dt>
+<dd><p>Computes the signed distance via analytic function
+Args:
+tensor_sphere: b, n, 4
+we assume we don’t need gradient for this function. If you need gradient, use get_sphere_distance</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>collision_query_buffer</strong> (<a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.CollisionQueryBuffer" title="curobo.geom.sdf.world.CollisionQueryBuffer"><em>CollisionQueryBuffer</em></a>) – </p></li>
+<li><p><strong>weight</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>activation_distance</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>env_query_idx</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.sdf.world_voxel.WorldVoxelCollision.get_swept_sphere_distance">
+<span class="sig-name descname"><span class="pre">get_swept_sphere_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query_sphere</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collision_query_buffer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">activation_distance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed_dt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sweep_steps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enable_speed_metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_query_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_loss</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sum_collisions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world_voxel.WorldVoxelCollision.get_swept_sphere_distance" title="Link to this definition"></a></dt>
+<dd><p>Computes the signed distance via analytic function
+Args:
+tensor_sphere: b, n, 4</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>collision_query_buffer</strong> (<a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.CollisionQueryBuffer" title="curobo.geom.sdf.world.CollisionQueryBuffer"><em>CollisionQueryBuffer</em></a>) – </p></li>
+<li><p><strong>weight</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>activation_distance</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>speed_dt</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>sweep_steps</strong> (<em>int</em>) – </p></li>
+<li><p><strong>env_query_idx</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>sum_collisions</strong> (<em>bool</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.sdf.world_voxel.WorldVoxelCollision.get_swept_sphere_collision">
+<span class="sig-name descname"><span class="pre">get_swept_sphere_collision</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query_sphere</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collision_query_buffer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">activation_distance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed_dt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sweep_steps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enable_speed_metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_query_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_loss</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world_voxel.WorldVoxelCollision.get_swept_sphere_collision" title="Link to this definition"></a></dt>
+<dd><p>Computes the signed distance via analytic function
+Args:
+tensor_sphere: b, n, 4</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>collision_query_buffer</strong> (<a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.CollisionQueryBuffer" title="curobo.geom.sdf.world.CollisionQueryBuffer"><em>CollisionQueryBuffer</em></a>) – </p></li>
+<li><p><strong>weight</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>activation_distance</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>speed_dt</strong> (<em>Tensor</em>) – </p></li>
+<li><p><strong>sweep_steps</strong> (<em>int</em>) – </p></li>
+<li><p><strong>env_query_idx</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.sdf.world_voxel.WorldVoxelCollision.clear_cache">
+<span class="sig-name descname"><span class="pre">clear_cache</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world_voxel.WorldVoxelCollision.clear_cache" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, NVIDIA.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(250);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

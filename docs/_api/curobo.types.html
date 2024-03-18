@@ -91,6 +91,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/02_numerical_optimization.html">Numerical Optimization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/04_cuda_kernels.html">CUDA Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/05_usd_api.html">USD for Robot and World Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/07_environment_variables.html">Environment Variables</a></li>
 </ul>
 
         </div>
@@ -127,10 +128,14 @@
 <li class="toctree-l2"><a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType"><code class="docutils literal notranslate"><span class="pre">TensorDeviceType</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType.device"><code class="docutils literal notranslate"><span class="pre">TensorDeviceType.device</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType.dtype"><code class="docutils literal notranslate"><span class="pre">TensorDeviceType.dtype</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType.collision_geometry_dtype"><code class="docutils literal notranslate"><span class="pre">TensorDeviceType.collision_geometry_dtype</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType.collision_gradient_dtype"><code class="docutils literal notranslate"><span class="pre">TensorDeviceType.collision_gradient_dtype</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType.collision_distance_dtype"><code class="docutils literal notranslate"><span class="pre">TensorDeviceType.collision_distance_dtype</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType.from_basic"><code class="docutils literal notranslate"><span class="pre">TensorDeviceType.from_basic</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType.to_device"><code class="docutils literal notranslate"><span class="pre">TensorDeviceType.to_device</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType.to_int8_device"><code class="docutils literal notranslate"><span class="pre">TensorDeviceType.to_int8_device</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType.cpu"><code class="docutils literal notranslate"><span class="pre">TensorDeviceType.cpu</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType.as_torch_dict"><code class="docutils literal notranslate"><span class="pre">TensorDeviceType.as_torch_dict</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -155,6 +160,7 @@
 <li class="toctree-l3"><a class="reference internal" href="curobo.types.camera.html#curobo.types.camera.CameraObservation.get_pointcloud"><code class="docutils literal notranslate"><span class="pre">CameraObservation.get_pointcloud</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.types.camera.html#curobo.types.camera.CameraObservation.get_image_from_pointcloud"><code class="docutils literal notranslate"><span class="pre">CameraObservation.get_image_from_pointcloud</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.types.camera.html#curobo.types.camera.CameraObservation.update_projection_rays"><code class="docutils literal notranslate"><span class="pre">CameraObservation.update_projection_rays</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.types.camera.html#curobo.types.camera.CameraObservation.stack"><code class="docutils literal notranslate"><span class="pre">CameraObservation.stack</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -287,13 +293,28 @@
 <li class="toctree-l3"><a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState.append_joints"><code class="docutils literal notranslate"><span class="pre">JointState.append_joints</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState.trim_trajectory"><code class="docutils literal notranslate"><span class="pre">JointState.trim_trajectory</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState.scale"><code class="docutils literal notranslate"><span class="pre">JointState.scale</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState.scale_by_dt"><code class="docutils literal notranslate"><span class="pre">JointState.scale_by_dt</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState.shape"><code class="docutils literal notranslate"><span class="pre">JointState.shape</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState._abc_impl"><code class="docutils literal notranslate"><span class="pre">JointState._abc_impl</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.types.state.html#curobo.types.state.fn_get_index"><code class="docutils literal notranslate"><span class="pre">fn_get_index</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="curobo.types.tensor.html">curobo.types.tensor module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="curobo.types.tensor.html">curobo.types.tensor module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="curobo.types.tensor.html#curobo.types.tensor.T_DOF"><code class="docutils literal notranslate"><span class="pre">T_DOF</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.types.tensor.html#curobo.types.tensor.T_BDOF"><code class="docutils literal notranslate"><span class="pre">T_BDOF</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.types.tensor.html#curobo.types.tensor.T_BHDOF_float"><code class="docutils literal notranslate"><span class="pre">T_BHDOF_float</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.types.tensor.html#curobo.types.tensor.T_HDOF_float"><code class="docutils literal notranslate"><span class="pre">T_HDOF_float</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.types.tensor.html#curobo.types.tensor.T_BValue_float"><code class="docutils literal notranslate"><span class="pre">T_BValue_float</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.types.tensor.html#curobo.types.tensor.T_BHValue_float"><code class="docutils literal notranslate"><span class="pre">T_BHValue_float</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.types.tensor.html#curobo.types.tensor.T_BValue_bool"><code class="docutils literal notranslate"><span class="pre">T_BValue_bool</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.types.tensor.html#curobo.types.tensor.T_BValue_int"><code class="docutils literal notranslate"><span class="pre">T_BValue_int</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.types.tensor.html#curobo.types.tensor.T_BPosition"><code class="docutils literal notranslate"><span class="pre">T_BPosition</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.types.tensor.html#curobo.types.tensor.T_BQuaternion"><code class="docutils literal notranslate"><span class="pre">T_BQuaternion</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.types.tensor.html#curobo.types.tensor.T_BRotation"><code class="docutils literal notranslate"><span class="pre">T_BRotation</span></code></a></li>
+</ul>
+</li>
 </ul>
 </div>
 </section>

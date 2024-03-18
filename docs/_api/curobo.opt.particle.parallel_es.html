@@ -91,6 +91,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/02_numerical_optimization.html">Numerical Optimization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/04_cuda_kernels.html">CUDA Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/05_usd_api.html">USD for Robot and World Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/07_environment_variables.html">Environment Variables</a></li>
 </ul>
 
         </div>
@@ -189,9 +190,43 @@
 <dd></dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="curobo.opt.particle.parallel_es.ParallelES._exp_util_from_costs">
+<span class="sig-name descname"><span class="pre">_exp_util_from_costs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">costs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.opt.particle.parallel_es.ParallelES._exp_util_from_costs" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="curobo.opt.particle.parallel_es.ParallelES._exp_util">
 <span class="sig-name descname"><span class="pre">_exp_util</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">total_costs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.opt.particle.parallel_es.ParallelES._exp_util" title="Link to this definition"></a></dt>
 <dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.opt.particle.parallel_es.ParallelES._compute_mean_covariance">
+<span class="sig-name descname"><span class="pre">_compute_mean_covariance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">costs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">actions</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.opt.particle.parallel_es.ParallelES._compute_mean_covariance" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.opt.particle.parallel_es.ParallelES._update_distribution">
+<span class="sig-name descname"><span class="pre">_update_distribution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trajectories</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.opt.particle.parallel_es.ParallelES._update_distribution" title="Link to this definition"></a></dt>
+<dd><p>Update current control distribution using
+rollout trajectories</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>trajectories</strong> (<a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Trajectory" title="curobo.rollout.rollout_base.Trajectory"><em>Trajectory</em></a>) – <p>dict
+Rollout trajectories. Contains the following fields
+observations : torch.tensor</p>
+<blockquote>
+<div><p>observations along rollouts</p>
+</div></blockquote>
+<dl class="simple">
+<dt>actions<span class="classifier">torch.tensor</span></dt><dd><p>actions sampled from control distribution along rollouts</p>
+</dd>
+<dt>costs<span class="classifier">torch.tensor</span></dt><dd><p>step costs along rollouts</p>
+</dd>
+</dl>
+</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 

@@ -80,6 +80,7 @@
 <li class="toctree-l1"><a class="reference internal" href="source/notes/02_numerical_optimization.html">Numerical Optimization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="source/notes/04_cuda_kernels.html">CUDA Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="source/notes/05_usd_api.html">USD for Robot and World Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="source/notes/07_environment_variables.html">Environment Variables</a></li>
 </ul>
 
         </div>
@@ -184,7 +185,11 @@
 </li>
         <li><a href="_api/curobo.curobolib.geom.html#curobo.curobolib.geom.SdfSphereOBB._backward_cls">(curobo.curobolib.geom.SdfSphereOBB attribute)</a>
 </li>
+        <li><a href="_api/curobo.curobolib.geom.html#curobo.curobolib.geom.SdfSphereVoxel._backward_cls">(curobo.curobolib.geom.SdfSphereVoxel attribute)</a>
+</li>
         <li><a href="_api/curobo.curobolib.geom.html#curobo.curobolib.geom.SdfSweptSphereOBB._backward_cls">(curobo.curobolib.geom.SdfSweptSphereOBB attribute)</a>
+</li>
+        <li><a href="_api/curobo.curobolib.geom.html#curobo.curobolib.geom.SdfSweptSphereVoxel._backward_cls">(curobo.curobolib.geom.SdfSweptSphereVoxel attribute)</a>
 </li>
         <li><a href="_api/curobo.curobolib.geom.html#curobo.curobolib.geom.SelfCollisionDistance._backward_cls">(curobo.curobolib.geom.SelfCollisionDistance attribute)</a>
 </li>
@@ -255,6 +260,8 @@
 </li>
       <li><a href="_api/curobo.graph.graph_base.html#curobo.graph.graph_base.GraphPlanBase._batch_steer_and_connect">_batch_steer_and_connect() (curobo.graph.graph_base.GraphPlanBase method)</a>
 </li>
+      <li><a href="_api/curobo.geom.sdf.world_voxel.html#curobo.geom.sdf.world_voxel.WorldVoxelCollision._batch_tensor_voxel">_batch_tensor_voxel() (curobo.geom.sdf.world_voxel.WorldVoxelCollision method)</a>
+</li>
       <li><a href="_api/curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGenerator._build_chain">_build_chain() (curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGenerator method)</a>
 </li>
       <li><a href="_api/curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGenerator._build_collision_model">_build_collision_model() (curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGenerator method)</a>
@@ -282,8 +289,6 @@
       <ul>
         <li><a href="_api/curobo.curobolib.kinematics.html#curobo.curobolib.kinematics.KinematicsFusedGlobalCumulFunction._call_cuda">(curobo.curobolib.kinematics.KinematicsFusedGlobalCumulFunction static method)</a>
 </li>
-        <li><a href="_api/curobo.curobolib.opt.html#curobo.curobolib.opt.LBFGScu._call_cuda">(curobo.curobolib.opt.LBFGScu static method)</a>
-</li>
       </ul></li>
       <li><a href="_api/curobo.opt.particle.particle_opt_base.html#curobo.opt.particle.particle_opt_base.ParticleOptBase._call_cuda_opt_iters">_call_cuda_opt_iters() (curobo.opt.particle.particle_opt_base.ParticleOptBase method)</a>
 </li>
@@ -303,6 +308,12 @@
 
       <ul>
         <li><a href="_api/curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPI._compute_mean">(curobo.opt.particle.parallel_mppi.ParallelMPPI method)</a>
+</li>
+      </ul></li>
+      <li><a href="_api/curobo.opt.particle.parallel_es.html#curobo.opt.particle.parallel_es.ParallelES._compute_mean_covariance">_compute_mean_covariance() (curobo.opt.particle.parallel_es.ParallelES method)</a>
+
+      <ul>
+        <li><a href="_api/curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPI._compute_mean_covariance">(curobo.opt.particle.parallel_mppi.ParallelMPPI method)</a>
 </li>
       </ul></li>
       <li><a href="_api/curobo.wrap.reacher.evaluator.html#curobo.wrap.reacher.evaluator.TrajEvaluator._compute_path_length">_compute_path_length() (curobo.wrap.reacher.evaluator.TrajEvaluator method)</a>
@@ -327,6 +338,8 @@
 </li>
       <li><a href="_api/curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGenerator._create_self_collision_thread_data">_create_self_collision_thread_data() (curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGenerator method)</a>
 </li>
+      <li><a href="_api/curobo.geom.sdf.world_voxel.html#curobo.geom.sdf.world_voxel.WorldVoxelCollision._create_voxel_cache">_create_voxel_cache() (curobo.geom.sdf.world_voxel.WorldVoxelCollision method)</a>
+</li>
       <li><a href="_api/curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModel._cuda_forward">_cuda_forward() (curobo.cuda_robot_model.cuda_robot_model.CudaRobotModel method)</a>
 </li>
       <li><a href="_api/curobo.graph.graph_base.html#curobo.graph.graph_base.GraphPlanBase._cuda_graph_rollout_constraint">_cuda_graph_rollout_constraint() (curobo.graph.graph_base.GraphPlanBase method)</a>
@@ -341,6 +354,12 @@
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_api/curobo.opt.particle.parallel_es.html#curobo.opt.particle.parallel_es.ParallelES._exp_util_from_costs">_exp_util_from_costs() (curobo.opt.particle.parallel_es.ParallelES method)</a>
+
+      <ul>
+        <li><a href="_api/curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPI._exp_util_from_costs">(curobo.opt.particle.parallel_mppi.ParallelMPPI method)</a>
+</li>
+      </ul></li>
       <li><a href="_api/curobo.graph.prm.html#curobo.graph.prm.PRMStar._find_all_path">_find_all_path() (curobo.graph.prm.PRMStar method)</a>
 </li>
       <li><a href="_api/curobo.graph.prm.html#curobo.graph.prm.PRMStar._find_one_path">_find_one_path() (curobo.graph.prm.PRMStar method)</a>
@@ -430,6 +449,8 @@
       <ul>
         <li><a href="_api/curobo.geom.sdf.world_mesh.html#curobo.geom.sdf.world_mesh.WorldMeshCollision._init_cache">(curobo.geom.sdf.world_mesh.WorldMeshCollision method)</a>
 </li>
+        <li><a href="_api/curobo.geom.sdf.world_voxel.html#curobo.geom.sdf.world_voxel.WorldVoxelCollision._init_cache">(curobo.geom.sdf.world_voxel.WorldVoxelCollision method)</a>
+</li>
       </ul></li>
       <li><a href="_api/curobo.rollout.cost.cost_base.html#curobo.rollout.cost.cost_base.CostBase._init_post_config">_init_post_config() (curobo.rollout.cost.cost_base.CostBase method)</a>
 
@@ -448,7 +469,11 @@
       <li><a href="_api/curobo.geom.sdf.world_mesh.html#curobo.geom.sdf.world_mesh.WorldMeshCollision._load_batch_mesh_to_warp">_load_batch_mesh_to_warp() (curobo.geom.sdf.world_mesh.WorldMeshCollision method)</a>
 </li>
       <li><a href="_api/curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldPrimitiveCollision._load_collision_model_in_cache">_load_collision_model_in_cache() (curobo.geom.sdf.world.WorldPrimitiveCollision method)</a>
+
+      <ul>
+        <li><a href="_api/curobo.geom.sdf.world_voxel.html#curobo.geom.sdf.world_voxel.WorldVoxelCollision._load_collision_model_in_cache">(curobo.geom.sdf.world_voxel.WorldVoxelCollision method)</a>
 </li>
+      </ul></li>
       <li><a href="_api/curobo.geom.sdf.world_mesh.html#curobo.geom.sdf.world_mesh.WorldMeshCollision._load_mesh_into_cache">_load_mesh_into_cache() (curobo.geom.sdf.world_mesh.WorldMeshCollision method)</a>
 </li>
       <li><a href="_api/curobo.geom.sdf.world_mesh.html#curobo.geom.sdf.world_mesh.WorldMeshCollision._load_mesh_to_warp">_load_mesh_to_warp() (curobo.geom.sdf.world_mesh.WorldMeshCollision method)</a>
@@ -527,9 +552,11 @@
 </li>
       <li><a href="_api/curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPI._update_cov_scale">_update_cov_scale() (curobo.opt.particle.parallel_mppi.ParallelMPPI method)</a>
 </li>
-      <li><a href="_api/curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPI._update_distribution">_update_distribution() (curobo.opt.particle.parallel_mppi.ParallelMPPI method)</a>
+      <li><a href="_api/curobo.opt.particle.parallel_es.html#curobo.opt.particle.parallel_es.ParallelES._update_distribution">_update_distribution() (curobo.opt.particle.parallel_es.ParallelES method)</a>
 
       <ul>
+        <li><a href="_api/curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPI._update_distribution">(curobo.opt.particle.parallel_mppi.ParallelMPPI method)</a>
+</li>
         <li><a href="_api/curobo.opt.particle.particle_opt_base.html#curobo.opt.particle.particle_opt_base.ParticleOptBase._update_distribution">(curobo.opt.particle.particle_opt_base.ParticleOptBase method)</a>
 </li>
       </ul></li>
@@ -725,6 +752,8 @@
 </li>
       <li><a href="_api/curobo.rollout.arm_reacher.html#curobo.rollout.arm_reacher.ArmReacherMetrics">ArmReacherMetrics (class in curobo.rollout.arm_reacher)</a>
 </li>
+      <li><a href="_api/curobo.types.base.html#curobo.types.base.TensorDeviceType.as_torch_dict">as_torch_dict() (curobo.types.base.TensorDeviceType method)</a>
+</li>
       <li><a href="_api/curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.asset_root_path">asset_root_path (curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig attribute)</a>
 </li>
       <li><a href="_api/curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGen.attach_bounding_box_from_blox_to_robot">attach_bounding_box_from_blox_to_robot() (curobo.wrap.reacher.motion_gen.MotionGen method)</a>
@@ -760,7 +789,11 @@
 </li>
         <li><a href="_api/curobo.curobolib.geom.html#curobo.curobolib.geom.SdfSphereOBB.backward">(curobo.curobolib.geom.SdfSphereOBB static method)</a>
 </li>
+        <li><a href="_api/curobo.curobolib.geom.html#curobo.curobolib.geom.SdfSphereVoxel.backward">(curobo.curobolib.geom.SdfSphereVoxel static method)</a>
+</li>
         <li><a href="_api/curobo.curobolib.geom.html#curobo.curobolib.geom.SdfSweptSphereOBB.backward">(curobo.curobolib.geom.SdfSweptSphereOBB static method)</a>
+</li>
+        <li><a href="_api/curobo.curobolib.geom.html#curobo.curobolib.geom.SdfSweptSphereVoxel.backward">(curobo.curobolib.geom.SdfSweptSphereVoxel static method)</a>
 </li>
         <li><a href="_api/curobo.curobolib.geom.html#curobo.curobolib.geom.SelfCollisionDistance.backward">(curobo.curobolib.geom.SelfCollisionDistance static method)</a>
 </li>
@@ -840,6 +873,8 @@
 </li>
         <li><a href="_api/curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.KinematicsTensorConfig.base_link">(curobo.cuda_robot_model.types.KinematicsTensorConfig attribute)</a>
 </li>
+        <li><a href="_api/curobo.wrap.model.robot_segmenter.html#curobo.wrap.model.robot_segmenter.RobotSegmenter.base_link">(curobo.wrap.model.robot_segmenter.RobotSegmenter property)</a>
+</li>
       </ul></li>
       <li><a href="_api/curobo.rollout.dynamics_model.kinematic_model.html#curobo.rollout.dynamics_model.kinematic_model.TimeTrajConfig.base_ratio">base_ratio (curobo.rollout.dynamics_model.kinematic_model.TimeTrajConfig attribute)</a>
 </li>
@@ -861,12 +896,12 @@
 </li>
       <li><a href="_api/curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal.batch_enable_idx">batch_enable_idx (curobo.rollout.rollout_base.Goal attribute)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_api/curobo.wrap.reacher.types.html#curobo.wrap.reacher.types.ReacherSolveState.batch_env">batch_env (curobo.wrap.reacher.types.ReacherSolveState attribute)</a>
 </li>
       <li><a href="_api/curobo.wrap.reacher.types.html#curobo.wrap.reacher.types.ReacherSolveType.BATCH_ENV">BATCH_ENV (curobo.wrap.reacher.types.ReacherSolveType attribute)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_api/curobo.wrap.reacher.types.html#curobo.wrap.reacher.types.ReacherSolveType.BATCH_ENV_GOALSET">BATCH_ENV_GOALSET (curobo.wrap.reacher.types.ReacherSolveType attribute)</a>
 </li>
       <li><a href="_api/curobo.wrap.reacher.ik_solver.html#curobo.wrap.reacher.ik_solver.IKSolver.batch_env_solve">batch_env_solve() (curobo.wrap.reacher.ik_solver.IKSolver method)</a>
@@ -1048,9 +1083,17 @@
 </li>
         <li><a href="_api/curobo.geom.sdf.world_mesh.html#curobo.geom.sdf.world_mesh.WorldMeshCollision.clear_cache">(curobo.geom.sdf.world_mesh.WorldMeshCollision method)</a>
 </li>
-      </ul></li>
-      <li><a href="_api/curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGen.clear_world_cache">clear_world_cache() (curobo.wrap.reacher.motion_gen.MotionGen method)</a>
+        <li><a href="_api/curobo.geom.sdf.world_voxel.html#curobo.geom.sdf.world_voxel.WorldVoxelCollision.clear_cache">(curobo.geom.sdf.world_voxel.WorldVoxelCollision method)</a>
 </li>
+      </ul></li>
+      <li><a href="_api/curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldCollision.clear_voxelization_cache">clear_voxelization_cache() (curobo.geom.sdf.world.WorldCollision method)</a>
+</li>
+      <li><a href="_api/curobo.wrap.model.robot_world.html#curobo.wrap.model.robot_world.RobotWorld.clear_world_cache">clear_world_cache() (curobo.wrap.model.robot_world.RobotWorld method)</a>
+
+      <ul>
+        <li><a href="_api/curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGen.clear_world_cache">(curobo.wrap.reacher.motion_gen.MotionGen method)</a>
+</li>
+      </ul></li>
       <li><a href="_api/curobo.opt.newton.newton_base.html#curobo.opt.newton.newton_base.NewtonOptBase.clip_bounds">clip_bounds() (curobo.opt.newton.newton_base.NewtonOptBase method)</a>
 </li>
       <li><a href="_api/curobo.rollout.dynamics_model.integration_utils.html#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStep">CliqueTensorStep (class in curobo.rollout.dynamics_model.integration_utils)</a>
@@ -1073,6 +1116,8 @@
         <li><a href="_api/curobo.geom.sdf.world.html#curobo.geom.sdf.world.CollisionBuffer.clone">(curobo.geom.sdf.world.CollisionBuffer method)</a>
 </li>
         <li><a href="_api/curobo.geom.sdf.world.html#curobo.geom.sdf.world.CollisionQueryBuffer.clone">(curobo.geom.sdf.world.CollisionQueryBuffer method)</a>
+</li>
+        <li><a href="_api/curobo.geom.types.html#curobo.geom.types.VoxelGrid.clone">(curobo.geom.types.VoxelGrid method)</a>
 </li>
         <li><a href="_api/curobo.geom.types.html#curobo.geom.types.WorldConfig.clone">(curobo.geom.types.WorldConfig method)</a>
 </li>
@@ -1105,11 +1150,19 @@
 </li>
       <li><a href="_api/curobo.curobolib.geom_cu.html#curobo.curobolib.geom_cu.closest_point">closest_point() (in module curobo.curobolib.geom_cu)</a>
 </li>
+      <li><a href="_api/curobo.curobolib.geom_cu.html#curobo.curobolib.geom_cu.closest_point_voxel">closest_point_voxel() (in module curobo.curobolib.geom_cu)</a>
+</li>
       <li><a href="_api/curobo.opt.opt_base.html#curobo.opt.opt_base.OptimizerConfig.cold_start_n_iters">cold_start_n_iters (curobo.opt.opt_base.OptimizerConfig attribute)</a>
 </li>
       <li><a href="_api/curobo.wrap.model.robot_world.html#curobo.wrap.model.robot_world.RobotWorldConfig.collision_constraint">collision_constraint (curobo.wrap.model.robot_world.RobotWorldConfig attribute)</a>
 </li>
       <li><a href="_api/curobo.wrap.model.robot_world.html#curobo.wrap.model.robot_world.RobotWorldConfig.collision_cost">collision_cost (curobo.wrap.model.robot_world.RobotWorldConfig attribute)</a>
+</li>
+      <li><a href="_api/curobo.types.base.html#curobo.types.base.TensorDeviceType.collision_distance_dtype">collision_distance_dtype (curobo.types.base.TensorDeviceType attribute)</a>
+</li>
+      <li><a href="_api/curobo.types.base.html#curobo.types.base.TensorDeviceType.collision_geometry_dtype">collision_geometry_dtype (curobo.types.base.TensorDeviceType attribute)</a>
+</li>
+      <li><a href="_api/curobo.types.base.html#curobo.types.base.TensorDeviceType.collision_gradient_dtype">collision_gradient_dtype (curobo.types.base.TensorDeviceType attribute)</a>
 </li>
       <li><a href="_api/curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.collision_link_names">collision_link_names (curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig attribute)</a>
 </li>
@@ -1155,8 +1208,6 @@
 </li>
       <li><a href="_api/curobo.geom.sdf.sdf_grid.html#curobo.geom.sdf.sdf_grid.compute_sdf_gradient">compute_sdf_gradient() (in module curobo.geom.sdf.sdf_grid)</a>
 </li>
-      <li><a href="_api/curobo.opt.newton.lbfgs.html#curobo.opt.newton.lbfgs.compute_step_direction">compute_step_direction() (in module curobo.opt.newton.lbfgs)</a>
-</li>
       <li><a href="_api/curobo.graph.graph_base.html#curobo.graph.graph_base.GraphPlanBase.connect_nodes">connect_nodes() (curobo.graph.graph_base.GraphPlanBase method)</a>
 </li>
       <li><a href="_api/curobo.graph.graph_base.html#curobo.graph.graph_base.Graph.connectivity">connectivity (curobo.graph.graph_base.Graph attribute)</a>
@@ -1164,11 +1215,7 @@
       <li><a href="_api/curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutMetrics.constraint">constraint (curobo.rollout.rollout_base.RolloutMetrics attribute)</a>
 </li>
       <li><a href="_api/curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmBaseConfig.constraint_cfg">constraint_cfg (curobo.rollout.arm_base.ArmBaseConfig attribute)</a>
-
-      <ul>
-        <li><a href="_api/curobo.rollout.arm_reacher.html#curobo.rollout.arm_reacher.ArmReacherConfig.constraint_cfg">(curobo.rollout.arm_reacher.ArmReacherConfig attribute)</a>
 </li>
-      </ul></li>
       <li><a href="_api/curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmBase.constraint_fn">constraint_fn() (curobo.rollout.arm_base.ArmBase method)</a>
 
       <ul>
@@ -1184,11 +1231,7 @@
 </li>
       </ul></li>
       <li><a href="_api/curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmBaseConfig.convergence_cfg">convergence_cfg (curobo.rollout.arm_base.ArmBaseConfig attribute)</a>
-
-      <ul>
-        <li><a href="_api/curobo.rollout.arm_reacher.html#curobo.rollout.arm_reacher.ArmReacherConfig.convergence_cfg">(curobo.rollout.arm_reacher.ArmReacherConfig attribute)</a>
 </li>
-      </ul></li>
       <li><a href="_api/curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmBase.convergence_fn">convergence_fn() (curobo.rollout.arm_base.ArmBase method)</a>
 
       <ul>
@@ -1228,11 +1271,7 @@
       <li><a href="_api/curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutMetrics.cost">cost (curobo.rollout.rollout_base.RolloutMetrics attribute)</a>
 </li>
       <li><a href="_api/curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmBaseConfig.cost_cfg">cost_cfg (curobo.rollout.arm_base.ArmBaseConfig attribute)</a>
-
-      <ul>
-        <li><a href="_api/curobo.rollout.arm_reacher.html#curobo.rollout.arm_reacher.ArmReacherConfig.cost_cfg">(curobo.rollout.arm_reacher.ArmReacherConfig attribute)</a>
 </li>
-      </ul></li>
       <li><a href="_api/curobo.opt.newton.newton_base.html#curobo.opt.newton.newton_base.NewtonOptConfig.cost_convergence">cost_convergence (curobo.opt.newton.newton_base.NewtonOptConfig attribute)</a>
 </li>
       <li><a href="_api/curobo.opt.newton.newton_base.html#curobo.opt.newton.newton_base.NewtonOptConfig.cost_delta_threshold">cost_delta_threshold (curobo.opt.newton.newton_base.NewtonOptConfig attribute)</a>
@@ -1325,6 +1364,8 @@
         <li><a href="_api/curobo.util.usd_helper.html#curobo.util.usd_helper.create_stage">(in module curobo.util.usd_helper)</a>
 </li>
       </ul></li>
+      <li><a href="_api/curobo.geom.types.html#curobo.geom.types.VoxelGrid.create_xyzr_tensor">create_xyzr_tensor() (curobo.geom.types.VoxelGrid method)</a>
+</li>
       <li><a href="_api/curobo.cuda_robot_model.cuda_robot_generator.html#curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig.cspace">cspace (curobo.cuda_robot_model.cuda_robot_generator.CudaRobotGeneratorConfig attribute)</a>
 
       <ul>
@@ -1590,6 +1631,13 @@
 
       <ul>
         <li><a href="_api/curobo.geom.sdf.world_mesh.html#module-curobo.geom.sdf.world_mesh">module</a>
+</li>
+      </ul></li>
+      <li>
+    curobo.geom.sdf.world_voxel
+
+      <ul>
+        <li><a href="_api/curobo.geom.sdf.world_voxel.html#module-curobo.geom.sdf.world_voxel">module</a>
 </li>
       </ul></li>
       <li>
@@ -2168,8 +2216,6 @@
         <li><a href="_api/curobo.wrap.reacher.trajopt.html#curobo.wrap.reacher.trajopt.TrajResult.debug_info">(curobo.wrap.reacher.trajopt.TrajResult attribute)</a>
 </li>
       </ul></li>
-      <li><a href="_api/curobo.curobolib.lbfgs_step_cu.html#curobo.curobolib.lbfgs_step_cu.debug_reduce">debug_reduce() (in module curobo.curobolib.lbfgs_step_cu)</a>
-</li>
       <li><a href="_api/curobo.geom.sdf.world_blox.html#curobo.geom.sdf.world_blox.WorldBloxCollision.decay_layer">decay_layer() (curobo.geom.sdf.world_blox.WorldBloxCollision method)</a>
 </li>
       <li><a href="_api/curobo.util.helpers.html#curobo.util.helpers.default_to_regular">default_to_regular() (in module curobo.util.helpers)</a>
@@ -2194,17 +2240,23 @@
 </li>
       <li><a href="_api/curobo.types.base.html#curobo.types.base.TensorDeviceType.device">device (curobo.types.base.TensorDeviceType attribute)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_api/curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.CovType.DIAG_A">DIAG_A (curobo.opt.particle.parallel_mppi.CovType attribute)</a>
 </li>
       <li><a href="_api/curobo.geom.types.html#curobo.geom.types.Cuboid.dims">dims (curobo.geom.types.Cuboid attribute)</a>
+
+      <ul>
+        <li><a href="_api/curobo.geom.types.html#curobo.geom.types.VoxelGrid.dims">(curobo.geom.types.VoxelGrid attribute)</a>
 </li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_api/curobo.rollout.cost.cost_base.html#curobo.rollout.cost.cost_base.CostBase.disable_cost">disable_cost() (curobo.rollout.cost.cost_base.CostBase method)</a>
 </li>
       <li><a href="_api/curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGenPlanConfig.disable_graph_attempt">disable_graph_attempt (curobo.wrap.reacher.motion_gen.MotionGenPlanConfig attribute)</a>
 </li>
       <li><a href="_api/curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.KinematicsTensorConfig.disable_link_spheres">disable_link_spheres() (curobo.cuda_robot_model.types.KinematicsTensorConfig method)</a>
+</li>
+      <li><a href="_api/curobo.util.torch_utils.html#curobo.util.torch_utils.disable_torch_compile_global">disable_torch_compile_global() (in module curobo.util.torch_utils)</a>
 </li>
       <li><a href="_api/curobo.rollout.cost.primitive_collision_cost.html#curobo.rollout.cost.primitive_collision_cost.PrimitiveCollisionCost.discrete_fn">discrete_fn() (curobo.rollout.cost.primitive_collision_cost.PrimitiveCollisionCost method)</a>
 </li>
@@ -2292,6 +2344,8 @@
 </li>
       <li><a href="_api/curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.JointLimits.effort">effort (curobo.cuda_robot_model.types.JointLimits attribute)</a>
 </li>
+      <li><a href="_api/curobo.util.torch_utils.html#curobo.util.torch_utils.empty_decorator">empty_decorator() (in module curobo.util.torch_utils)</a>
+</li>
       <li><a href="_api/curobo.util.state_filter.html#curobo.util.state_filter.FilterConfig.enable">enable (curobo.util.state_filter.FilterConfig attribute)</a>
 </li>
       <li><a href="_api/curobo.geom.sdf.world_blox.html#curobo.geom.sdf.world_blox.WorldBloxCollision.enable_blox">enable_blox() (curobo.geom.sdf.world_blox.WorldBloxCollision method)</a>
@@ -2325,6 +2379,8 @@
 </li>
         <li><a href="_api/curobo.geom.sdf.world_mesh.html#curobo.geom.sdf.world_mesh.WorldMeshCollision.enable_obstacle">(curobo.geom.sdf.world_mesh.WorldMeshCollision method)</a>
 </li>
+        <li><a href="_api/curobo.geom.sdf.world_voxel.html#curobo.geom.sdf.world_voxel.WorldVoxelCollision.enable_obstacle">(curobo.geom.sdf.world_voxel.WorldVoxelCollision method)</a>
+</li>
       </ul></li>
       <li><a href="_api/curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGenPlanConfig.enable_opt">enable_opt (curobo.wrap.reacher.motion_gen.MotionGenPlanConfig attribute)</a>
 </li>
@@ -2334,6 +2390,8 @@
         <li><a href="_api/curobo.wrap.reacher.mpc.html#curobo.wrap.reacher.mpc.MpcSolver.enable_pose_cost">(curobo.wrap.reacher.mpc.MpcSolver method)</a>
 </li>
       </ul></li>
+      <li><a href="_api/curobo.geom.sdf.world_voxel.html#curobo.geom.sdf.world_voxel.WorldVoxelCollision.enable_voxel">enable_voxel() (curobo.geom.sdf.world_voxel.WorldVoxelCollision method)</a>
+</li>
       <li><a href="_api/curobo.rollout.cost.cost_base.html#curobo.rollout.cost.cost_base.CostBase.enabled">enabled (curobo.rollout.cost.cost_base.CostBase property)</a>
 </li>
       <li><a href="_api/curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPI.entropy">entropy (curobo.opt.particle.parallel_mppi.ParallelMPPI property)</a>
@@ -2383,6 +2441,10 @@
       <li><a href="_api/curobo.util.sample_lib.html#curobo.util.sample_lib.HaltonGenerator.fast_forward">fast_forward() (curobo.util.sample_lib.HaltonGenerator method)</a>
 </li>
       <li><a href="_api/curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutMetrics.feasible">feasible (curobo.rollout.rollout_base.RolloutMetrics attribute)</a>
+</li>
+      <li><a href="_api/curobo.geom.types.html#curobo.geom.types.VoxelGrid.feature_dtype">feature_dtype (curobo.geom.types.VoxelGrid attribute)</a>
+</li>
+      <li><a href="_api/curobo.geom.types.html#curobo.geom.types.VoxelGrid.feature_tensor">feature_tensor (curobo.geom.types.VoxelGrid attribute)</a>
 </li>
       <li><a href="_api/curobo.util_file.html#curobo.util_file.file_exists">file_exists() (in module curobo.util_file)</a>
 </li>
@@ -2452,6 +2514,8 @@
       </ul></li>
       <li><a href="_api/curobo.wrap.reacher.mpc.html#curobo.wrap.reacher.mpc.MpcSolver.fn">fn() (curobo.wrap.reacher.mpc.MpcSolver method)</a>
 </li>
+      <li><a href="_api/curobo.types.state.html#curobo.types.state.fn_get_index">fn_get_index() (in module curobo.types.state)</a>
+</li>
       <li><a href="_api/curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModel.forward">forward() (curobo.cuda_robot_model.cuda_robot_model.CudaRobotModel method)</a>
 
       <ul>
@@ -2461,7 +2525,11 @@
 </li>
         <li><a href="_api/curobo.curobolib.geom.html#curobo.curobolib.geom.SdfSphereOBB.forward">(curobo.curobolib.geom.SdfSphereOBB static method)</a>
 </li>
+        <li><a href="_api/curobo.curobolib.geom.html#curobo.curobolib.geom.SdfSphereVoxel.forward">(curobo.curobolib.geom.SdfSphereVoxel static method)</a>
+</li>
         <li><a href="_api/curobo.curobolib.geom.html#curobo.curobolib.geom.SdfSweptSphereOBB.forward">(curobo.curobolib.geom.SdfSweptSphereOBB static method)</a>
+</li>
+        <li><a href="_api/curobo.curobolib.geom.html#curobo.curobolib.geom.SdfSweptSphereVoxel.forward">(curobo.curobolib.geom.SdfSweptSphereVoxel static method)</a>
 </li>
         <li><a href="_api/curobo.curobolib.geom.html#curobo.curobolib.geom.SelfCollisionDistance.forward">(curobo.curobolib.geom.SelfCollisionDistance static method)</a>
 </li>
@@ -2828,6 +2896,8 @@
 </li>
       <li><a href="_api/curobo.rollout.arm_base.html#curobo.rollout.arm_base.ArmBase.get_ee_pose">get_ee_pose() (curobo.rollout.arm_base.ArmBase method)</a>
 </li>
+      <li><a href="_api/curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldCollision.get_esdf_in_bounding_box">get_esdf_in_bounding_box() (curobo.geom.sdf.world.WorldCollision method)</a>
+</li>
       <li><a href="_api/curobo.graph.graph_base.html#curobo.graph.graph_base.GraphPlanBase.get_feasible_sample_set">get_feasible_sample_set() (curobo.graph.graph_base.GraphPlanBase method)</a>
 </li>
       <li><a href="_api/curobo.util_file.html#curobo.util_file.get_filename">get_filename() (in module curobo.util_file)</a>
@@ -2938,7 +3008,7 @@
 </li>
       <li><a href="_api/curobo.geom.sdf.world_mesh.html#curobo.geom.sdf.world_mesh.WorldMeshCollision.get_mesh_idx">get_mesh_idx() (curobo.geom.sdf.world_mesh.WorldMeshCollision method)</a>
 </li>
-      <li><a href="_api/curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldPrimitiveCollision.get_mesh_in_bounding_box">get_mesh_in_bounding_box() (curobo.geom.sdf.world.WorldPrimitiveCollision method)</a>
+      <li><a href="_api/curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldCollision.get_mesh_in_bounding_box">get_mesh_in_bounding_box() (curobo.geom.sdf.world.WorldCollision method)</a>
 </li>
       <li><a href="_api/curobo.geom.types.html#curobo.geom.types.WorldConfig.get_mesh_world">get_mesh_world() (curobo.geom.types.WorldConfig method)</a>
 </li>
@@ -2984,8 +3054,6 @@
 </li>
       <li><a href="_api/curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldPrimitiveCollision.get_obb_idx">get_obb_idx() (curobo.geom.sdf.world.WorldPrimitiveCollision method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_api/curobo.geom.types.html#curobo.geom.types.WorldConfig.get_obb_world">get_obb_world() (curobo.geom.types.WorldConfig method)</a>
 </li>
       <li><a href="_api/curobo.geom.types.html#curobo.geom.types.WorldConfig.get_obstacle">get_obstacle() (curobo.geom.types.WorldConfig method)</a>
@@ -2993,6 +3061,12 @@
       <li><a href="_api/curobo.util.usd_helper.html#curobo.util.usd_helper.UsdHelper.get_obstacle_from_prim">get_obstacle_from_prim() (curobo.util.usd_helper.UsdHelper method)</a>
 </li>
       <li><a href="_api/curobo.util.usd_helper.html#curobo.util.usd_helper.UsdHelper.get_obstacles_from_stage">get_obstacles_from_stage() (curobo.util.usd_helper.UsdHelper method)</a>
+</li>
+      <li><a href="_api/curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldCollision.get_occupancy_in_bounding_box">get_occupancy_in_bounding_box() (curobo.geom.sdf.world.WorldCollision method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_api/curobo.geom.types.html#curobo.geom.types.VoxelGrid.get_occupied_voxels">get_occupied_voxels() (curobo.geom.types.VoxelGrid method)</a>
 </li>
       <li><a href="_api/curobo.types.state.html#curobo.types.state.JointState.get_ordered_joint_state">get_ordered_joint_state() (curobo.types.state.JointState method)</a>
 </li>
@@ -3141,6 +3215,8 @@
 </li>
         <li><a href="_api/curobo.geom.sdf.world_mesh.html#curobo.geom.sdf.world_mesh.WorldMeshCollision.get_sphere_collision">(curobo.geom.sdf.world_mesh.WorldMeshCollision method)</a>
 </li>
+        <li><a href="_api/curobo.geom.sdf.world_voxel.html#curobo.geom.sdf.world_voxel.WorldVoxelCollision.get_sphere_collision">(curobo.geom.sdf.world_voxel.WorldVoxelCollision method)</a>
+</li>
       </ul></li>
       <li><a href="_api/curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldCollision.get_sphere_distance">get_sphere_distance() (curobo.geom.sdf.world.WorldCollision method)</a>
 
@@ -3150,6 +3226,8 @@
         <li><a href="_api/curobo.geom.sdf.world_blox.html#curobo.geom.sdf.world_blox.WorldBloxCollision.get_sphere_distance">(curobo.geom.sdf.world_blox.WorldBloxCollision method)</a>
 </li>
         <li><a href="_api/curobo.geom.sdf.world_mesh.html#curobo.geom.sdf.world_mesh.WorldMeshCollision.get_sphere_distance">(curobo.geom.sdf.world_mesh.WorldMeshCollision method)</a>
+</li>
+        <li><a href="_api/curobo.geom.sdf.world_voxel.html#curobo.geom.sdf.world_voxel.WorldVoxelCollision.get_sphere_distance">(curobo.geom.sdf.world_voxel.WorldVoxelCollision method)</a>
 </li>
       </ul></li>
       <li><a href="_api/curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.KinematicsTensorConfig.get_sphere_index_from_link_name">get_sphere_index_from_link_name() (curobo.cuda_robot_model.types.KinematicsTensorConfig method)</a>
@@ -3193,6 +3271,8 @@
 </li>
         <li><a href="_api/curobo.geom.sdf.world_mesh.html#curobo.geom.sdf.world_mesh.WorldMeshCollision.get_swept_sphere_collision">(curobo.geom.sdf.world_mesh.WorldMeshCollision method)</a>
 </li>
+        <li><a href="_api/curobo.geom.sdf.world_voxel.html#curobo.geom.sdf.world_voxel.WorldVoxelCollision.get_swept_sphere_collision">(curobo.geom.sdf.world_voxel.WorldVoxelCollision method)</a>
+</li>
       </ul></li>
       <li><a href="_api/curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldCollision.get_swept_sphere_distance">get_swept_sphere_distance() (curobo.geom.sdf.world.WorldCollision method)</a>
 
@@ -3203,8 +3283,14 @@
 </li>
         <li><a href="_api/curobo.geom.sdf.world_mesh.html#curobo.geom.sdf.world_mesh.WorldMeshCollision.get_swept_sphere_distance">(curobo.geom.sdf.world_mesh.WorldMeshCollision method)</a>
 </li>
+        <li><a href="_api/curobo.geom.sdf.world_voxel.html#curobo.geom.sdf.world_voxel.WorldVoxelCollision.get_swept_sphere_distance">(curobo.geom.sdf.world_voxel.WorldVoxelCollision method)</a>
+</li>
       </ul></li>
       <li><a href="_api/curobo.util_file.html#curobo.util_file.get_task_configs_path">get_task_configs_path() (in module curobo.util_file)</a>
+</li>
+      <li><a href="_api/curobo.util.torch_utils.html#curobo.util.torch_utils.get_torch_compile_options">get_torch_compile_options() (in module curobo.util.torch_utils)</a>
+</li>
+      <li><a href="_api/curobo.util.torch_utils.html#curobo.util.torch_utils.get_torch_jit_decorator">get_torch_jit_decorator() (in module curobo.util.torch_utils)</a>
 </li>
       <li><a href="_api/curobo.util.usd_helper.html#curobo.util.usd_helper.get_transform">get_transform() (in module curobo.util.usd_helper)</a>
 </li>
@@ -3234,11 +3320,15 @@
 </li>
       <li><a href="_api/curobo.wrap.reacher.mpc.html#curobo.wrap.reacher.mpc.MpcSolver.get_visual_rollouts">get_visual_rollouts() (curobo.wrap.reacher.mpc.MpcSolver method)</a>
 </li>
+      <li><a href="_api/curobo.geom.sdf.world_voxel.html#curobo.geom.sdf.world_voxel.WorldVoxelCollision.get_voxel_grid">get_voxel_grid() (curobo.geom.sdf.world_voxel.WorldVoxelCollision method)</a>
+</li>
+      <li><a href="_api/curobo.geom.sdf.world_voxel.html#curobo.geom.sdf.world_voxel.WorldVoxelCollision.get_voxel_idx">get_voxel_idx() (curobo.geom.sdf.world_voxel.WorldVoxelCollision method)</a>
+</li>
       <li><a href="_api/curobo.geom.sphere_fit.html#curobo.geom.sphere_fit.get_voxel_pitch">get_voxel_pitch() (in module curobo.geom.sphere_fit)</a>
 </li>
       <li><a href="_api/curobo.geom.sphere_fit.html#curobo.geom.sphere_fit.get_voxelgrid_from_mesh">get_voxelgrid_from_mesh() (in module curobo.geom.sphere_fit)</a>
 </li>
-      <li><a href="_api/curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldPrimitiveCollision.get_voxels_in_bounding_box">get_voxels_in_bounding_box() (curobo.geom.sdf.world.WorldPrimitiveCollision method)</a>
+      <li><a href="_api/curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldCollision.get_voxels_in_bounding_box">get_voxels_in_bounding_box() (curobo.geom.sdf.world.WorldCollision method)</a>
 </li>
       <li><a href="_api/curobo.util_file.html#curobo.util_file.get_weights_path">get_weights_path() (in module curobo.util_file)</a>
 </li>
@@ -3506,6 +3596,8 @@
       </ul></li>
       <li><a href="_api/curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.CSpaceConfig.jerk_scale">jerk_scale (curobo.cuda_robot_model.types.CSpaceConfig attribute)</a>
 </li>
+      <li><a href="_api/curobo.wrap.reacher.trajopt.html#curobo.wrap.reacher.trajopt.jit_trajopt_best_select">jit_trajopt_best_select() (in module curobo.wrap.reacher.trajopt)</a>
+</li>
       <li><a href="_api/curobo.curobolib.util_file.html#curobo.curobolib.util_file.join_path">join_path() (in module curobo.curobolib.util_file)</a>
 
       <ul>
@@ -3528,10 +3620,10 @@
       </ul></li>
       <li><a href="_api/curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.KinematicsTensorConfig.joint_map">joint_map (curobo.cuda_robot_model.types.KinematicsTensorConfig attribute)</a>
 </li>
-      <li><a href="_api/curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.KinematicsTensorConfig.joint_map_type">joint_map_type (curobo.cuda_robot_model.types.KinematicsTensorConfig attribute)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_api/curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.KinematicsTensorConfig.joint_map_type">joint_map_type (curobo.cuda_robot_model.types.KinematicsTensorConfig attribute)</a>
+</li>
       <li><a href="_api/curobo.cuda_robot_model.kinematics_parser.html#curobo.cuda_robot_model.kinematics_parser.LinkParams.joint_name">joint_name (curobo.cuda_robot_model.kinematics_parser.LinkParams attribute)</a>
 </li>
       <li><a href="_api/curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModel.joint_names">joint_names (curobo.cuda_robot_model.cuda_robot_model.CudaRobotModel property)</a>
@@ -3590,6 +3682,8 @@
 
       <ul>
         <li><a href="_api/curobo.types.robot.html#curobo.types.robot.RobotConfig.kinematics">(curobo.types.robot.RobotConfig attribute)</a>
+</li>
+        <li><a href="_api/curobo.wrap.model.robot_segmenter.html#curobo.wrap.model.robot_segmenter.RobotSegmenter.kinematics">(curobo.wrap.model.robot_segmenter.RobotSegmenter property)</a>
 </li>
         <li><a href="_api/curobo.wrap.model.robot_world.html#curobo.wrap.model.robot_world.RobotWorldConfig.kinematics">(curobo.wrap.model.robot_world.RobotWorldConfig attribute)</a>
 </li>
@@ -3706,10 +3800,10 @@
 </li>
       <li><a href="_api/curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.KinematicsTensorConfig.link_spheres">link_spheres (curobo.cuda_robot_model.types.KinematicsTensorConfig attribute)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_api/curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.CudaRobotModelState.link_spheres_tensor">link_spheres_tensor (curobo.cuda_robot_model.types.CudaRobotModelState attribute)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_api/curobo.cuda_robot_model.kinematics_parser.html#curobo.cuda_robot_model.kinematics_parser.LinkParams">LinkParams (class in curobo.cuda_robot_model.kinematics_parser)</a>
 </li>
       <li><a href="_api/curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal.links_goal_pose">links_goal_pose (curobo.rollout.rollout_base.Goal attribute)</a>
@@ -3725,6 +3819,8 @@
       <ul>
         <li><a href="_api/curobo.geom.sdf.world_mesh.html#curobo.geom.sdf.world_mesh.WorldMeshCollision.load_batch_collision_model">(curobo.geom.sdf.world_mesh.WorldMeshCollision method)</a>
 </li>
+        <li><a href="_api/curobo.geom.sdf.world_voxel.html#curobo.geom.sdf.world_voxel.WorldVoxelCollision.load_batch_collision_model">(curobo.geom.sdf.world_voxel.WorldVoxelCollision method)</a>
+</li>
       </ul></li>
       <li><a href="_api/curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldCollision.load_collision_model">load_collision_model() (curobo.geom.sdf.world.WorldCollision method)</a>
 
@@ -3734,6 +3830,8 @@
         <li><a href="_api/curobo.geom.sdf.world_blox.html#curobo.geom.sdf.world_blox.WorldBloxCollision.load_collision_model">(curobo.geom.sdf.world_blox.WorldBloxCollision method)</a>
 </li>
         <li><a href="_api/curobo.geom.sdf.world_mesh.html#curobo.geom.sdf.world_mesh.WorldMeshCollision.load_collision_model">(curobo.geom.sdf.world_mesh.WorldMeshCollision method)</a>
+</li>
+        <li><a href="_api/curobo.geom.sdf.world_voxel.html#curobo.geom.sdf.world_voxel.WorldVoxelCollision.load_collision_model">(curobo.geom.sdf.world_voxel.WorldVoxelCollision method)</a>
 </li>
       </ul></li>
       <li><a href="_api/curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.KinematicsTensorConfig.load_cspace_cfg_from_kinematics">load_cspace_cfg_from_kinematics() (curobo.cuda_robot_model.types.KinematicsTensorConfig method)</a>
@@ -3963,6 +4061,8 @@
         <li><a href="_api/curobo.geom.sdf.world_blox.html#module-curobo.geom.sdf.world_blox">curobo.geom.sdf.world_blox</a>
 </li>
         <li><a href="_api/curobo.geom.sdf.world_mesh.html#module-curobo.geom.sdf.world_mesh">curobo.geom.sdf.world_mesh</a>
+</li>
+        <li><a href="_api/curobo.geom.sdf.world_voxel.html#module-curobo.geom.sdf.world_voxel">curobo.geom.sdf.world_voxel</a>
 </li>
         <li><a href="_api/curobo.geom.sphere_fit.html#module-curobo.geom.sphere_fit">curobo.geom.sphere_fit</a>
 </li>
@@ -4741,6 +4841,8 @@
 </li>
       <li><a href="_api/curobo.rollout.dynamics_model.kinematic_model.html#curobo.rollout.dynamics_model.kinematic_model.KinematicModelState.robot_spheres">robot_spheres (curobo.rollout.dynamics_model.kinematic_model.KinematicModelState attribute)</a>
 </li>
+      <li><a href="_api/curobo.wrap.model.robot_segmenter.html#curobo.wrap.model.robot_segmenter.RobotSegmenter.robot_world">robot_world (curobo.wrap.model.robot_segmenter.RobotSegmenter property)</a>
+</li>
       <li><a href="_api/curobo.types.robot.html#curobo.types.robot.RobotConfig">RobotConfig (class in curobo.types.robot)</a>
 </li>
       <li><a href="_api/curobo.wrap.model.robot_segmenter.html#curobo.wrap.model.robot_segmenter.RobotSegmenter">RobotSegmenter (class in curobo.wrap.model.robot_segmenter)</a>
@@ -4887,6 +4989,8 @@
 </li>
       <li><a href="_api/curobo.types.state.html#curobo.types.state.JointState.scale">scale() (curobo.types.state.JointState method)</a>
 </li>
+      <li><a href="_api/curobo.types.state.html#curobo.types.state.JointState.scale_by_dt">scale_by_dt() (curobo.types.state.JointState method)</a>
+</li>
       <li><a href="_api/curobo.opt.particle.particle_opt_utils.html#curobo.opt.particle.particle_opt_utils.scale_ctrl">scale_ctrl() (in module curobo.opt.particle.particle_opt_utils)</a>
 </li>
       <li><a href="_api/curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.CSpaceConfig.scale_joint_limits">scale_joint_limits() (curobo.cuda_robot_model.types.CSpaceConfig method)</a>
@@ -4901,7 +5005,11 @@
 </li>
       <li><a href="_api/curobo.curobolib.geom.html#curobo.curobolib.geom.SdfSphereOBB">SdfSphereOBB (class in curobo.curobolib.geom)</a>
 </li>
+      <li><a href="_api/curobo.curobolib.geom.html#curobo.curobolib.geom.SdfSphereVoxel">SdfSphereVoxel (class in curobo.curobolib.geom)</a>
+</li>
       <li><a href="_api/curobo.curobolib.geom.html#curobo.curobolib.geom.SdfSweptSphereOBB">SdfSweptSphereOBB (class in curobo.curobolib.geom)</a>
+</li>
+      <li><a href="_api/curobo.curobolib.geom.html#curobo.curobolib.geom.SdfSweptSphereVoxel">SdfSweptSphereVoxel (class in curobo.curobolib.geom)</a>
 </li>
       <li><a href="_api/curobo.graph.graph_base.html#curobo.graph.graph_base.GraphConfig.seed">seed (curobo.graph.graph_base.GraphConfig attribute)</a>
 
@@ -4962,6 +5070,8 @@
       <li><a href="_api/curobo.util.usd_helper.html#curobo.util.usd_helper.set_prim_translate">set_prim_translate() (in module curobo.util.usd_helper)</a>
 </li>
       <li><a href="_api/curobo.graph.graph_base.html#curobo.graph.graph_base.Graph.set_shortest_path_lengths">set_shortest_path_lengths() (curobo.graph.graph_base.Graph method)</a>
+</li>
+      <li><a href="_api/curobo.util.torch_utils.html#curobo.util.torch_utils.set_torch_compile_global_options">set_torch_compile_global_options() (in module curobo.util.torch_utils)</a>
 </li>
       <li><a href="_api/curobo.util.logger.html#curobo.util.logger.setup_curobo_logger">setup_curobo_logger() (in module curobo.util.logger)</a>
 </li>
@@ -5105,6 +5215,8 @@
       </ul></li>
       <li><a href="_api/curobo.wrap.reacher.trajopt.html#curobo.wrap.reacher.trajopt.TrajOptSolver.solver_dt">solver_dt (curobo.wrap.reacher.trajopt.TrajOptSolver property)</a>
 </li>
+      <li><a href="_api/curobo.wrap.reacher.trajopt.html#curobo.wrap.reacher.trajopt.TrajOptSolver.solver_dt_tensor">solver_dt_tensor (curobo.wrap.reacher.trajopt.TrajOptSolver property)</a>
+</li>
       <li><a href="_api/curobo.geom.sdf.world.html#curobo.geom.sdf.world.CollisionBuffer.sparsity_index_buffer">sparsity_index_buffer (curobo.geom.sdf.world.CollisionBuffer attribute)</a>
 </li>
       <li><a href="_api/curobo.rollout.cost.primitive_collision_cost.html#curobo.rollout.cost.primitive_collision_cost.PrimitiveCollisionCostConfig.speed_dt">speed_dt (curobo.rollout.cost.primitive_collision_cost.PrimitiveCollisionCostConfig attribute)</a>
@@ -5129,9 +5241,11 @@
 </li>
       <li><a href="_api/curobo.opt.newton.lbfgs.html#curobo.opt.newton.lbfgs.LBFGSOptConfig.stable_mode">stable_mode (curobo.opt.newton.lbfgs.LBFGSOptConfig attribute)</a>
 </li>
-      <li><a href="_api/curobo.types.math.html#curobo.types.math.Pose.stack">stack() (curobo.types.math.Pose method)</a>
+      <li><a href="_api/curobo.types.camera.html#curobo.types.camera.CameraObservation.stack">stack() (curobo.types.camera.CameraObservation method)</a>
 
       <ul>
+        <li><a href="_api/curobo.types.math.html#curobo.types.math.Pose.stack">(curobo.types.math.Pose method)</a>
+</li>
         <li><a href="_api/curobo.types.state.html#curobo.types.state.JointState.stack">(curobo.types.state.JointState method)</a>
 </li>
       </ul></li>
@@ -5170,11 +5284,7 @@
       <li><a href="_api/curobo.graph.graph_base.html#curobo.graph.graph_base.GraphConfig.steer_delta_buffer">steer_delta_buffer (curobo.graph.graph_base.GraphConfig attribute)</a>
 </li>
       <li><a href="_api/curobo.wrap.reacher.mpc.html#curobo.wrap.reacher.mpc.MpcSolver.step">step() (curobo.wrap.reacher.mpc.MpcSolver method)</a>
-
-      <ul>
-        <li><a href="_api/curobo.curobolib.lbfgs_step_cu.html#curobo.curobolib.lbfgs_step_cu.step">(in module curobo.curobolib.lbfgs_step_cu)</a>
 </li>
-      </ul></li>
       <li><a href="_api/curobo.rollout.dynamics_model.integration_utils.html#curobo.rollout.dynamics_model.integration_utils.step_acc_semi_euler">step_acc_semi_euler() (in module curobo.rollout.dynamics_model.integration_utils)</a>
 </li>
       <li><a href="_api/curobo.curobolib.tensor_step_cu.html#curobo.curobolib.tensor_step_cu.step_acceleration">step_acceleration() (in module curobo.curobolib.tensor_step_cu)</a>
@@ -5237,7 +5347,11 @@
       </ul></li>
       <li><a href="_api/curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGenPlanConfig.success_ratio">success_ratio (curobo.wrap.reacher.motion_gen.MotionGenPlanConfig attribute)</a>
 </li>
+      <li><a href="_api/curobo.rollout.cost.primitive_collision_cost.html#curobo.rollout.cost.primitive_collision_cost.PrimitiveCollisionCostConfig.sum_collisions">sum_collisions (curobo.rollout.cost.primitive_collision_cost.PrimitiveCollisionCostConfig attribute)</a>
+</li>
       <li><a href="_api/curobo.rollout.cost.primitive_collision_cost.html#curobo.rollout.cost.primitive_collision_cost.PrimitiveCollisionCostConfig.sum_distance">sum_distance (curobo.rollout.cost.primitive_collision_cost.PrimitiveCollisionCostConfig attribute)</a>
+</li>
+      <li><a href="_api/curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutConfig.sum_horizon">sum_horizon (curobo.rollout.rollout_base.RolloutConfig attribute)</a>
 </li>
       <li><a href="_api/curobo.rollout.dynamics_model.integration_utils.html#curobo.rollout.dynamics_model.integration_utils.sum_matrix">sum_matrix() (in module curobo.rollout.dynamics_model.integration_utils)</a>
 </li>
@@ -5248,6 +5362,8 @@
       <li><a href="_api/curobo.rollout.cost.primitive_collision_cost.html#curobo.rollout.cost.primitive_collision_cost.PrimitiveCollisionCostConfig.sweep_steps">sweep_steps (curobo.rollout.cost.primitive_collision_cost.PrimitiveCollisionCostConfig attribute)</a>
 </li>
       <li><a href="_api/curobo.curobolib.geom_cu.html#curobo.curobolib.geom_cu.swept_closest_point">swept_closest_point() (in module curobo.curobolib.geom_cu)</a>
+</li>
+      <li><a href="_api/curobo.curobolib.geom_cu.html#curobo.curobolib.geom_cu.swept_closest_point_voxel">swept_closest_point_voxel() (in module curobo.curobolib.geom_cu)</a>
 </li>
       <li><a href="_api/curobo.geom.sdf.warp_primitives.html#curobo.geom.sdf.warp_primitives.SweptSdfMeshWarpPy">SweptSdfMeshWarpPy (class in curobo.geom.sdf.warp_primitives)</a>
 </li>
@@ -5265,6 +5381,28 @@
 <h2 id="T">T</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="_api/curobo.types.tensor.html#curobo.types.tensor.T_BDOF">T_BDOF (in module curobo.types.tensor)</a>
+</li>
+      <li><a href="_api/curobo.types.tensor.html#curobo.types.tensor.T_BHDOF_float">T_BHDOF_float (in module curobo.types.tensor)</a>
+</li>
+      <li><a href="_api/curobo.types.tensor.html#curobo.types.tensor.T_BHValue_float">T_BHValue_float (in module curobo.types.tensor)</a>
+</li>
+      <li><a href="_api/curobo.types.tensor.html#curobo.types.tensor.T_BPosition">T_BPosition (in module curobo.types.tensor)</a>
+</li>
+      <li><a href="_api/curobo.types.tensor.html#curobo.types.tensor.T_BQuaternion">T_BQuaternion (in module curobo.types.tensor)</a>
+</li>
+      <li><a href="_api/curobo.types.tensor.html#curobo.types.tensor.T_BRotation">T_BRotation (in module curobo.types.tensor)</a>
+</li>
+      <li><a href="_api/curobo.types.tensor.html#curobo.types.tensor.T_BValue_bool">T_BValue_bool (in module curobo.types.tensor)</a>
+</li>
+      <li><a href="_api/curobo.types.tensor.html#curobo.types.tensor.T_BValue_float">T_BValue_float (in module curobo.types.tensor)</a>
+</li>
+      <li><a href="_api/curobo.types.tensor.html#curobo.types.tensor.T_BValue_int">T_BValue_int (in module curobo.types.tensor)</a>
+</li>
+      <li><a href="_api/curobo.types.tensor.html#curobo.types.tensor.T_DOF">T_DOF (in module curobo.types.tensor)</a>
+</li>
+      <li><a href="_api/curobo.types.tensor.html#curobo.types.tensor.T_HDOF_float">T_HDOF_float (in module curobo.types.tensor)</a>
+</li>
       <li><a href="_api/curobo.opt.particle.particle_opt_utils.html#curobo.opt.particle.particle_opt_utils.SquashType.TANH">TANH (curobo.opt.particle.particle_opt_utils.SquashType attribute)</a>
 </li>
       <li><a href="_api/curobo.rollout.dynamics_model.kinematic_model.html#curobo.rollout.dynamics_model.kinematic_model.KinematicModelConfig.teleport_mode">teleport_mode (curobo.rollout.dynamics_model.kinematic_model.KinematicModelConfig attribute)</a>
@@ -5353,6 +5491,8 @@
 </li>
       <li><a href="_api/curobo.types.base.html#curobo.types.base.TensorDeviceType">TensorDeviceType (class in curobo.types.base)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_api/curobo.rollout.dynamics_model.tensor_step.html#curobo.rollout.dynamics_model.tensor_step.TensorStepAcceleration">TensorStepAcceleration (class in curobo.rollout.dynamics_model.tensor_step)</a>
 </li>
       <li><a href="_api/curobo.rollout.dynamics_model.tensor_step.html#curobo.rollout.dynamics_model.tensor_step.TensorStepAccelerationKernel">TensorStepAccelerationKernel (class in curobo.rollout.dynamics_model.tensor_step)</a>
@@ -5365,8 +5505,6 @@
 </li>
       <li><a href="_api/curobo.rollout.dynamics_model.tensor_step.html#curobo.rollout.dynamics_model.tensor_step.TensorStepPositionCliqueKernel">TensorStepPositionCliqueKernel (class in curobo.rollout.dynamics_model.tensor_step)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_api/curobo.rollout.dynamics_model.tensor_step.html#curobo.rollout.dynamics_model.tensor_step.TensorStepPositionTeleport">TensorStepPositionTeleport (class in curobo.rollout.dynamics_model.tensor_step)</a>
 </li>
       <li><a href="_api/curobo.rollout.dynamics_model.tensor_step.html#curobo.rollout.dynamics_model.tensor_step.TensorStepType">TensorStepType (class in curobo.rollout.dynamics_model.tensor_step)</a>
@@ -5483,8 +5621,6 @@
         <li><a href="_api/curobo.types.state.html#curobo.types.state.JointState.unsqueeze">(curobo.types.state.JointState method)</a>
 </li>
       </ul></li>
-      <li><a href="_api/curobo.curobolib.lbfgs_step_cu.html#curobo.curobolib.lbfgs_step_cu.update">update() (in module curobo.curobolib.lbfgs_step_cu)</a>
-</li>
       <li><a href="_api/curobo.geom.sdf.world_mesh.html#curobo.geom.sdf.world_mesh.WorldMeshCollision.update_all_mesh_pose">update_all_mesh_pose() (curobo.geom.sdf.world_mesh.WorldMeshCollision method)</a>
 </li>
       <li><a href="_api/curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal.update_batch_idx_buffers">update_batch_idx_buffers (curobo.rollout.rollout_base.Goal attribute)</a>
@@ -5537,6 +5673,8 @@
         <li><a href="_api/curobo.geom.sdf.world.html#curobo.geom.sdf.world.CollisionQueryBuffer.update_buffer_shape">(curobo.geom.sdf.world.CollisionQueryBuffer method)</a>
 </li>
       </ul></li>
+      <li><a href="_api/curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldCollision.update_cache_voxelization">update_cache_voxelization() (curobo.geom.sdf.world.WorldCollision method)</a>
+</li>
       <li><a href="_api/curobo.wrap.model.robot_segmenter.html#curobo.wrap.model.robot_segmenter.RobotSegmenter.update_camera_projection">update_camera_projection() (curobo.wrap.model.robot_segmenter.RobotSegmenter method)</a>
 </li>
       <li><a href="_api/curobo.rollout.dynamics_model.kinematic_model.html#curobo.rollout.dynamics_model.kinematic_model.KinematicModel.update_cmd_batch_size">update_cmd_batch_size() (curobo.rollout.dynamics_model.kinematic_model.KinematicModel method)</a>
@@ -5624,11 +5762,13 @@
       <ul>
         <li><a href="_api/curobo.geom.sdf.world_mesh.html#curobo.geom.sdf.world_mesh.WorldMeshCollision.update_obstacle_pose">(curobo.geom.sdf.world_mesh.WorldMeshCollision method)</a>
 </li>
+        <li><a href="_api/curobo.geom.sdf.world_voxel.html#curobo.geom.sdf.world_voxel.WorldVoxelCollision.update_obstacle_pose">(curobo.geom.sdf.world_voxel.WorldVoxelCollision method)</a>
+</li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_api/curobo.rollout.cost.pose_cost.html#curobo.rollout.cost.pose_cost.PoseCost.update_offset_waypoint">update_offset_waypoint() (curobo.rollout.cost.pose_cost.PoseCost method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_api/curobo.opt.opt_base.html#curobo.opt.opt_base.Optimizer.update_params">update_params() (curobo.opt.opt_base.Optimizer method)</a>
 
       <ul>
@@ -5676,6 +5816,12 @@
 </li>
       </ul></li>
       <li><a href="_api/curobo.rollout.cost.cost_base.html#curobo.rollout.cost.cost_base.CostConfig.update_vec_weight">update_vec_weight() (curobo.rollout.cost.cost_base.CostConfig method)</a>
+</li>
+      <li><a href="_api/curobo.geom.sdf.world_voxel.html#curobo.geom.sdf.world_voxel.WorldVoxelCollision.update_voxel_data">update_voxel_data() (curobo.geom.sdf.world_voxel.WorldVoxelCollision method)</a>
+</li>
+      <li><a href="_api/curobo.geom.sdf.world_voxel.html#curobo.geom.sdf.world_voxel.WorldVoxelCollision.update_voxel_features">update_voxel_features() (curobo.geom.sdf.world_voxel.WorldVoxelCollision method)</a>
+</li>
+      <li><a href="_api/curobo.geom.sdf.world_voxel.html#curobo.geom.sdf.world_voxel.WorldVoxelCollision.update_voxel_pose">update_voxel_pose() (curobo.geom.sdf.world_voxel.WorldVoxelCollision method)</a>
 </li>
       <li><a href="_api/curobo.rollout.cost.cost_base.html#curobo.rollout.cost.cost_base.CostBase.update_weight">update_weight() (curobo.rollout.cost.cost_base.CostBase method)</a>
 </li>
@@ -5759,6 +5905,8 @@
 </li>
       <li><a href="_api/curobo.rollout.cost.pose_cost.html#curobo.rollout.cost.pose_cost.PoseCostConfig.use_projected_distance">use_projected_distance (curobo.rollout.cost.pose_cost.PoseCostConfig attribute)</a>
 </li>
+      <li><a href="_api/curobo.opt.newton.lbfgs.html#curobo.opt.newton.lbfgs.LBFGSOptConfig.use_shared_buffers_kernel">use_shared_buffers_kernel (curobo.opt.newton.lbfgs.LBFGSOptConfig attribute)</a>
+</li>
       <li><a href="_api/curobo.rollout.cost.primitive_collision_cost.html#curobo.rollout.cost.primitive_collision_cost.PrimitiveCollisionCostConfig.use_speed_metric">use_speed_metric (curobo.rollout.cost.primitive_collision_cost.PrimitiveCollisionCostConfig attribute)</a>
 </li>
       <li><a href="_api/curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGenPlanConfig.use_start_state_as_retract">use_start_state_as_retract (curobo.wrap.reacher.motion_gen.MotionGenPlanConfig attribute)</a>
@@ -5813,12 +5961,12 @@
       </ul></li>
       <li><a href="_api/curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.CSpaceConfig.velocity_scale">velocity_scale (curobo.cuda_robot_model.types.CSpaceConfig attribute)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_api/curobo.geom.types.html#curobo.geom.types.Mesh.vertex_colors">vertex_colors (curobo.geom.types.Mesh attribute)</a>
 </li>
       <li><a href="_api/curobo.graph.graph_base.html#curobo.graph.graph_base.GraphConfig.vertex_n">vertex_n (curobo.graph.graph_base.GraphConfig attribute)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="_api/curobo.geom.types.html#curobo.geom.types.Mesh.vertex_normals">vertex_normals (curobo.geom.types.Mesh attribute)</a>
 </li>
       <li><a href="_api/curobo.geom.sdf.world_mesh.html#curobo.geom.sdf.world_mesh.WarpMeshData.vertices">vertices (curobo.geom.sdf.world_mesh.WarpMeshData attribute)</a>
@@ -5827,6 +5975,12 @@
         <li><a href="_api/curobo.geom.types.html#curobo.geom.types.Mesh.vertices">(curobo.geom.types.Mesh attribute)</a>
 </li>
       </ul></li>
+      <li><a href="_api/curobo.geom.sdf.world.html#curobo.geom.sdf.world.CollisionCheckerType.VOXEL">VOXEL (curobo.geom.sdf.world.CollisionCheckerType attribute)</a>
+</li>
+      <li><a href="_api/curobo.geom.types.html#curobo.geom.types.WorldConfig.voxel">voxel (curobo.geom.types.WorldConfig attribute)</a>
+</li>
+      <li><a href="_api/curobo.geom.sdf.world.html#curobo.geom.sdf.world.CollisionQueryBuffer.voxel_collision_buffer">voxel_collision_buffer (curobo.geom.sdf.world.CollisionQueryBuffer attribute)</a>
+</li>
       <li><a href="_api/curobo.geom.sphere_fit.html#curobo.geom.sphere_fit.voxel_fit_mesh">voxel_fit_mesh() (in module curobo.geom.sphere_fit)</a>
 </li>
       <li><a href="_api/curobo.geom.sphere_fit.html#curobo.geom.sphere_fit.voxel_fit_surface_mesh">voxel_fit_surface_mesh() (in module curobo.geom.sphere_fit)</a>
@@ -5836,7 +5990,11 @@
       <li><a href="_api/curobo.geom.sphere_fit.html#curobo.geom.sphere_fit.voxel_fit_volume_sample_surface_mesh">voxel_fit_volume_sample_surface_mesh() (in module curobo.geom.sphere_fit)</a>
 </li>
       <li><a href="_api/curobo.geom.types.html#curobo.geom.types.BloxMap.voxel_size">voxel_size (curobo.geom.types.BloxMap attribute)</a>
+
+      <ul>
+        <li><a href="_api/curobo.geom.types.html#curobo.geom.types.VoxelGrid.voxel_size">(curobo.geom.types.VoxelGrid attribute)</a>
 </li>
+      </ul></li>
       <li><a href="_api/curobo.geom.sphere_fit.html#curobo.geom.sphere_fit.SphereFitType.VOXEL_SURFACE">VOXEL_SURFACE (curobo.geom.sphere_fit.SphereFitType attribute)</a>
 </li>
       <li><a href="_api/curobo.geom.sphere_fit.html#curobo.geom.sphere_fit.SphereFitType.VOXEL_VOLUME">VOXEL_VOLUME (curobo.geom.sphere_fit.SphereFitType attribute)</a>
@@ -5844,6 +6002,8 @@
       <li><a href="_api/curobo.geom.sphere_fit.html#curobo.geom.sphere_fit.SphereFitType.VOXEL_VOLUME_INSIDE">VOXEL_VOLUME_INSIDE (curobo.geom.sphere_fit.SphereFitType attribute)</a>
 </li>
       <li><a href="_api/curobo.geom.sphere_fit.html#curobo.geom.sphere_fit.SphereFitType.VOXEL_VOLUME_SAMPLE_SURFACE">VOXEL_VOLUME_SAMPLE_SURFACE (curobo.geom.sphere_fit.SphereFitType attribute)</a>
+</li>
+      <li><a href="_api/curobo.geom.types.html#curobo.geom.types.VoxelGrid">VoxelGrid (class in curobo.geom.types)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -5919,6 +6079,8 @@
 </li>
       <li><a href="_api/curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldPrimitiveCollision">WorldPrimitiveCollision (class in curobo.geom.sdf.world)</a>
 </li>
+      <li><a href="_api/curobo.geom.sdf.world_voxel.html#curobo.geom.sdf.world_voxel.WorldVoxelCollision">WorldVoxelCollision (class in curobo.geom.sdf.world_voxel)</a>
+</li>
       <li><a href="_api/curobo.wrap.wrap_base.html#curobo.wrap.wrap_base.WrapBase">WrapBase (class in curobo.wrap.wrap_base)</a>
 </li>
       <li><a href="_api/curobo.wrap.wrap_base.html#curobo.wrap.wrap_base.WrapConfig">WrapConfig (class in curobo.wrap.wrap_base)</a>
@@ -5954,6 +6116,8 @@
       <li><a href="_api/curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.JointType.X_ROT">X_ROT (curobo.cuda_robot_model.types.JointType attribute)</a>
 </li>
       <li><a href="_api/curobo.cuda_robot_model.types.html#curobo.cuda_robot_model.types.JointType.X_ROT_NEG">X_ROT_NEG (curobo.cuda_robot_model.types.JointType attribute)</a>
+</li>
+      <li><a href="_api/curobo.geom.types.html#curobo.geom.types.VoxelGrid.xyzr_tensor">xyzr_tensor (curobo.geom.types.VoxelGrid attribute)</a>
 </li>
   </ul></td>
 </tr></table>

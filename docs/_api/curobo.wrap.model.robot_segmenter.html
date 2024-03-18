@@ -91,6 +91,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/02_numerical_optimization.html">Numerical Optimization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/04_cuda_kernels.html">CUDA Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/05_usd_api.html">USD for Robot and World Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/07_environment_variables.html">Environment Variables</a></li>
 </ul>
 
         </div>
@@ -121,7 +122,7 @@
 <span id="curobo-wrap-model-robot-segmenter-module"></span><h1>curobo.wrap.model.robot_segmenter module<a class="headerlink" href="#module-curobo.wrap.model.robot_segmenter" title="Link to this heading"></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="curobo.wrap.model.robot_segmenter.RobotSegmenter">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">curobo.wrap.model.robot_segmenter.</span></span><span class="sig-name descname"><span class="pre">RobotSegmenter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot_world</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance_threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_cuda_graph</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.model.robot_segmenter.RobotSegmenter" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">curobo.wrap.model.robot_segmenter.</span></span><span class="sig-name descname"><span class="pre">RobotSegmenter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot_world</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance_threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_cuda_graph</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ops_dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">torch.float32</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.model.robot_segmenter.RobotSegmenter" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -129,12 +130,13 @@
 <li><p><strong>robot_world</strong> (<a class="reference internal" href="curobo.wrap.model.robot_world.html#curobo.wrap.model.robot_world.RobotWorld" title="curobo.wrap.model.robot_world.RobotWorld"><em>RobotWorld</em></a>) – </p></li>
 <li><p><strong>distance_threshold</strong> (<em>float</em>) – </p></li>
 <li><p><strong>use_cuda_graph</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>ops_dtype</strong> (<em>dtype</em>) – </p></li>
 </ul>
 </dd>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="curobo.wrap.model.robot_segmenter.RobotSegmenter.from_robot_file">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_robot_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collision_sphere_buffer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance_threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_cuda_graph</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tensor_args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">TensorDeviceType(device=device(type='cuda',</span> <span class="pre">index=0),</span> <span class="pre">dtype=torch.float32)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.model.robot_segmenter.RobotSegmenter.from_robot_file" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_robot_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">robot_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collision_sphere_buffer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distance_threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_cuda_graph</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tensor_args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">TensorDeviceType(device=device(type='cuda',</span> <span class="pre">index=0),</span> <span class="pre">dtype=torch.float32,</span> <span class="pre">collision_geometry_dtype=torch.float32,</span> <span class="pre">collision_gradient_dtype=torch.float32,</span> <span class="pre">collision_distance_dtype=torch.float32)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.model.robot_segmenter.RobotSegmenter.from_robot_file" title="Link to this definition"></a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -208,6 +210,21 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="curobo.wrap.model.robot_segmenter.RobotSegmenter._mask_op">
 <span class="sig-name descname"><span class="pre">_mask_op</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">camera_obs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.model.robot_segmenter.RobotSegmenter._mask_op" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="curobo.wrap.model.robot_segmenter.RobotSegmenter.kinematics">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">kinematics</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModel" title="curobo.cuda_robot_model.cuda_robot_model.CudaRobotModel"><span class="pre">CudaRobotModel</span></a></em><a class="headerlink" href="#curobo.wrap.model.robot_segmenter.RobotSegmenter.kinematics" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="curobo.wrap.model.robot_segmenter.RobotSegmenter.robot_world">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">robot_world</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.wrap.model.robot_world.html#curobo.wrap.model.robot_world.RobotWorld" title="curobo.wrap.model.robot_world.RobotWorld"><span class="pre">RobotWorld</span></a></em><a class="headerlink" href="#curobo.wrap.model.robot_segmenter.RobotSegmenter.robot_world" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="curobo.wrap.model.robot_segmenter.RobotSegmenter.base_link">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">base_link</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#curobo.wrap.model.robot_segmenter.RobotSegmenter.base_link" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
