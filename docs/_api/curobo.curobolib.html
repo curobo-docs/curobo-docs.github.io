@@ -91,6 +91,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/02_numerical_optimization.html">Numerical Optimization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/04_cuda_kernels.html">CUDA Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/05_usd_api.html">USD for Robot and World Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/07_environment_variables.html">Environment Variables</a></li>
 </ul>
 
         </div>
@@ -163,14 +164,28 @@
 <li class="toctree-l3"><a class="reference internal" href="curobo.curobolib.geom.html#curobo.curobolib.geom.SdfSweptSphereOBB._backward_cls"><code class="docutils literal notranslate"><span class="pre">SdfSweptSphereOBB._backward_cls</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.curobolib.geom.html#curobo.curobolib.geom.SdfSphereVoxel"><code class="docutils literal notranslate"><span class="pre">SdfSphereVoxel</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.curobolib.geom.html#curobo.curobolib.geom.SdfSphereVoxel.forward"><code class="docutils literal notranslate"><span class="pre">SdfSphereVoxel.forward</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.curobolib.geom.html#curobo.curobolib.geom.SdfSphereVoxel.backward"><code class="docutils literal notranslate"><span class="pre">SdfSphereVoxel.backward</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.curobolib.geom.html#curobo.curobolib.geom.SdfSphereVoxel._backward_cls"><code class="docutils literal notranslate"><span class="pre">SdfSphereVoxel._backward_cls</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.curobolib.geom.html#curobo.curobolib.geom.SdfSweptSphereVoxel"><code class="docutils literal notranslate"><span class="pre">SdfSweptSphereVoxel</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.curobolib.geom.html#curobo.curobolib.geom.SdfSweptSphereVoxel.forward"><code class="docutils literal notranslate"><span class="pre">SdfSweptSphereVoxel.forward</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.curobolib.geom.html#curobo.curobolib.geom.SdfSweptSphereVoxel.backward"><code class="docutils literal notranslate"><span class="pre">SdfSweptSphereVoxel.backward</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.curobolib.geom.html#curobo.curobolib.geom.SdfSweptSphereVoxel._backward_cls"><code class="docutils literal notranslate"><span class="pre">SdfSweptSphereVoxel._backward_cls</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="curobo.curobolib.geom_cu.html">curobo.curobolib.geom_cu module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="curobo.curobolib.geom_cu.html#curobo.curobolib.geom_cu.closest_point"><code class="docutils literal notranslate"><span class="pre">closest_point</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.curobolib.geom_cu.html#curobo.curobolib.geom_cu.closest_point_voxel"><code class="docutils literal notranslate"><span class="pre">closest_point_voxel</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="curobo.curobolib.geom_cu.html#curobo.curobolib.geom_cu.pose_distance"><code class="docutils literal notranslate"><span class="pre">pose_distance</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="curobo.curobolib.geom_cu.html#curobo.curobolib.geom_cu.pose_distance_backward"><code class="docutils literal notranslate"><span class="pre">pose_distance_backward</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="curobo.curobolib.geom_cu.html#curobo.curobolib.geom_cu.self_collision_distance"><code class="docutils literal notranslate"><span class="pre">self_collision_distance</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="curobo.curobolib.geom_cu.html#curobo.curobolib.geom_cu.swept_closest_point"><code class="docutils literal notranslate"><span class="pre">swept_closest_point</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.curobolib.geom_cu.html#curobo.curobolib.geom_cu.swept_closest_point_voxel"><code class="docutils literal notranslate"><span class="pre">swept_closest_point_voxel</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="curobo.curobolib.kinematics.html">curobo.curobolib.kinematics module</a><ul>
@@ -201,10 +216,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="curobo.curobolib.lbfgs_step_cu.html">curobo.curobolib.lbfgs_step_cu module</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="curobo.curobolib.lbfgs_step_cu.html#curobo.curobolib.lbfgs_step_cu.debug_reduce"><code class="docutils literal notranslate"><span class="pre">debug_reduce</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="curobo.curobolib.lbfgs_step_cu.html#curobo.curobolib.lbfgs_step_cu.forward"><code class="docutils literal notranslate"><span class="pre">forward</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="curobo.curobolib.lbfgs_step_cu.html#curobo.curobolib.lbfgs_step_cu.step"><code class="docutils literal notranslate"><span class="pre">step</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="curobo.curobolib.lbfgs_step_cu.html#curobo.curobolib.lbfgs_step_cu.update"><code class="docutils literal notranslate"><span class="pre">update</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="curobo.curobolib.line_search_cu.html">curobo.curobolib.line_search_cu module</a><ul>
@@ -219,7 +231,6 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="curobo.curobolib.opt.html">curobo.curobolib.opt module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="curobo.curobolib.opt.html#curobo.curobolib.opt.LBFGScu"><code class="docutils literal notranslate"><span class="pre">LBFGScu</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="curobo.curobolib.opt.html#curobo.curobolib.opt.LBFGScu._call_cuda"><code class="docutils literal notranslate"><span class="pre">LBFGScu._call_cuda</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.curobolib.opt.html#curobo.curobolib.opt.LBFGScu.forward"><code class="docutils literal notranslate"><span class="pre">LBFGScu.forward</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.curobolib.opt.html#curobo.curobolib.opt.LBFGScu.backward"><code class="docutils literal notranslate"><span class="pre">LBFGScu.backward</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.curobolib.opt.html#curobo.curobolib.opt.LBFGScu._backward_cls"><code class="docutils literal notranslate"><span class="pre">LBFGScu._backward_cls</span></code></a></li>

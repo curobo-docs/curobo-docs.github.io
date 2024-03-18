@@ -91,6 +91,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/02_numerical_optimization.html">Numerical Optimization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/04_cuda_kernels.html">CUDA Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/05_usd_api.html">USD for Robot and World Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/07_environment_variables.html">Environment Variables</a></li>
 </ul>
 
         </div>
@@ -189,14 +190,18 @@ collision-free reacher and batched robot world collision checking.</p></li>
 <li class="toctree-l4"><a class="reference internal" href="curobo.curobolib.geom.html#curobo.curobolib.geom.PoseError"><code class="docutils literal notranslate"><span class="pre">PoseError</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="curobo.curobolib.geom.html#curobo.curobolib.geom.SdfSphereOBB"><code class="docutils literal notranslate"><span class="pre">SdfSphereOBB</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="curobo.curobolib.geom.html#curobo.curobolib.geom.SdfSweptSphereOBB"><code class="docutils literal notranslate"><span class="pre">SdfSweptSphereOBB</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.curobolib.geom.html#curobo.curobolib.geom.SdfSphereVoxel"><code class="docutils literal notranslate"><span class="pre">SdfSphereVoxel</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.curobolib.geom.html#curobo.curobolib.geom.SdfSweptSphereVoxel"><code class="docutils literal notranslate"><span class="pre">SdfSweptSphereVoxel</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.curobolib.geom_cu.html">curobo.curobolib.geom_cu module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="curobo.curobolib.geom_cu.html#curobo.curobolib.geom_cu.closest_point"><code class="docutils literal notranslate"><span class="pre">closest_point</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.curobolib.geom_cu.html#curobo.curobolib.geom_cu.closest_point_voxel"><code class="docutils literal notranslate"><span class="pre">closest_point_voxel</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="curobo.curobolib.geom_cu.html#curobo.curobolib.geom_cu.pose_distance"><code class="docutils literal notranslate"><span class="pre">pose_distance</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="curobo.curobolib.geom_cu.html#curobo.curobolib.geom_cu.pose_distance_backward"><code class="docutils literal notranslate"><span class="pre">pose_distance_backward</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="curobo.curobolib.geom_cu.html#curobo.curobolib.geom_cu.self_collision_distance"><code class="docutils literal notranslate"><span class="pre">self_collision_distance</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="curobo.curobolib.geom_cu.html#curobo.curobolib.geom_cu.swept_closest_point"><code class="docutils literal notranslate"><span class="pre">swept_closest_point</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.curobolib.geom_cu.html#curobo.curobolib.geom_cu.swept_closest_point_voxel"><code class="docutils literal notranslate"><span class="pre">swept_closest_point_voxel</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.curobolib.kinematics.html">curobo.curobolib.kinematics module</a><ul>
@@ -213,10 +218,7 @@ collision-free reacher and batched robot world collision checking.</p></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.curobolib.lbfgs_step_cu.html">curobo.curobolib.lbfgs_step_cu module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="curobo.curobolib.lbfgs_step_cu.html#curobo.curobolib.lbfgs_step_cu.debug_reduce"><code class="docutils literal notranslate"><span class="pre">debug_reduce</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="curobo.curobolib.lbfgs_step_cu.html#curobo.curobolib.lbfgs_step_cu.forward"><code class="docutils literal notranslate"><span class="pre">forward</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="curobo.curobolib.lbfgs_step_cu.html#curobo.curobolib.lbfgs_step_cu.step"><code class="docutils literal notranslate"><span class="pre">step</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="curobo.curobolib.lbfgs_step_cu.html#curobo.curobolib.lbfgs_step_cu.update"><code class="docutils literal notranslate"><span class="pre">update</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.curobolib.line_search_cu.html">curobo.curobolib.line_search_cu module</a><ul>
@@ -312,6 +314,7 @@ collision-free reacher and batched robot world collision checking.</p></li>
 <li class="toctree-l4"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Mesh"><code class="docutils literal notranslate"><span class="pre">Mesh</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.BloxMap"><code class="docutils literal notranslate"><span class="pre">BloxMap</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.PointCloud"><code class="docutils literal notranslate"><span class="pre">PointCloud</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.VoxelGrid"><code class="docutils literal notranslate"><span class="pre">VoxelGrid</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig"><code class="docutils literal notranslate"><span class="pre">WorldConfig</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.tensor_sphere"><code class="docutils literal notranslate"><span class="pre">tensor_sphere</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.tensor_capsule"><code class="docutils literal notranslate"><span class="pre">tensor_capsule</span></code></a></li>
@@ -433,9 +436,23 @@ collision-free reacher and batched robot world collision checking.</p></li>
 <li class="toctree-l4"><a class="reference internal" href="curobo.types.state.html#curobo.types.state.FilterCoeff"><code class="docutils literal notranslate"><span class="pre">FilterCoeff</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="curobo.types.state.html#curobo.types.state.State"><code class="docutils literal notranslate"><span class="pre">State</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState"><code class="docutils literal notranslate"><span class="pre">JointState</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.types.state.html#curobo.types.state.fn_get_index"><code class="docutils literal notranslate"><span class="pre">fn_get_index</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="curobo.types.tensor.html">curobo.types.tensor module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.types.tensor.html">curobo.types.tensor module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="curobo.types.tensor.html#curobo.types.tensor.T_DOF"><code class="docutils literal notranslate"><span class="pre">T_DOF</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.types.tensor.html#curobo.types.tensor.T_BDOF"><code class="docutils literal notranslate"><span class="pre">T_BDOF</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.types.tensor.html#curobo.types.tensor.T_BHDOF_float"><code class="docutils literal notranslate"><span class="pre">T_BHDOF_float</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.types.tensor.html#curobo.types.tensor.T_HDOF_float"><code class="docutils literal notranslate"><span class="pre">T_HDOF_float</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.types.tensor.html#curobo.types.tensor.T_BValue_float"><code class="docutils literal notranslate"><span class="pre">T_BValue_float</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.types.tensor.html#curobo.types.tensor.T_BHValue_float"><code class="docutils literal notranslate"><span class="pre">T_BHValue_float</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.types.tensor.html#curobo.types.tensor.T_BValue_bool"><code class="docutils literal notranslate"><span class="pre">T_BValue_bool</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.types.tensor.html#curobo.types.tensor.T_BValue_int"><code class="docutils literal notranslate"><span class="pre">T_BValue_int</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.types.tensor.html#curobo.types.tensor.T_BPosition"><code class="docutils literal notranslate"><span class="pre">T_BPosition</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.types.tensor.html#curobo.types.tensor.T_BQuaternion"><code class="docutils literal notranslate"><span class="pre">T_BQuaternion</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.types.tensor.html#curobo.types.tensor.T_BRotation"><code class="docutils literal notranslate"><span class="pre">T_BRotation</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -504,6 +521,11 @@ collision-free reacher and batched robot world collision checking.</p></li>
 <li class="toctree-l4"><a class="reference internal" href="curobo.util.torch_utils.html#curobo.util.torch_utils.find_last_idx"><code class="docutils literal notranslate"><span class="pre">find_last_idx</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="curobo.util.torch_utils.html#curobo.util.torch_utils.is_cuda_graph_available"><code class="docutils literal notranslate"><span class="pre">is_cuda_graph_available</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="curobo.util.torch_utils.html#curobo.util.torch_utils.is_torch_compile_available"><code class="docutils literal notranslate"><span class="pre">is_torch_compile_available</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.util.torch_utils.html#curobo.util.torch_utils.get_torch_compile_options"><code class="docutils literal notranslate"><span class="pre">get_torch_compile_options</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.util.torch_utils.html#curobo.util.torch_utils.disable_torch_compile_global"><code class="docutils literal notranslate"><span class="pre">disable_torch_compile_global</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.util.torch_utils.html#curobo.util.torch_utils.set_torch_compile_global_options"><code class="docutils literal notranslate"><span class="pre">set_torch_compile_global_options</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.util.torch_utils.html#curobo.util.torch_utils.get_torch_jit_decorator"><code class="docutils literal notranslate"><span class="pre">get_torch_jit_decorator</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="curobo.util.torch_utils.html#curobo.util.torch_utils.empty_decorator"><code class="docutils literal notranslate"><span class="pre">empty_decorator</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.util.trajectory.html">curobo.util.trajectory module</a><ul>

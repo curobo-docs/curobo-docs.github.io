@@ -91,6 +91,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/02_numerical_optimization.html">Numerical Optimization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/04_cuda_kernels.html">CUDA Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/05_usd_api.html">USD for Robot and World Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/07_environment_variables.html">Environment Variables</a></li>
 </ul>
 
         </div>
@@ -174,6 +175,7 @@ fields.</p>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.CollisionQueryBuffer.primitive_collision_buffer"><code class="docutils literal notranslate"><span class="pre">CollisionQueryBuffer.primitive_collision_buffer</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.CollisionQueryBuffer.mesh_collision_buffer"><code class="docutils literal notranslate"><span class="pre">CollisionQueryBuffer.mesh_collision_buffer</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.CollisionQueryBuffer.blox_collision_buffer"><code class="docutils literal notranslate"><span class="pre">CollisionQueryBuffer.blox_collision_buffer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.CollisionQueryBuffer.voxel_collision_buffer"><code class="docutils literal notranslate"><span class="pre">CollisionQueryBuffer.voxel_collision_buffer</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.CollisionQueryBuffer.shape"><code class="docutils literal notranslate"><span class="pre">CollisionQueryBuffer.shape</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.CollisionQueryBuffer.clone"><code class="docutils literal notranslate"><span class="pre">CollisionQueryBuffer.clone</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.CollisionQueryBuffer.initialize_from_shape"><code class="docutils literal notranslate"><span class="pre">CollisionQueryBuffer.initialize_from_shape</span></code></a></li>
@@ -186,6 +188,7 @@ fields.</p>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.CollisionCheckerType.PRIMITIVE"><code class="docutils literal notranslate"><span class="pre">CollisionCheckerType.PRIMITIVE</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.CollisionCheckerType.BLOX"><code class="docutils literal notranslate"><span class="pre">CollisionCheckerType.BLOX</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.CollisionCheckerType.MESH"><code class="docutils literal notranslate"><span class="pre">CollisionCheckerType.MESH</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.CollisionCheckerType.VOXEL"><code class="docutils literal notranslate"><span class="pre">CollisionCheckerType.VOXEL</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldCollisionConfig"><code class="docutils literal notranslate"><span class="pre">WorldCollisionConfig</span></code></a><ul>
@@ -205,6 +208,12 @@ fields.</p>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldCollision.get_swept_sphere_distance"><code class="docutils literal notranslate"><span class="pre">WorldCollision.get_swept_sphere_distance</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldCollision.get_swept_sphere_collision"><code class="docutils literal notranslate"><span class="pre">WorldCollision.get_swept_sphere_collision</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldCollision.get_sphere_trace"><code class="docutils literal notranslate"><span class="pre">WorldCollision.get_sphere_trace</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldCollision.get_voxels_in_bounding_box"><code class="docutils literal notranslate"><span class="pre">WorldCollision.get_voxels_in_bounding_box</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldCollision.clear_voxelization_cache"><code class="docutils literal notranslate"><span class="pre">WorldCollision.clear_voxelization_cache</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldCollision.update_cache_voxelization"><code class="docutils literal notranslate"><span class="pre">WorldCollision.update_cache_voxelization</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldCollision.get_occupancy_in_bounding_box"><code class="docutils literal notranslate"><span class="pre">WorldCollision.get_occupancy_in_bounding_box</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldCollision.get_esdf_in_bounding_box"><code class="docutils literal notranslate"><span class="pre">WorldCollision.get_esdf_in_bounding_box</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldCollision.get_mesh_in_bounding_box"><code class="docutils literal notranslate"><span class="pre">WorldCollision.get_mesh_in_bounding_box</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldPrimitiveCollision"><code class="docutils literal notranslate"><span class="pre">WorldPrimitiveCollision</span></code></a><ul>
@@ -227,8 +236,6 @@ fields.</p>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldPrimitiveCollision.get_swept_sphere_distance"><code class="docutils literal notranslate"><span class="pre">WorldPrimitiveCollision.get_swept_sphere_distance</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldPrimitiveCollision.get_swept_sphere_collision"><code class="docutils literal notranslate"><span class="pre">WorldPrimitiveCollision.get_swept_sphere_collision</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldPrimitiveCollision.clear_cache"><code class="docutils literal notranslate"><span class="pre">WorldPrimitiveCollision.clear_cache</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldPrimitiveCollision.get_voxels_in_bounding_box"><code class="docutils literal notranslate"><span class="pre">WorldPrimitiveCollision.get_voxels_in_bounding_box</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldPrimitiveCollision.get_mesh_in_bounding_box"><code class="docutils literal notranslate"><span class="pre">WorldPrimitiveCollision.get_mesh_in_bounding_box</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -295,6 +302,31 @@ fields.</p>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world_mesh.html#curobo.geom.sdf.world_mesh.WorldMeshCollision.get_swept_sphere_distance"><code class="docutils literal notranslate"><span class="pre">WorldMeshCollision.get_swept_sphere_distance</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world_mesh.html#curobo.geom.sdf.world_mesh.WorldMeshCollision.get_swept_sphere_collision"><code class="docutils literal notranslate"><span class="pre">WorldMeshCollision.get_swept_sphere_collision</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world_mesh.html#curobo.geom.sdf.world_mesh.WorldMeshCollision.clear_cache"><code class="docutils literal notranslate"><span class="pre">WorldMeshCollision.clear_cache</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="curobo.geom.sdf.world_voxel.html">curobo.geom.sdf.world_voxel module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="curobo.geom.sdf.world_voxel.html#curobo.geom.sdf.world_voxel.WorldVoxelCollision"><code class="docutils literal notranslate"><span class="pre">WorldVoxelCollision</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world_voxel.html#curobo.geom.sdf.world_voxel.WorldVoxelCollision._init_cache"><code class="docutils literal notranslate"><span class="pre">WorldVoxelCollision._init_cache</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world_voxel.html#curobo.geom.sdf.world_voxel.WorldVoxelCollision._create_voxel_cache"><code class="docutils literal notranslate"><span class="pre">WorldVoxelCollision._create_voxel_cache</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world_voxel.html#curobo.geom.sdf.world_voxel.WorldVoxelCollision.load_collision_model"><code class="docutils literal notranslate"><span class="pre">WorldVoxelCollision.load_collision_model</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world_voxel.html#curobo.geom.sdf.world_voxel.WorldVoxelCollision._load_collision_model_in_cache"><code class="docutils literal notranslate"><span class="pre">WorldVoxelCollision._load_collision_model_in_cache</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world_voxel.html#curobo.geom.sdf.world_voxel.WorldVoxelCollision._batch_tensor_voxel"><code class="docutils literal notranslate"><span class="pre">WorldVoxelCollision._batch_tensor_voxel</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world_voxel.html#curobo.geom.sdf.world_voxel.WorldVoxelCollision.load_batch_collision_model"><code class="docutils literal notranslate"><span class="pre">WorldVoxelCollision.load_batch_collision_model</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world_voxel.html#curobo.geom.sdf.world_voxel.WorldVoxelCollision.enable_obstacle"><code class="docutils literal notranslate"><span class="pre">WorldVoxelCollision.enable_obstacle</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world_voxel.html#curobo.geom.sdf.world_voxel.WorldVoxelCollision.enable_voxel"><code class="docutils literal notranslate"><span class="pre">WorldVoxelCollision.enable_voxel</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world_voxel.html#curobo.geom.sdf.world_voxel.WorldVoxelCollision.update_obstacle_pose"><code class="docutils literal notranslate"><span class="pre">WorldVoxelCollision.update_obstacle_pose</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world_voxel.html#curobo.geom.sdf.world_voxel.WorldVoxelCollision.update_voxel_data"><code class="docutils literal notranslate"><span class="pre">WorldVoxelCollision.update_voxel_data</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world_voxel.html#curobo.geom.sdf.world_voxel.WorldVoxelCollision.update_voxel_features"><code class="docutils literal notranslate"><span class="pre">WorldVoxelCollision.update_voxel_features</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world_voxel.html#curobo.geom.sdf.world_voxel.WorldVoxelCollision.update_voxel_pose"><code class="docutils literal notranslate"><span class="pre">WorldVoxelCollision.update_voxel_pose</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world_voxel.html#curobo.geom.sdf.world_voxel.WorldVoxelCollision.get_voxel_idx"><code class="docutils literal notranslate"><span class="pre">WorldVoxelCollision.get_voxel_idx</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world_voxel.html#curobo.geom.sdf.world_voxel.WorldVoxelCollision.get_voxel_grid"><code class="docutils literal notranslate"><span class="pre">WorldVoxelCollision.get_voxel_grid</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world_voxel.html#curobo.geom.sdf.world_voxel.WorldVoxelCollision.get_sphere_distance"><code class="docutils literal notranslate"><span class="pre">WorldVoxelCollision.get_sphere_distance</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world_voxel.html#curobo.geom.sdf.world_voxel.WorldVoxelCollision.get_sphere_collision"><code class="docutils literal notranslate"><span class="pre">WorldVoxelCollision.get_sphere_collision</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world_voxel.html#curobo.geom.sdf.world_voxel.WorldVoxelCollision.get_swept_sphere_distance"><code class="docutils literal notranslate"><span class="pre">WorldVoxelCollision.get_swept_sphere_distance</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world_voxel.html#curobo.geom.sdf.world_voxel.WorldVoxelCollision.get_swept_sphere_collision"><code class="docutils literal notranslate"><span class="pre">WorldVoxelCollision.get_swept_sphere_collision</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.sdf.world_voxel.html#curobo.geom.sdf.world_voxel.WorldVoxelCollision.clear_cache"><code class="docutils literal notranslate"><span class="pre">WorldVoxelCollision.clear_cache</span></code></a></li>
 </ul>
 </li>
 </ul>

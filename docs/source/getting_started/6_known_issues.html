@@ -93,6 +93,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../notes/02_numerical_optimization.html">Numerical Optimization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../notes/04_cuda_kernels.html">CUDA Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../notes/05_usd_api.html">USD for Robot and World Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../notes/07_environment_variables.html">Environment Variables</a></li>
 </ul>
 
         </div>
@@ -133,8 +134,6 @@ the density of obstacles, the occlusions in perception can cause many failures.<
 <section id="python">
 <h2>Python<a class="headerlink" href="#python" title="Link to this heading"></a></h2>
 <ol class="arabic simple">
-<li><p><cite>pytest==6.2.5</cite> has a conflict with typeguard which is installed with torchtyping. This will
-cause the repo to not work with a pytorch container <cite>&lt;22.09</cite>.</p></li>
 <li><p>Once a cuda graph is generated, we cannot change the dimensions of any of the tensors (e.g., dof,
 timesteps, number of seeds). While cuRobo library is designed to regenerate the cuda graph
 if a change in dimension is detected, pytorch crashes when <cite>CUDAGraph.reset()</cite> is called.</p></li>
@@ -146,8 +145,6 @@ if a change in dimension is detected, pytorch crashes when <cite>CUDAGraph.reset
 <li><p>Compiling nvblox as redistributable with <code class="docutils literal notranslate"><span class="pre">cxx11_ABI=1</span></code> does not work as cmake links to global glog library instead of the
 local one. Hence compile nvblox as standard when using with <cite>cxx11_ABI=1</cite> as apt install glog is also compiled with this flag.</p></li>
 <li><p>Voxel sizes less then 1 cm (<code class="docutils literal notranslate"><span class="pre">&lt;0.01</span></code>) can hit GPU memory limits very quickly.</p></li>
-<li><p>Continuous collision checking is not implemented, so success rate can be lower in environments with very thin obstacles compared to using
-meshes or cuboids as obstacles.</p></li>
 <li><p>Reinitializing nvblox inside a python script can cause CUDA errors. Instead of reinitializing nvblox mapper instance, clear the existing map.</p></li>
 </ol>
 </section>

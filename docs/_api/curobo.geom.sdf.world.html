@@ -91,6 +91,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/02_numerical_optimization.html">Numerical Optimization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/04_cuda_kernels.html">CUDA Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/05_usd_api.html">USD for Robot and World Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/07_environment_variables.html">Environment Variables</a></li>
 </ul>
 
         </div>
@@ -201,7 +202,7 @@
 
 <dl class="py class">
 <dt class="sig sig-object py" id="curobo.geom.sdf.world.CollisionQueryBuffer">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">curobo.geom.sdf.world.</span></span><span class="sig-name descname"><span class="pre">CollisionQueryBuffer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">primitive_collision_buffer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mesh_collision_buffer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blox_collision_buffer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world.CollisionQueryBuffer" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">curobo.geom.sdf.world.</span></span><span class="sig-name descname"><span class="pre">CollisionQueryBuffer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">primitive_collision_buffer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mesh_collision_buffer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blox_collision_buffer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">voxel_collision_buffer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world.CollisionQueryBuffer" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Class stores all buffers required to query collisions
 This class currently has three main buffers. We initialize the required
@@ -212,6 +213,7 @@ buffers based on ?</p>
 <li><p><strong>primitive_collision_buffer</strong> (<a class="reference internal" href="#curobo.geom.sdf.world.CollisionBuffer" title="curobo.geom.sdf.world.CollisionBuffer"><em>CollisionBuffer</em></a><em> | </em><em>None</em>) – </p></li>
 <li><p><strong>mesh_collision_buffer</strong> (<a class="reference internal" href="#curobo.geom.sdf.world.CollisionBuffer" title="curobo.geom.sdf.world.CollisionBuffer"><em>CollisionBuffer</em></a><em> | </em><em>None</em>) – </p></li>
 <li><p><strong>blox_collision_buffer</strong> (<a class="reference internal" href="#curobo.geom.sdf.world.CollisionBuffer" title="curobo.geom.sdf.world.CollisionBuffer"><em>CollisionBuffer</em></a><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>voxel_collision_buffer</strong> (<a class="reference internal" href="#curobo.geom.sdf.world.CollisionBuffer" title="curobo.geom.sdf.world.CollisionBuffer"><em>CollisionBuffer</em></a><em> | </em><em>None</em>) – </p></li>
 <li><p><strong>shape</strong> (<em>Size</em><em> | </em><em>None</em>) – </p></li>
 </ul>
 </dd>
@@ -229,6 +231,11 @@ buffers based on ?</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.geom.sdf.world.CollisionQueryBuffer.blox_collision_buffer">
 <span class="sig-name descname"><span class="pre">blox_collision_buffer</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#curobo.geom.sdf.world.CollisionBuffer" title="curobo.geom.sdf.world.CollisionBuffer"><span class="pre">CollisionBuffer</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.geom.sdf.world.CollisionQueryBuffer.blox_collision_buffer" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.geom.sdf.world.CollisionQueryBuffer.voxel_collision_buffer">
+<span class="sig-name descname"><span class="pre">voxel_collision_buffer</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#curobo.geom.sdf.world.CollisionBuffer" title="curobo.geom.sdf.world.CollisionBuffer"><span class="pre">CollisionBuffer</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.geom.sdf.world.CollisionQueryBuffer.voxel_collision_buffer" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -312,11 +319,16 @@ buffers based on ?</p>
 <span class="sig-name descname"><span class="pre">MESH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'MESH'</span></em><a class="headerlink" href="#curobo.geom.sdf.world.CollisionCheckerType.MESH" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.geom.sdf.world.CollisionCheckerType.VOXEL">
+<span class="sig-name descname"><span class="pre">VOXEL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'VOXEL'</span></em><a class="headerlink" href="#curobo.geom.sdf.world.CollisionCheckerType.VOXEL" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="curobo.geom.sdf.world.WorldCollisionConfig">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">curobo.geom.sdf.world.</span></span><span class="sig-name descname"><span class="pre">WorldCollisionConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">tensor_args:</span> <span class="pre">curobo.types.base.TensorDeviceType,</span> <span class="pre">world_model:</span> <span class="pre">Union[List[curobo.geom.types.WorldConfig],</span> <span class="pre">curobo.geom.types.WorldConfig,</span> <span class="pre">NoneType]</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">cache:</span> <span class="pre">Optional[Dict[curobo.geom.types.Obstacle,</span> <span class="pre">int]]</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">n_envs:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">1,</span> <span class="pre">checker_type:</span> <span class="pre">curobo.geom.sdf.world.CollisionCheckerType</span> <span class="pre">=</span> <span class="pre">&lt;CollisionCheckerType.PRIMITIVE:</span> <span class="pre">'PRIMITIVE'&gt;,</span> <span class="pre">max_distance:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">0.01</span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world.WorldCollisionConfig" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">curobo.geom.sdf.world.</span></span><span class="sig-name descname"><span class="pre">WorldCollisionConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">tensor_args:</span> <span class="pre">curobo.types.base.TensorDeviceType,</span> <span class="pre">world_model:</span> <span class="pre">Union[List[curobo.geom.types.WorldConfig],</span> <span class="pre">curobo.geom.types.WorldConfig,</span> <span class="pre">NoneType]</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">cache:</span> <span class="pre">Optional[Dict[curobo.geom.types.Obstacle,</span> <span class="pre">int]]</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">n_envs:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">1,</span> <span class="pre">checker_type:</span> <span class="pre">curobo.geom.sdf.world.CollisionCheckerType</span> <span class="pre">=</span> <span class="pre">&lt;CollisionCheckerType.PRIMITIVE:</span> <span class="pre">'PRIMITIVE'&gt;,</span> <span class="pre">max_distance:</span> <span class="pre">Union[torch.Tensor,</span> <span class="pre">float]</span> <span class="pre">=</span> <span class="pre">0.01</span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world.WorldCollisionConfig" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -326,7 +338,7 @@ buffers based on ?</p>
 <li><p><strong>cache</strong> (<em>Dict</em><em>[</em><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Obstacle" title="curobo.geom.types.Obstacle"><em>Obstacle</em></a><em>, </em><em>int</em><em>] </em><em>| </em><em>None</em>) – </p></li>
 <li><p><strong>n_envs</strong> (<em>int</em>) – </p></li>
 <li><p><strong>checker_type</strong> (<a class="reference internal" href="#curobo.geom.sdf.world.CollisionCheckerType" title="curobo.geom.sdf.world.CollisionCheckerType"><em>CollisionCheckerType</em></a>) – </p></li>
-<li><p><strong>max_distance</strong> (<em>float</em>) – </p></li>
+<li><p><strong>max_distance</strong> (<em>Tensor</em><em> | </em><em>float</em>) – </p></li>
 </ul>
 </dd>
 </dl>
@@ -357,12 +369,12 @@ buffers based on ?</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.geom.sdf.world.WorldCollisionConfig.max_distance">
-<span class="sig-name descname"><span class="pre">max_distance</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.01</span></em><a class="headerlink" href="#curobo.geom.sdf.world.WorldCollisionConfig.max_distance" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">max_distance</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tensor</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.01</span></em><a class="headerlink" href="#curobo.geom.sdf.world.WorldCollisionConfig.max_distance" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="curobo.geom.sdf.world.WorldCollisionConfig.load_from_dict">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">load_from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">world_coll_checker_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">world_model_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tensor_args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">TensorDeviceType(device=device(type='cuda',</span> <span class="pre">index=0),</span> <span class="pre">dtype=torch.float32)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world.WorldCollisionConfig.load_from_dict" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">load_from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">world_coll_checker_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">world_model_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tensor_args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">TensorDeviceType(device=device(type='cuda',</span> <span class="pre">index=0),</span> <span class="pre">dtype=torch.float32,</span> <span class="pre">collision_geometry_dtype=torch.float32,</span> <span class="pre">collision_gradient_dtype=torch.float32,</span> <span class="pre">collision_distance_dtype=torch.float32)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world.WorldCollisionConfig.load_from_dict" title="Link to this definition"></a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -397,7 +409,7 @@ buffers based on ?</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="curobo.geom.sdf.world.WorldCollision.get_sphere_distance">
-<span class="sig-name descname"><span class="pre">get_sphere_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query_sphere</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collision_query_buffer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">activation_distance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_query_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_loss</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world.WorldCollision.get_sphere_distance" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_sphere_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query_sphere</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collision_query_buffer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">activation_distance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_query_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_loss</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sum_collisions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compute_esdf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world.WorldCollision.get_sphere_distance" title="Link to this definition"></a></dt>
 <dd><p>Computes the signed distance via analytic function
 Args:
 tensor_sphere: b, n, 4</p>
@@ -409,6 +421,8 @@ tensor_sphere: b, n, 4</p>
 <li><p><strong>activation_distance</strong> (<em>Tensor</em>) – </p></li>
 <li><p><strong>env_query_idx</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
 <li><p><strong>return_loss</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>sum_collisions</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>compute_esdf</strong> (<em>bool</em>) – </p></li>
 </ul>
 </dd>
 </dl>
@@ -436,7 +450,7 @@ we assume we don’t need gradient for this function. If you need gradient, use 
 
 <dl class="py method">
 <dt class="sig sig-object py" id="curobo.geom.sdf.world.WorldCollision.get_swept_sphere_distance">
-<span class="sig-name descname"><span class="pre">get_swept_sphere_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query_sphere</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collision_query_buffer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">activation_distance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed_dt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sweep_steps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enable_speed_metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_query_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_loss</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world.WorldCollision.get_swept_sphere_distance" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_swept_sphere_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query_sphere</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collision_query_buffer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">activation_distance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed_dt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sweep_steps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enable_speed_metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_query_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_loss</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sum_collisions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world.WorldCollision.get_swept_sphere_distance" title="Link to this definition"></a></dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -447,6 +461,7 @@ we assume we don’t need gradient for this function. If you need gradient, use 
 <li><p><strong>sweep_steps</strong> (<em>int</em>) – </p></li>
 <li><p><strong>env_query_idx</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
 <li><p><strong>return_loss</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>sum_collisions</strong> (<em>bool</em>) – </p></li>
 </ul>
 </dd>
 </dl>
@@ -482,6 +497,85 @@ we assume we don’t need gradient for this function. If you need gradient, use 
 <li><p><strong>env_query_idx</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
 <li><p><strong>return_loss</strong> (<em>bool</em>) – </p></li>
 </ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.sdf.world.WorldCollision.get_voxels_in_bounding_box">
+<span class="sig-name descname"><span class="pre">get_voxels_in_bounding_box</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cuboid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Cuboid(name='test',</span> <span class="pre">pose=[0,</span> <span class="pre">0,</span> <span class="pre">0,</span> <span class="pre">1,</span> <span class="pre">0,</span> <span class="pre">0,</span> <span class="pre">0],</span> <span class="pre">scale=None,</span> <span class="pre">color=None,</span> <span class="pre">texture_id=None,</span> <span class="pre">texture=None,</span> <span class="pre">material=Material(metallic=0.0,</span> <span class="pre">roughness=0.4),</span> <span class="pre">tensor_args=TensorDeviceType(device=device(type='cuda',</span> <span class="pre">index=0),</span> <span class="pre">dtype=torch.float32,</span> <span class="pre">collision_geometry_dtype=torch.float32,</span> <span class="pre">collision_gradient_dtype=torch.float32,</span> <span class="pre">collision_distance_dtype=torch.float32),</span> <span class="pre">dims=[1,</span> <span class="pre">1,</span> <span class="pre">1])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">voxel_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.02</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world.WorldCollision.get_voxels_in_bounding_box" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cuboid</strong> (<a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Cuboid" title="curobo.geom.types.Cuboid"><em>Cuboid</em></a>) – </p></li>
+<li><p><strong>voxel_size</strong> (<em>float</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>List</em>[<a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Cuboid" title="curobo.geom.types.Cuboid"><em>Cuboid</em></a>] | <em>Tensor</em></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.sdf.world.WorldCollision.clear_voxelization_cache">
+<span class="sig-name descname"><span class="pre">clear_voxelization_cache</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world.WorldCollision.clear_voxelization_cache" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.sdf.world.WorldCollision.update_cache_voxelization">
+<span class="sig-name descname"><span class="pre">update_cache_voxelization</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_grid</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world.WorldCollision.update_cache_voxelization" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>new_grid</strong> (<a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.VoxelGrid" title="curobo.geom.types.VoxelGrid"><em>VoxelGrid</em></a>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.sdf.world.WorldCollision.get_occupancy_in_bounding_box">
+<span class="sig-name descname"><span class="pre">get_occupancy_in_bounding_box</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cuboid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Cuboid(name='test',</span> <span class="pre">pose=[0,</span> <span class="pre">0,</span> <span class="pre">0,</span> <span class="pre">1,</span> <span class="pre">0,</span> <span class="pre">0,</span> <span class="pre">0],</span> <span class="pre">scale=None,</span> <span class="pre">color=None,</span> <span class="pre">texture_id=None,</span> <span class="pre">texture=None,</span> <span class="pre">material=Material(metallic=0.0,</span> <span class="pre">roughness=0.4),</span> <span class="pre">tensor_args=TensorDeviceType(device=device(type='cuda',</span> <span class="pre">index=0),</span> <span class="pre">dtype=torch.float32,</span> <span class="pre">collision_geometry_dtype=torch.float32,</span> <span class="pre">collision_gradient_dtype=torch.float32,</span> <span class="pre">collision_distance_dtype=torch.float32),</span> <span class="pre">dims=[1,</span> <span class="pre">1,</span> <span class="pre">1])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">voxel_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.02</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world.WorldCollision.get_occupancy_in_bounding_box" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cuboid</strong> (<a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Cuboid" title="curobo.geom.types.Cuboid"><em>Cuboid</em></a>) – </p></li>
+<li><p><strong>voxel_size</strong> (<em>float</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.VoxelGrid" title="curobo.geom.types.VoxelGrid"><em>VoxelGrid</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.sdf.world.WorldCollision.get_esdf_in_bounding_box">
+<span class="sig-name descname"><span class="pre">get_esdf_in_bounding_box</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cuboid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Cuboid(name='test',</span> <span class="pre">pose=[0,</span> <span class="pre">0,</span> <span class="pre">0,</span> <span class="pre">1,</span> <span class="pre">0,</span> <span class="pre">0,</span> <span class="pre">0],</span> <span class="pre">scale=None,</span> <span class="pre">color=None,</span> <span class="pre">texture_id=None,</span> <span class="pre">texture=None,</span> <span class="pre">material=Material(metallic=0.0,</span> <span class="pre">roughness=0.4),</span> <span class="pre">tensor_args=TensorDeviceType(device=device(type='cuda',</span> <span class="pre">index=0),</span> <span class="pre">dtype=torch.float32,</span> <span class="pre">collision_geometry_dtype=torch.float32,</span> <span class="pre">collision_gradient_dtype=torch.float32,</span> <span class="pre">collision_distance_dtype=torch.float32),</span> <span class="pre">dims=[1,</span> <span class="pre">1,</span> <span class="pre">1])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">voxel_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.02</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">torch.float32</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world.WorldCollision.get_esdf_in_bounding_box" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cuboid</strong> (<a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Cuboid" title="curobo.geom.types.Cuboid"><em>Cuboid</em></a>) – </p></li>
+<li><p><strong>voxel_size</strong> (<em>float</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.VoxelGrid" title="curobo.geom.types.VoxelGrid"><em>VoxelGrid</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.geom.sdf.world.WorldCollision.get_mesh_in_bounding_box">
+<span class="sig-name descname"><span class="pre">get_mesh_in_bounding_box</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cuboid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Cuboid(name='test',</span> <span class="pre">pose=[0,</span> <span class="pre">0,</span> <span class="pre">0,</span> <span class="pre">1,</span> <span class="pre">0,</span> <span class="pre">0,</span> <span class="pre">0],</span> <span class="pre">scale=None,</span> <span class="pre">color=None,</span> <span class="pre">texture_id=None,</span> <span class="pre">texture=None,</span> <span class="pre">material=Material(metallic=0.0,</span> <span class="pre">roughness=0.4),</span> <span class="pre">tensor_args=TensorDeviceType(device=device(type='cuda',</span> <span class="pre">index=0),</span> <span class="pre">dtype=torch.float32,</span> <span class="pre">collision_geometry_dtype=torch.float32,</span> <span class="pre">collision_gradient_dtype=torch.float32,</span> <span class="pre">collision_distance_dtype=torch.float32),</span> <span class="pre">dims=[1,</span> <span class="pre">1,</span> <span class="pre">1])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">voxel_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.02</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world.WorldCollision.get_mesh_in_bounding_box" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cuboid</strong> (<a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Cuboid" title="curobo.geom.types.Cuboid"><em>Cuboid</em></a>) – </p></li>
+<li><p><strong>voxel_size</strong> (<em>float</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Mesh" title="curobo.geom.types.Mesh"><em>Mesh</em></a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -697,7 +791,7 @@ obj_idx:</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="curobo.geom.sdf.world.WorldPrimitiveCollision.get_sphere_distance">
-<span class="sig-name descname"><span class="pre">get_sphere_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query_sphere</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collision_query_buffer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">activation_distance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_query_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_loss</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world.WorldPrimitiveCollision.get_sphere_distance" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_sphere_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query_sphere</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collision_query_buffer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">activation_distance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_query_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_loss</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sum_collisions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">compute_esdf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world.WorldPrimitiveCollision.get_sphere_distance" title="Link to this definition"></a></dt>
 <dd><p>Computes the signed distance via analytic function
 Args:
 tensor_sphere: b, n, 4</p>
@@ -708,6 +802,8 @@ tensor_sphere: b, n, 4</p>
 <li><p><strong>weight</strong> (<em>Tensor</em>) – </p></li>
 <li><p><strong>activation_distance</strong> (<em>Tensor</em>) – </p></li>
 <li><p><strong>env_query_idx</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>sum_collisions</strong> (<em>bool</em>) – </p></li>
+<li><p><strong>compute_esdf</strong> (<em>bool</em>) – </p></li>
 </ul>
 </dd>
 </dl>
@@ -715,7 +811,7 @@ tensor_sphere: b, n, 4</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="curobo.geom.sdf.world.WorldPrimitiveCollision.get_sphere_collision">
-<span class="sig-name descname"><span class="pre">get_sphere_collision</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query_sphere</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collision_query_buffer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">activation_distance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_query_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_loss</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world.WorldPrimitiveCollision.get_sphere_collision" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_sphere_collision</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query_sphere</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collision_query_buffer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">activation_distance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_query_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_loss</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world.WorldPrimitiveCollision.get_sphere_collision" title="Link to this definition"></a></dt>
 <dd><p>Computes the signed distance via analytic function
 Args:
 tensor_sphere: b, n, 4
@@ -734,7 +830,7 @@ we assume we don’t need gradient for this function. If you need gradient, use 
 
 <dl class="py method">
 <dt class="sig sig-object py" id="curobo.geom.sdf.world.WorldPrimitiveCollision.get_swept_sphere_distance">
-<span class="sig-name descname"><span class="pre">get_swept_sphere_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query_sphere</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collision_query_buffer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">activation_distance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed_dt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sweep_steps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enable_speed_metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_query_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_loss</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world.WorldPrimitiveCollision.get_swept_sphere_distance" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_swept_sphere_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query_sphere</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collision_query_buffer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">activation_distance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">speed_dt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sweep_steps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enable_speed_metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env_query_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_loss</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sum_collisions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world.WorldPrimitiveCollision.get_swept_sphere_distance" title="Link to this definition"></a></dt>
 <dd><p>Computes the signed distance via analytic function
 Args:
 tensor_sphere: b, n, 4</p>
@@ -747,6 +843,7 @@ tensor_sphere: b, n, 4</p>
 <li><p><strong>speed_dt</strong> (<em>Tensor</em>) – </p></li>
 <li><p><strong>sweep_steps</strong> (<em>int</em>) – </p></li>
 <li><p><strong>env_query_idx</strong> (<em>Tensor</em><em> | </em><em>None</em>) – </p></li>
+<li><p><strong>sum_collisions</strong> (<em>bool</em>) – </p></li>
 </ul>
 </dd>
 </dl>
@@ -776,38 +873,6 @@ tensor_sphere: b, n, 4</p>
 <dt class="sig sig-object py" id="curobo.geom.sdf.world.WorldPrimitiveCollision.clear_cache">
 <span class="sig-name descname"><span class="pre">clear_cache</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world.WorldPrimitiveCollision.clear_cache" title="Link to this definition"></a></dt>
 <dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="curobo.geom.sdf.world.WorldPrimitiveCollision.get_voxels_in_bounding_box">
-<span class="sig-name descname"><span class="pre">get_voxels_in_bounding_box</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cuboid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">voxel_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.02</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world.WorldPrimitiveCollision.get_voxels_in_bounding_box" title="Link to this definition"></a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>cuboid</strong> (<a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Cuboid" title="curobo.geom.types.Cuboid"><em>Cuboid</em></a>) – </p></li>
-<li><p><strong>voxel_size</strong> (<em>float</em>) – </p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><em>List</em>[<a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Cuboid" title="curobo.geom.types.Cuboid"><em>Cuboid</em></a>] | <em>Tensor</em></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="curobo.geom.sdf.world.WorldPrimitiveCollision.get_mesh_in_bounding_box">
-<span class="sig-name descname"><span class="pre">get_mesh_in_bounding_box</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cuboid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">voxel_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.02</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sdf.world.WorldPrimitiveCollision.get_mesh_in_bounding_box" title="Link to this definition"></a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>cuboid</strong> (<a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Cuboid" title="curobo.geom.types.Cuboid"><em>Cuboid</em></a>) – </p></li>
-<li><p><strong>voxel_size</strong> (<em>float</em>) – </p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.Mesh" title="curobo.geom.types.Mesh"><em>Mesh</em></a></p>
-</dd>
-</dl>
-</dd></dl>
 
 </dd></dl>
 

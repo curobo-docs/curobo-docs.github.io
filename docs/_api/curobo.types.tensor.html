@@ -91,6 +91,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/02_numerical_optimization.html">Numerical Optimization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/04_cuda_kernels.html">CUDA Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../source/notes/05_usd_api.html">USD for Robot and World Representation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/notes/07_environment_variables.html">Environment Variables</a></li>
 </ul>
 
         </div>
@@ -119,6 +120,73 @@
              
   <section id="module-curobo.types.tensor">
 <span id="curobo-types-tensor-module"></span><h1>curobo.types.tensor module<a class="headerlink" href="#module-curobo.types.tensor" title="Link to this heading"></a></h1>
+<p>This module contains aliases for structured Tensors, improving readability.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.types.tensor.T_DOF">
+<span class="sig-prename descclassname"><span class="pre">curobo.types.tensor.</span></span><span class="sig-name descname"><span class="pre">T_DOF</span></span><a class="headerlink" href="#curobo.types.tensor.T_DOF" title="Link to this definition"></a></dt>
+<dd><p>Tensor of shape [degrees of freedom]</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.types.tensor.T_BDOF">
+<span class="sig-prename descclassname"><span class="pre">curobo.types.tensor.</span></span><span class="sig-name descname"><span class="pre">T_BDOF</span></span><a class="headerlink" href="#curobo.types.tensor.T_BDOF" title="Link to this definition"></a></dt>
+<dd><p>Tensor of shape [batch, degrees of freedom]</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.types.tensor.T_BHDOF_float">
+<span class="sig-prename descclassname"><span class="pre">curobo.types.tensor.</span></span><span class="sig-name descname"><span class="pre">T_BHDOF_float</span></span><a class="headerlink" href="#curobo.types.tensor.T_BHDOF_float" title="Link to this definition"></a></dt>
+<dd><p>Tensor of shape [batch, horizon, degrees of freedom]</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.types.tensor.T_HDOF_float">
+<span class="sig-prename descclassname"><span class="pre">curobo.types.tensor.</span></span><span class="sig-name descname"><span class="pre">T_HDOF_float</span></span><a class="headerlink" href="#curobo.types.tensor.T_HDOF_float" title="Link to this definition"></a></dt>
+<dd><p>Tensor of shape [horizon, degrees of freedom]</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.types.tensor.T_BValue_float">
+<span class="sig-prename descclassname"><span class="pre">curobo.types.tensor.</span></span><span class="sig-name descname"><span class="pre">T_BValue_float</span></span><a class="headerlink" href="#curobo.types.tensor.T_BValue_float" title="Link to this definition"></a></dt>
+<dd><p>Float Tensor of shape [batch, 1].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.types.tensor.T_BHValue_float">
+<span class="sig-prename descclassname"><span class="pre">curobo.types.tensor.</span></span><span class="sig-name descname"><span class="pre">T_BHValue_float</span></span><a class="headerlink" href="#curobo.types.tensor.T_BHValue_float" title="Link to this definition"></a></dt>
+<dd><p>Float Tensor of shape [batch, horizon, 1].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.types.tensor.T_BValue_bool">
+<span class="sig-prename descclassname"><span class="pre">curobo.types.tensor.</span></span><span class="sig-name descname"><span class="pre">T_BValue_bool</span></span><a class="headerlink" href="#curobo.types.tensor.T_BValue_bool" title="Link to this definition"></a></dt>
+<dd><p>Bool Tensor of shape [batch, horizon, 1].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.types.tensor.T_BValue_int">
+<span class="sig-prename descclassname"><span class="pre">curobo.types.tensor.</span></span><span class="sig-name descname"><span class="pre">T_BValue_int</span></span><a class="headerlink" href="#curobo.types.tensor.T_BValue_int" title="Link to this definition"></a></dt>
+<dd><p>Int Tensor of shape [batch, horizon, 1].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.types.tensor.T_BPosition">
+<span class="sig-prename descclassname"><span class="pre">curobo.types.tensor.</span></span><span class="sig-name descname"><span class="pre">T_BPosition</span></span><a class="headerlink" href="#curobo.types.tensor.T_BPosition" title="Link to this definition"></a></dt>
+<dd><p>Tensor of shape [batch, 3].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.types.tensor.T_BQuaternion">
+<span class="sig-prename descclassname"><span class="pre">curobo.types.tensor.</span></span><span class="sig-name descname"><span class="pre">T_BQuaternion</span></span><a class="headerlink" href="#curobo.types.tensor.T_BQuaternion" title="Link to this definition"></a></dt>
+<dd><p>Tensor of shape [batch, 4].</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="curobo.types.tensor.T_BRotation">
+<span class="sig-prename descclassname"><span class="pre">curobo.types.tensor.</span></span><span class="sig-name descname"><span class="pre">T_BRotation</span></span><a class="headerlink" href="#curobo.types.tensor.T_BRotation" title="Link to this definition"></a></dt>
+<dd><p>Tensor of shape [batch, 3,3].</p>
+</dd></dl>
+
 </section>
 
 
