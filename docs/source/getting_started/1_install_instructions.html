@@ -127,14 +127,23 @@ We can install cuRobo for use directly through python following instructions for
 want to use cuRobo in Isaac sim, skip library instructions and follow <a class="reference internal" href="#isaac-sim-installation"><span class="std std-ref">Install for use in Isaac Sim</span></a>. If you want to use cuRobo within a docker container, follow instructions in <a class="reference internal" href="5_docker_development.html#docker-dev"><span class="std std-ref">Docker Development</span></a>.</p>
 <nav class="contents local" id="contents">
 <ul class="simple">
-<li><p><a class="reference internal" href="#library-installation" id="id2">Library Installation</a></p></li>
-<li><p><a class="reference internal" href="#install-for-use-in-isaac-sim" id="id3">Install for use in Isaac Sim</a></p></li>
-<li><p><a class="reference internal" href="#install-nvblox-optional" id="id4">Install nvblox (optional)</a></p></li>
-<li><p><a class="reference internal" href="#installing-on-nvidia-jetson-aarch64" id="id5">Installing on NVIDIA Jetson (aarch64)</a></p></li>
+<li><p><a class="reference internal" href="#system-requirements" id="id2">System Requirements</a></p></li>
+<li><p><a class="reference internal" href="#library-installation" id="id3">Library Installation</a></p></li>
+<li><p><a class="reference internal" href="#install-for-use-in-isaac-sim" id="id4">Install for use in Isaac Sim</a></p></li>
+<li><p><a class="reference internal" href="#install-nvblox-optional" id="id5">Install nvblox (optional)</a></p></li>
+<li><p><a class="reference internal" href="#installing-on-nvidia-jetson-aarch64" id="id6">Installing on NVIDIA Jetson (aarch64)</a></p></li>
 </ul>
 </nav>
+<section id="system-requirements">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">System Requirements</a><a class="headerlink" href="#system-requirements" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Ubuntu 20.04 or 22.04. Other linux environments might also work.</p></li>
+<li><p>NVIDIA GPU with VOLTA or newer architecture and at least 4 GB of VRAM. NVIDIA Jetson Orin is also supported.</p></li>
+<li><p>PyTorch 1.10 or newer. PyTorch 2.0+ is recommended.</p></li>
+</ol>
+</section>
 <section id="library-installation">
-<span id="id1"></span><h2><a class="toc-backref" href="#id2" role="doc-backlink">Library Installation</a><a class="headerlink" href="#library-installation" title="Link to this heading"></a></h2>
+<span id="id1"></span><h2><a class="toc-backref" href="#id3" role="doc-backlink">Library Installation</a><a class="headerlink" href="#library-installation" title="Link to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p>Start with a pytorch docker or a python environment with pytorch &gt;= 1.10.</p></li>
 <li><p>Install git lfs with <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">git-lfs</span></code>.</p></li>
@@ -149,7 +158,7 @@ through python</p>
 </div>
 </section>
 <section id="install-for-use-in-isaac-sim">
-<span id="isaac-sim-installation"></span><h2><a class="toc-backref" href="#id3" role="doc-backlink">Install for use in Isaac Sim</a><a class="headerlink" href="#install-for-use-in-isaac-sim" title="Link to this heading"></a></h2>
+<span id="isaac-sim-installation"></span><h2><a class="toc-backref" href="#id4" role="doc-backlink">Install for use in Isaac Sim</a><a class="headerlink" href="#install-for-use-in-isaac-sim" title="Link to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p>Install NVIDIA Isaac Sim 2022.2.1 or 2023.1.0 following <a class="reference external" href="https://docs.omniverse.nvidia.com/isaacsim/latest/installation/install_workstation.html">isaac_sim_workstation_install</a></p></li>
 <li><p>Install CUDA 11.7 following <a class="reference external" href="https://developer.nvidia.com/cuda-11-7-0-download-archive">cuda_instructions</a> and add to your path with:  <code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">PATH=/usr/local/cuda-11.7/bin${PATH:+:${PATH}}</span></code></p></li>
@@ -162,11 +171,11 @@ through python</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Isaac Sim version: cuRobo is stable in Isaac Sim 2022.2.1. While all examples will work in 2023.1.0, you might
-have some instability as it has not been heavily tested. The examples will not work in 2023.1.1.</p>
+have some instability as it has not been heavily tested. In 2023.1.1, examples will run with <code class="docutils literal notranslate"><span class="pre">--robot</span> <span class="pre">ur5e.yml</span></code>.</p>
 </div>
 </section>
 <section id="install-nvblox-optional">
-<span id="nvblox-installation"></span><h2><a class="toc-backref" href="#id4" role="doc-backlink">Install nvblox (optional)</a><a class="headerlink" href="#install-nvblox-optional" title="Link to this heading"></a></h2>
+<span id="nvblox-installation"></span><h2><a class="toc-backref" href="#id5" role="doc-backlink">Install nvblox (optional)</a><a class="headerlink" href="#install-nvblox-optional" title="Link to this heading"></a></h2>
 <p>We recommend using a docker for running cuRobo with nvblox, instructions available at <a class="reference internal" href="5_docker_development.html#docker-dev"><span class="std std-ref">Docker Development</span></a>. We provide
 instructions to use nvblox natively below.</p>
 <p>Before proceeding with the installation, check how pytorch was compiled. Specifically, pyTorch that is
@@ -321,7 +330,7 @@ python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </sp
 </section>
 </section>
 <section id="installing-on-nvidia-jetson-aarch64">
-<h2><a class="toc-backref" href="#id5" role="doc-backlink">Installing on NVIDIA Jetson (aarch64)</a><a class="headerlink" href="#installing-on-nvidia-jetson-aarch64" title="Link to this heading"></a></h2>
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Installing on NVIDIA Jetson (aarch64)</a><a class="headerlink" href="#installing-on-nvidia-jetson-aarch64" title="Link to this heading"></a></h2>
 <p>Native installation on NVIDIA Jetson is not supported. Use cuRobo in a docker following instructions
 at <a class="reference internal" href="5_docker_development.html#docker-dev"><span class="std std-ref">Docker Development</span></a>.</p>
 </section>
