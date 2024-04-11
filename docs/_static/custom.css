@@ -8,6 +8,7 @@ disclosure or distribution of this material and related documentation
 without an express license agreement from NVIDIA CORPORATION or
 its affiliates is strictly prohibited.
 */
+
 @import url("theme.css");
 @import url("../pygments.css");
 body {
@@ -19,9 +20,15 @@ h1, h2, .rst-content .toctree-wrapper p.caption, h3, h4, h5, h6, legend, p.capti
     font-family: "Lato","proxima-nova","Helvetica Neue",Arial,sans-serif;
 }
 
+.sidebar-brand-text {
+    text-align: center;
+    margin: 0 0;
+}
+
 .wy-nav-side {
     /* background-color: #404452; */
     background-color: #5e5e5e;
+    
 }
 
 .wy-side-nav-search {
@@ -48,6 +55,10 @@ h1, h2, .rst-content .toctree-wrapper p.caption, h3, h4, h5, h6, legend, p.capti
     }
 }
 
+.wy-nav-content {
+    max-width: 1000px;
+    margin: auto;
+}
 /* Fixes for mobile */
 .wy-nav-top {
     background-color: #fff;
