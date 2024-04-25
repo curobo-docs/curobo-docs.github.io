@@ -262,20 +262,84 @@
         <article role="main">
           <section id="module-curobo.util.logger">
 <span id="curobo-util-logger-module"></span><h1>curobo.util.logger module<a class="headerlink" href="#module-curobo.util.logger" title="Link to this heading"></a></h1>
+<p>This module provides logging API, wrapping <a class="reference external" href="https://docs.python.org/3/library/logging.html#logging.Logger" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">logging.Logger</span></code></a>. These functions are used
+to log messages in the cuRobo package. The functions can also be used in other packages by
+creating a new logger (<a class="reference internal" href="#curobo.util.logger.setup_logger" title="curobo.util.logger.setup_logger"><code class="xref py py-meth docutils literal notranslate"><span class="pre">setup_logger</span></code></a>) with the desired name.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="curobo.util.logger.setup_logger">
+<span class="sig-name descname"><span class="pre">setup_logger</span></span><span class="sig-paren">(</span>
+
+<dl>
+<dd><em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'info'</span></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">logger_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'curobo'</span></span></em>,</dd>
+</dl>
+
+<span class="sig-paren">)</span><a class="headerlink" href="#curobo.util.logger.setup_logger" title="Link to this definition"></a></dt>
+<dd><p>Set up logger level.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>level</strong> – Log level. Default is “info”. Other options are “debug”, “warning”, “error”.</p></li>
+<li><p><strong>logger_name</strong> – Name of the logger. Default is “curobo”.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.12)"><strong>ValueError</strong></a> – If log level is not one of [info, debug, warning, error].</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="curobo.util.logger.setup_curobo_logger">
 <span class="sig-name descname"><span class="pre">setup_curobo_logger</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'info'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.util.logger.setup_curobo_logger" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Set up logger level for curobo package. Deprecated. Use <a class="reference internal" href="#curobo.util.logger.setup_logger" title="curobo.util.logger.setup_logger"><code class="xref py py-meth docutils literal notranslate"><span class="pre">setup_logger</span></code></a> instead.</p>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="curobo.util.logger.log_warn">
-<span class="sig-name descname"><span class="pre">log_warn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">txt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.util.logger.log_warn" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">log_warn</span></span><span class="sig-paren">(</span>
+
+<dl>
+<dd><em class="sig-param"><span class="n"><span class="pre">txt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">logger_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'curobo'</span></span></em>,</dd>
+<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>,</dd>
+<dd><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em>,</dd>
+</dl>
+
+<span class="sig-paren">)</span><a class="headerlink" href="#curobo.util.logger.log_warn" title="Link to this definition"></a></dt>
+<dd><p>Log warning message. Also see <a class="reference external" href="https://docs.python.org/3/library/logging.html#logging.Logger.warning" title="(in Python v3.12)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">logging.Logger.warning</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>txt</strong> – Warning message.</p></li>
+<li><p><strong>logger_name</strong> – Name of the logger. Default is “curobo”.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="curobo.util.logger.log_info">
-<span class="sig-name descname"><span class="pre">log_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">txt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.util.logger.log_info" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">log_info</span></span><span class="sig-paren">(</span>
+
+<dl>
+<dd><em class="sig-param"><span class="n"><span class="pre">txt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">logger_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'curobo'</span></span></em>,</dd>
+<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>,</dd>
+<dd><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em>,</dd>
+</dl>
+
+<span class="sig-paren">)</span><a class="headerlink" href="#curobo.util.logger.log_info" title="Link to this definition"></a></dt>
+<dd><p>Log info message. Also see <a class="reference external" href="https://docs.python.org/3/library/logging.html#logging.Logger.info" title="(in Python v3.12)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">logging.Logger.info</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>txt</strong> – Info message.</p></li>
+<li><p><strong>logger_name</strong> – Name of the logger. Default is “curobo”.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="curobo.util.logger.log_error">
@@ -283,14 +347,32 @@
 
 <dl>
 <dd><em class="sig-param"><span class="n"><span class="pre">txt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">logger_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'curobo'</span></span></em>,</dd>
 <dd><em class="sig-param"><span class="n"><span class="pre">exc_info</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>,</dd>
-<dd><em class="sig-param"><span class="n"><span class="pre">stack_info</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">stack_info</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">stacklevel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em>,</dd>
 <dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>,</dd>
 <dd><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em>,</dd>
 </dl>
 
 <span class="sig-paren">)</span><a class="headerlink" href="#curobo.util.logger.log_error" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Log error and raise ValueError.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>txt</strong> – Helpful message that conveys the error.</p></li>
+<li><p><strong>logger_name</strong> – Name of the logger. Default is “curobo”.</p></li>
+<li><p><strong>exc_info</strong> – Add exception info to message. See <a class="reference external" href="https://docs.python.org/3/library/logging.html#logging.Logger.error" title="(in Python v3.12)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">logging.Logger.error</span></code></a>.</p></li>
+<li><p><strong>stack_info</strong> – Add stacktracke to message. See <a class="reference external" href="https://docs.python.org/3/library/logging.html#logging.Logger.error" title="(in Python v3.12)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">logging.Logger.error</span></code></a>.</p></li>
+<li><p><strong>stacklevel</strong> – See <a class="reference external" href="https://docs.python.org/3/library/logging.html#logging.Logger.error" title="(in Python v3.12)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">logging.Logger.error</span></code></a>. Default value of 2 removes this function
+from the stack trace.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.12)"><strong>ValueError</strong></a> – Error message with exception.</p>
+</dd>
+</dl>
+</dd></dl>
 
 </section>
 
@@ -338,6 +420,7 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">curobo.util.logger module</a><ul>
+<li><a class="reference internal" href="#curobo.util.logger.setup_logger"><code class="docutils literal notranslate"><span class="pre">setup_logger</span></code></a></li>
 <li><a class="reference internal" href="#curobo.util.logger.setup_curobo_logger"><code class="docutils literal notranslate"><span class="pre">setup_curobo_logger</span></code></a></li>
 <li><a class="reference internal" href="#curobo.util.logger.log_warn"><code class="docutils literal notranslate"><span class="pre">log_warn</span></code></a></li>
 <li><a class="reference internal" href="#curobo.util.logger.log_info"><code class="docutils literal notranslate"><span class="pre">log_info</span></code></a></li>
@@ -355,7 +438,7 @@
   </div>
 </div><script src="../_static/jquery.js?v=5d32c60e"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../_static/documentation_options.js?v=2e246024"></script>
+    <script src="../_static/documentation_options.js?v=916ae6f7"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/furo.js?v=32e29ea5"></script>

@@ -372,7 +372,7 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="curobo.rollout.dynamics_model.integration_utils.CliqueTensorStep">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CliqueTensorStep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStep" title="Link to this definition"></a></dt>
-<dd><p>Bases: <a class="reference external" href="https://pytorch.org/docs/stable/autograd.html#torch.autograd.Function" title="(in PyTorch v2.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Function</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://pytorch.org/docs/stable/autograd.html#torch.autograd.Function" title="(in PyTorch v2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Function</span></code></a></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="curobo.rollout.dynamics_model.integration_utils.CliqueTensorStep.forward">
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span>
@@ -400,7 +400,7 @@ to define forward:</p>
 <ul class="simple">
 <li><p>It must accept a context ctx as the first argument, followed by any
 number of arguments (tensors or other types).</p></li>
-<li><p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#combining-forward-context" title="(in PyTorch v2.2)"><span>Combined or separate forward() and setup_context()</span></a> for more details</p></li>
+<li><p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#combining-forward-context" title="(in PyTorch v2.3)"><span>Combined or separate forward() and setup_context()</span></a> for more details</p></li>
 </ul>
 <p>Usage 2 (Separate forward and ctx):</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="err">@</span><span class="n">staticmethod</span>
@@ -418,7 +418,7 @@ number of arguments (tensors or other types).</p></li>
 staticmethod to handle setting up the <code class="docutils literal notranslate"><span class="pre">ctx</span></code> object.
 <code class="docutils literal notranslate"><span class="pre">output</span></code> is the output of the forward, <code class="docutils literal notranslate"><span class="pre">inputs</span></code> are a Tuple of inputs
 to the forward.</p></li>
-<li><p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.2)"><span>Extending torch.autograd</span></a> for more details</p></li>
+<li><p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.3)"><span>Extending torch.autograd</span></a> for more details</p></li>
 </ul>
 <p>The context can be used to store arbitrary data that can be then
 retrieved during the backward pass. Tensors should not be stored
@@ -528,11 +528,11 @@ output.</p>
 <dt class="sig sig-object py" id="curobo.rollout.dynamics_model.integration_utils.CliqueTensorStep.is_traceable">
 <span class="sig-name descname"><span class="pre">is_traceable</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStep.is_traceable" title="Link to this definition"></a></dt>
 <dd><p>Bool that specifies if PyTorch should attempt to autogenerate
-<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a> support for this autograd.Function. You may set this to
+<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a> support for this autograd.Function. You may set this to
 True only if this autograd.Function’s forward, backward, and jvp (if they
 exist) are written using PyTorch operations; otherwise, please override
-<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.autograd.Function.vmap.html#torch.autograd.Function.vmap" title="(in PyTorch v2.2)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">torch.autograd.Function.vmap</span></code></a> to add support for <a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>.</p>
-<p>Please see <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.func.html#func-autograd-function" title="(in PyTorch v2.2)"><span>Extending torch.func with autograd.Function</span></a> for more details.</p>
+<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.autograd.Function.vmap.html#torch.autograd.Function.vmap" title="(in PyTorch v2.3)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">torch.autograd.Function.vmap</span></code></a> to add support for <a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>.</p>
+<p>Please see <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.func.html#func-autograd-function" title="(in PyTorch v2.3)"><span>Extending torch.func with autograd.Function</span></a> for more details.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -566,7 +566,7 @@ functions.</p>
 <span class="sig-name descname"><span class="pre">mark_dirty</span></span><span class="sig-paren">(</span>
 
 <dl>
-<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.2)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></span></em>,</dd>
 </dl>
 
 <span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStep.mark_dirty" title="Link to this definition"></a></dt>
@@ -610,7 +610,7 @@ modification.</p>
 <span class="sig-name descname"><span class="pre">mark_non_differentiable</span></span><span class="sig-paren">(</span>
 
 <dl>
-<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.2)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></span></em>,</dd>
 </dl>
 
 <span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStep.mark_non_differentiable" title="Link to this definition"></a></dt>
@@ -710,7 +710,7 @@ output.</p>
 <span class="sig-name descname"><span class="pre">save_for_backward</span></span><span class="sig-paren">(</span>
 
 <dl>
-<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">tensors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.2)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">tensors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></span></em>,</dd>
 </dl>
 
 <span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStep.save_for_backward" title="Link to this definition"></a></dt>
@@ -720,7 +720,7 @@ output.</p>
 <p>All tensors intended to be used in the backward pass should be saved
 with <code class="docutils literal notranslate"><span class="pre">save_for_backward</span></code> (as opposed to directly on <code class="docutils literal notranslate"><span class="pre">ctx</span></code>) to prevent
 incorrect gradients and memory leaks, and enable the application of saved
-tensor hooks. See <a class="reference external" href="https://pytorch.org/docs/stable/autograd.html#torch.autograd.graph.saved_tensors_hooks" title="(in PyTorch v2.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.autograd.graph.saved_tensors_hooks</span></code></a>.</p>
+tensor hooks. See <a class="reference external" href="https://pytorch.org/docs/stable/autograd.html#torch.autograd.graph.saved_tensors_hooks" title="(in PyTorch v2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.autograd.graph.saved_tensors_hooks</span></code></a>.</p>
 <p>Note that if intermediary tensors, tensors that are neither inputs
 nor outputs of <a class="reference internal" href="#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStep.forward" title="curobo.rollout.dynamics_model.integration_utils.CliqueTensorStep.forward"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward</span></code></a>, are saved for backward, your custom Function
 may not support double backward.
@@ -735,7 +735,7 @@ for more details.</p>
 attribute. Before returning them to the user, a check is made to ensure
 they weren’t used in any in-place operation that modified their content.</p>
 <p>Arguments can also be <code class="docutils literal notranslate"><span class="pre">None</span></code>. This is a no-op.</p>
-<p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.2)"><span>Extending torch.autograd</span></a> for more details on how to use this method.</p>
+<p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.3)"><span>Extending torch.autograd</span></a> for more details on how to use this method.</p>
 <dl>
 <dt>Example::</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># xdoctest: +REQUIRES(env:TORCH_DOCTEST_AUTOGRAD)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Func</span><span class="p">(</span><span class="n">Function</span><span class="p">):</span>
@@ -772,7 +772,7 @@ they weren’t used in any in-place operation that modified their content.</p>
 <span class="sig-name descname"><span class="pre">save_for_forward</span></span><span class="sig-paren">(</span>
 
 <dl>
-<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">tensors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.2)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">tensors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></span></em>,</dd>
 </dl>
 
 <span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStep.save_for_forward" title="Link to this definition"></a></dt>
@@ -782,7 +782,7 @@ method, and only be called with tensors.</p>
 <p>In <a class="reference internal" href="#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStep.jvp" title="curobo.rollout.dynamics_model.integration_utils.CliqueTensorStep.jvp"><code class="xref py py-func docutils literal notranslate"><span class="pre">jvp</span></code></a>, saved objects can be accessed through the <a class="reference internal" href="#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStep.saved_tensors" title="curobo.rollout.dynamics_model.integration_utils.CliqueTensorStep.saved_tensors"><code class="xref py py-attr docutils literal notranslate"><span class="pre">saved_tensors</span></code></a>
 attribute.</p>
 <p>Arguments can also be <code class="docutils literal notranslate"><span class="pre">None</span></code>. This is a no-op.</p>
-<p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.2)"><span>Extending torch.autograd</span></a> for more details on how to use this method.</p>
+<p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.3)"><span>Extending torch.autograd</span></a> for more details on how to use this method.</p>
 <dl>
 <dt>Example::</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># xdoctest: +SKIP</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Func</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">autograd</span><span class="o">.</span><span class="n">Function</span><span class="p">):</span>
@@ -907,7 +907,7 @@ happens inside the <code class="docutils literal notranslate"><span class="pre">
 override <code class="docutils literal notranslate"><span class="pre">setup_context</span></code>. Setting up the ctx for backward happens
 inside <code class="docutils literal notranslate"><span class="pre">setup_context</span></code> (as opposed to inside the <code class="docutils literal notranslate"><span class="pre">forward</span></code>)</p></li>
 </ol>
-<p>See <a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.autograd.Function.forward.html#torch.autograd.Function.forward" title="(in PyTorch v2.2)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">torch.autograd.Function.forward</span></code></a> and <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.2)"><span>Extending torch.autograd</span></a> for more details.</p>
+<p>See <a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.autograd.Function.forward.html#torch.autograd.Function.forward" title="(in PyTorch v2.3)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">torch.autograd.Function.forward</span></code></a> and <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.3)"><span>Extending torch.autograd</span></a> for more details.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -956,15 +956,15 @@ output.</p>
 
 <span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStep.vmap" title="Link to this definition"></a></dt>
 <dd><p>Defines a rule for the behavior of this autograd.Function underneath
-<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>. For a <code class="xref py py-func docutils literal notranslate"><span class="pre">torch.autograd.Function</span></code> to support
-<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>, you must either override this staticmethod, or set
+<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>. For a <code class="xref py py-func docutils literal notranslate"><span class="pre">torch.autograd.Function</span></code> to support
+<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>, you must either override this staticmethod, or set
 <code class="docutils literal notranslate"><span class="pre">generate_vmap_rule</span></code> to <code class="docutils literal notranslate"><span class="pre">True</span></code> (you may not do both).</p>
 <p>If you choose to override this staticmethod: it must accept</p>
 <ul class="simple">
 <li><p>an <code class="docutils literal notranslate"><span class="pre">info</span></code> object as the first argument. <code class="docutils literal notranslate"><span class="pre">info.batch_size</span></code>
 specifies the size of the dimension being vmapped over,
 while <code class="docutils literal notranslate"><span class="pre">info.randomness</span></code> is the randomness option passed to
-<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>.</p></li>
+<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>.</p></li>
 <li><p>an <code class="docutils literal notranslate"><span class="pre">in_dims</span></code> tuple as the second argument.
 For each arg in <code class="docutils literal notranslate"><span class="pre">args</span></code>, <code class="docutils literal notranslate"><span class="pre">in_dims</span></code> has a corresponding
 <code class="docutils literal notranslate"><span class="pre">Optional[int]</span></code>. It is <code class="docutils literal notranslate"><span class="pre">None</span></code> if the arg is not a Tensor or if
@@ -976,7 +976,7 @@ specifying what dimension of the Tensor is being vmapped over.</p></li>
 Similar to <code class="docutils literal notranslate"><span class="pre">in_dims</span></code>, <code class="docutils literal notranslate"><span class="pre">out_dims</span></code> should be of the same structure as
 <code class="docutils literal notranslate"><span class="pre">output</span></code> and contain one <code class="docutils literal notranslate"><span class="pre">out_dim</span></code> per output that specifies if the
 output has the vmapped dimension and what index it is in.</p>
-<p>Please see <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.func.html#func-autograd-function" title="(in PyTorch v2.2)"><span>Extending torch.func with autograd.Function</span></a> for more details.</p>
+<p>Please see <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.func.html#func-autograd-function" title="(in PyTorch v2.3)"><span>Extending torch.func with autograd.Function</span></a> for more details.</p>
 </dd></dl>
 
 </dd></dl>
@@ -984,7 +984,7 @@ output has the vmapped dimension and what index it is in.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepKernel">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CliqueTensorStepKernel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepKernel" title="Link to this definition"></a></dt>
-<dd><p>Bases: <a class="reference external" href="https://pytorch.org/docs/stable/autograd.html#torch.autograd.Function" title="(in PyTorch v2.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Function</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://pytorch.org/docs/stable/autograd.html#torch.autograd.Function" title="(in PyTorch v2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Function</span></code></a></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepKernel.forward">
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span>
@@ -1015,7 +1015,7 @@ to define forward:</p>
 <ul class="simple">
 <li><p>It must accept a context ctx as the first argument, followed by any
 number of arguments (tensors or other types).</p></li>
-<li><p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#combining-forward-context" title="(in PyTorch v2.2)"><span>Combined or separate forward() and setup_context()</span></a> for more details</p></li>
+<li><p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#combining-forward-context" title="(in PyTorch v2.3)"><span>Combined or separate forward() and setup_context()</span></a> for more details</p></li>
 </ul>
 <p>Usage 2 (Separate forward and ctx):</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="err">@</span><span class="n">staticmethod</span>
@@ -1033,7 +1033,7 @@ number of arguments (tensors or other types).</p></li>
 staticmethod to handle setting up the <code class="docutils literal notranslate"><span class="pre">ctx</span></code> object.
 <code class="docutils literal notranslate"><span class="pre">output</span></code> is the output of the forward, <code class="docutils literal notranslate"><span class="pre">inputs</span></code> are a Tuple of inputs
 to the forward.</p></li>
-<li><p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.2)"><span>Extending torch.autograd</span></a> for more details</p></li>
+<li><p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.3)"><span>Extending torch.autograd</span></a> for more details</p></li>
 </ul>
 <p>The context can be used to store arbitrary data that can be then
 retrieved during the backward pass. Tensors should not be stored
@@ -1150,11 +1150,11 @@ output.</p>
 <dt class="sig sig-object py" id="curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepKernel.is_traceable">
 <span class="sig-name descname"><span class="pre">is_traceable</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepKernel.is_traceable" title="Link to this definition"></a></dt>
 <dd><p>Bool that specifies if PyTorch should attempt to autogenerate
-<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a> support for this autograd.Function. You may set this to
+<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a> support for this autograd.Function. You may set this to
 True only if this autograd.Function’s forward, backward, and jvp (if they
 exist) are written using PyTorch operations; otherwise, please override
-<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.autograd.Function.vmap.html#torch.autograd.Function.vmap" title="(in PyTorch v2.2)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">torch.autograd.Function.vmap</span></code></a> to add support for <a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>.</p>
-<p>Please see <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.func.html#func-autograd-function" title="(in PyTorch v2.2)"><span>Extending torch.func with autograd.Function</span></a> for more details.</p>
+<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.autograd.Function.vmap.html#torch.autograd.Function.vmap" title="(in PyTorch v2.3)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">torch.autograd.Function.vmap</span></code></a> to add support for <a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>.</p>
+<p>Please see <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.func.html#func-autograd-function" title="(in PyTorch v2.3)"><span>Extending torch.func with autograd.Function</span></a> for more details.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1188,7 +1188,7 @@ functions.</p>
 <span class="sig-name descname"><span class="pre">mark_dirty</span></span><span class="sig-paren">(</span>
 
 <dl>
-<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.2)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></span></em>,</dd>
 </dl>
 
 <span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepKernel.mark_dirty" title="Link to this definition"></a></dt>
@@ -1232,7 +1232,7 @@ modification.</p>
 <span class="sig-name descname"><span class="pre">mark_non_differentiable</span></span><span class="sig-paren">(</span>
 
 <dl>
-<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.2)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></span></em>,</dd>
 </dl>
 
 <span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepKernel.mark_non_differentiable" title="Link to this definition"></a></dt>
@@ -1332,7 +1332,7 @@ output.</p>
 <span class="sig-name descname"><span class="pre">save_for_backward</span></span><span class="sig-paren">(</span>
 
 <dl>
-<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">tensors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.2)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">tensors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></span></em>,</dd>
 </dl>
 
 <span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepKernel.save_for_backward" title="Link to this definition"></a></dt>
@@ -1342,7 +1342,7 @@ output.</p>
 <p>All tensors intended to be used in the backward pass should be saved
 with <code class="docutils literal notranslate"><span class="pre">save_for_backward</span></code> (as opposed to directly on <code class="docutils literal notranslate"><span class="pre">ctx</span></code>) to prevent
 incorrect gradients and memory leaks, and enable the application of saved
-tensor hooks. See <a class="reference external" href="https://pytorch.org/docs/stable/autograd.html#torch.autograd.graph.saved_tensors_hooks" title="(in PyTorch v2.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.autograd.graph.saved_tensors_hooks</span></code></a>.</p>
+tensor hooks. See <a class="reference external" href="https://pytorch.org/docs/stable/autograd.html#torch.autograd.graph.saved_tensors_hooks" title="(in PyTorch v2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.autograd.graph.saved_tensors_hooks</span></code></a>.</p>
 <p>Note that if intermediary tensors, tensors that are neither inputs
 nor outputs of <a class="reference internal" href="#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepKernel.forward" title="curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepKernel.forward"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward</span></code></a>, are saved for backward, your custom Function
 may not support double backward.
@@ -1357,7 +1357,7 @@ for more details.</p>
 attribute. Before returning them to the user, a check is made to ensure
 they weren’t used in any in-place operation that modified their content.</p>
 <p>Arguments can also be <code class="docutils literal notranslate"><span class="pre">None</span></code>. This is a no-op.</p>
-<p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.2)"><span>Extending torch.autograd</span></a> for more details on how to use this method.</p>
+<p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.3)"><span>Extending torch.autograd</span></a> for more details on how to use this method.</p>
 <dl>
 <dt>Example::</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># xdoctest: +REQUIRES(env:TORCH_DOCTEST_AUTOGRAD)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Func</span><span class="p">(</span><span class="n">Function</span><span class="p">):</span>
@@ -1394,7 +1394,7 @@ they weren’t used in any in-place operation that modified their content.</p>
 <span class="sig-name descname"><span class="pre">save_for_forward</span></span><span class="sig-paren">(</span>
 
 <dl>
-<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">tensors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.2)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">tensors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></span></em>,</dd>
 </dl>
 
 <span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepKernel.save_for_forward" title="Link to this definition"></a></dt>
@@ -1404,7 +1404,7 @@ method, and only be called with tensors.</p>
 <p>In <a class="reference internal" href="#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepKernel.jvp" title="curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepKernel.jvp"><code class="xref py py-func docutils literal notranslate"><span class="pre">jvp</span></code></a>, saved objects can be accessed through the <a class="reference internal" href="#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepKernel.saved_tensors" title="curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepKernel.saved_tensors"><code class="xref py py-attr docutils literal notranslate"><span class="pre">saved_tensors</span></code></a>
 attribute.</p>
 <p>Arguments can also be <code class="docutils literal notranslate"><span class="pre">None</span></code>. This is a no-op.</p>
-<p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.2)"><span>Extending torch.autograd</span></a> for more details on how to use this method.</p>
+<p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.3)"><span>Extending torch.autograd</span></a> for more details on how to use this method.</p>
 <dl>
 <dt>Example::</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># xdoctest: +SKIP</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Func</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">autograd</span><span class="o">.</span><span class="n">Function</span><span class="p">):</span>
@@ -1529,7 +1529,7 @@ happens inside the <code class="docutils literal notranslate"><span class="pre">
 override <code class="docutils literal notranslate"><span class="pre">setup_context</span></code>. Setting up the ctx for backward happens
 inside <code class="docutils literal notranslate"><span class="pre">setup_context</span></code> (as opposed to inside the <code class="docutils literal notranslate"><span class="pre">forward</span></code>)</p></li>
 </ol>
-<p>See <a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.autograd.Function.forward.html#torch.autograd.Function.forward" title="(in PyTorch v2.2)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">torch.autograd.Function.forward</span></code></a> and <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.2)"><span>Extending torch.autograd</span></a> for more details.</p>
+<p>See <a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.autograd.Function.forward.html#torch.autograd.Function.forward" title="(in PyTorch v2.3)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">torch.autograd.Function.forward</span></code></a> and <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.3)"><span>Extending torch.autograd</span></a> for more details.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -1578,15 +1578,15 @@ output.</p>
 
 <span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepKernel.vmap" title="Link to this definition"></a></dt>
 <dd><p>Defines a rule for the behavior of this autograd.Function underneath
-<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>. For a <code class="xref py py-func docutils literal notranslate"><span class="pre">torch.autograd.Function</span></code> to support
-<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>, you must either override this staticmethod, or set
+<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>. For a <code class="xref py py-func docutils literal notranslate"><span class="pre">torch.autograd.Function</span></code> to support
+<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>, you must either override this staticmethod, or set
 <code class="docutils literal notranslate"><span class="pre">generate_vmap_rule</span></code> to <code class="docutils literal notranslate"><span class="pre">True</span></code> (you may not do both).</p>
 <p>If you choose to override this staticmethod: it must accept</p>
 <ul class="simple">
 <li><p>an <code class="docutils literal notranslate"><span class="pre">info</span></code> object as the first argument. <code class="docutils literal notranslate"><span class="pre">info.batch_size</span></code>
 specifies the size of the dimension being vmapped over,
 while <code class="docutils literal notranslate"><span class="pre">info.randomness</span></code> is the randomness option passed to
-<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>.</p></li>
+<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>.</p></li>
 <li><p>an <code class="docutils literal notranslate"><span class="pre">in_dims</span></code> tuple as the second argument.
 For each arg in <code class="docutils literal notranslate"><span class="pre">args</span></code>, <code class="docutils literal notranslate"><span class="pre">in_dims</span></code> has a corresponding
 <code class="docutils literal notranslate"><span class="pre">Optional[int]</span></code>. It is <code class="docutils literal notranslate"><span class="pre">None</span></code> if the arg is not a Tensor or if
@@ -1598,7 +1598,7 @@ specifying what dimension of the Tensor is being vmapped over.</p></li>
 Similar to <code class="docutils literal notranslate"><span class="pre">in_dims</span></code>, <code class="docutils literal notranslate"><span class="pre">out_dims</span></code> should be of the same structure as
 <code class="docutils literal notranslate"><span class="pre">output</span></code> and contain one <code class="docutils literal notranslate"><span class="pre">out_dim</span></code> per output that specifies if the
 output has the vmapped dimension and what index it is in.</p>
-<p>Please see <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.func.html#func-autograd-function" title="(in PyTorch v2.2)"><span>Extending torch.func with autograd.Function</span></a> for more details.</p>
+<p>Please see <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.func.html#func-autograd-function" title="(in PyTorch v2.3)"><span>Extending torch.func with autograd.Function</span></a> for more details.</p>
 </dd></dl>
 
 </dd></dl>
@@ -1613,7 +1613,7 @@ output has the vmapped dimension and what index it is in.</p>
 </dl>
 
 <span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepIdxKernel" title="Link to this definition"></a></dt>
-<dd><p>Bases: <a class="reference external" href="https://pytorch.org/docs/stable/autograd.html#torch.autograd.Function" title="(in PyTorch v2.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Function</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://pytorch.org/docs/stable/autograd.html#torch.autograd.Function" title="(in PyTorch v2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Function</span></code></a></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepIdxKernel.forward">
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span>
@@ -1645,7 +1645,7 @@ to define forward:</p>
 <ul class="simple">
 <li><p>It must accept a context ctx as the first argument, followed by any
 number of arguments (tensors or other types).</p></li>
-<li><p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#combining-forward-context" title="(in PyTorch v2.2)"><span>Combined or separate forward() and setup_context()</span></a> for more details</p></li>
+<li><p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#combining-forward-context" title="(in PyTorch v2.3)"><span>Combined or separate forward() and setup_context()</span></a> for more details</p></li>
 </ul>
 <p>Usage 2 (Separate forward and ctx):</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="err">@</span><span class="n">staticmethod</span>
@@ -1663,7 +1663,7 @@ number of arguments (tensors or other types).</p></li>
 staticmethod to handle setting up the <code class="docutils literal notranslate"><span class="pre">ctx</span></code> object.
 <code class="docutils literal notranslate"><span class="pre">output</span></code> is the output of the forward, <code class="docutils literal notranslate"><span class="pre">inputs</span></code> are a Tuple of inputs
 to the forward.</p></li>
-<li><p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.2)"><span>Extending torch.autograd</span></a> for more details</p></li>
+<li><p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.3)"><span>Extending torch.autograd</span></a> for more details</p></li>
 </ul>
 <p>The context can be used to store arbitrary data that can be then
 retrieved during the backward pass. Tensors should not be stored
@@ -1780,11 +1780,11 @@ output.</p>
 <dt class="sig sig-object py" id="curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepIdxKernel.is_traceable">
 <span class="sig-name descname"><span class="pre">is_traceable</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepIdxKernel.is_traceable" title="Link to this definition"></a></dt>
 <dd><p>Bool that specifies if PyTorch should attempt to autogenerate
-<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a> support for this autograd.Function. You may set this to
+<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a> support for this autograd.Function. You may set this to
 True only if this autograd.Function’s forward, backward, and jvp (if they
 exist) are written using PyTorch operations; otherwise, please override
-<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.autograd.Function.vmap.html#torch.autograd.Function.vmap" title="(in PyTorch v2.2)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">torch.autograd.Function.vmap</span></code></a> to add support for <a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>.</p>
-<p>Please see <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.func.html#func-autograd-function" title="(in PyTorch v2.2)"><span>Extending torch.func with autograd.Function</span></a> for more details.</p>
+<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.autograd.Function.vmap.html#torch.autograd.Function.vmap" title="(in PyTorch v2.3)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">torch.autograd.Function.vmap</span></code></a> to add support for <a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>.</p>
+<p>Please see <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.func.html#func-autograd-function" title="(in PyTorch v2.3)"><span>Extending torch.func with autograd.Function</span></a> for more details.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1818,7 +1818,7 @@ functions.</p>
 <span class="sig-name descname"><span class="pre">mark_dirty</span></span><span class="sig-paren">(</span>
 
 <dl>
-<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.2)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></span></em>,</dd>
 </dl>
 
 <span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepIdxKernel.mark_dirty" title="Link to this definition"></a></dt>
@@ -1862,7 +1862,7 @@ modification.</p>
 <span class="sig-name descname"><span class="pre">mark_non_differentiable</span></span><span class="sig-paren">(</span>
 
 <dl>
-<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.2)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></span></em>,</dd>
 </dl>
 
 <span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepIdxKernel.mark_non_differentiable" title="Link to this definition"></a></dt>
@@ -1962,7 +1962,7 @@ output.</p>
 <span class="sig-name descname"><span class="pre">save_for_backward</span></span><span class="sig-paren">(</span>
 
 <dl>
-<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">tensors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.2)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">tensors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></span></em>,</dd>
 </dl>
 
 <span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepIdxKernel.save_for_backward" title="Link to this definition"></a></dt>
@@ -1972,7 +1972,7 @@ output.</p>
 <p>All tensors intended to be used in the backward pass should be saved
 with <code class="docutils literal notranslate"><span class="pre">save_for_backward</span></code> (as opposed to directly on <code class="docutils literal notranslate"><span class="pre">ctx</span></code>) to prevent
 incorrect gradients and memory leaks, and enable the application of saved
-tensor hooks. See <a class="reference external" href="https://pytorch.org/docs/stable/autograd.html#torch.autograd.graph.saved_tensors_hooks" title="(in PyTorch v2.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.autograd.graph.saved_tensors_hooks</span></code></a>.</p>
+tensor hooks. See <a class="reference external" href="https://pytorch.org/docs/stable/autograd.html#torch.autograd.graph.saved_tensors_hooks" title="(in PyTorch v2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.autograd.graph.saved_tensors_hooks</span></code></a>.</p>
 <p>Note that if intermediary tensors, tensors that are neither inputs
 nor outputs of <a class="reference internal" href="#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepIdxKernel.forward" title="curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepIdxKernel.forward"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward</span></code></a>, are saved for backward, your custom Function
 may not support double backward.
@@ -1987,7 +1987,7 @@ for more details.</p>
 attribute. Before returning them to the user, a check is made to ensure
 they weren’t used in any in-place operation that modified their content.</p>
 <p>Arguments can also be <code class="docutils literal notranslate"><span class="pre">None</span></code>. This is a no-op.</p>
-<p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.2)"><span>Extending torch.autograd</span></a> for more details on how to use this method.</p>
+<p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.3)"><span>Extending torch.autograd</span></a> for more details on how to use this method.</p>
 <dl>
 <dt>Example::</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># xdoctest: +REQUIRES(env:TORCH_DOCTEST_AUTOGRAD)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Func</span><span class="p">(</span><span class="n">Function</span><span class="p">):</span>
@@ -2024,7 +2024,7 @@ they weren’t used in any in-place operation that modified their content.</p>
 <span class="sig-name descname"><span class="pre">save_for_forward</span></span><span class="sig-paren">(</span>
 
 <dl>
-<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">tensors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.2)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">tensors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></span></em>,</dd>
 </dl>
 
 <span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepIdxKernel.save_for_forward" title="Link to this definition"></a></dt>
@@ -2034,7 +2034,7 @@ method, and only be called with tensors.</p>
 <p>In <a class="reference internal" href="#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepIdxKernel.jvp" title="curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepIdxKernel.jvp"><code class="xref py py-func docutils literal notranslate"><span class="pre">jvp</span></code></a>, saved objects can be accessed through the <a class="reference internal" href="#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepIdxKernel.saved_tensors" title="curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepIdxKernel.saved_tensors"><code class="xref py py-attr docutils literal notranslate"><span class="pre">saved_tensors</span></code></a>
 attribute.</p>
 <p>Arguments can also be <code class="docutils literal notranslate"><span class="pre">None</span></code>. This is a no-op.</p>
-<p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.2)"><span>Extending torch.autograd</span></a> for more details on how to use this method.</p>
+<p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.3)"><span>Extending torch.autograd</span></a> for more details on how to use this method.</p>
 <dl>
 <dt>Example::</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># xdoctest: +SKIP</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Func</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">autograd</span><span class="o">.</span><span class="n">Function</span><span class="p">):</span>
@@ -2159,7 +2159,7 @@ happens inside the <code class="docutils literal notranslate"><span class="pre">
 override <code class="docutils literal notranslate"><span class="pre">setup_context</span></code>. Setting up the ctx for backward happens
 inside <code class="docutils literal notranslate"><span class="pre">setup_context</span></code> (as opposed to inside the <code class="docutils literal notranslate"><span class="pre">forward</span></code>)</p></li>
 </ol>
-<p>See <a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.autograd.Function.forward.html#torch.autograd.Function.forward" title="(in PyTorch v2.2)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">torch.autograd.Function.forward</span></code></a> and <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.2)"><span>Extending torch.autograd</span></a> for more details.</p>
+<p>See <a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.autograd.Function.forward.html#torch.autograd.Function.forward" title="(in PyTorch v2.3)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">torch.autograd.Function.forward</span></code></a> and <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.3)"><span>Extending torch.autograd</span></a> for more details.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -2208,15 +2208,15 @@ output.</p>
 
 <span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepIdxKernel.vmap" title="Link to this definition"></a></dt>
 <dd><p>Defines a rule for the behavior of this autograd.Function underneath
-<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>. For a <code class="xref py py-func docutils literal notranslate"><span class="pre">torch.autograd.Function</span></code> to support
-<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>, you must either override this staticmethod, or set
+<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>. For a <code class="xref py py-func docutils literal notranslate"><span class="pre">torch.autograd.Function</span></code> to support
+<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>, you must either override this staticmethod, or set
 <code class="docutils literal notranslate"><span class="pre">generate_vmap_rule</span></code> to <code class="docutils literal notranslate"><span class="pre">True</span></code> (you may not do both).</p>
 <p>If you choose to override this staticmethod: it must accept</p>
 <ul class="simple">
 <li><p>an <code class="docutils literal notranslate"><span class="pre">info</span></code> object as the first argument. <code class="docutils literal notranslate"><span class="pre">info.batch_size</span></code>
 specifies the size of the dimension being vmapped over,
 while <code class="docutils literal notranslate"><span class="pre">info.randomness</span></code> is the randomness option passed to
-<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>.</p></li>
+<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>.</p></li>
 <li><p>an <code class="docutils literal notranslate"><span class="pre">in_dims</span></code> tuple as the second argument.
 For each arg in <code class="docutils literal notranslate"><span class="pre">args</span></code>, <code class="docutils literal notranslate"><span class="pre">in_dims</span></code> has a corresponding
 <code class="docutils literal notranslate"><span class="pre">Optional[int]</span></code>. It is <code class="docutils literal notranslate"><span class="pre">None</span></code> if the arg is not a Tensor or if
@@ -2228,7 +2228,7 @@ specifying what dimension of the Tensor is being vmapped over.</p></li>
 Similar to <code class="docutils literal notranslate"><span class="pre">in_dims</span></code>, <code class="docutils literal notranslate"><span class="pre">out_dims</span></code> should be of the same structure as
 <code class="docutils literal notranslate"><span class="pre">output</span></code> and contain one <code class="docutils literal notranslate"><span class="pre">out_dim</span></code> per output that specifies if the
 output has the vmapped dimension and what index it is in.</p>
-<p>Please see <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.func.html#func-autograd-function" title="(in PyTorch v2.2)"><span>Extending torch.func with autograd.Function</span></a> for more details.</p>
+<p>Please see <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.func.html#func-autograd-function" title="(in PyTorch v2.3)"><span>Extending torch.func with autograd.Function</span></a> for more details.</p>
 </dd></dl>
 
 </dd></dl>
@@ -2243,7 +2243,7 @@ output has the vmapped dimension and what index it is in.</p>
 </dl>
 
 <span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepCentralDifferenceKernel" title="Link to this definition"></a></dt>
-<dd><p>Bases: <a class="reference external" href="https://pytorch.org/docs/stable/autograd.html#torch.autograd.Function" title="(in PyTorch v2.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Function</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://pytorch.org/docs/stable/autograd.html#torch.autograd.Function" title="(in PyTorch v2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Function</span></code></a></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepCentralDifferenceKernel.forward">
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span>
@@ -2274,7 +2274,7 @@ to define forward:</p>
 <ul class="simple">
 <li><p>It must accept a context ctx as the first argument, followed by any
 number of arguments (tensors or other types).</p></li>
-<li><p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#combining-forward-context" title="(in PyTorch v2.2)"><span>Combined or separate forward() and setup_context()</span></a> for more details</p></li>
+<li><p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#combining-forward-context" title="(in PyTorch v2.3)"><span>Combined or separate forward() and setup_context()</span></a> for more details</p></li>
 </ul>
 <p>Usage 2 (Separate forward and ctx):</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="err">@</span><span class="n">staticmethod</span>
@@ -2292,7 +2292,7 @@ number of arguments (tensors or other types).</p></li>
 staticmethod to handle setting up the <code class="docutils literal notranslate"><span class="pre">ctx</span></code> object.
 <code class="docutils literal notranslate"><span class="pre">output</span></code> is the output of the forward, <code class="docutils literal notranslate"><span class="pre">inputs</span></code> are a Tuple of inputs
 to the forward.</p></li>
-<li><p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.2)"><span>Extending torch.autograd</span></a> for more details</p></li>
+<li><p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.3)"><span>Extending torch.autograd</span></a> for more details</p></li>
 </ul>
 <p>The context can be used to store arbitrary data that can be then
 retrieved during the backward pass. Tensors should not be stored
@@ -2409,11 +2409,11 @@ output.</p>
 <dt class="sig sig-object py" id="curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepCentralDifferenceKernel.is_traceable">
 <span class="sig-name descname"><span class="pre">is_traceable</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepCentralDifferenceKernel.is_traceable" title="Link to this definition"></a></dt>
 <dd><p>Bool that specifies if PyTorch should attempt to autogenerate
-<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a> support for this autograd.Function. You may set this to
+<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a> support for this autograd.Function. You may set this to
 True only if this autograd.Function’s forward, backward, and jvp (if they
 exist) are written using PyTorch operations; otherwise, please override
-<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.autograd.Function.vmap.html#torch.autograd.Function.vmap" title="(in PyTorch v2.2)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">torch.autograd.Function.vmap</span></code></a> to add support for <a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>.</p>
-<p>Please see <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.func.html#func-autograd-function" title="(in PyTorch v2.2)"><span>Extending torch.func with autograd.Function</span></a> for more details.</p>
+<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.autograd.Function.vmap.html#torch.autograd.Function.vmap" title="(in PyTorch v2.3)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">torch.autograd.Function.vmap</span></code></a> to add support for <a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>.</p>
+<p>Please see <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.func.html#func-autograd-function" title="(in PyTorch v2.3)"><span>Extending torch.func with autograd.Function</span></a> for more details.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -2447,7 +2447,7 @@ functions.</p>
 <span class="sig-name descname"><span class="pre">mark_dirty</span></span><span class="sig-paren">(</span>
 
 <dl>
-<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.2)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></span></em>,</dd>
 </dl>
 
 <span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepCentralDifferenceKernel.mark_dirty" title="Link to this definition"></a></dt>
@@ -2491,7 +2491,7 @@ modification.</p>
 <span class="sig-name descname"><span class="pre">mark_non_differentiable</span></span><span class="sig-paren">(</span>
 
 <dl>
-<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.2)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></span></em>,</dd>
 </dl>
 
 <span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepCentralDifferenceKernel.mark_non_differentiable" title="Link to this definition"></a></dt>
@@ -2591,7 +2591,7 @@ output.</p>
 <span class="sig-name descname"><span class="pre">save_for_backward</span></span><span class="sig-paren">(</span>
 
 <dl>
-<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">tensors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.2)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">tensors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></span></em>,</dd>
 </dl>
 
 <span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepCentralDifferenceKernel.save_for_backward" title="Link to this definition"></a></dt>
@@ -2601,7 +2601,7 @@ output.</p>
 <p>All tensors intended to be used in the backward pass should be saved
 with <code class="docutils literal notranslate"><span class="pre">save_for_backward</span></code> (as opposed to directly on <code class="docutils literal notranslate"><span class="pre">ctx</span></code>) to prevent
 incorrect gradients and memory leaks, and enable the application of saved
-tensor hooks. See <a class="reference external" href="https://pytorch.org/docs/stable/autograd.html#torch.autograd.graph.saved_tensors_hooks" title="(in PyTorch v2.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.autograd.graph.saved_tensors_hooks</span></code></a>.</p>
+tensor hooks. See <a class="reference external" href="https://pytorch.org/docs/stable/autograd.html#torch.autograd.graph.saved_tensors_hooks" title="(in PyTorch v2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.autograd.graph.saved_tensors_hooks</span></code></a>.</p>
 <p>Note that if intermediary tensors, tensors that are neither inputs
 nor outputs of <a class="reference internal" href="#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepCentralDifferenceKernel.forward" title="curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepCentralDifferenceKernel.forward"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward</span></code></a>, are saved for backward, your custom Function
 may not support double backward.
@@ -2616,7 +2616,7 @@ for more details.</p>
 attribute. Before returning them to the user, a check is made to ensure
 they weren’t used in any in-place operation that modified their content.</p>
 <p>Arguments can also be <code class="docutils literal notranslate"><span class="pre">None</span></code>. This is a no-op.</p>
-<p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.2)"><span>Extending torch.autograd</span></a> for more details on how to use this method.</p>
+<p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.3)"><span>Extending torch.autograd</span></a> for more details on how to use this method.</p>
 <dl>
 <dt>Example::</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># xdoctest: +REQUIRES(env:TORCH_DOCTEST_AUTOGRAD)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Func</span><span class="p">(</span><span class="n">Function</span><span class="p">):</span>
@@ -2653,7 +2653,7 @@ they weren’t used in any in-place operation that modified their content.</p>
 <span class="sig-name descname"><span class="pre">save_for_forward</span></span><span class="sig-paren">(</span>
 
 <dl>
-<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">tensors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.2)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">tensors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></span></em>,</dd>
 </dl>
 
 <span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepCentralDifferenceKernel.save_for_forward" title="Link to this definition"></a></dt>
@@ -2663,7 +2663,7 @@ method, and only be called with tensors.</p>
 <p>In <a class="reference internal" href="#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepCentralDifferenceKernel.jvp" title="curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepCentralDifferenceKernel.jvp"><code class="xref py py-func docutils literal notranslate"><span class="pre">jvp</span></code></a>, saved objects can be accessed through the <a class="reference internal" href="#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepCentralDifferenceKernel.saved_tensors" title="curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepCentralDifferenceKernel.saved_tensors"><code class="xref py py-attr docutils literal notranslate"><span class="pre">saved_tensors</span></code></a>
 attribute.</p>
 <p>Arguments can also be <code class="docutils literal notranslate"><span class="pre">None</span></code>. This is a no-op.</p>
-<p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.2)"><span>Extending torch.autograd</span></a> for more details on how to use this method.</p>
+<p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.3)"><span>Extending torch.autograd</span></a> for more details on how to use this method.</p>
 <dl>
 <dt>Example::</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># xdoctest: +SKIP</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Func</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">autograd</span><span class="o">.</span><span class="n">Function</span><span class="p">):</span>
@@ -2788,7 +2788,7 @@ happens inside the <code class="docutils literal notranslate"><span class="pre">
 override <code class="docutils literal notranslate"><span class="pre">setup_context</span></code>. Setting up the ctx for backward happens
 inside <code class="docutils literal notranslate"><span class="pre">setup_context</span></code> (as opposed to inside the <code class="docutils literal notranslate"><span class="pre">forward</span></code>)</p></li>
 </ol>
-<p>See <a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.autograd.Function.forward.html#torch.autograd.Function.forward" title="(in PyTorch v2.2)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">torch.autograd.Function.forward</span></code></a> and <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.2)"><span>Extending torch.autograd</span></a> for more details.</p>
+<p>See <a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.autograd.Function.forward.html#torch.autograd.Function.forward" title="(in PyTorch v2.3)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">torch.autograd.Function.forward</span></code></a> and <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.3)"><span>Extending torch.autograd</span></a> for more details.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -2837,15 +2837,15 @@ output.</p>
 
 <span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepCentralDifferenceKernel.vmap" title="Link to this definition"></a></dt>
 <dd><p>Defines a rule for the behavior of this autograd.Function underneath
-<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>. For a <code class="xref py py-func docutils literal notranslate"><span class="pre">torch.autograd.Function</span></code> to support
-<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>, you must either override this staticmethod, or set
+<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>. For a <code class="xref py py-func docutils literal notranslate"><span class="pre">torch.autograd.Function</span></code> to support
+<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>, you must either override this staticmethod, or set
 <code class="docutils literal notranslate"><span class="pre">generate_vmap_rule</span></code> to <code class="docutils literal notranslate"><span class="pre">True</span></code> (you may not do both).</p>
 <p>If you choose to override this staticmethod: it must accept</p>
 <ul class="simple">
 <li><p>an <code class="docutils literal notranslate"><span class="pre">info</span></code> object as the first argument. <code class="docutils literal notranslate"><span class="pre">info.batch_size</span></code>
 specifies the size of the dimension being vmapped over,
 while <code class="docutils literal notranslate"><span class="pre">info.randomness</span></code> is the randomness option passed to
-<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>.</p></li>
+<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>.</p></li>
 <li><p>an <code class="docutils literal notranslate"><span class="pre">in_dims</span></code> tuple as the second argument.
 For each arg in <code class="docutils literal notranslate"><span class="pre">args</span></code>, <code class="docutils literal notranslate"><span class="pre">in_dims</span></code> has a corresponding
 <code class="docutils literal notranslate"><span class="pre">Optional[int]</span></code>. It is <code class="docutils literal notranslate"><span class="pre">None</span></code> if the arg is not a Tensor or if
@@ -2857,7 +2857,7 @@ specifying what dimension of the Tensor is being vmapped over.</p></li>
 Similar to <code class="docutils literal notranslate"><span class="pre">in_dims</span></code>, <code class="docutils literal notranslate"><span class="pre">out_dims</span></code> should be of the same structure as
 <code class="docutils literal notranslate"><span class="pre">output</span></code> and contain one <code class="docutils literal notranslate"><span class="pre">out_dim</span></code> per output that specifies if the
 output has the vmapped dimension and what index it is in.</p>
-<p>Please see <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.func.html#func-autograd-function" title="(in PyTorch v2.2)"><span>Extending torch.func with autograd.Function</span></a> for more details.</p>
+<p>Please see <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.func.html#func-autograd-function" title="(in PyTorch v2.3)"><span>Extending torch.func with autograd.Function</span></a> for more details.</p>
 </dd></dl>
 
 </dd></dl>
@@ -2872,7 +2872,7 @@ output has the vmapped dimension and what index it is in.</p>
 </dl>
 
 <span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepIdxCentralDifferenceKernel" title="Link to this definition"></a></dt>
-<dd><p>Bases: <a class="reference external" href="https://pytorch.org/docs/stable/autograd.html#torch.autograd.Function" title="(in PyTorch v2.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Function</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://pytorch.org/docs/stable/autograd.html#torch.autograd.Function" title="(in PyTorch v2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Function</span></code></a></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepIdxCentralDifferenceKernel.forward">
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span>
@@ -2904,7 +2904,7 @@ to define forward:</p>
 <ul class="simple">
 <li><p>It must accept a context ctx as the first argument, followed by any
 number of arguments (tensors or other types).</p></li>
-<li><p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#combining-forward-context" title="(in PyTorch v2.2)"><span>Combined or separate forward() and setup_context()</span></a> for more details</p></li>
+<li><p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#combining-forward-context" title="(in PyTorch v2.3)"><span>Combined or separate forward() and setup_context()</span></a> for more details</p></li>
 </ul>
 <p>Usage 2 (Separate forward and ctx):</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="err">@</span><span class="n">staticmethod</span>
@@ -2922,7 +2922,7 @@ number of arguments (tensors or other types).</p></li>
 staticmethod to handle setting up the <code class="docutils literal notranslate"><span class="pre">ctx</span></code> object.
 <code class="docutils literal notranslate"><span class="pre">output</span></code> is the output of the forward, <code class="docutils literal notranslate"><span class="pre">inputs</span></code> are a Tuple of inputs
 to the forward.</p></li>
-<li><p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.2)"><span>Extending torch.autograd</span></a> for more details</p></li>
+<li><p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.3)"><span>Extending torch.autograd</span></a> for more details</p></li>
 </ul>
 <p>The context can be used to store arbitrary data that can be then
 retrieved during the backward pass. Tensors should not be stored
@@ -3039,11 +3039,11 @@ output.</p>
 <dt class="sig sig-object py" id="curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepIdxCentralDifferenceKernel.is_traceable">
 <span class="sig-name descname"><span class="pre">is_traceable</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepIdxCentralDifferenceKernel.is_traceable" title="Link to this definition"></a></dt>
 <dd><p>Bool that specifies if PyTorch should attempt to autogenerate
-<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a> support for this autograd.Function. You may set this to
+<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a> support for this autograd.Function. You may set this to
 True only if this autograd.Function’s forward, backward, and jvp (if they
 exist) are written using PyTorch operations; otherwise, please override
-<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.autograd.Function.vmap.html#torch.autograd.Function.vmap" title="(in PyTorch v2.2)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">torch.autograd.Function.vmap</span></code></a> to add support for <a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>.</p>
-<p>Please see <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.func.html#func-autograd-function" title="(in PyTorch v2.2)"><span>Extending torch.func with autograd.Function</span></a> for more details.</p>
+<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.autograd.Function.vmap.html#torch.autograd.Function.vmap" title="(in PyTorch v2.3)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">torch.autograd.Function.vmap</span></code></a> to add support for <a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>.</p>
+<p>Please see <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.func.html#func-autograd-function" title="(in PyTorch v2.3)"><span>Extending torch.func with autograd.Function</span></a> for more details.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -3077,7 +3077,7 @@ functions.</p>
 <span class="sig-name descname"><span class="pre">mark_dirty</span></span><span class="sig-paren">(</span>
 
 <dl>
-<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.2)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></span></em>,</dd>
 </dl>
 
 <span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepIdxCentralDifferenceKernel.mark_dirty" title="Link to this definition"></a></dt>
@@ -3121,7 +3121,7 @@ modification.</p>
 <span class="sig-name descname"><span class="pre">mark_non_differentiable</span></span><span class="sig-paren">(</span>
 
 <dl>
-<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.2)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></span></em>,</dd>
 </dl>
 
 <span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepIdxCentralDifferenceKernel.mark_non_differentiable" title="Link to this definition"></a></dt>
@@ -3221,7 +3221,7 @@ output.</p>
 <span class="sig-name descname"><span class="pre">save_for_backward</span></span><span class="sig-paren">(</span>
 
 <dl>
-<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">tensors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.2)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">tensors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></span></em>,</dd>
 </dl>
 
 <span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepIdxCentralDifferenceKernel.save_for_backward" title="Link to this definition"></a></dt>
@@ -3231,7 +3231,7 @@ output.</p>
 <p>All tensors intended to be used in the backward pass should be saved
 with <code class="docutils literal notranslate"><span class="pre">save_for_backward</span></code> (as opposed to directly on <code class="docutils literal notranslate"><span class="pre">ctx</span></code>) to prevent
 incorrect gradients and memory leaks, and enable the application of saved
-tensor hooks. See <a class="reference external" href="https://pytorch.org/docs/stable/autograd.html#torch.autograd.graph.saved_tensors_hooks" title="(in PyTorch v2.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.autograd.graph.saved_tensors_hooks</span></code></a>.</p>
+tensor hooks. See <a class="reference external" href="https://pytorch.org/docs/stable/autograd.html#torch.autograd.graph.saved_tensors_hooks" title="(in PyTorch v2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.autograd.graph.saved_tensors_hooks</span></code></a>.</p>
 <p>Note that if intermediary tensors, tensors that are neither inputs
 nor outputs of <a class="reference internal" href="#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepIdxCentralDifferenceKernel.forward" title="curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepIdxCentralDifferenceKernel.forward"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward</span></code></a>, are saved for backward, your custom Function
 may not support double backward.
@@ -3246,7 +3246,7 @@ for more details.</p>
 attribute. Before returning them to the user, a check is made to ensure
 they weren’t used in any in-place operation that modified their content.</p>
 <p>Arguments can also be <code class="docutils literal notranslate"><span class="pre">None</span></code>. This is a no-op.</p>
-<p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.2)"><span>Extending torch.autograd</span></a> for more details on how to use this method.</p>
+<p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.3)"><span>Extending torch.autograd</span></a> for more details on how to use this method.</p>
 <dl>
 <dt>Example::</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># xdoctest: +REQUIRES(env:TORCH_DOCTEST_AUTOGRAD)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Func</span><span class="p">(</span><span class="n">Function</span><span class="p">):</span>
@@ -3283,7 +3283,7 @@ they weren’t used in any in-place operation that modified their content.</p>
 <span class="sig-name descname"><span class="pre">save_for_forward</span></span><span class="sig-paren">(</span>
 
 <dl>
-<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">tensors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.2)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">tensors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></span></em>,</dd>
 </dl>
 
 <span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepIdxCentralDifferenceKernel.save_for_forward" title="Link to this definition"></a></dt>
@@ -3293,7 +3293,7 @@ method, and only be called with tensors.</p>
 <p>In <a class="reference internal" href="#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepIdxCentralDifferenceKernel.jvp" title="curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepIdxCentralDifferenceKernel.jvp"><code class="xref py py-func docutils literal notranslate"><span class="pre">jvp</span></code></a>, saved objects can be accessed through the <a class="reference internal" href="#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepIdxCentralDifferenceKernel.saved_tensors" title="curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepIdxCentralDifferenceKernel.saved_tensors"><code class="xref py py-attr docutils literal notranslate"><span class="pre">saved_tensors</span></code></a>
 attribute.</p>
 <p>Arguments can also be <code class="docutils literal notranslate"><span class="pre">None</span></code>. This is a no-op.</p>
-<p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.2)"><span>Extending torch.autograd</span></a> for more details on how to use this method.</p>
+<p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.3)"><span>Extending torch.autograd</span></a> for more details on how to use this method.</p>
 <dl>
 <dt>Example::</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># xdoctest: +SKIP</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Func</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">autograd</span><span class="o">.</span><span class="n">Function</span><span class="p">):</span>
@@ -3418,7 +3418,7 @@ happens inside the <code class="docutils literal notranslate"><span class="pre">
 override <code class="docutils literal notranslate"><span class="pre">setup_context</span></code>. Setting up the ctx for backward happens
 inside <code class="docutils literal notranslate"><span class="pre">setup_context</span></code> (as opposed to inside the <code class="docutils literal notranslate"><span class="pre">forward</span></code>)</p></li>
 </ol>
-<p>See <a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.autograd.Function.forward.html#torch.autograd.Function.forward" title="(in PyTorch v2.2)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">torch.autograd.Function.forward</span></code></a> and <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.2)"><span>Extending torch.autograd</span></a> for more details.</p>
+<p>See <a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.autograd.Function.forward.html#torch.autograd.Function.forward" title="(in PyTorch v2.3)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">torch.autograd.Function.forward</span></code></a> and <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.3)"><span>Extending torch.autograd</span></a> for more details.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -3467,15 +3467,15 @@ output.</p>
 
 <span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepIdxCentralDifferenceKernel.vmap" title="Link to this definition"></a></dt>
 <dd><p>Defines a rule for the behavior of this autograd.Function underneath
-<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>. For a <code class="xref py py-func docutils literal notranslate"><span class="pre">torch.autograd.Function</span></code> to support
-<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>, you must either override this staticmethod, or set
+<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>. For a <code class="xref py py-func docutils literal notranslate"><span class="pre">torch.autograd.Function</span></code> to support
+<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>, you must either override this staticmethod, or set
 <code class="docutils literal notranslate"><span class="pre">generate_vmap_rule</span></code> to <code class="docutils literal notranslate"><span class="pre">True</span></code> (you may not do both).</p>
 <p>If you choose to override this staticmethod: it must accept</p>
 <ul class="simple">
 <li><p>an <code class="docutils literal notranslate"><span class="pre">info</span></code> object as the first argument. <code class="docutils literal notranslate"><span class="pre">info.batch_size</span></code>
 specifies the size of the dimension being vmapped over,
 while <code class="docutils literal notranslate"><span class="pre">info.randomness</span></code> is the randomness option passed to
-<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>.</p></li>
+<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>.</p></li>
 <li><p>an <code class="docutils literal notranslate"><span class="pre">in_dims</span></code> tuple as the second argument.
 For each arg in <code class="docutils literal notranslate"><span class="pre">args</span></code>, <code class="docutils literal notranslate"><span class="pre">in_dims</span></code> has a corresponding
 <code class="docutils literal notranslate"><span class="pre">Optional[int]</span></code>. It is <code class="docutils literal notranslate"><span class="pre">None</span></code> if the arg is not a Tensor or if
@@ -3487,7 +3487,7 @@ specifying what dimension of the Tensor is being vmapped over.</p></li>
 Similar to <code class="docutils literal notranslate"><span class="pre">in_dims</span></code>, <code class="docutils literal notranslate"><span class="pre">out_dims</span></code> should be of the same structure as
 <code class="docutils literal notranslate"><span class="pre">output</span></code> and contain one <code class="docutils literal notranslate"><span class="pre">out_dim</span></code> per output that specifies if the
 output has the vmapped dimension and what index it is in.</p>
-<p>Please see <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.func.html#func-autograd-function" title="(in PyTorch v2.2)"><span>Extending torch.func with autograd.Function</span></a> for more details.</p>
+<p>Please see <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.func.html#func-autograd-function" title="(in PyTorch v2.3)"><span>Extending torch.func with autograd.Function</span></a> for more details.</p>
 </dd></dl>
 
 </dd></dl>
@@ -3502,7 +3502,7 @@ output has the vmapped dimension and what index it is in.</p>
 </dl>
 
 <span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepCoalesceKernel" title="Link to this definition"></a></dt>
-<dd><p>Bases: <a class="reference external" href="https://pytorch.org/docs/stable/autograd.html#torch.autograd.Function" title="(in PyTorch v2.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Function</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://pytorch.org/docs/stable/autograd.html#torch.autograd.Function" title="(in PyTorch v2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Function</span></code></a></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepCoalesceKernel.forward">
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span>
@@ -3533,7 +3533,7 @@ to define forward:</p>
 <ul class="simple">
 <li><p>It must accept a context ctx as the first argument, followed by any
 number of arguments (tensors or other types).</p></li>
-<li><p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#combining-forward-context" title="(in PyTorch v2.2)"><span>Combined or separate forward() and setup_context()</span></a> for more details</p></li>
+<li><p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#combining-forward-context" title="(in PyTorch v2.3)"><span>Combined or separate forward() and setup_context()</span></a> for more details</p></li>
 </ul>
 <p>Usage 2 (Separate forward and ctx):</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="err">@</span><span class="n">staticmethod</span>
@@ -3551,7 +3551,7 @@ number of arguments (tensors or other types).</p></li>
 staticmethod to handle setting up the <code class="docutils literal notranslate"><span class="pre">ctx</span></code> object.
 <code class="docutils literal notranslate"><span class="pre">output</span></code> is the output of the forward, <code class="docutils literal notranslate"><span class="pre">inputs</span></code> are a Tuple of inputs
 to the forward.</p></li>
-<li><p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.2)"><span>Extending torch.autograd</span></a> for more details</p></li>
+<li><p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.3)"><span>Extending torch.autograd</span></a> for more details</p></li>
 </ul>
 <p>The context can be used to store arbitrary data that can be then
 retrieved during the backward pass. Tensors should not be stored
@@ -3668,11 +3668,11 @@ output.</p>
 <dt class="sig sig-object py" id="curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepCoalesceKernel.is_traceable">
 <span class="sig-name descname"><span class="pre">is_traceable</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepCoalesceKernel.is_traceable" title="Link to this definition"></a></dt>
 <dd><p>Bool that specifies if PyTorch should attempt to autogenerate
-<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a> support for this autograd.Function. You may set this to
+<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a> support for this autograd.Function. You may set this to
 True only if this autograd.Function’s forward, backward, and jvp (if they
 exist) are written using PyTorch operations; otherwise, please override
-<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.autograd.Function.vmap.html#torch.autograd.Function.vmap" title="(in PyTorch v2.2)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">torch.autograd.Function.vmap</span></code></a> to add support for <a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>.</p>
-<p>Please see <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.func.html#func-autograd-function" title="(in PyTorch v2.2)"><span>Extending torch.func with autograd.Function</span></a> for more details.</p>
+<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.autograd.Function.vmap.html#torch.autograd.Function.vmap" title="(in PyTorch v2.3)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">torch.autograd.Function.vmap</span></code></a> to add support for <a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>.</p>
+<p>Please see <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.func.html#func-autograd-function" title="(in PyTorch v2.3)"><span>Extending torch.func with autograd.Function</span></a> for more details.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -3706,7 +3706,7 @@ functions.</p>
 <span class="sig-name descname"><span class="pre">mark_dirty</span></span><span class="sig-paren">(</span>
 
 <dl>
-<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.2)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></span></em>,</dd>
 </dl>
 
 <span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepCoalesceKernel.mark_dirty" title="Link to this definition"></a></dt>
@@ -3750,7 +3750,7 @@ modification.</p>
 <span class="sig-name descname"><span class="pre">mark_non_differentiable</span></span><span class="sig-paren">(</span>
 
 <dl>
-<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.2)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></span></em>,</dd>
 </dl>
 
 <span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepCoalesceKernel.mark_non_differentiable" title="Link to this definition"></a></dt>
@@ -3850,7 +3850,7 @@ output.</p>
 <span class="sig-name descname"><span class="pre">save_for_backward</span></span><span class="sig-paren">(</span>
 
 <dl>
-<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">tensors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.2)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">tensors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></span></em>,</dd>
 </dl>
 
 <span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepCoalesceKernel.save_for_backward" title="Link to this definition"></a></dt>
@@ -3860,7 +3860,7 @@ output.</p>
 <p>All tensors intended to be used in the backward pass should be saved
 with <code class="docutils literal notranslate"><span class="pre">save_for_backward</span></code> (as opposed to directly on <code class="docutils literal notranslate"><span class="pre">ctx</span></code>) to prevent
 incorrect gradients and memory leaks, and enable the application of saved
-tensor hooks. See <a class="reference external" href="https://pytorch.org/docs/stable/autograd.html#torch.autograd.graph.saved_tensors_hooks" title="(in PyTorch v2.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.autograd.graph.saved_tensors_hooks</span></code></a>.</p>
+tensor hooks. See <a class="reference external" href="https://pytorch.org/docs/stable/autograd.html#torch.autograd.graph.saved_tensors_hooks" title="(in PyTorch v2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.autograd.graph.saved_tensors_hooks</span></code></a>.</p>
 <p>Note that if intermediary tensors, tensors that are neither inputs
 nor outputs of <a class="reference internal" href="#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepCoalesceKernel.forward" title="curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepCoalesceKernel.forward"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward</span></code></a>, are saved for backward, your custom Function
 may not support double backward.
@@ -3875,7 +3875,7 @@ for more details.</p>
 attribute. Before returning them to the user, a check is made to ensure
 they weren’t used in any in-place operation that modified their content.</p>
 <p>Arguments can also be <code class="docutils literal notranslate"><span class="pre">None</span></code>. This is a no-op.</p>
-<p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.2)"><span>Extending torch.autograd</span></a> for more details on how to use this method.</p>
+<p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.3)"><span>Extending torch.autograd</span></a> for more details on how to use this method.</p>
 <dl>
 <dt>Example::</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># xdoctest: +REQUIRES(env:TORCH_DOCTEST_AUTOGRAD)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Func</span><span class="p">(</span><span class="n">Function</span><span class="p">):</span>
@@ -3912,7 +3912,7 @@ they weren’t used in any in-place operation that modified their content.</p>
 <span class="sig-name descname"><span class="pre">save_for_forward</span></span><span class="sig-paren">(</span>
 
 <dl>
-<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">tensors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.2)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">tensors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></span></em>,</dd>
 </dl>
 
 <span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepCoalesceKernel.save_for_forward" title="Link to this definition"></a></dt>
@@ -3922,7 +3922,7 @@ method, and only be called with tensors.</p>
 <p>In <a class="reference internal" href="#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepCoalesceKernel.jvp" title="curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepCoalesceKernel.jvp"><code class="xref py py-func docutils literal notranslate"><span class="pre">jvp</span></code></a>, saved objects can be accessed through the <a class="reference internal" href="#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepCoalesceKernel.saved_tensors" title="curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepCoalesceKernel.saved_tensors"><code class="xref py py-attr docutils literal notranslate"><span class="pre">saved_tensors</span></code></a>
 attribute.</p>
 <p>Arguments can also be <code class="docutils literal notranslate"><span class="pre">None</span></code>. This is a no-op.</p>
-<p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.2)"><span>Extending torch.autograd</span></a> for more details on how to use this method.</p>
+<p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.3)"><span>Extending torch.autograd</span></a> for more details on how to use this method.</p>
 <dl>
 <dt>Example::</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># xdoctest: +SKIP</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Func</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">autograd</span><span class="o">.</span><span class="n">Function</span><span class="p">):</span>
@@ -4047,7 +4047,7 @@ happens inside the <code class="docutils literal notranslate"><span class="pre">
 override <code class="docutils literal notranslate"><span class="pre">setup_context</span></code>. Setting up the ctx for backward happens
 inside <code class="docutils literal notranslate"><span class="pre">setup_context</span></code> (as opposed to inside the <code class="docutils literal notranslate"><span class="pre">forward</span></code>)</p></li>
 </ol>
-<p>See <a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.autograd.Function.forward.html#torch.autograd.Function.forward" title="(in PyTorch v2.2)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">torch.autograd.Function.forward</span></code></a> and <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.2)"><span>Extending torch.autograd</span></a> for more details.</p>
+<p>See <a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.autograd.Function.forward.html#torch.autograd.Function.forward" title="(in PyTorch v2.3)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">torch.autograd.Function.forward</span></code></a> and <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.3)"><span>Extending torch.autograd</span></a> for more details.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -4096,15 +4096,15 @@ output.</p>
 
 <span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.integration_utils.CliqueTensorStepCoalesceKernel.vmap" title="Link to this definition"></a></dt>
 <dd><p>Defines a rule for the behavior of this autograd.Function underneath
-<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>. For a <code class="xref py py-func docutils literal notranslate"><span class="pre">torch.autograd.Function</span></code> to support
-<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>, you must either override this staticmethod, or set
+<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>. For a <code class="xref py py-func docutils literal notranslate"><span class="pre">torch.autograd.Function</span></code> to support
+<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>, you must either override this staticmethod, or set
 <code class="docutils literal notranslate"><span class="pre">generate_vmap_rule</span></code> to <code class="docutils literal notranslate"><span class="pre">True</span></code> (you may not do both).</p>
 <p>If you choose to override this staticmethod: it must accept</p>
 <ul class="simple">
 <li><p>an <code class="docutils literal notranslate"><span class="pre">info</span></code> object as the first argument. <code class="docutils literal notranslate"><span class="pre">info.batch_size</span></code>
 specifies the size of the dimension being vmapped over,
 while <code class="docutils literal notranslate"><span class="pre">info.randomness</span></code> is the randomness option passed to
-<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>.</p></li>
+<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>.</p></li>
 <li><p>an <code class="docutils literal notranslate"><span class="pre">in_dims</span></code> tuple as the second argument.
 For each arg in <code class="docutils literal notranslate"><span class="pre">args</span></code>, <code class="docutils literal notranslate"><span class="pre">in_dims</span></code> has a corresponding
 <code class="docutils literal notranslate"><span class="pre">Optional[int]</span></code>. It is <code class="docutils literal notranslate"><span class="pre">None</span></code> if the arg is not a Tensor or if
@@ -4116,7 +4116,7 @@ specifying what dimension of the Tensor is being vmapped over.</p></li>
 Similar to <code class="docutils literal notranslate"><span class="pre">in_dims</span></code>, <code class="docutils literal notranslate"><span class="pre">out_dims</span></code> should be of the same structure as
 <code class="docutils literal notranslate"><span class="pre">output</span></code> and contain one <code class="docutils literal notranslate"><span class="pre">out_dim</span></code> per output that specifies if the
 output has the vmapped dimension and what index it is in.</p>
-<p>Please see <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.func.html#func-autograd-function" title="(in PyTorch v2.2)"><span>Extending torch.func with autograd.Function</span></a> for more details.</p>
+<p>Please see <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.func.html#func-autograd-function" title="(in PyTorch v2.3)"><span>Extending torch.func with autograd.Function</span></a> for more details.</p>
 </dd></dl>
 
 </dd></dl>
@@ -4131,7 +4131,7 @@ output has the vmapped dimension and what index it is in.</p>
 </dl>
 
 <span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.integration_utils.AccelerationTensorStepKernel" title="Link to this definition"></a></dt>
-<dd><p>Bases: <a class="reference external" href="https://pytorch.org/docs/stable/autograd.html#torch.autograd.Function" title="(in PyTorch v2.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Function</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://pytorch.org/docs/stable/autograd.html#torch.autograd.Function" title="(in PyTorch v2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Function</span></code></a></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="curobo.rollout.dynamics_model.integration_utils.AccelerationTensorStepKernel.forward">
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span>
@@ -4162,7 +4162,7 @@ to define forward:</p>
 <ul class="simple">
 <li><p>It must accept a context ctx as the first argument, followed by any
 number of arguments (tensors or other types).</p></li>
-<li><p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#combining-forward-context" title="(in PyTorch v2.2)"><span>Combined or separate forward() and setup_context()</span></a> for more details</p></li>
+<li><p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#combining-forward-context" title="(in PyTorch v2.3)"><span>Combined or separate forward() and setup_context()</span></a> for more details</p></li>
 </ul>
 <p>Usage 2 (Separate forward and ctx):</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="err">@</span><span class="n">staticmethod</span>
@@ -4180,7 +4180,7 @@ number of arguments (tensors or other types).</p></li>
 staticmethod to handle setting up the <code class="docutils literal notranslate"><span class="pre">ctx</span></code> object.
 <code class="docutils literal notranslate"><span class="pre">output</span></code> is the output of the forward, <code class="docutils literal notranslate"><span class="pre">inputs</span></code> are a Tuple of inputs
 to the forward.</p></li>
-<li><p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.2)"><span>Extending torch.autograd</span></a> for more details</p></li>
+<li><p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.3)"><span>Extending torch.autograd</span></a> for more details</p></li>
 </ul>
 <p>The context can be used to store arbitrary data that can be then
 retrieved during the backward pass. Tensors should not be stored
@@ -4297,11 +4297,11 @@ output.</p>
 <dt class="sig sig-object py" id="curobo.rollout.dynamics_model.integration_utils.AccelerationTensorStepKernel.is_traceable">
 <span class="sig-name descname"><span class="pre">is_traceable</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#curobo.rollout.dynamics_model.integration_utils.AccelerationTensorStepKernel.is_traceable" title="Link to this definition"></a></dt>
 <dd><p>Bool that specifies if PyTorch should attempt to autogenerate
-<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a> support for this autograd.Function. You may set this to
+<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a> support for this autograd.Function. You may set this to
 True only if this autograd.Function’s forward, backward, and jvp (if they
 exist) are written using PyTorch operations; otherwise, please override
-<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.autograd.Function.vmap.html#torch.autograd.Function.vmap" title="(in PyTorch v2.2)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">torch.autograd.Function.vmap</span></code></a> to add support for <a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>.</p>
-<p>Please see <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.func.html#func-autograd-function" title="(in PyTorch v2.2)"><span>Extending torch.func with autograd.Function</span></a> for more details.</p>
+<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.autograd.Function.vmap.html#torch.autograd.Function.vmap" title="(in PyTorch v2.3)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">torch.autograd.Function.vmap</span></code></a> to add support for <a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>.</p>
+<p>Please see <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.func.html#func-autograd-function" title="(in PyTorch v2.3)"><span>Extending torch.func with autograd.Function</span></a> for more details.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -4335,7 +4335,7 @@ functions.</p>
 <span class="sig-name descname"><span class="pre">mark_dirty</span></span><span class="sig-paren">(</span>
 
 <dl>
-<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.2)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></span></em>,</dd>
 </dl>
 
 <span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.integration_utils.AccelerationTensorStepKernel.mark_dirty" title="Link to this definition"></a></dt>
@@ -4379,7 +4379,7 @@ modification.</p>
 <span class="sig-name descname"><span class="pre">mark_non_differentiable</span></span><span class="sig-paren">(</span>
 
 <dl>
-<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.2)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></span></em>,</dd>
 </dl>
 
 <span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.integration_utils.AccelerationTensorStepKernel.mark_non_differentiable" title="Link to this definition"></a></dt>
@@ -4479,7 +4479,7 @@ output.</p>
 <span class="sig-name descname"><span class="pre">save_for_backward</span></span><span class="sig-paren">(</span>
 
 <dl>
-<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">tensors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.2)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">tensors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></span></em>,</dd>
 </dl>
 
 <span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.integration_utils.AccelerationTensorStepKernel.save_for_backward" title="Link to this definition"></a></dt>
@@ -4489,7 +4489,7 @@ output.</p>
 <p>All tensors intended to be used in the backward pass should be saved
 with <code class="docutils literal notranslate"><span class="pre">save_for_backward</span></code> (as opposed to directly on <code class="docutils literal notranslate"><span class="pre">ctx</span></code>) to prevent
 incorrect gradients and memory leaks, and enable the application of saved
-tensor hooks. See <a class="reference external" href="https://pytorch.org/docs/stable/autograd.html#torch.autograd.graph.saved_tensors_hooks" title="(in PyTorch v2.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.autograd.graph.saved_tensors_hooks</span></code></a>.</p>
+tensor hooks. See <a class="reference external" href="https://pytorch.org/docs/stable/autograd.html#torch.autograd.graph.saved_tensors_hooks" title="(in PyTorch v2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.autograd.graph.saved_tensors_hooks</span></code></a>.</p>
 <p>Note that if intermediary tensors, tensors that are neither inputs
 nor outputs of <a class="reference internal" href="#curobo.rollout.dynamics_model.integration_utils.AccelerationTensorStepKernel.forward" title="curobo.rollout.dynamics_model.integration_utils.AccelerationTensorStepKernel.forward"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward</span></code></a>, are saved for backward, your custom Function
 may not support double backward.
@@ -4504,7 +4504,7 @@ for more details.</p>
 attribute. Before returning them to the user, a check is made to ensure
 they weren’t used in any in-place operation that modified their content.</p>
 <p>Arguments can also be <code class="docutils literal notranslate"><span class="pre">None</span></code>. This is a no-op.</p>
-<p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.2)"><span>Extending torch.autograd</span></a> for more details on how to use this method.</p>
+<p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.3)"><span>Extending torch.autograd</span></a> for more details on how to use this method.</p>
 <dl>
 <dt>Example::</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># xdoctest: +REQUIRES(env:TORCH_DOCTEST_AUTOGRAD)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Func</span><span class="p">(</span><span class="n">Function</span><span class="p">):</span>
@@ -4541,7 +4541,7 @@ they weren’t used in any in-place operation that modified their content.</p>
 <span class="sig-name descname"><span class="pre">save_for_forward</span></span><span class="sig-paren">(</span>
 
 <dl>
-<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">tensors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.2)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">tensors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></span></em>,</dd>
 </dl>
 
 <span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.integration_utils.AccelerationTensorStepKernel.save_for_forward" title="Link to this definition"></a></dt>
@@ -4551,7 +4551,7 @@ method, and only be called with tensors.</p>
 <p>In <a class="reference internal" href="#curobo.rollout.dynamics_model.integration_utils.AccelerationTensorStepKernel.jvp" title="curobo.rollout.dynamics_model.integration_utils.AccelerationTensorStepKernel.jvp"><code class="xref py py-func docutils literal notranslate"><span class="pre">jvp</span></code></a>, saved objects can be accessed through the <a class="reference internal" href="#curobo.rollout.dynamics_model.integration_utils.AccelerationTensorStepKernel.saved_tensors" title="curobo.rollout.dynamics_model.integration_utils.AccelerationTensorStepKernel.saved_tensors"><code class="xref py py-attr docutils literal notranslate"><span class="pre">saved_tensors</span></code></a>
 attribute.</p>
 <p>Arguments can also be <code class="docutils literal notranslate"><span class="pre">None</span></code>. This is a no-op.</p>
-<p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.2)"><span>Extending torch.autograd</span></a> for more details on how to use this method.</p>
+<p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.3)"><span>Extending torch.autograd</span></a> for more details on how to use this method.</p>
 <dl>
 <dt>Example::</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># xdoctest: +SKIP</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Func</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">autograd</span><span class="o">.</span><span class="n">Function</span><span class="p">):</span>
@@ -4676,7 +4676,7 @@ happens inside the <code class="docutils literal notranslate"><span class="pre">
 override <code class="docutils literal notranslate"><span class="pre">setup_context</span></code>. Setting up the ctx for backward happens
 inside <code class="docutils literal notranslate"><span class="pre">setup_context</span></code> (as opposed to inside the <code class="docutils literal notranslate"><span class="pre">forward</span></code>)</p></li>
 </ol>
-<p>See <a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.autograd.Function.forward.html#torch.autograd.Function.forward" title="(in PyTorch v2.2)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">torch.autograd.Function.forward</span></code></a> and <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.2)"><span>Extending torch.autograd</span></a> for more details.</p>
+<p>See <a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.autograd.Function.forward.html#torch.autograd.Function.forward" title="(in PyTorch v2.3)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">torch.autograd.Function.forward</span></code></a> and <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.3)"><span>Extending torch.autograd</span></a> for more details.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -4725,15 +4725,15 @@ output.</p>
 
 <span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.integration_utils.AccelerationTensorStepKernel.vmap" title="Link to this definition"></a></dt>
 <dd><p>Defines a rule for the behavior of this autograd.Function underneath
-<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>. For a <code class="xref py py-func docutils literal notranslate"><span class="pre">torch.autograd.Function</span></code> to support
-<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>, you must either override this staticmethod, or set
+<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>. For a <code class="xref py py-func docutils literal notranslate"><span class="pre">torch.autograd.Function</span></code> to support
+<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>, you must either override this staticmethod, or set
 <code class="docutils literal notranslate"><span class="pre">generate_vmap_rule</span></code> to <code class="docutils literal notranslate"><span class="pre">True</span></code> (you may not do both).</p>
 <p>If you choose to override this staticmethod: it must accept</p>
 <ul class="simple">
 <li><p>an <code class="docutils literal notranslate"><span class="pre">info</span></code> object as the first argument. <code class="docutils literal notranslate"><span class="pre">info.batch_size</span></code>
 specifies the size of the dimension being vmapped over,
 while <code class="docutils literal notranslate"><span class="pre">info.randomness</span></code> is the randomness option passed to
-<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>.</p></li>
+<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>.</p></li>
 <li><p>an <code class="docutils literal notranslate"><span class="pre">in_dims</span></code> tuple as the second argument.
 For each arg in <code class="docutils literal notranslate"><span class="pre">args</span></code>, <code class="docutils literal notranslate"><span class="pre">in_dims</span></code> has a corresponding
 <code class="docutils literal notranslate"><span class="pre">Optional[int]</span></code>. It is <code class="docutils literal notranslate"><span class="pre">None</span></code> if the arg is not a Tensor or if
@@ -4745,7 +4745,7 @@ specifying what dimension of the Tensor is being vmapped over.</p></li>
 Similar to <code class="docutils literal notranslate"><span class="pre">in_dims</span></code>, <code class="docutils literal notranslate"><span class="pre">out_dims</span></code> should be of the same structure as
 <code class="docutils literal notranslate"><span class="pre">output</span></code> and contain one <code class="docutils literal notranslate"><span class="pre">out_dim</span></code> per output that specifies if the
 output has the vmapped dimension and what index it is in.</p>
-<p>Please see <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.func.html#func-autograd-function" title="(in PyTorch v2.2)"><span>Extending torch.func with autograd.Function</span></a> for more details.</p>
+<p>Please see <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.func.html#func-autograd-function" title="(in PyTorch v2.3)"><span>Extending torch.func with autograd.Function</span></a> for more details.</p>
 </dd></dl>
 
 </dd></dl>
@@ -4760,7 +4760,7 @@ output has the vmapped dimension and what index it is in.</p>
 </dl>
 
 <span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.integration_utils.AccelerationTensorStepIdxKernel" title="Link to this definition"></a></dt>
-<dd><p>Bases: <a class="reference external" href="https://pytorch.org/docs/stable/autograd.html#torch.autograd.Function" title="(in PyTorch v2.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Function</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://pytorch.org/docs/stable/autograd.html#torch.autograd.Function" title="(in PyTorch v2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Function</span></code></a></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="curobo.rollout.dynamics_model.integration_utils.AccelerationTensorStepIdxKernel.forward">
 <em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span>
@@ -4792,7 +4792,7 @@ to define forward:</p>
 <ul class="simple">
 <li><p>It must accept a context ctx as the first argument, followed by any
 number of arguments (tensors or other types).</p></li>
-<li><p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#combining-forward-context" title="(in PyTorch v2.2)"><span>Combined or separate forward() and setup_context()</span></a> for more details</p></li>
+<li><p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#combining-forward-context" title="(in PyTorch v2.3)"><span>Combined or separate forward() and setup_context()</span></a> for more details</p></li>
 </ul>
 <p>Usage 2 (Separate forward and ctx):</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="err">@</span><span class="n">staticmethod</span>
@@ -4810,7 +4810,7 @@ number of arguments (tensors or other types).</p></li>
 staticmethod to handle setting up the <code class="docutils literal notranslate"><span class="pre">ctx</span></code> object.
 <code class="docutils literal notranslate"><span class="pre">output</span></code> is the output of the forward, <code class="docutils literal notranslate"><span class="pre">inputs</span></code> are a Tuple of inputs
 to the forward.</p></li>
-<li><p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.2)"><span>Extending torch.autograd</span></a> for more details</p></li>
+<li><p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.3)"><span>Extending torch.autograd</span></a> for more details</p></li>
 </ul>
 <p>The context can be used to store arbitrary data that can be then
 retrieved during the backward pass. Tensors should not be stored
@@ -4927,11 +4927,11 @@ output.</p>
 <dt class="sig sig-object py" id="curobo.rollout.dynamics_model.integration_utils.AccelerationTensorStepIdxKernel.is_traceable">
 <span class="sig-name descname"><span class="pre">is_traceable</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#curobo.rollout.dynamics_model.integration_utils.AccelerationTensorStepIdxKernel.is_traceable" title="Link to this definition"></a></dt>
 <dd><p>Bool that specifies if PyTorch should attempt to autogenerate
-<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a> support for this autograd.Function. You may set this to
+<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a> support for this autograd.Function. You may set this to
 True only if this autograd.Function’s forward, backward, and jvp (if they
 exist) are written using PyTorch operations; otherwise, please override
-<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.autograd.Function.vmap.html#torch.autograd.Function.vmap" title="(in PyTorch v2.2)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">torch.autograd.Function.vmap</span></code></a> to add support for <a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>.</p>
-<p>Please see <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.func.html#func-autograd-function" title="(in PyTorch v2.2)"><span>Extending torch.func with autograd.Function</span></a> for more details.</p>
+<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.autograd.Function.vmap.html#torch.autograd.Function.vmap" title="(in PyTorch v2.3)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">torch.autograd.Function.vmap</span></code></a> to add support for <a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>.</p>
+<p>Please see <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.func.html#func-autograd-function" title="(in PyTorch v2.3)"><span>Extending torch.func with autograd.Function</span></a> for more details.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -4965,7 +4965,7 @@ functions.</p>
 <span class="sig-name descname"><span class="pre">mark_dirty</span></span><span class="sig-paren">(</span>
 
 <dl>
-<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.2)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></span></em>,</dd>
 </dl>
 
 <span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.integration_utils.AccelerationTensorStepIdxKernel.mark_dirty" title="Link to this definition"></a></dt>
@@ -5009,7 +5009,7 @@ modification.</p>
 <span class="sig-name descname"><span class="pre">mark_non_differentiable</span></span><span class="sig-paren">(</span>
 
 <dl>
-<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.2)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></span></em>,</dd>
 </dl>
 
 <span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.integration_utils.AccelerationTensorStepIdxKernel.mark_non_differentiable" title="Link to this definition"></a></dt>
@@ -5109,7 +5109,7 @@ output.</p>
 <span class="sig-name descname"><span class="pre">save_for_backward</span></span><span class="sig-paren">(</span>
 
 <dl>
-<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">tensors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.2)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">tensors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></span></em>,</dd>
 </dl>
 
 <span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.integration_utils.AccelerationTensorStepIdxKernel.save_for_backward" title="Link to this definition"></a></dt>
@@ -5119,7 +5119,7 @@ output.</p>
 <p>All tensors intended to be used in the backward pass should be saved
 with <code class="docutils literal notranslate"><span class="pre">save_for_backward</span></code> (as opposed to directly on <code class="docutils literal notranslate"><span class="pre">ctx</span></code>) to prevent
 incorrect gradients and memory leaks, and enable the application of saved
-tensor hooks. See <a class="reference external" href="https://pytorch.org/docs/stable/autograd.html#torch.autograd.graph.saved_tensors_hooks" title="(in PyTorch v2.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.autograd.graph.saved_tensors_hooks</span></code></a>.</p>
+tensor hooks. See <a class="reference external" href="https://pytorch.org/docs/stable/autograd.html#torch.autograd.graph.saved_tensors_hooks" title="(in PyTorch v2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">torch.autograd.graph.saved_tensors_hooks</span></code></a>.</p>
 <p>Note that if intermediary tensors, tensors that are neither inputs
 nor outputs of <a class="reference internal" href="#curobo.rollout.dynamics_model.integration_utils.AccelerationTensorStepIdxKernel.forward" title="curobo.rollout.dynamics_model.integration_utils.AccelerationTensorStepIdxKernel.forward"><code class="xref py py-func docutils literal notranslate"><span class="pre">forward</span></code></a>, are saved for backward, your custom Function
 may not support double backward.
@@ -5134,7 +5134,7 @@ for more details.</p>
 attribute. Before returning them to the user, a check is made to ensure
 they weren’t used in any in-place operation that modified their content.</p>
 <p>Arguments can also be <code class="docutils literal notranslate"><span class="pre">None</span></code>. This is a no-op.</p>
-<p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.2)"><span>Extending torch.autograd</span></a> for more details on how to use this method.</p>
+<p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.3)"><span>Extending torch.autograd</span></a> for more details on how to use this method.</p>
 <dl>
 <dt>Example::</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># xdoctest: +REQUIRES(env:TORCH_DOCTEST_AUTOGRAD)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Func</span><span class="p">(</span><span class="n">Function</span><span class="p">):</span>
@@ -5171,7 +5171,7 @@ they weren’t used in any in-place operation that modified their content.</p>
 <span class="sig-name descname"><span class="pre">save_for_forward</span></span><span class="sig-paren">(</span>
 
 <dl>
-<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">tensors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.2)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">tensors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></span></em>,</dd>
 </dl>
 
 <span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.integration_utils.AccelerationTensorStepIdxKernel.save_for_forward" title="Link to this definition"></a></dt>
@@ -5181,7 +5181,7 @@ method, and only be called with tensors.</p>
 <p>In <a class="reference internal" href="#curobo.rollout.dynamics_model.integration_utils.AccelerationTensorStepIdxKernel.jvp" title="curobo.rollout.dynamics_model.integration_utils.AccelerationTensorStepIdxKernel.jvp"><code class="xref py py-func docutils literal notranslate"><span class="pre">jvp</span></code></a>, saved objects can be accessed through the <a class="reference internal" href="#curobo.rollout.dynamics_model.integration_utils.AccelerationTensorStepIdxKernel.saved_tensors" title="curobo.rollout.dynamics_model.integration_utils.AccelerationTensorStepIdxKernel.saved_tensors"><code class="xref py py-attr docutils literal notranslate"><span class="pre">saved_tensors</span></code></a>
 attribute.</p>
 <p>Arguments can also be <code class="docutils literal notranslate"><span class="pre">None</span></code>. This is a no-op.</p>
-<p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.2)"><span>Extending torch.autograd</span></a> for more details on how to use this method.</p>
+<p>See <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.3)"><span>Extending torch.autograd</span></a> for more details on how to use this method.</p>
 <dl>
 <dt>Example::</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># xdoctest: +SKIP</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Func</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">autograd</span><span class="o">.</span><span class="n">Function</span><span class="p">):</span>
@@ -5306,7 +5306,7 @@ happens inside the <code class="docutils literal notranslate"><span class="pre">
 override <code class="docutils literal notranslate"><span class="pre">setup_context</span></code>. Setting up the ctx for backward happens
 inside <code class="docutils literal notranslate"><span class="pre">setup_context</span></code> (as opposed to inside the <code class="docutils literal notranslate"><span class="pre">forward</span></code>)</p></li>
 </ol>
-<p>See <a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.autograd.Function.forward.html#torch.autograd.Function.forward" title="(in PyTorch v2.2)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">torch.autograd.Function.forward</span></code></a> and <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.2)"><span>Extending torch.autograd</span></a> for more details.</p>
+<p>See <a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.autograd.Function.forward.html#torch.autograd.Function.forward" title="(in PyTorch v2.3)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">torch.autograd.Function.forward</span></code></a> and <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.html#extending-autograd" title="(in PyTorch v2.3)"><span>Extending torch.autograd</span></a> for more details.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -5355,15 +5355,15 @@ output.</p>
 
 <span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.integration_utils.AccelerationTensorStepIdxKernel.vmap" title="Link to this definition"></a></dt>
 <dd><p>Defines a rule for the behavior of this autograd.Function underneath
-<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>. For a <code class="xref py py-func docutils literal notranslate"><span class="pre">torch.autograd.Function</span></code> to support
-<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>, you must either override this staticmethod, or set
+<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>. For a <code class="xref py py-func docutils literal notranslate"><span class="pre">torch.autograd.Function</span></code> to support
+<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>, you must either override this staticmethod, or set
 <code class="docutils literal notranslate"><span class="pre">generate_vmap_rule</span></code> to <code class="docutils literal notranslate"><span class="pre">True</span></code> (you may not do both).</p>
 <p>If you choose to override this staticmethod: it must accept</p>
 <ul class="simple">
 <li><p>an <code class="docutils literal notranslate"><span class="pre">info</span></code> object as the first argument. <code class="docutils literal notranslate"><span class="pre">info.batch_size</span></code>
 specifies the size of the dimension being vmapped over,
 while <code class="docutils literal notranslate"><span class="pre">info.randomness</span></code> is the randomness option passed to
-<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.2)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>.</p></li>
+<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.vmap.html#torch.vmap" title="(in PyTorch v2.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.vmap</span></code></a>.</p></li>
 <li><p>an <code class="docutils literal notranslate"><span class="pre">in_dims</span></code> tuple as the second argument.
 For each arg in <code class="docutils literal notranslate"><span class="pre">args</span></code>, <code class="docutils literal notranslate"><span class="pre">in_dims</span></code> has a corresponding
 <code class="docutils literal notranslate"><span class="pre">Optional[int]</span></code>. It is <code class="docutils literal notranslate"><span class="pre">None</span></code> if the arg is not a Tensor or if
@@ -5375,7 +5375,7 @@ specifying what dimension of the Tensor is being vmapped over.</p></li>
 Similar to <code class="docutils literal notranslate"><span class="pre">in_dims</span></code>, <code class="docutils literal notranslate"><span class="pre">out_dims</span></code> should be of the same structure as
 <code class="docutils literal notranslate"><span class="pre">output</span></code> and contain one <code class="docutils literal notranslate"><span class="pre">out_dim</span></code> per output that specifies if the
 output has the vmapped dimension and what index it is in.</p>
-<p>Please see <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.func.html#func-autograd-function" title="(in PyTorch v2.2)"><span>Extending torch.func with autograd.Function</span></a> for more details.</p>
+<p>Please see <a class="reference external" href="https://pytorch.org/docs/stable/notes/extending.func.html#func-autograd-function" title="(in PyTorch v2.3)"><span>Extending torch.func with autograd.Function</span></a> for more details.</p>
 </dd></dl>
 
 </dd></dl>
@@ -5386,10 +5386,10 @@ output has the vmapped dimension and what index it is in.</p>
 
 <dl>
 <dd><em class="sig-param"><span class="n"><span class="pre">state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><span class="pre">JointState</span></a></span></em>,</dd>
-<dd><em class="sig-param"><span class="n"><span class="pre">act</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.2)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">act</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></span></em>,</dd>
 <dd><em class="sig-param"><span class="n"><span class="pre">state_seq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><span class="pre">JointState</span></a></span></em>,</dd>
-<dd><em class="sig-param"><span class="n"><span class="pre">mask_matrix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.12)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.2)"><span class="pre">Tensor</span></a><span class="p"><span class="pre">]</span></span></span></em>,</dd>
-<dd><em class="sig-param"><span class="n"><span class="pre">fd_matrix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.12)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.2)"><span class="pre">Tensor</span></a><span class="p"><span class="pre">]</span></span></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">mask_matrix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.12)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a><span class="p"><span class="pre">]</span></span></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">fd_matrix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.12)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a><span class="p"><span class="pre">]</span></span></span></em>,</dd>
 </dl>
 
 <span class="sig-paren">)</span><a class="headerlink" href="#curobo.rollout.dynamics_model.integration_utils.tensor_step_pos_clique" title="Link to this definition"></a></dt>
@@ -5911,7 +5911,7 @@ output has the vmapped dimension and what index it is in.</p>
   </div>
 </div><script src="../_static/jquery.js?v=5d32c60e"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../_static/documentation_options.js?v=2e246024"></script>
+    <script src="../_static/documentation_options.js?v=916ae6f7"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/furo.js?v=32e29ea5"></script>
