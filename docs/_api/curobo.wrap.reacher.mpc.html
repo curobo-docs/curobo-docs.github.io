@@ -262,38 +262,57 @@
         <article role="main">
           <section id="module-curobo.wrap.reacher.mpc">
 <span id="curobo-wrap-reacher-mpc-module"></span><h1>curobo.wrap.reacher.mpc module<a class="headerlink" href="#module-curobo.wrap.reacher.mpc" title="Link to this heading"></a></h1>
-<dl class="py class">
+<p>This module contains <a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver" title="curobo.wrap.reacher.mpc.MpcSolver"><code class="xref py py-meth docutils literal notranslate"><span class="pre">MpcSolver</span></code></a> that provides a high-level interface to for model
+predictive control (MPC) for reaching Cartesian poses and also joint configurations while
+avoiding obstacles. The solver uses Model Predictive Path Integral (MPPI) optimization as the
+solver. MPC only optimizes locally so the robot can get stuck near joint limits or behind
+obstacles. To generate global trajectories, use
+<a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGen" title="curobo.wrap.reacher.motion_gen.MotionGen"><code class="xref py py-meth docutils literal notranslate"><span class="pre">MotionGen</span></code></a>.</p>
+<p>A python example is available at <a class="reference internal" href="../get_started/2a_python_examples.html#python-mpc-example"><span class="std std-ref">Model Predictive Control (MPC)</span></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Gradient-based MPC is also implemented with L-BFGS but is highly experimental and not
+recommended for real robots.</p>
+</div>
+<p>
+<video autoplay="True" loop="True" muted="True" preload="auto" width="100%"><source src="../videos/mpc_clip.mp4" type="video/mp4"></video>
+</p><dl class="py class">
 <dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolverConfig">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MpcSolverConfig</span></span><span class="sig-paren">(</span>
 
 <dl>
-<dd><em class="sig-param"><span class="n"><span class="pre">solver</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.wrap.wrap_mpc.html#curobo.wrap.wrap_mpc.WrapMpc" title="curobo.wrap.wrap_mpc.WrapMpc"><span class="pre">curobo.wrap.wrap_mpc.WrapMpc</span></a></span></em>,</dd>
-<dd><em class="sig-param"><span class="n"><span class="pre">world_coll_checker</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldCollision" title="curobo.geom.sdf.world.WorldCollision"><span class="pre">curobo.geom.sdf.world.WorldCollision</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
-<dd><em class="sig-param"><span class="n"><span class="pre">tensor_args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType" title="curobo.types.base.TensorDeviceType"><span class="pre">curobo.types.base.TensorDeviceType</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">TensorDeviceType(device=device(type='cuda',</span> <span class="pre">index=0),</span> <span class="pre">dtype=torch.float32,</span> <span class="pre">collision_geometry_dtype=torch.float32,</span> <span class="pre">collision_gradient_dtype=torch.float32,</span> <span class="pre">collision_distance_dtype=torch.float32)</span></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">solver</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.wrap.wrap_mpc.html#curobo.wrap.wrap_mpc.WrapMpc" title="curobo.wrap.wrap_mpc.WrapMpc"><span class="pre">WrapMpc</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">world_coll_checker</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldCollision" title="curobo.geom.sdf.world.WorldCollision"><span class="pre">WorldCollision</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">tensor_args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType" title="curobo.types.base.TensorDeviceType"><span class="pre">TensorDeviceType</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">TensorDeviceType(device=device(type='cuda',</span> <span class="pre">index=0),</span> <span class="pre">dtype=torch.float32,</span> <span class="pre">collision_geometry_dtype=torch.float32,</span> <span class="pre">collision_gradient_dtype=torch.float32,</span> <span class="pre">collision_distance_dtype=torch.float32)</span></span></em>,</dd>
 <dd><em class="sig-param"><span class="n"><span class="pre">use_cuda_graph_full_step</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>,</dd>
 </dl>
 
 <span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolverConfig" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Configuration dataclass for MPC.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolverConfig.solver">
 <span class="sig-name descname"><span class="pre">solver</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.wrap.wrap_mpc.html#curobo.wrap.wrap_mpc.WrapMpc" title="curobo.wrap.wrap_mpc.WrapMpc"><span class="pre">WrapMpc</span></a></em><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolverConfig.solver" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>MPC Solver.</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolverConfig.world_coll_checker">
 <span class="sig-name descname"><span class="pre">world_coll_checker</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldCollision" title="curobo.geom.sdf.world.WorldCollision"><span class="pre">WorldCollision</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolverConfig.world_coll_checker" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>World Collision Checker.</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolverConfig.tensor_args">
 <span class="sig-name descname"><span class="pre">tensor_args</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType" title="curobo.types.base.TensorDeviceType"><span class="pre">TensorDeviceType</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">TensorDeviceType(device=device(type='cuda',</span> <span class="pre">index=0),</span> <span class="pre">dtype=torch.float32,</span> <span class="pre">collision_geometry_dtype=torch.float32,</span> <span class="pre">collision_gradient_dtype=torch.float32,</span> <span class="pre">collision_distance_dtype=torch.float32)</span></em><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolverConfig.tensor_args" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Numeric precision and device to run computations.</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolverConfig.use_cuda_graph_full_step">
 <span class="sig-name descname"><span class="pre">use_cuda_graph_full_step</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolverConfig.use_cuda_graph_full_step" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Capture full step in MPC as a single CUDA graph. This is not supported currently.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolverConfig.load_from_robot_config">
@@ -301,14 +320,14 @@
 
 <dl>
 <dd><em class="sig-param"><span class="n"><span class="pre">robot_cfg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><span class="pre">dict</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="curobo.types.robot.html#curobo.types.robot.RobotConfig" title="curobo.types.robot.RobotConfig"><span class="pre">RobotConfig</span></a></span></em>,</dd>
-<dd><em class="sig-param"><span class="n"><span class="pre">world_cfg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><span class="pre">dict</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig" title="curobo.geom.types.WorldConfig"><span class="pre">WorldConfig</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">world_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><span class="pre">dict</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig" title="curobo.geom.types.WorldConfig"><span class="pre">WorldConfig</span></a></span></em>,</dd>
 <dd><em class="sig-param"><span class="n"><span class="pre">base_cfg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><span class="pre">dict</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
 <dd><em class="sig-param"><span class="n"><span class="pre">tensor_args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType" title="curobo.types.base.TensorDeviceType"><span class="pre">TensorDeviceType</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">TensorDeviceType(device=device(type='cuda',</span> <span class="pre">index=0),</span> <span class="pre">dtype=torch.float32,</span> <span class="pre">collision_geometry_dtype=torch.float32,</span> <span class="pre">collision_gradient_dtype=torch.float32,</span> <span class="pre">collision_distance_dtype=torch.float32)</span></span></em>,</dd>
 <dd><em class="sig-param"><span class="n"><span class="pre">compute_metrics</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>,</dd>
 <dd><em class="sig-param"><span class="n"><span class="pre">use_cuda_graph</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
 <dd><em class="sig-param"><span class="n"><span class="pre">particle_opt_iters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
 <dd><em class="sig-param"><span class="n"><span class="pre">self_collision_check</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>,</dd>
-<dd><em class="sig-param"><span class="n"><span class="pre">collision_checker_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.CollisionCheckerType" title="curobo.geom.sdf.world.CollisionCheckerType"><span class="pre">CollisionCheckerType</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">CollisionCheckerType.PRIMITIVE</span></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">collision_checker_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.CollisionCheckerType" title="curobo.geom.sdf.world.CollisionCheckerType"><span class="pre">CollisionCheckerType</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">CollisionCheckerType.MESH</span></span></em>,</dd>
 <dd><em class="sig-param"><span class="n"><span class="pre">use_es</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
 <dd><em class="sig-param"><span class="n"><span class="pre">es_learning_rate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.01</span></span></em>,</dd>
 <dd><em class="sig-param"><span class="n"><span class="pre">use_cuda_graph_metrics</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>,</dd>
@@ -325,7 +344,60 @@
 </dl>
 
 <span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolverConfig.load_from_robot_config" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Create an MPC solver configuration from robot and world configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>robot_cfg</strong> – Robot configuration. Can be a path to a YAML file or a dictionary or
+an instance of <a class="reference internal" href="curobo.types.robot.html#curobo.types.robot.RobotConfig" title="curobo.types.robot.RobotConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">RobotConfig</span></code></a>.</p></li>
+<li><p><strong>world_model</strong> – World configuration. Can be a path to a YAML file or a dictionary or
+an instance of <a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig" title="curobo.geom.types.WorldConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">WorldConfig</span></code></a>.</p></li>
+<li><p><strong>base_cfg</strong> – Base configuration for the solver. This file is used to check constraints
+and convergence. If None, the default configuration from <code class="docutils literal notranslate"><span class="pre">base_cfg.yml</span></code> is used.</p></li>
+<li><p><strong>tensor_args</strong> – Numeric precision and device to run computations.</p></li>
+<li><p><strong>compute_metrics</strong> – Compute metrics on MPC step.</p></li>
+<li><p><strong>use_cuda_graph</strong> – Use CUDA graph for the optimization step.</p></li>
+<li><p><strong>particle_opt_iters</strong> – Number of iterations for the particle optimization.</p></li>
+<li><p><strong>self_collision_check</strong> – Enable self-collision check during MPC optimization.</p></li>
+<li><p><strong>collision_checker_type</strong> – Type of collision checker to use. See <a class="reference internal" href="../get_started/2c_world_collision.html#world-collision"><span class="std std-ref">Collision World Representation</span></a>.</p></li>
+<li><p><strong>use_es</strong> – Use Evolution Strategies (ES) solver for MPC. Highly experimental.</p></li>
+<li><p><strong>es_learning_rate</strong> – Learning rate for ES solver.</p></li>
+<li><p><strong>use_cuda_graph_metrics</strong> – Use CUDA graph for computing metrics.</p></li>
+<li><p><strong>store_rollouts</strong> – Store rollouts information for debugging. This will also store the
+trajectory taken by the end-effector across the horizon.</p></li>
+<li><p><strong>use_cuda_graph_full_step</strong> – Capture full step in MPC as a single CUDA graph. This is
+experimental and might not work reliably.</p></li>
+<li><p><strong>sync_cuda_time</strong> – Synchronize CUDA device with host using
+<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.cuda.synchronize.html#torch.cuda.synchronize" title="(in PyTorch v2.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.cuda.synchronize</span></code></a> before calculating compute time.</p></li>
+<li><p><strong>collision_cache</strong> – Cache of obstacles to create to load obstacles between planning calls.
+An example: <code class="docutils literal notranslate"><span class="pre">{&quot;obb&quot;:</span> <span class="pre">10,</span> <span class="pre">&quot;mesh&quot;:</span> <span class="pre">10}</span></code>, to create a cache of 10 cuboids and 10
+meshes.</p></li>
+<li><p><strong>n_collision_envs</strong> – Number of collision environments to create for batched planning
+across different environments. Only used for <a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver.setup_solve_batch_env" title="curobo.wrap.reacher.mpc.MpcSolver.setup_solve_batch_env"><code class="xref py py-meth docutils literal notranslate"><span class="pre">MpcSolver.setup_solve_batch_env</span></code></a>
+and <a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver.setup_solve_batch_env_goalset" title="curobo.wrap.reacher.mpc.MpcSolver.setup_solve_batch_env_goalset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">MpcSolver.setup_solve_batch_env_goalset</span></code></a>.</p></li>
+<li><p><strong>collision_activation_distance</strong> – Distance in meters to activate collision cost. A good
+value to start with is 0.01 meters. Increase the distance if the robot needs to
+stay further away from obstacles.</p></li>
+<li><p><strong>world_coll_checker</strong> – Instance of world collision checker to use for MPC. Leaving this to
+None will create a new instance of world collision checker using the provided
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">world_model</span></code>.</p></li>
+<li><p><strong>step_dt</strong> – Time step to use between each step in the trajectory. If None, the default
+time step from the configuration~(<cite>particle_mpc.yml</cite> or <cite>gradient_mpc.yml</cite>)
+is used. This dt should match the control frequency at which you are sending
+commands to the robot. This dt should also be greater than than the compute
+time for a single step.</p></li>
+<li><p><strong>use_lbfgs</strong> – Use L-BFGS solver for MPC. Highly experimental.</p></li>
+<li><p><strong>use_mppi</strong> – Use MPPI solver for MPC.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Configuration for the MPC solver.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolverConfig" title="curobo.wrap.reacher.mpc.MpcSolverConfig">MpcSolverConfig</a></p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -339,33 +411,205 @@
 
 <span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolverConfig" title="curobo.wrap.reacher.mpc.MpcSolverConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">MpcSolverConfig</span></code></a></p>
-<p>Model Predictive Control Solver for Arm Reacher task.</p>
+<p>High-level interface for Model Predictive Control (MPC).</p>
+<p>MPC can reach Cartesian poses and joint configurations while avoiding obstacles. The solver
+uses Model Predictive Path Integral (MPPI) optimization as the solver. MPC only optimizes
+locally so the robot can get stuck near joint limits or behind obstacles. To generate global
+trajectories, use <a class="reference internal" href="curobo.wrap.reacher.motion_gen.html#curobo.wrap.reacher.motion_gen.MotionGen" title="curobo.wrap.reacher.motion_gen.MotionGen"><code class="xref py py-meth docutils literal notranslate"><span class="pre">MotionGen</span></code></a>.</p>
+<p>See <a class="reference internal" href="../get_started/2a_python_examples.html#python-mpc-example"><span class="std std-ref">Model Predictive Control (MPC)</span></a> for an example. This MPC solver implementation can be used in the
+following steps:</p>
+<ol class="arabic simple">
+<li><p>Create a <a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal" title="curobo.rollout.rollout_base.Goal"><code class="xref py py-class docutils literal notranslate"><span class="pre">Goal</span></code></a> object with the target pose or joint
+configuration.</p></li>
+<li><p>Create a goal buffer for the problem type using <a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver.setup_solve_single" title="curobo.wrap.reacher.mpc.MpcSolver.setup_solve_single"><code class="xref py py-meth docutils literal notranslate"><span class="pre">setup_solve_single</span></code></a>,
+<a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver.setup_solve_goalset" title="curobo.wrap.reacher.mpc.MpcSolver.setup_solve_goalset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">setup_solve_goalset</span></code></a>, <a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver.setup_solve_batch" title="curobo.wrap.reacher.mpc.MpcSolver.setup_solve_batch"><code class="xref py py-meth docutils literal notranslate"><span class="pre">setup_solve_batch</span></code></a>, <a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver.setup_solve_batch_goalset" title="curobo.wrap.reacher.mpc.MpcSolver.setup_solve_batch_goalset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">setup_solve_batch_goalset</span></code></a>,
+<a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver.setup_solve_batch_env" title="curobo.wrap.reacher.mpc.MpcSolver.setup_solve_batch_env"><code class="xref py py-meth docutils literal notranslate"><span class="pre">setup_solve_batch_env</span></code></a>, or <a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver.setup_solve_batch_env_goalset" title="curobo.wrap.reacher.mpc.MpcSolver.setup_solve_batch_env_goalset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">setup_solve_batch_env_goalset</span></code></a>. Pass the goal
+object from the previous step to this function. This function will update the internal
+solve state of MPC and also the goal for MPC. An augmented goal buffer is returned.</p></li>
+<li><p>Call <a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver.step" title="curobo.wrap.reacher.mpc.MpcSolver.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step</span></code></a> with the current joint state to get the next action.</p></li>
+<li><p>To change the goal, create a <a class="reference internal" href="curobo.types.math.html#curobo.types.math.Pose" title="curobo.types.math.Pose"><code class="xref py py-class docutils literal notranslate"><span class="pre">Pose</span></code></a> object with new pose or
+<a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><code class="xref py py-class docutils literal notranslate"><span class="pre">JointState</span></code></a> object with new joint configuration. Then
+copy the target into the augmented goal buffer using
+<code class="docutils literal notranslate"><span class="pre">goal_buffer.goal_pose.copy_(new_pose)</span></code> or <code class="docutils literal notranslate"><span class="pre">goal_buffer.goal_state.copy_(new_state)</span></code>.</p></li>
+<li><p>Call <a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver.update_goal" title="curobo.wrap.reacher.mpc.MpcSolver.update_goal"><code class="xref py py-meth docutils literal notranslate"><span class="pre">update_goal</span></code></a> with the augmented goal buffer to update the goal for MPC.</p></li>
+<li><p>Call <a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver.step" title="curobo.wrap.reacher.mpc.MpcSolver.step"><code class="xref py py-meth docutils literal notranslate"><span class="pre">step</span></code></a> with the current joint state to get the next action.</p></li>
+</ol>
+<p>To dynamically change the type of goal reached between pose and joint configuration targets,
+create the goal object in step 1 with both targets and then use <a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver.enable_cspace_cost" title="curobo.wrap.reacher.mpc.MpcSolver.enable_cspace_cost"><code class="xref py py-meth docutils literal notranslate"><span class="pre">enable_cspace_cost</span></code></a> and
+<a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver.enable_pose_cost" title="curobo.wrap.reacher.mpc.MpcSolver.enable_pose_cost"><code class="xref py py-meth docutils literal notranslate"><span class="pre">enable_pose_cost</span></code></a> to enable or disable reaching joint configuration cost and pose cost.</p>
+<p>Initializes the MPC solver.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>MpcSolverConfig</strong> – _description_</p>
+<dd class="field-odd"><p><strong>config</strong> – Configuration parameters for MPC.</p>
 </dd>
 </dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolver.tensor_args">
 <span class="sig-name descname"><span class="pre">tensor_args</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType" title="curobo.types.base.TensorDeviceType"><span class="pre">TensorDeviceType</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">TensorDeviceType(device=device(type='cuda',</span> <span class="pre">index=0),</span> <span class="pre">dtype=torch.float32,</span> <span class="pre">collision_geometry_dtype=torch.float32,</span> <span class="pre">collision_gradient_dtype=torch.float32,</span> <span class="pre">collision_distance_dtype=torch.float32)</span></em><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver.tensor_args" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Numeric precision and device to run computations.</p>
+</dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolver._update_batch_size">
-<span class="sig-name descname"><span class="pre">_update_batch_size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batch_size</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver._update_batch_size" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolver.update_goal_buffer">
-<span class="sig-name descname"><span class="pre">update_goal_buffer</span></span><span class="sig-paren">(</span>
+<dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolver.setup_solve_single">
+<span class="sig-name descname"><span class="pre">setup_solve_single</span></span><span class="sig-paren">(</span>
 
 <dl>
-<dd><em class="sig-param"><span class="n"><span class="pre">solve_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.wrap.reacher.types.html#curobo.wrap.reacher.types.ReacherSolveState" title="curobo.wrap.reacher.types.ReacherSolveState"><span class="pre">ReacherSolveState</span></a></span></em>,</dd>
 <dd><em class="sig-param"><span class="n"><span class="pre">goal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal" title="curobo.rollout.rollout_base.Goal"><span class="pre">Goal</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">num_seeds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal" title="curobo.rollout.rollout_base.Goal"><span class="pre">Goal</span></a></span></span><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver.update_goal_buffer" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal" title="curobo.rollout.rollout_base.Goal"><span class="pre">Goal</span></a></span></span><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver.setup_solve_single" title="Link to this definition"></a></dt>
+<dd><p>Creates a goal buffer to solve for a robot to reach target pose or joint configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>goal</strong> – goal object containing target pose or joint configuration.</p></li>
+<li><p><strong>num_seeds</strong> – Number of seeds to use in the solver.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Instance of augmented goal buffer.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal" title="curobo.rollout.rollout_base.Goal">Goal</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolver.setup_solve_goalset">
+<span class="sig-name descname"><span class="pre">setup_solve_goalset</span></span><span class="sig-paren">(</span>
+
+<dl>
+<dd><em class="sig-param"><span class="n"><span class="pre">goal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal" title="curobo.rollout.rollout_base.Goal"><span class="pre">Goal</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">num_seeds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
+</dl>
+
+<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal" title="curobo.rollout.rollout_base.Goal"><span class="pre">Goal</span></a></span></span><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver.setup_solve_goalset" title="Link to this definition"></a></dt>
+<dd><p>Creates a goal buffer to solve for a robot to reach a pose in a set of poses.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>goal</strong> – goal object containing target goalset or joint configuration.</p></li>
+<li><p><strong>num_seeds</strong> – Number of seeds to use in the solver.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Instance of augmented goal buffer.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal" title="curobo.rollout.rollout_base.Goal">Goal</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolver.setup_solve_batch">
+<span class="sig-name descname"><span class="pre">setup_solve_batch</span></span><span class="sig-paren">(</span>
+
+<dl>
+<dd><em class="sig-param"><span class="n"><span class="pre">goal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal" title="curobo.rollout.rollout_base.Goal"><span class="pre">Goal</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">num_seeds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
+</dl>
+
+<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal" title="curobo.rollout.rollout_base.Goal"><span class="pre">Goal</span></a></span></span><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver.setup_solve_batch" title="Link to this definition"></a></dt>
+<dd><p>Creates a goal buffer to solve for a batch of robots to reach targets.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>goal</strong> – goal object containing target poses or joint configurations.</p></li>
+<li><p><strong>num_seeds</strong> – Number of seeds to use in the solver.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Instance of augmented goal buffer.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal" title="curobo.rollout.rollout_base.Goal">Goal</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolver.setup_solve_batch_goalset">
+<span class="sig-name descname"><span class="pre">setup_solve_batch_goalset</span></span><span class="sig-paren">(</span>
+
+<dl>
+<dd><em class="sig-param"><span class="n"><span class="pre">goal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal" title="curobo.rollout.rollout_base.Goal"><span class="pre">Goal</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">num_seeds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
+</dl>
+
+<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal" title="curobo.rollout.rollout_base.Goal"><span class="pre">Goal</span></a></span></span><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver.setup_solve_batch_goalset" title="Link to this definition"></a></dt>
+<dd><p>Creates a goal buffer to solve for a batch of robots to reach a set of poses.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>goal</strong> – goal object containing target goalset or joint configurations.</p></li>
+<li><p><strong>num_seeds</strong> – Number of seeds to use in the solver.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Instance of augmented goal buffer.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal" title="curobo.rollout.rollout_base.Goal">Goal</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolver.setup_solve_batch_env">
+<span class="sig-name descname"><span class="pre">setup_solve_batch_env</span></span><span class="sig-paren">(</span>
+
+<dl>
+<dd><em class="sig-param"><span class="n"><span class="pre">goal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal" title="curobo.rollout.rollout_base.Goal"><span class="pre">Goal</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">num_seeds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
+</dl>
+
+<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal" title="curobo.rollout.rollout_base.Goal"><span class="pre">Goal</span></a></span></span><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver.setup_solve_batch_env" title="Link to this definition"></a></dt>
+<dd><p>Creates a goal buffer to solve for a batch of robots in different collision worlds.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>goal</strong> – goal object containing target poses or joint configurations.</p></li>
+<li><p><strong>num_seeds</strong> – Number of seeds to use in the solver.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Instance of augmented goal buffer.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal" title="curobo.rollout.rollout_base.Goal">Goal</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolver.setup_solve_batch_env_goalset">
+<span class="sig-name descname"><span class="pre">setup_solve_batch_env_goalset</span></span><span class="sig-paren">(</span>
+
+<dl>
+<dd><em class="sig-param"><span class="n"><span class="pre">goal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal" title="curobo.rollout.rollout_base.Goal"><span class="pre">Goal</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">num_seeds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
+</dl>
+
+<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal" title="curobo.rollout.rollout_base.Goal"><span class="pre">Goal</span></a></span></span><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver.setup_solve_batch_env_goalset" title="Link to this definition"></a></dt>
+<dd><p>Creates a goal buffer to solve for a batch of robots in different collision worlds.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>goal</strong> – goal object containing target goalset or joint configurations.</p></li>
+<li><p><strong>num_seeds</strong> – Number of seeds to use in the solver.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Instance of augmented goal buffer.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal" title="curobo.rollout.rollout_base.Goal">Goal</a></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolver.step">
@@ -379,11 +623,167 @@
 </dl>
 
 <span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver.step" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Solve for the next action given the current state.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>current_state</strong> – Current joint state of the robot.</p></li>
+<li><p><strong>shift_steps</strong> – Number of steps to shift the trajectory.</p></li>
+<li><p><strong>seed_traj</strong> – Initial trajectory to seed the optimization. If None, the solver
+uses the solution from the previous step.</p></li>
+<li><p><strong>max_attempts</strong> – Maximum number of attempts to solve the problem.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Result of the optimization.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="curobo.wrap.wrap_base.html#curobo.wrap.wrap_base.WrapResult" title="curobo.wrap.wrap_base.WrapResult">WrapResult</a></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolver.step_once">
-<span class="sig-name descname"><span class="pre">step_once</span></span><span class="sig-paren">(</span>
+<dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolver.update_goal">
+<span class="sig-name descname"><span class="pre">update_goal</span></span><span class="sig-paren">(</span>
+
+<dl>
+<dd><em class="sig-param"><span class="n"><span class="pre">goal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal" title="curobo.rollout.rollout_base.Goal"><span class="pre">Goal</span></a></span></em>,</dd>
+</dl>
+
+<span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver.update_goal" title="Link to this definition"></a></dt>
+<dd><p>Update the goal for MPC.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>goal</strong> – goal object containing target pose or joint configuration. This goal instance
+should be created using one of the setup_solve functions.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolver.reset">
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver.reset" title="Link to this definition"></a></dt>
+<dd><p>Reset the solver.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolver.reset_cuda_graph">
+<span class="sig-name descname"><span class="pre">reset_cuda_graph</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver.reset_cuda_graph" title="Link to this definition"></a></dt>
+<dd><p>Reset captured CUDA graph. This does not work.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolver.enable_cspace_cost">
+<span class="sig-name descname"><span class="pre">enable_cspace_cost</span></span><span class="sig-paren">(</span>
+
+<dl>
+<dd><em class="sig-param"><span class="n"><span class="pre">enable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>,</dd>
+</dl>
+
+<span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver.enable_cspace_cost" title="Link to this definition"></a></dt>
+<dd><p>Enable or disable reaching joint configuration cost in the solver.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>enable</strong> – Enable or disable reaching joint configuration cost. When False, cspace cost
+is disabled.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolver.enable_pose_cost">
+<span class="sig-name descname"><span class="pre">enable_pose_cost</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">enable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver.enable_pose_cost" title="Link to this definition"></a></dt>
+<dd><p>Enable or disable reaching pose cost in the solver.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>enable</strong> – Enable or disable reaching pose cost. When False, pose cost is disabled.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolver.get_active_js">
+<span class="sig-name descname"><span class="pre">get_active_js</span></span><span class="sig-paren">(</span>
+
+<dl>
+<dd><em class="sig-param"><span class="n"><span class="pre">in_js</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><span class="pre">JointState</span></a></span></em>,</dd>
+</dl>
+
+<span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver.get_active_js" title="Link to this definition"></a></dt>
+<dd><p>Get controlled joints indexed in MPC order from the input joint state.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>in_js</strong> – Input joint state.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Joint state with controlled joints.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState">JointState</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolver.update_world">
+<span class="sig-name descname"><span class="pre">update_world</span></span><span class="sig-paren">(</span>
+
+<dl>
+<dd><em class="sig-param"><span class="n"><span class="pre">world</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig" title="curobo.geom.types.WorldConfig"><span class="pre">WorldConfig</span></a></span></em>,</dd>
+</dl>
+
+<span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver.update_world" title="Link to this definition"></a></dt>
+<dd><p>Update the collision world for the solver.</p>
+<p>This allows for updating the world representation as long as the new world representation
+does not have a larger number of obstacles than the <a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver.collision_cache" title="curobo.wrap.reacher.mpc.MpcSolver.collision_cache"><code class="xref py py-attr docutils literal notranslate"><span class="pre">MpcSolver.collision_cache</span></code></a> as
+created during initialization of <a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolverConfig" title="curobo.wrap.reacher.mpc.MpcSolverConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">MpcSolverConfig</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>world</strong> – New collision world configuration. See <a class="reference internal" href="../get_started/2c_world_collision.html#world-collision"><span class="std std-ref">Collision World Representation</span></a> for more details.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolver.get_visual_rollouts">
+<span class="sig-name descname"><span class="pre">get_visual_rollouts</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver.get_visual_rollouts" title="Link to this definition"></a></dt>
+<dd><p>Get rollouts for debugging.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolver.joint_names">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">joint_names</span></span><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver.joint_names" title="Link to this definition"></a></dt>
+<dd><p>Get the ordered joint names of the robot.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolver.collision_cache">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">collision_cache</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.12)"><span class="pre">Dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver.collision_cache" title="Link to this definition"></a></dt>
+<dd><p>Returns the collision cache created by the world collision checker.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolver.kinematics">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">kinematics</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.cuda_robot_model.cuda_robot_model.html#curobo.cuda_robot_model.cuda_robot_model.CudaRobotModel" title="curobo.cuda_robot_model.cuda_robot_model.CudaRobotModel"><span class="pre">CudaRobotModel</span></a></em><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver.kinematics" title="Link to this definition"></a></dt>
+<dd><p>Get kinematics instance of the robot.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolver.world_collision">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">world_collision</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldCollision" title="curobo.geom.sdf.world.WorldCollision"><span class="pre">WorldCollision</span></a></em><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver.world_collision" title="Link to this definition"></a></dt>
+<dd><p>Get the world collision checker.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolver.rollout_fn">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">rollout_fn</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.rollout.arm_reacher.html#curobo.rollout.arm_reacher.ArmReacher" title="curobo.rollout.arm_reacher.ArmReacher"><span class="pre">ArmReacher</span></a></em><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver.rollout_fn" title="Link to this definition"></a></dt>
+<dd><p>Get the rollout function.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolver._step_once">
+<span class="sig-name descname"><span class="pre">_step_once</span></span><span class="sig-paren">(</span>
 
 <dl>
 <dd><em class="sig-param"><span class="n"><span class="pre">current_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><span class="pre">JointState</span></a></span></em>,</dd>
@@ -391,106 +791,69 @@
 <dd><em class="sig-param"><span class="n"><span class="pre">seed_traj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><span class="pre">JointState</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="curobo.wrap.wrap_base.html#curobo.wrap.wrap_base.WrapResult" title="curobo.wrap.wrap_base.WrapResult"><span class="pre">WrapResult</span></a></span></span><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver.step_once" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolver._step">
-<span class="sig-name descname"><span class="pre">_step</span></span><span class="sig-paren">(</span>
-
-<dl>
-<dd><em class="sig-param"><span class="n"><span class="pre">current_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><span class="pre">JointState</span></a></span></em>,</dd>
-<dd><em class="sig-param"><span class="n"><span class="pre">shift_steps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>,</dd>
-<dd><em class="sig-param"><span class="n"><span class="pre">seed_traj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><span class="pre">JointState</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
+<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="curobo.wrap.wrap_base.html#curobo.wrap.wrap_base.WrapResult" title="curobo.wrap.wrap_base.WrapResult"><span class="pre">WrapResult</span></a></span></span><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver._step_once" title="Link to this definition"></a></dt>
+<dd><p>Solve for the next action given the current state.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>current_state</strong> – Current joint state of the robot.</p></li>
+<li><p><strong>shift_steps</strong> – Number of steps to shift the trajectory.</p></li>
+<li><p><strong>seed_traj</strong> – Initial trajectory to seed the optimization. If None, the solver
+uses the solution from the previous step.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Result of the optimization.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="curobo.wrap.wrap_base.html#curobo.wrap.wrap_base.WrapResult" title="curobo.wrap.wrap_base.WrapResult">WrapResult</a></p>
+</dd>
 </dl>
-
-<span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver._step" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+</dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolver._initialize_cuda_graph_step">
-<span class="sig-name descname"><span class="pre">_initialize_cuda_graph_step</span></span><span class="sig-paren">(</span>
+<dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolver._update_solve_state_and_goal_buffer">
+<span class="sig-name descname"><span class="pre">_update_solve_state_and_goal_buffer</span></span><span class="sig-paren">(</span>
 
 <dl>
-<dd><em class="sig-param"><span class="n"><span class="pre">current_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><span class="pre">JointState</span></a></span></em>,</dd>
-<dd><em class="sig-param"><span class="n"><span class="pre">shift_steps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>,</dd>
-<dd><em class="sig-param"><span class="n"><span class="pre">seed_traj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><span class="pre">JointState</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
-</dl>
-
-<span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver._initialize_cuda_graph_step" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolver.setup_solve_single">
-<span class="sig-name descname"><span class="pre">setup_solve_single</span></span><span class="sig-paren">(</span>
-
-<dl>
+<dd><em class="sig-param"><span class="n"><span class="pre">solve_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.wrap.reacher.types.html#curobo.wrap.reacher.types.ReacherSolveState" title="curobo.wrap.reacher.types.ReacherSolveState"><span class="pre">ReacherSolveState</span></a></span></em>,</dd>
 <dd><em class="sig-param"><span class="n"><span class="pre">goal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal" title="curobo.rollout.rollout_base.Goal"><span class="pre">Goal</span></a></span></em>,</dd>
-<dd><em class="sig-param"><span class="n"><span class="pre">num_seeds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal" title="curobo.rollout.rollout_base.Goal"><span class="pre">Goal</span></a></span></span><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver.setup_solve_single" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal" title="curobo.rollout.rollout_base.Goal"><span class="pre">Goal</span></a></span></span><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver._update_solve_state_and_goal_buffer" title="Link to this definition"></a></dt>
+<dd><p>Update solve state and goal for MPC.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>solve_state</strong> – New solve state.</p></li>
+<li><p><strong>goal</strong> – New goal buffer.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Updated goal buffer.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal" title="curobo.rollout.rollout_base.Goal">Goal</a></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolver.setup_solve_goalset">
-<span class="sig-name descname"><span class="pre">setup_solve_goalset</span></span><span class="sig-paren">(</span>
+<dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolver._update_batch_size">
+<span class="sig-name descname"><span class="pre">_update_batch_size</span></span><span class="sig-paren">(</span>
 
 <dl>
-<dd><em class="sig-param"><span class="n"><span class="pre">goal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal" title="curobo.rollout.rollout_base.Goal"><span class="pre">Goal</span></a></span></em>,</dd>
-<dd><em class="sig-param"><span class="n"><span class="pre">num_seeds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal" title="curobo.rollout.rollout_base.Goal"><span class="pre">Goal</span></a></span></span><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver.setup_solve_goalset" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolver.setup_solve_batch">
-<span class="sig-name descname"><span class="pre">setup_solve_batch</span></span><span class="sig-paren">(</span>
-
-<dl>
-<dd><em class="sig-param"><span class="n"><span class="pre">goal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal" title="curobo.rollout.rollout_base.Goal"><span class="pre">Goal</span></a></span></em>,</dd>
-<dd><em class="sig-param"><span class="n"><span class="pre">num_seeds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
+<span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver._update_batch_size" title="Link to this definition"></a></dt>
+<dd><p>Update the batch size of the solver.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>batch_size</strong> – Number of problems to solve in parallel.</p>
+</dd>
 </dl>
-
-<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal" title="curobo.rollout.rollout_base.Goal"><span class="pre">Goal</span></a></span></span><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver.setup_solve_batch" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolver.setup_solve_batch_goalset">
-<span class="sig-name descname"><span class="pre">setup_solve_batch_goalset</span></span><span class="sig-paren">(</span>
-
-<dl>
-<dd><em class="sig-param"><span class="n"><span class="pre">goal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal" title="curobo.rollout.rollout_base.Goal"><span class="pre">Goal</span></a></span></em>,</dd>
-<dd><em class="sig-param"><span class="n"><span class="pre">num_seeds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
-</dl>
-
-<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal" title="curobo.rollout.rollout_base.Goal"><span class="pre">Goal</span></a></span></span><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver.setup_solve_batch_goalset" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolver.setup_solve_batch_env">
-<span class="sig-name descname"><span class="pre">setup_solve_batch_env</span></span><span class="sig-paren">(</span>
-
-<dl>
-<dd><em class="sig-param"><span class="n"><span class="pre">goal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal" title="curobo.rollout.rollout_base.Goal"><span class="pre">Goal</span></a></span></em>,</dd>
-<dd><em class="sig-param"><span class="n"><span class="pre">num_seeds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
-</dl>
-
-<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal" title="curobo.rollout.rollout_base.Goal"><span class="pre">Goal</span></a></span></span><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver.setup_solve_batch_env" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolver.setup_solve_batch_env_goalset">
-<span class="sig-name descname"><span class="pre">setup_solve_batch_env_goalset</span></span><span class="sig-paren">(</span>
-
-<dl>
-<dd><em class="sig-param"><span class="n"><span class="pre">goal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal" title="curobo.rollout.rollout_base.Goal"><span class="pre">Goal</span></a></span></em>,</dd>
-<dd><em class="sig-param"><span class="n"><span class="pre">num_seeds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
-</dl>
-
-<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal" title="curobo.rollout.rollout_base.Goal"><span class="pre">Goal</span></a></span></span><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver.setup_solve_batch_env_goalset" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolver._solve_from_solve_state">
@@ -504,91 +867,79 @@
 </dl>
 
 <span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="curobo.wrap.wrap_base.html#curobo.wrap.wrap_base.WrapResult" title="curobo.wrap.wrap_base.WrapResult"><span class="pre">WrapResult</span></a></span></span><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver._solve_from_solve_state" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Solve for the next action given the current state.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>solve_state</strong> – solve state object containing information about the current MPC problem.</p></li>
+<li><p><strong>goal</strong> – goal object containing target pose or joint configuration.</p></li>
+<li><p><strong>shift_steps</strong> – Number of steps to shift the trajectory before optimization.</p></li>
+<li><p><strong>seed_traj</strong> – Initial trajectory to seed the optimization. If None, the solver
+uses the solution from the previous step.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Result of the optimization.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="curobo.wrap.wrap_base.html#curobo.wrap.wrap_base.WrapResult" title="curobo.wrap.wrap_base.WrapResult">WrapResult</a></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolver.fn">
-<span class="sig-name descname"><span class="pre">fn</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver.fn" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolver.update_goal">
-<span class="sig-name descname"><span class="pre">update_goal</span></span><span class="sig-paren">(</span>
+<dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolver._mpc_step">
+<span class="sig-name descname"><span class="pre">_mpc_step</span></span><span class="sig-paren">(</span>
 
 <dl>
-<dd><em class="sig-param"><span class="n"><span class="pre">goal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.Goal" title="curobo.rollout.rollout_base.Goal"><span class="pre">Goal</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">current_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><span class="pre">JointState</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">shift_steps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">seed_traj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><span class="pre">JointState</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver.update_goal" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver._mpc_step" title="Link to this definition"></a></dt>
+<dd><p>One step function that is used to create a CUDA graph.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>current_state</strong> – Current joint state of the robot.</p></li>
+<li><p><strong>shift_steps</strong> – Number of steps to shift the trajectory.</p></li>
+<li><p><strong>seed_traj</strong> – Initial trajectory to seed the optimization. If None, the solver
+uses the solution from the previous step.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Result of the optimization.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="curobo.wrap.wrap_base.html#curobo.wrap.wrap_base.WrapResult" title="curobo.wrap.wrap_base.WrapResult">WrapResult</a></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolver.reset">
-<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver.reset" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolver.reset_cuda_graph">
-<span class="sig-name descname"><span class="pre">reset_cuda_graph</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver.reset_cuda_graph" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolver.rollout_fn">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">rollout_fn</span></span><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver.rollout_fn" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolver.enable_cspace_cost">
-<span class="sig-name descname"><span class="pre">enable_cspace_cost</span></span><span class="sig-paren">(</span>
+<dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolver._initialize_cuda_graph_step">
+<span class="sig-name descname"><span class="pre">_initialize_cuda_graph_step</span></span><span class="sig-paren">(</span>
 
 <dl>
-<dd><em class="sig-param"><span class="n"><span class="pre">enable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">current_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><span class="pre">JointState</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">shift_steps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1</span></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">seed_traj</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><span class="pre">JointState</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver.enable_cspace_cost" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolver.enable_pose_cost">
-<span class="sig-name descname"><span class="pre">enable_pose_cost</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">enable</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver.enable_pose_cost" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolver.get_active_js">
-<span class="sig-name descname"><span class="pre">get_active_js</span></span><span class="sig-paren">(</span>
-
-<dl>
-<dd><em class="sig-param"><span class="n"><span class="pre">in_js</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><span class="pre">JointState</span></a></span></em>,</dd>
+<span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver._initialize_cuda_graph_step" title="Link to this definition"></a></dt>
+<dd><p>Create a CUDA graph for the full step of MPC.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>current_state</strong> – Current joint state of the robot.</p></li>
+<li><p><strong>shift_steps</strong> – Number of steps to shift the trajectory.</p></li>
+<li><p><strong>seed_traj</strong> – Initial trajectory to seed the optimization. If None, the solver
+uses the solution from the previous step.</p></li>
+</ul>
+</dd>
 </dl>
-
-<span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver.get_active_js" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolver.joint_names">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">joint_names</span></span><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver.joint_names" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolver.update_world">
-<span class="sig-name descname"><span class="pre">update_world</span></span><span class="sig-paren">(</span>
-
-<dl>
-<dd><em class="sig-param"><span class="n"><span class="pre">world</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig" title="curobo.geom.types.WorldConfig"><span class="pre">WorldConfig</span></a></span></em>,</dd>
-</dl>
-
-<span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver.update_world" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolver.get_visual_rollouts">
-<span class="sig-name descname"><span class="pre">get_visual_rollouts</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver.get_visual_rollouts" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolver.kinematics">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">kinematics</span></span><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver.kinematics" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolver.load_from_robot_config">
@@ -596,14 +947,14 @@
 
 <dl>
 <dd><em class="sig-param"><span class="n"><span class="pre">robot_cfg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><span class="pre">dict</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="curobo.types.robot.html#curobo.types.robot.RobotConfig" title="curobo.types.robot.RobotConfig"><span class="pre">RobotConfig</span></a></span></em>,</dd>
-<dd><em class="sig-param"><span class="n"><span class="pre">world_cfg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><span class="pre">dict</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig" title="curobo.geom.types.WorldConfig"><span class="pre">WorldConfig</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">world_model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><span class="pre">dict</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig" title="curobo.geom.types.WorldConfig"><span class="pre">WorldConfig</span></a></span></em>,</dd>
 <dd><em class="sig-param"><span class="n"><span class="pre">base_cfg</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><span class="pre">dict</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
 <dd><em class="sig-param"><span class="n"><span class="pre">tensor_args</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType" title="curobo.types.base.TensorDeviceType"><span class="pre">TensorDeviceType</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">TensorDeviceType(device=device(type='cuda',</span> <span class="pre">index=0),</span> <span class="pre">dtype=torch.float32,</span> <span class="pre">collision_geometry_dtype=torch.float32,</span> <span class="pre">collision_gradient_dtype=torch.float32,</span> <span class="pre">collision_distance_dtype=torch.float32)</span></span></em>,</dd>
 <dd><em class="sig-param"><span class="n"><span class="pre">compute_metrics</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>,</dd>
 <dd><em class="sig-param"><span class="n"><span class="pre">use_cuda_graph</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
 <dd><em class="sig-param"><span class="n"><span class="pre">particle_opt_iters</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
 <dd><em class="sig-param"><span class="n"><span class="pre">self_collision_check</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>,</dd>
-<dd><em class="sig-param"><span class="n"><span class="pre">collision_checker_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.CollisionCheckerType" title="curobo.geom.sdf.world.CollisionCheckerType"><span class="pre">CollisionCheckerType</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">CollisionCheckerType.PRIMITIVE</span></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">collision_checker_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.CollisionCheckerType" title="curobo.geom.sdf.world.CollisionCheckerType"><span class="pre">CollisionCheckerType</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">CollisionCheckerType.MESH</span></span></em>,</dd>
 <dd><em class="sig-param"><span class="n"><span class="pre">use_es</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
 <dd><em class="sig-param"><span class="n"><span class="pre">es_learning_rate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.01</span></span></em>,</dd>
 <dd><em class="sig-param"><span class="n"><span class="pre">use_cuda_graph_metrics</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>,</dd>
@@ -620,27 +971,78 @@
 </dl>
 
 <span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver.load_from_robot_config" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Create an MPC solver configuration from robot and world configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>robot_cfg</strong> – Robot configuration. Can be a path to a YAML file or a dictionary or
+an instance of <a class="reference internal" href="curobo.types.robot.html#curobo.types.robot.RobotConfig" title="curobo.types.robot.RobotConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">RobotConfig</span></code></a>.</p></li>
+<li><p><strong>world_model</strong> – World configuration. Can be a path to a YAML file or a dictionary or
+an instance of <a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.WorldConfig" title="curobo.geom.types.WorldConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">WorldConfig</span></code></a>.</p></li>
+<li><p><strong>base_cfg</strong> – Base configuration for the solver. This file is used to check constraints
+and convergence. If None, the default configuration from <code class="docutils literal notranslate"><span class="pre">base_cfg.yml</span></code> is used.</p></li>
+<li><p><strong>tensor_args</strong> – Numeric precision and device to run computations.</p></li>
+<li><p><strong>compute_metrics</strong> – Compute metrics on MPC step.</p></li>
+<li><p><strong>use_cuda_graph</strong> – Use CUDA graph for the optimization step.</p></li>
+<li><p><strong>particle_opt_iters</strong> – Number of iterations for the particle optimization.</p></li>
+<li><p><strong>self_collision_check</strong> – Enable self-collision check during MPC optimization.</p></li>
+<li><p><strong>collision_checker_type</strong> – Type of collision checker to use. See <a class="reference internal" href="../get_started/2c_world_collision.html#world-collision"><span class="std std-ref">Collision World Representation</span></a>.</p></li>
+<li><p><strong>use_es</strong> – Use Evolution Strategies (ES) solver for MPC. Highly experimental.</p></li>
+<li><p><strong>es_learning_rate</strong> – Learning rate for ES solver.</p></li>
+<li><p><strong>use_cuda_graph_metrics</strong> – Use CUDA graph for computing metrics.</p></li>
+<li><p><strong>store_rollouts</strong> – Store rollouts information for debugging. This will also store the
+trajectory taken by the end-effector across the horizon.</p></li>
+<li><p><strong>use_cuda_graph_full_step</strong> – Capture full step in MPC as a single CUDA graph. This is
+experimental and might not work reliably.</p></li>
+<li><p><strong>sync_cuda_time</strong> – Synchronize CUDA device with host using
+<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.cuda.synchronize.html#torch.cuda.synchronize" title="(in PyTorch v2.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.cuda.synchronize</span></code></a> before calculating compute time.</p></li>
+<li><p><strong>collision_cache</strong> – Cache of obstacles to create to load obstacles between planning calls.
+An example: <code class="docutils literal notranslate"><span class="pre">{&quot;obb&quot;:</span> <span class="pre">10,</span> <span class="pre">&quot;mesh&quot;:</span> <span class="pre">10}</span></code>, to create a cache of 10 cuboids and 10
+meshes.</p></li>
+<li><p><strong>n_collision_envs</strong> – Number of collision environments to create for batched planning
+across different environments. Only used for <a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver.setup_solve_batch_env" title="curobo.wrap.reacher.mpc.MpcSolver.setup_solve_batch_env"><code class="xref py py-meth docutils literal notranslate"><span class="pre">MpcSolver.setup_solve_batch_env</span></code></a>
+and <a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver.setup_solve_batch_env_goalset" title="curobo.wrap.reacher.mpc.MpcSolver.setup_solve_batch_env_goalset"><code class="xref py py-meth docutils literal notranslate"><span class="pre">MpcSolver.setup_solve_batch_env_goalset</span></code></a>.</p></li>
+<li><p><strong>collision_activation_distance</strong> – Distance in meters to activate collision cost. A good
+value to start with is 0.01 meters. Increase the distance if the robot needs to
+stay further away from obstacles.</p></li>
+<li><p><strong>world_coll_checker</strong> – Instance of world collision checker to use for MPC. Leaving this to
+None will create a new instance of world collision checker using the provided
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">world_model</span></code>.</p></li>
+<li><p><strong>step_dt</strong> – Time step to use between each step in the trajectory. If None, the default
+time step from the configuration~(<cite>particle_mpc.yml</cite> or <cite>gradient_mpc.yml</cite>)
+is used. This dt should match the control frequency at which you are sending
+commands to the robot. This dt should also be greater than than the compute
+time for a single step.</p></li>
+<li><p><strong>use_lbfgs</strong> – Use L-BFGS solver for MPC. Highly experimental.</p></li>
+<li><p><strong>use_mppi</strong> – Use MPPI solver for MPC.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Configuration for the MPC solver.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolverConfig" title="curobo.wrap.reacher.mpc.MpcSolverConfig">MpcSolverConfig</a></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolver.use_cuda_graph_full_step">
 <span class="sig-name descname"><span class="pre">use_cuda_graph_full_step</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver.use_cuda_graph_full_step" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Capture full step in MPC as a single CUDA graph. This is not supported currently.</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolver.world_coll_checker">
 <span class="sig-name descname"><span class="pre">world_coll_checker</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldCollision" title="curobo.geom.sdf.world.WorldCollision"><span class="pre">WorldCollision</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver.world_coll_checker" title="Link to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolver.world_collision">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">world_collision</span></span><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver.world_collision" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>World Collision Checker.</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolver.solver">
 <span class="sig-name descname"><span class="pre">solver</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.wrap.wrap_mpc.html#curobo.wrap.wrap_mpc.WrapMpc" title="curobo.wrap.wrap_mpc.WrapMpc"><span class="pre">WrapMpc</span></a></em><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver.solver" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>MPC Solver.</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -700,35 +1102,35 @@
 </li>
 <li><a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver"><code class="docutils literal notranslate"><span class="pre">MpcSolver</span></code></a><ul>
 <li><a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver.tensor_args"><code class="docutils literal notranslate"><span class="pre">MpcSolver.tensor_args</span></code></a></li>
-<li><a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver._update_batch_size"><code class="docutils literal notranslate"><span class="pre">MpcSolver._update_batch_size</span></code></a></li>
-<li><a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver.update_goal_buffer"><code class="docutils literal notranslate"><span class="pre">MpcSolver.update_goal_buffer</span></code></a></li>
-<li><a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver.step"><code class="docutils literal notranslate"><span class="pre">MpcSolver.step</span></code></a></li>
-<li><a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver.step_once"><code class="docutils literal notranslate"><span class="pre">MpcSolver.step_once</span></code></a></li>
-<li><a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver._step"><code class="docutils literal notranslate"><span class="pre">MpcSolver._step</span></code></a></li>
-<li><a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver._initialize_cuda_graph_step"><code class="docutils literal notranslate"><span class="pre">MpcSolver._initialize_cuda_graph_step</span></code></a></li>
 <li><a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver.setup_solve_single"><code class="docutils literal notranslate"><span class="pre">MpcSolver.setup_solve_single</span></code></a></li>
 <li><a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver.setup_solve_goalset"><code class="docutils literal notranslate"><span class="pre">MpcSolver.setup_solve_goalset</span></code></a></li>
 <li><a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver.setup_solve_batch"><code class="docutils literal notranslate"><span class="pre">MpcSolver.setup_solve_batch</span></code></a></li>
 <li><a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver.setup_solve_batch_goalset"><code class="docutils literal notranslate"><span class="pre">MpcSolver.setup_solve_batch_goalset</span></code></a></li>
 <li><a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver.setup_solve_batch_env"><code class="docutils literal notranslate"><span class="pre">MpcSolver.setup_solve_batch_env</span></code></a></li>
 <li><a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver.setup_solve_batch_env_goalset"><code class="docutils literal notranslate"><span class="pre">MpcSolver.setup_solve_batch_env_goalset</span></code></a></li>
-<li><a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver._solve_from_solve_state"><code class="docutils literal notranslate"><span class="pre">MpcSolver._solve_from_solve_state</span></code></a></li>
-<li><a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver.fn"><code class="docutils literal notranslate"><span class="pre">MpcSolver.fn</span></code></a></li>
+<li><a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver.step"><code class="docutils literal notranslate"><span class="pre">MpcSolver.step</span></code></a></li>
 <li><a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver.update_goal"><code class="docutils literal notranslate"><span class="pre">MpcSolver.update_goal</span></code></a></li>
 <li><a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver.reset"><code class="docutils literal notranslate"><span class="pre">MpcSolver.reset</span></code></a></li>
 <li><a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver.reset_cuda_graph"><code class="docutils literal notranslate"><span class="pre">MpcSolver.reset_cuda_graph</span></code></a></li>
-<li><a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver.rollout_fn"><code class="docutils literal notranslate"><span class="pre">MpcSolver.rollout_fn</span></code></a></li>
 <li><a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver.enable_cspace_cost"><code class="docutils literal notranslate"><span class="pre">MpcSolver.enable_cspace_cost</span></code></a></li>
 <li><a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver.enable_pose_cost"><code class="docutils literal notranslate"><span class="pre">MpcSolver.enable_pose_cost</span></code></a></li>
 <li><a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver.get_active_js"><code class="docutils literal notranslate"><span class="pre">MpcSolver.get_active_js</span></code></a></li>
-<li><a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver.joint_names"><code class="docutils literal notranslate"><span class="pre">MpcSolver.joint_names</span></code></a></li>
 <li><a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver.update_world"><code class="docutils literal notranslate"><span class="pre">MpcSolver.update_world</span></code></a></li>
 <li><a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver.get_visual_rollouts"><code class="docutils literal notranslate"><span class="pre">MpcSolver.get_visual_rollouts</span></code></a></li>
+<li><a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver.joint_names"><code class="docutils literal notranslate"><span class="pre">MpcSolver.joint_names</span></code></a></li>
+<li><a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver.collision_cache"><code class="docutils literal notranslate"><span class="pre">MpcSolver.collision_cache</span></code></a></li>
 <li><a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver.kinematics"><code class="docutils literal notranslate"><span class="pre">MpcSolver.kinematics</span></code></a></li>
+<li><a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver.world_collision"><code class="docutils literal notranslate"><span class="pre">MpcSolver.world_collision</span></code></a></li>
+<li><a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver.rollout_fn"><code class="docutils literal notranslate"><span class="pre">MpcSolver.rollout_fn</span></code></a></li>
+<li><a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver._step_once"><code class="docutils literal notranslate"><span class="pre">MpcSolver._step_once</span></code></a></li>
+<li><a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver._update_solve_state_and_goal_buffer"><code class="docutils literal notranslate"><span class="pre">MpcSolver._update_solve_state_and_goal_buffer</span></code></a></li>
+<li><a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver._update_batch_size"><code class="docutils literal notranslate"><span class="pre">MpcSolver._update_batch_size</span></code></a></li>
+<li><a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver._solve_from_solve_state"><code class="docutils literal notranslate"><span class="pre">MpcSolver._solve_from_solve_state</span></code></a></li>
+<li><a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver._mpc_step"><code class="docutils literal notranslate"><span class="pre">MpcSolver._mpc_step</span></code></a></li>
+<li><a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver._initialize_cuda_graph_step"><code class="docutils literal notranslate"><span class="pre">MpcSolver._initialize_cuda_graph_step</span></code></a></li>
 <li><a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver.load_from_robot_config"><code class="docutils literal notranslate"><span class="pre">MpcSolver.load_from_robot_config</span></code></a></li>
 <li><a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver.use_cuda_graph_full_step"><code class="docutils literal notranslate"><span class="pre">MpcSolver.use_cuda_graph_full_step</span></code></a></li>
 <li><a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver.world_coll_checker"><code class="docutils literal notranslate"><span class="pre">MpcSolver.world_coll_checker</span></code></a></li>
-<li><a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver.world_collision"><code class="docutils literal notranslate"><span class="pre">MpcSolver.world_collision</span></code></a></li>
 <li><a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver.solver"><code class="docutils literal notranslate"><span class="pre">MpcSolver.solver</span></code></a></li>
 </ul>
 </li>
@@ -745,7 +1147,7 @@
   </div>
 </div><script src="../_static/jquery.js?v=5d32c60e"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../_static/documentation_options.js?v=2e246024"></script>
+    <script src="../_static/documentation_options.js?v=916ae6f7"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/furo.js?v=32e29ea5"></script>

@@ -357,11 +357,11 @@
 <span class="sig-name descname"><span class="pre">optimize</span></span><span class="sig-paren">(</span>
 
 <dl>
-<dd><em class="sig-param"><span class="n"><span class="pre">act_seq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.2)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">act_seq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></span></em>,</dd>
 <dd><em class="sig-param"><span class="n"><span class="pre">shift_steps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.2)"><span class="pre">Tensor</span></a></span></span><a class="headerlink" href="#curobo.wrap.wrap_mpc.WrapMpc.optimize" title="Link to this definition"></a></dt>
+<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></span></span><a class="headerlink" href="#curobo.wrap.wrap_mpc.WrapMpc.optimize" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py property">
@@ -387,6 +387,11 @@
 <dl class="py property">
 <dt class="sig sig-object py" id="curobo.wrap.wrap_mpc.WrapMpc.rollout_fn">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">rollout_fn</span></span><a class="headerlink" href="#curobo.wrap.wrap_mpc.WrapMpc.rollout_fn" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="curobo.wrap.wrap_mpc.WrapMpc.tensor_args">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tensor_args</span></span><a class="headerlink" href="#curobo.wrap.wrap_mpc.WrapMpc.tensor_args" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -498,6 +503,7 @@
 <li><a class="reference internal" href="#curobo.wrap.wrap_mpc.WrapMpc.reset_seed"><code class="docutils literal notranslate"><span class="pre">WrapMpc.reset_seed</span></code></a></li>
 <li><a class="reference internal" href="#curobo.wrap.wrap_mpc.WrapMpc.reset_shape"><code class="docutils literal notranslate"><span class="pre">WrapMpc.reset_shape</span></code></a></li>
 <li><a class="reference internal" href="#curobo.wrap.wrap_mpc.WrapMpc.rollout_fn"><code class="docutils literal notranslate"><span class="pre">WrapMpc.rollout_fn</span></code></a></li>
+<li><a class="reference internal" href="#curobo.wrap.wrap_mpc.WrapMpc.tensor_args"><code class="docutils literal notranslate"><span class="pre">WrapMpc.tensor_args</span></code></a></li>
 <li><a class="reference internal" href="#curobo.wrap.wrap_mpc.WrapMpc.update_nproblems"><code class="docutils literal notranslate"><span class="pre">WrapMpc.update_nproblems</span></code></a></li>
 <li><a class="reference internal" href="#curobo.wrap.wrap_mpc.WrapMpc.update_params"><code class="docutils literal notranslate"><span class="pre">WrapMpc.update_params</span></code></a></li>
 <li><a class="reference internal" href="#curobo.wrap.wrap_mpc.WrapMpc.safety_rollout"><code class="docutils literal notranslate"><span class="pre">WrapMpc.safety_rollout</span></code></a></li>
@@ -520,7 +526,7 @@
   </div>
 </div><script src="../_static/jquery.js?v=5d32c60e"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../_static/documentation_options.js?v=2e246024"></script>
+    <script src="../_static/documentation_options.js?v=916ae6f7"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/furo.js?v=32e29ea5"></script>
