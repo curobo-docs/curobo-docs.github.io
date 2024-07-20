@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" />
 
     <!-- Generated with Sphinx 7.3.7 and Furo 2024.05.06 -->
-        <title>curobo.util.torch_utils module - cuRobo</title>
+        <title>curobo.cuda_robot_model.util module - cuRobo</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=387cc868" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=fd3f3429" />
@@ -318,89 +318,31 @@
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <section id="module-curobo.util.torch_utils">
-<span id="curobo-util-torch-utils-module"></span><h1>curobo.util.torch_utils module<a class="headerlink" href="#module-curobo.util.torch_utils" title="Link to this heading">¶</a></h1>
+          <section id="module-curobo.cuda_robot_model.util">
+<span id="curobo-cuda-robot-model-util-module"></span><h1>curobo.cuda_robot_model.util module<a class="headerlink" href="#module-curobo.cuda_robot_model.util" title="Link to this heading">¶</a></h1>
+<p>This module contains a function to load robot representation from a yaml or xrdf file.</p>
 <dl class="py function">
-<dt class="sig sig-object py" id="curobo.util.torch_utils.find_first_idx">
-<span class="sig-name descname"><span class="pre">find_first_idx</span></span><span class="sig-paren">(</span>
+<dt class="sig sig-object py" id="curobo.cuda_robot_model.util.load_robot_yaml">
+<span class="sig-name descname"><span class="pre">load_robot_yaml</span></span><span class="sig-paren">(</span>
 
 <dl>
-<dd><em class="sig-param"><span class="n"><span class="pre">array</span></span></em>,</dd>
-<dd><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>,</dd>
-<dd><em class="sig-param"><span class="n"><span class="pre">EQUAL</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">content_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.types.file_path.html#curobo.types.file_path.ContentPath" title="curobo.types.file_path.ContentPath"><span class="pre">ContentPath</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">ContentPath(robot_config_root_path='/home/bala/code/curobo_github/curobo/src/curobo/content/configs/robot',</span> <span class="pre">robot_xrdf_root_path='/home/bala/code/curobo_github/curobo/src/curobo/content/configs/robot',</span> <span class="pre">robot_urdf_root_path='/home/bala/code/curobo_github/curobo/src/curobo/content/assets',</span> <span class="pre">robot_usd_root_path='/home/bala/code/curobo_github/curobo/src/curobo/content/assets',</span> <span class="pre">robot_asset_root_path='/home/bala/code/curobo_github/curobo/src/curobo/content/assets',</span> <span class="pre">world_config_root_path='/home/bala/code/curobo_github/curobo/src/curobo/content/configs/world',</span> <span class="pre">world_asset_root_path='/home/bala/code/curobo_github/curobo/src/curobo/content/assets',</span> <span class="pre">robot_config_absolute_path=None,</span> <span class="pre">robot_xrdf_absolute_path=None,</span> <span class="pre">robot_urdf_absolute_path=None,</span> <span class="pre">robot_usd_absolute_path=None,</span> <span class="pre">robot_asset_absolute_path=None,</span> <span class="pre">world_config_absolute_path=None,</span> <span class="pre">robot_config_file=None,</span> <span class="pre">robot_xrdf_file=None,</span> <span class="pre">robot_urdf_file=None,</span> <span class="pre">robot_usd_file=None,</span> <span class="pre">robot_asset_subroot_path=None,</span> <span class="pre">world_config_file=None)</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="headerlink" href="#curobo.util.torch_utils.find_first_idx" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="curobo.util.torch_utils.find_last_idx">
-<span class="sig-name descname"><span class="pre">find_last_idx</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.util.torch_utils.find_last_idx" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="curobo.util.torch_utils.is_cuda_graph_available">
-<span class="sig-name descname"><span class="pre">is_cuda_graph_available</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.util.torch_utils.is_cuda_graph_available" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="curobo.util.torch_utils.is_cuda_graph_reset_available">
-<span class="sig-name descname"><span class="pre">is_cuda_graph_reset_available</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.util.torch_utils.is_cuda_graph_reset_available" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="curobo.util.torch_utils.is_torch_compile_available">
-<span class="sig-name descname"><span class="pre">is_torch_compile_available</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.util.torch_utils.is_torch_compile_available" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="curobo.util.torch_utils.get_torch_compile_options">
-<span class="sig-name descname"><span class="pre">get_torch_compile_options</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><span class="pre">dict</span></a></span></span><a class="headerlink" href="#curobo.util.torch_utils.get_torch_compile_options" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="curobo.util.torch_utils.disable_torch_compile_global">
-<span class="sig-name descname"><span class="pre">disable_torch_compile_global</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.util.torch_utils.disable_torch_compile_global" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="curobo.util.torch_utils.set_torch_compile_global_options">
-<span class="sig-name descname"><span class="pre">set_torch_compile_global_options</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.util.torch_utils.set_torch_compile_global_options" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="curobo.util.torch_utils.get_torch_jit_decorator">
-<span class="sig-name descname"><span class="pre">get_torch_jit_decorator</span></span><span class="sig-paren">(</span>
-
-<dl>
-<dd><em class="sig-param"><span class="n"><span class="pre">force_jit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>,</dd>
-<dd><em class="sig-param"><span class="n"><span class="pre">dynamic</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>,</dd>
-<dd><em class="sig-param"><span class="n"><span class="pre">only_valid_for_compile</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>,</dd>
+<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><span class="pre">dict</span></a></span></span><a class="headerlink" href="#curobo.cuda_robot_model.util.load_robot_yaml" title="Link to this definition">¶</a></dt>
+<dd><p>Load robot representation from a yaml or xrdf file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>content_path</strong> – Path to the robot configuration files.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Robot representation as a dictionary.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)">dict</a></p>
+</dd>
 </dl>
-
-<span class="sig-paren">)</span><a class="headerlink" href="#curobo.util.torch_utils.get_torch_jit_decorator" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="curobo.util.torch_utils.is_lru_cache_avaiable">
-<span class="sig-name descname"><span class="pre">is_lru_cache_avaiable</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.util.torch_utils.is_lru_cache_avaiable" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="curobo.util.torch_utils.get_cache_fn_decorator">
-<span class="sig-name descname"><span class="pre">get_cache_fn_decorator</span></span><span class="sig-paren">(</span>
-
-<dl>
-<dd><em class="sig-param"><span class="n"><span class="pre">maxsize</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
-</dl>
-
-<span class="sig-paren">)</span><a class="headerlink" href="#curobo.util.torch_utils.get_cache_fn_decorator" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="curobo.util.torch_utils.empty_decorator">
-<span class="sig-name descname"><span class="pre">empty_decorator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">function</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.util.torch_utils.empty_decorator" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+</dd></dl>
 
 </section>
 
@@ -447,19 +389,8 @@
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">curobo.util.torch_utils module</a><ul>
-<li><a class="reference internal" href="#curobo.util.torch_utils.find_first_idx"><code class="docutils literal notranslate"><span class="pre">find_first_idx</span></code></a></li>
-<li><a class="reference internal" href="#curobo.util.torch_utils.find_last_idx"><code class="docutils literal notranslate"><span class="pre">find_last_idx</span></code></a></li>
-<li><a class="reference internal" href="#curobo.util.torch_utils.is_cuda_graph_available"><code class="docutils literal notranslate"><span class="pre">is_cuda_graph_available</span></code></a></li>
-<li><a class="reference internal" href="#curobo.util.torch_utils.is_cuda_graph_reset_available"><code class="docutils literal notranslate"><span class="pre">is_cuda_graph_reset_available</span></code></a></li>
-<li><a class="reference internal" href="#curobo.util.torch_utils.is_torch_compile_available"><code class="docutils literal notranslate"><span class="pre">is_torch_compile_available</span></code></a></li>
-<li><a class="reference internal" href="#curobo.util.torch_utils.get_torch_compile_options"><code class="docutils literal notranslate"><span class="pre">get_torch_compile_options</span></code></a></li>
-<li><a class="reference internal" href="#curobo.util.torch_utils.disable_torch_compile_global"><code class="docutils literal notranslate"><span class="pre">disable_torch_compile_global</span></code></a></li>
-<li><a class="reference internal" href="#curobo.util.torch_utils.set_torch_compile_global_options"><code class="docutils literal notranslate"><span class="pre">set_torch_compile_global_options</span></code></a></li>
-<li><a class="reference internal" href="#curobo.util.torch_utils.get_torch_jit_decorator"><code class="docutils literal notranslate"><span class="pre">get_torch_jit_decorator</span></code></a></li>
-<li><a class="reference internal" href="#curobo.util.torch_utils.is_lru_cache_avaiable"><code class="docutils literal notranslate"><span class="pre">is_lru_cache_avaiable</span></code></a></li>
-<li><a class="reference internal" href="#curobo.util.torch_utils.get_cache_fn_decorator"><code class="docutils literal notranslate"><span class="pre">get_cache_fn_decorator</span></code></a></li>
-<li><a class="reference internal" href="#curobo.util.torch_utils.empty_decorator"><code class="docutils literal notranslate"><span class="pre">empty_decorator</span></code></a></li>
+<li><a class="reference internal" href="#">curobo.cuda_robot_model.util module</a><ul>
+<li><a class="reference internal" href="#curobo.cuda_robot_model.util.load_robot_yaml"><code class="docutils literal notranslate"><span class="pre">load_robot_yaml</span></code></a></li>
 </ul>
 </li>
 </ul>
