@@ -5,11 +5,11 @@
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" />
 
-    <!-- Generated with Sphinx 7.2.6 and Furo 2024.01.29 -->
+    <!-- Generated with Sphinx 7.3.7 and Furo 2024.05.06 -->
         <title>curobo.graph.graph_base module - cuRobo</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=135e06be" />
-    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=eafc0fe6" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=387cc868" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=fd3f3429" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=36a5483c" />
     <link rel="stylesheet" type="text/css" href="../_static/custom_furo.css?v=a13d9812" />
@@ -89,7 +89,7 @@
   <symbol id="svg-sun" viewBox="0 0 24 24">
     <title>Light mode</title>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
       <circle cx="12" cy="12" r="5"></circle>
       <line x1="12" y1="1" x2="12" y2="3"></line>
       <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -104,7 +104,7 @@
   <symbol id="svg-moon" viewBox="0 0 24 24">
     <title>Dark mode</title>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
       <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
     </svg>
@@ -112,7 +112,7 @@
   <symbol id="svg-sun-half" viewBox="0 0 24 24">
     <title>Auto light/dark mode</title>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
       <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
       <circle cx="12" cy="12" r="9" />
       <path d="M13 12h5" />
@@ -120,6 +120,60 @@
       <path d="M13 18h1" />
       <path d="M13 9h4" />
       <path d="M13 6h1" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" /
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
     </svg>
   </symbol>
 </svg>
@@ -132,6 +186,8 @@
 <label class="overlay toc-overlay" for="__toc">
   <div class="visually-hidden">Hide table of contents sidebar</div>
 </label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
 
 
 
@@ -150,7 +206,8 @@
       <div class="theme-toggle-container theme-toggle-header">
         <button class="theme-toggle">
           <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
-          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
           <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
@@ -249,7 +306,8 @@
           <div class="theme-toggle-container theme-toggle-content">
             <button class="theme-toggle">
               <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
-              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
               <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
@@ -259,9 +317,9 @@
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
-        <article role="main">
+        <article role="main" id="furo-main-content">
           <section id="module-curobo.graph.graph_base">
-<span id="curobo-graph-graph-base-module"></span><h1>curobo.graph.graph_base module<a class="headerlink" href="#module-curobo.graph.graph_base" title="Link to this heading"></a></h1>
+<span id="curobo-graph-graph-base-module"></span><h1>curobo.graph.graph_base module<a class="headerlink" href="#module-curobo.graph.graph_base" title="Link to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphResult">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GraphResult</span></span><span class="sig-paren">(</span>
@@ -281,66 +339,66 @@
 <dd><em class="sig-param"><span class="n"><span class="pre">path_buffer_last_tstep</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphResult" title="Link to this definition"></a></dt>
+<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphResult" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphResult.success">
-<span class="sig-name descname"><span class="pre">success</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphResult.success" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">success</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphResult.success" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphResult.start_q">
-<span class="sig-name descname"><span class="pre">start_q</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphResult.start_q" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">start_q</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphResult.start_q" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphResult.goal_q">
-<span class="sig-name descname"><span class="pre">goal_q</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphResult.goal_q" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">goal_q</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphResult.goal_q" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphResult.path_length">
-<span class="sig-name descname"><span class="pre">path_length</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.graph.graph_base.GraphResult.path_length" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">path_length</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.graph.graph_base.GraphResult.path_length" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphResult.solve_time">
-<span class="sig-name descname"><span class="pre">solve_time</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></em><a class="headerlink" href="#curobo.graph.graph_base.GraphResult.solve_time" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">solve_time</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.0</span></em><a class="headerlink" href="#curobo.graph.graph_base.GraphResult.solve_time" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphResult.plan">
-<span class="sig-name descname"><span class="pre">plan</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.12)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.12)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.graph.graph_base.GraphResult.plan" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">plan</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.12)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.12)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.graph.graph_base.GraphResult.plan" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphResult.interpolated_plan">
-<span class="sig-name descname"><span class="pre">interpolated_plan</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><span class="pre">JointState</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.graph.graph_base.GraphResult.interpolated_plan" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">interpolated_plan</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><span class="pre">JointState</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.graph.graph_base.GraphResult.interpolated_plan" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphResult.metrics">
-<span class="sig-name descname"><span class="pre">metrics</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutMetrics" title="curobo.rollout.rollout_base.RolloutMetrics"><span class="pre">RolloutMetrics</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.graph.graph_base.GraphResult.metrics" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">metrics</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutMetrics" title="curobo.rollout.rollout_base.RolloutMetrics"><span class="pre">RolloutMetrics</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.graph.graph_base.GraphResult.metrics" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphResult.valid_query">
-<span class="sig-name descname"><span class="pre">valid_query</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#curobo.graph.graph_base.GraphResult.valid_query" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">valid_query</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#curobo.graph.graph_base.GraphResult.valid_query" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphResult.debug_info">
-<span class="sig-name descname"><span class="pre">debug_info</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.12)"><span class="pre">Any</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.graph.graph_base.GraphResult.debug_info" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">debug_info</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.12)"><span class="pre">Any</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.graph.graph_base.GraphResult.debug_info" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphResult.optimized_dt">
-<span class="sig-name descname"><span class="pre">optimized_dt</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.graph.graph_base.GraphResult.optimized_dt" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">optimized_dt</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.graph.graph_base.GraphResult.optimized_dt" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphResult.path_buffer_last_tstep">
-<span class="sig-name descname"><span class="pre">path_buffer_last_tstep</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.12)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.graph.graph_base.GraphResult.path_buffer_last_tstep" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">path_buffer_last_tstep</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.12)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.graph.graph_base.GraphResult.path_buffer_last_tstep" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -356,26 +414,26 @@
 <dd><em class="sig-param"><span class="n"><span class="pre">shortest_path_lengths</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">torch.Tensor</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.Graph" title="Link to this definition"></a></dt>
+<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.Graph" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.Graph.nodes">
-<span class="sig-name descname"><span class="pre">nodes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.Graph.nodes" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">nodes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.Graph.nodes" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.Graph.edges">
-<span class="sig-name descname"><span class="pre">edges</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.Graph.edges" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">edges</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.Graph.edges" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.Graph.connectivity">
-<span class="sig-name descname"><span class="pre">connectivity</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.Graph.connectivity" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">connectivity</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.Graph.connectivity" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.Graph.shortest_path_lengths">
-<span class="sig-name descname"><span class="pre">shortest_path_lengths</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.graph.graph_base.Graph.shortest_path_lengths" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">shortest_path_lengths</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#curobo.graph.graph_base.Graph.shortest_path_lengths" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -386,12 +444,12 @@
 <dd><em class="sig-param"><span class="n"><span class="pre">shortest_path_lengths</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.Graph.set_shortest_path_lengths" title="Link to this definition"></a></dt>
+<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.Graph.set_shortest_path_lengths" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.Graph.get_node_distance">
-<span class="sig-name descname"><span class="pre">get_node_distance</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.Graph.get_node_distance" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_node_distance</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.Graph.get_node_distance" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -432,151 +490,151 @@
 <dd><em class="sig-param"><span class="n"><span class="pre">interpolation_acceleration_scale</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.5</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig" title="Link to this definition"></a></dt>
+<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphConfig.max_nodes">
-<span class="sig-name descname"><span class="pre">max_nodes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.max_nodes" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">max_nodes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.max_nodes" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphConfig.steer_delta_buffer">
-<span class="sig-name descname"><span class="pre">steer_delta_buffer</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.steer_delta_buffer" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">steer_delta_buffer</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.steer_delta_buffer" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphConfig.sample_pts">
-<span class="sig-name descname"><span class="pre">sample_pts</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.sample_pts" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">sample_pts</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.sample_pts" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphConfig.node_similarity_distance">
-<span class="sig-name descname"><span class="pre">node_similarity_distance</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.node_similarity_distance" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">node_similarity_distance</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.node_similarity_distance" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphConfig.rejection_ratio">
-<span class="sig-name descname"><span class="pre">rejection_ratio</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.rejection_ratio" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">rejection_ratio</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.rejection_ratio" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphConfig.k_nn">
-<span class="sig-name descname"><span class="pre">k_nn</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.k_nn" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">k_nn</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.k_nn" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphConfig.c_max">
-<span class="sig-name descname"><span class="pre">c_max</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.c_max" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">c_max</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.c_max" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphConfig.vertex_n">
-<span class="sig-name descname"><span class="pre">vertex_n</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.vertex_n" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">vertex_n</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.vertex_n" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphConfig.graph_max_attempts">
-<span class="sig-name descname"><span class="pre">graph_max_attempts</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.graph_max_attempts" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">graph_max_attempts</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.graph_max_attempts" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphConfig.graph_min_attempts">
-<span class="sig-name descname"><span class="pre">graph_min_attempts</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.graph_min_attempts" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">graph_min_attempts</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.graph_min_attempts" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphConfig.init_nodes">
-<span class="sig-name descname"><span class="pre">init_nodes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.init_nodes" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">init_nodes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.init_nodes" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphConfig.use_bias_node">
-<span class="sig-name descname"><span class="pre">use_bias_node</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.use_bias_node" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">use_bias_node</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.use_bias_node" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphConfig.dof">
-<span class="sig-name descname"><span class="pre">dof</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.dof" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">dof</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.dof" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphConfig.bounds">
-<span class="sig-name descname"><span class="pre">bounds</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.bounds" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">bounds</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.bounds" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphConfig.tensor_args">
-<span class="sig-name descname"><span class="pre">tensor_args</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType" title="curobo.types.base.TensorDeviceType"><span class="pre">TensorDeviceType</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.tensor_args" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">tensor_args</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType" title="curobo.types.base.TensorDeviceType"><span class="pre">TensorDeviceType</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.tensor_args" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphConfig.rollout_fn">
-<span class="sig-name descname"><span class="pre">rollout_fn</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutBase" title="curobo.rollout.rollout_base.RolloutBase"><span class="pre">RolloutBase</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.rollout_fn" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">rollout_fn</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutBase" title="curobo.rollout.rollout_base.RolloutBase"><span class="pre">RolloutBase</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.rollout_fn" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphConfig.safety_rollout_fn">
-<span class="sig-name descname"><span class="pre">safety_rollout_fn</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutBase" title="curobo.rollout.rollout_base.RolloutBase"><span class="pre">RolloutBase</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.safety_rollout_fn" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">safety_rollout_fn</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutBase" title="curobo.rollout.rollout_base.RolloutBase"><span class="pre">RolloutBase</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.safety_rollout_fn" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphConfig.max_buffer">
-<span class="sig-name descname"><span class="pre">max_buffer</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.max_buffer" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">max_buffer</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.max_buffer" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphConfig.max_cg_buffer">
-<span class="sig-name descname"><span class="pre">max_cg_buffer</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.max_cg_buffer" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">max_cg_buffer</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.max_cg_buffer" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphConfig.compute_metrics">
-<span class="sig-name descname"><span class="pre">compute_metrics</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.compute_metrics" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">compute_metrics</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.compute_metrics" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphConfig.interpolation_type">
-<span class="sig-name descname"><span class="pre">interpolation_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.util.trajectory.html#curobo.util.trajectory.InterpolateType" title="curobo.util.trajectory.InterpolateType"><span class="pre">InterpolateType</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.interpolation_type" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">interpolation_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.util.trajectory.html#curobo.util.trajectory.InterpolateType" title="curobo.util.trajectory.InterpolateType"><span class="pre">InterpolateType</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.interpolation_type" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphConfig.interpolation_steps">
-<span class="sig-name descname"><span class="pre">interpolation_steps</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.interpolation_steps" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">interpolation_steps</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.interpolation_steps" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphConfig.seed">
-<span class="sig-name descname"><span class="pre">seed</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.seed" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">seed</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.seed" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphConfig.use_cuda_graph_mask_samples">
-<span class="sig-name descname"><span class="pre">use_cuda_graph_mask_samples</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.use_cuda_graph_mask_samples" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">use_cuda_graph_mask_samples</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.use_cuda_graph_mask_samples" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphConfig.distance_weight">
-<span class="sig-name descname"><span class="pre">distance_weight</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.distance_weight" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">distance_weight</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.distance_weight" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphConfig.bias_node">
-<span class="sig-name descname"><span class="pre">bias_node</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.bias_node" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">bias_node</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.bias_node" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphConfig.interpolation_dt">
-<span class="sig-name descname"><span class="pre">interpolation_dt</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.02</span></em><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.interpolation_dt" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">interpolation_dt</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.02</span></em><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.interpolation_dt" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphConfig.interpolation_deviation">
-<span class="sig-name descname"><span class="pre">interpolation_deviation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.05</span></em><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.interpolation_deviation" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">interpolation_deviation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.05</span></em><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.interpolation_deviation" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphConfig.interpolation_acceleration_scale">
-<span class="sig-name descname"><span class="pre">interpolation_acceleration_scale</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.5</span></em><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.interpolation_acceleration_scale" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">interpolation_acceleration_scale</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.5</span></em><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.interpolation_acceleration_scale" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -591,7 +649,7 @@
 <dd><em class="sig-param"><span class="n"><span class="pre">use_cuda_graph</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.from_dict" title="Link to this definition"></a></dt>
+<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.from_dict" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -610,7 +668,7 @@
 <dd><em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.load_from_robot_config" title="Link to this definition"></a></dt>
+<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphConfig.load_from_robot_config" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -623,11 +681,11 @@
 <dd><em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#curobo.graph.graph_base.GraphConfig" title="curobo.graph.graph_base.GraphConfig"><span class="pre">GraphConfig</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase" title="Link to this definition"></a></dt>
+<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#curobo.graph.graph_base.GraphConfig" title="curobo.graph.graph_base.GraphConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">GraphConfig</span></code></a></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase.check_feasibility">
-<span class="sig-name descname"><span class="pre">check_feasibility</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_set</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.check_feasibility" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">check_feasibility</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_set</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.check_feasibility" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -638,12 +696,12 @@
 <dd><em class="sig-param"><span class="n"><span class="pre">x_samples</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.get_feasible_sample_set" title="Link to this definition"></a></dt>
+<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.get_feasible_sample_set" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase.mask_samples">
-<span class="sig-name descname"><span class="pre">mask_samples</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_samples</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.mask_samples" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">mask_samples</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_samples</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.mask_samples" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -654,12 +712,12 @@
 <dd><em class="sig-param"><span class="n"><span class="pre">x_samples</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase._mask_samples_cuda_graph" title="Link to this definition"></a></dt>
+<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase._mask_samples_cuda_graph" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase._mask_samples">
-<span class="sig-name descname"><span class="pre">_mask_samples</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_samples</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase._mask_samples" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">_mask_samples</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_samples</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase._mask_samples" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -671,7 +729,7 @@
 <dd><em class="sig-param"><span class="n"><span class="pre">use_batch_env</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase._cuda_graph_rollout_constraint" title="Link to this definition"></a></dt>
+<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase._cuda_graph_rollout_constraint" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -683,7 +741,7 @@
 <dd><em class="sig-param"><span class="n"><span class="pre">bounded</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.get_samples" title="Link to this definition"></a></dt>
+<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.get_samples" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -697,12 +755,12 @@
 <dd><em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">123</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase._sample_pts" title="Link to this definition"></a></dt>
+<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase._sample_pts" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase.reset_buffer">
-<span class="sig-name descname"><span class="pre">reset_buffer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.reset_buffer" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">reset_buffer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.reset_buffer" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -718,7 +776,7 @@
 <dd><em class="sig-param"><span class="n"><span class="pre">lazy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.get_biased_vertex_set" title="Link to this definition"></a></dt>
+<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.get_biased_vertex_set" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -730,7 +788,7 @@
 <dd><em class="sig-param"><span class="n"><span class="pre">x_goal</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase._compute_rotation_frame" title="Link to this definition"></a></dt>
+<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase._compute_rotation_frame" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -742,17 +800,17 @@
 <dd><em class="sig-param"><span class="n"><span class="pre">lazy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.get_new_vertex_set" title="Link to this definition"></a></dt>
+<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.get_new_vertex_set" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase.validate_graph">
-<span class="sig-name descname"><span class="pre">validate_graph</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.validate_graph" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">validate_graph</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.validate_graph" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase.get_graph_edges">
-<span class="sig-name descname"><span class="pre">get_graph_edges</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.get_graph_edges" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_graph_edges</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.get_graph_edges" title="Link to this definition">¶</a></dt>
 <dd><p>Return edges in the graph with start node and end node locations</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -763,12 +821,12 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase.get_graph">
-<span class="sig-name descname"><span class="pre">get_graph</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.get_graph" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_graph</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.get_graph" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase._validate_graph">
-<span class="sig-name descname"><span class="pre">_validate_graph</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase._validate_graph" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">_validate_graph</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase._validate_graph" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -781,7 +839,7 @@
 <dd><em class="sig-param"><span class="n"><span class="pre">return_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase._get_graph_shortest_path" title="Link to this definition"></a></dt>
+<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase._get_graph_shortest_path" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -794,7 +852,7 @@
 <dd><em class="sig-param"><span class="n"><span class="pre">return_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.batch_get_graph_shortest_path" title="Link to this definition"></a></dt>
+<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.batch_get_graph_shortest_path" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -807,7 +865,7 @@
 <dd><em class="sig-param"><span class="n"><span class="pre">goal_idx</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.batch_shortcut_path" title="Link to this definition"></a></dt>
+<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.batch_shortcut_path" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -819,12 +877,12 @@
 <dd><em class="sig-param"><span class="n"><span class="pre">exact</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.get_node_idx" title="Link to this definition"></a></dt>
+<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.get_node_idx" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase.get_path_lengths">
-<span class="sig-name descname"><span class="pre">get_path_lengths</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">goal_idx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.get_path_lengths" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_path_lengths</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">goal_idx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.get_path_lengths" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -835,7 +893,7 @@
 <dd><em class="sig-param"><span class="n"><span class="pre">goal_idx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.get_graph_shortest_path_lengths" title="Link to this definition"></a></dt>
+<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.get_graph_shortest_path_lengths" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -847,7 +905,7 @@
 <dd><em class="sig-param"><span class="n"><span class="pre">goal_node_idx</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.path_exists" title="Link to this definition"></a></dt>
+<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.path_exists" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -860,7 +918,7 @@
 <dd><em class="sig-param"><span class="n"><span class="pre">all_paths</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.batch_path_exists" title="Link to this definition"></a></dt>
+<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.batch_path_exists" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -873,7 +931,7 @@
 <dd><em class="sig-param"><span class="n"><span class="pre">interpolation_steps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#curobo.graph.graph_base.GraphResult" title="curobo.graph.graph_base.GraphResult"><span class="pre">GraphResult</span></a></span></span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.find_paths" title="Link to this definition"></a></dt>
+<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#curobo.graph.graph_base.GraphResult" title="curobo.graph.graph_base.GraphResult"><span class="pre">GraphResult</span></a></span></span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.find_paths" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -886,17 +944,17 @@
 <dd><em class="sig-param"><span class="n"><span class="pre">x_init</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#curobo.graph.graph_base.GraphResult" title="curobo.graph.graph_base.GraphResult"><span class="pre">GraphResult</span></a></span></span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase._find_paths" title="Link to this definition"></a></dt>
+<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#curobo.graph.graph_base.GraphResult" title="curobo.graph.graph_base.GraphResult"><span class="pre">GraphResult</span></a></span></span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase._find_paths" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase.compute_path_length">
-<span class="sig-name descname"><span class="pre">compute_path_length</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.compute_path_length" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">compute_path_length</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.compute_path_length" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase.reset_graph">
-<span class="sig-name descname"><span class="pre">reset_graph</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.reset_graph" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">reset_graph</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.reset_graph" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -909,7 +967,7 @@
 <dd><em class="sig-param"><span class="n"><span class="pre">norm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase._distance" title="Link to this definition"></a></dt>
+<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase._distance" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -922,7 +980,7 @@
 <dd><em class="sig-param"><span class="n"><span class="pre">norm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.distance" title="Link to this definition"></a></dt>
+<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.distance" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -936,7 +994,7 @@
 <dd><em class="sig-param"><span class="n"><span class="pre">k_n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase._hybrid_nearest" title="Link to this definition"></a></dt>
+<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase._hybrid_nearest" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -948,7 +1006,7 @@
 <dd><em class="sig-param"><span class="n"><span class="pre">current_graph</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase._nearest" title="Link to this definition"></a></dt>
+<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase._nearest" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -961,7 +1019,7 @@
 <dd><em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase._k_nearest" title="Link to this definition"></a></dt>
+<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase._k_nearest" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -974,7 +1032,7 @@
 <dd><em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase._batch_k_nearest" title="Link to this definition"></a></dt>
+<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase._batch_k_nearest" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -987,7 +1045,7 @@
 <dd><em class="sig-param"><span class="n"><span class="pre">radius</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase._near" title="Link to this definition"></a></dt>
+<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase._near" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -1002,7 +1060,7 @@
 <dd><em class="sig-param"><span class="n"><span class="pre">add_exact_node</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase._batch_steer_and_connect" title="Link to this definition"></a></dt>
+<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase._batch_steer_and_connect" title="Link to this definition">¶</a></dt>
 <dd><blockquote>
 <div><p>Connect node from start to goal where both are batched.</p>
 </div></blockquote>
@@ -1028,7 +1086,7 @@
 <dd><em class="sig-param"><span class="n"><span class="pre">lazy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase._batch_steer" title="Link to this definition"></a></dt>
+<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase._batch_steer" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -1042,7 +1100,7 @@
 <dd><em class="sig-param"><span class="n"><span class="pre">add_exact_node</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase._add_batch_edges_to_graph" title="Link to this definition"></a></dt>
+<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase._add_batch_edges_to_graph" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -1054,7 +1112,7 @@
 <dd><em class="sig-param"><span class="n"><span class="pre">add_exact_node</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.add_nodes_to_graph" title="Link to this definition"></a></dt>
+<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.add_nodes_to_graph" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -1067,7 +1125,7 @@
 <dd><em class="sig-param"><span class="n"><span class="pre">skip_unique_check</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase._add_unique_nodes_to_graph" title="Link to this definition"></a></dt>
+<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase._add_unique_nodes_to_graph" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -1084,12 +1142,12 @@
 <dd><em class="sig-param"><span class="n"><span class="pre">edge_set</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.connect_nodes" title="Link to this definition"></a></dt>
+<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.connect_nodes" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase.get_paths">
-<span class="sig-name descname"><span class="pre">get_paths</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.get_paths" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_paths</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_list</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.get_paths" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -1101,7 +1159,7 @@
 <dd><em class="sig-param"><span class="n"><span class="pre">interpolation_steps</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.get_interpolated_trajectory" title="Link to this definition"></a></dt>
+<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.get_interpolated_trajectory" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -1112,22 +1170,22 @@
 <dd><em class="sig-param"><span class="n"><span class="pre">state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.types.state.html#curobo.types.state.State" title="curobo.types.state.State"><span class="pre">State</span></a></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.get_metrics" title="Link to this definition"></a></dt>
+<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.get_metrics" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase.reset_seed">
-<span class="sig-name descname"><span class="pre">reset_seed</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.reset_seed" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">reset_seed</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.reset_seed" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase.reset_cuda_graph">
-<span class="sig-name descname"><span class="pre">reset_cuda_graph</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.reset_cuda_graph" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">reset_cuda_graph</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.reset_cuda_graph" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase.get_all_rollout_instances">
-<span class="sig-name descname"><span class="pre">get_all_rollout_instances</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.12)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutBase" title="curobo.rollout.rollout_base.RolloutBase"><span class="pre">RolloutBase</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.get_all_rollout_instances" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_all_rollout_instances</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.12)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutBase" title="curobo.rollout.rollout_base.RolloutBase"><span class="pre">RolloutBase</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.get_all_rollout_instances" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -1139,7 +1197,7 @@
 <dd><em class="sig-param"><span class="n"><span class="pre">x_goal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.warmup" title="Link to this definition"></a></dt>
+<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.warmup" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -1154,22 +1212,22 @@
 <dd><em class="sig-param"><span class="n"><span class="pre">use_cuda_graph</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.from_dict" title="Link to this definition"></a></dt>
+<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.from_dict" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase.interpolation_acceleration_scale">
-<span class="sig-name descname"><span class="pre">interpolation_acceleration_scale</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.5</span></em><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.interpolation_acceleration_scale" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">interpolation_acceleration_scale</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.5</span></em><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.interpolation_acceleration_scale" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase.interpolation_deviation">
-<span class="sig-name descname"><span class="pre">interpolation_deviation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.05</span></em><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.interpolation_deviation" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">interpolation_deviation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.05</span></em><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.interpolation_deviation" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase.interpolation_dt">
-<span class="sig-name descname"><span class="pre">interpolation_dt</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.02</span></em><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.interpolation_dt" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">interpolation_dt</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.02</span></em><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.interpolation_dt" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -1188,137 +1246,137 @@
 <dd><em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.load_from_robot_config" title="Link to this definition"></a></dt>
+<span class="sig-paren">)</span><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.load_from_robot_config" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase.max_nodes">
-<span class="sig-name descname"><span class="pre">max_nodes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.max_nodes" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">max_nodes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.max_nodes" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase.steer_delta_buffer">
-<span class="sig-name descname"><span class="pre">steer_delta_buffer</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.steer_delta_buffer" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">steer_delta_buffer</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.steer_delta_buffer" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase.sample_pts">
-<span class="sig-name descname"><span class="pre">sample_pts</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.sample_pts" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">sample_pts</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.sample_pts" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase.node_similarity_distance">
-<span class="sig-name descname"><span class="pre">node_similarity_distance</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.node_similarity_distance" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">node_similarity_distance</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.node_similarity_distance" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase.rejection_ratio">
-<span class="sig-name descname"><span class="pre">rejection_ratio</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.rejection_ratio" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">rejection_ratio</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.rejection_ratio" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase.k_nn">
-<span class="sig-name descname"><span class="pre">k_nn</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.k_nn" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">k_nn</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.k_nn" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase.c_max">
-<span class="sig-name descname"><span class="pre">c_max</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.c_max" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">c_max</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.c_max" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase.vertex_n">
-<span class="sig-name descname"><span class="pre">vertex_n</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.vertex_n" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">vertex_n</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.vertex_n" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase.graph_max_attempts">
-<span class="sig-name descname"><span class="pre">graph_max_attempts</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.graph_max_attempts" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">graph_max_attempts</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.graph_max_attempts" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase.graph_min_attempts">
-<span class="sig-name descname"><span class="pre">graph_min_attempts</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.graph_min_attempts" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">graph_min_attempts</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.graph_min_attempts" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase.init_nodes">
-<span class="sig-name descname"><span class="pre">init_nodes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.init_nodes" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">init_nodes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.init_nodes" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase.use_bias_node">
-<span class="sig-name descname"><span class="pre">use_bias_node</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.use_bias_node" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">use_bias_node</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.use_bias_node" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase.dof">
-<span class="sig-name descname"><span class="pre">dof</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.dof" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">dof</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.dof" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase.bounds">
-<span class="sig-name descname"><span class="pre">bounds</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.bounds" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">bounds</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.bounds" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase.tensor_args">
-<span class="sig-name descname"><span class="pre">tensor_args</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType" title="curobo.types.base.TensorDeviceType"><span class="pre">TensorDeviceType</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.tensor_args" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">tensor_args</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.types.base.html#curobo.types.base.TensorDeviceType" title="curobo.types.base.TensorDeviceType"><span class="pre">TensorDeviceType</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.tensor_args" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase.rollout_fn">
-<span class="sig-name descname"><span class="pre">rollout_fn</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutBase" title="curobo.rollout.rollout_base.RolloutBase"><span class="pre">RolloutBase</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.rollout_fn" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">rollout_fn</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutBase" title="curobo.rollout.rollout_base.RolloutBase"><span class="pre">RolloutBase</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.rollout_fn" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase.safety_rollout_fn">
-<span class="sig-name descname"><span class="pre">safety_rollout_fn</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutBase" title="curobo.rollout.rollout_base.RolloutBase"><span class="pre">RolloutBase</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.safety_rollout_fn" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">safety_rollout_fn</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.rollout.rollout_base.html#curobo.rollout.rollout_base.RolloutBase" title="curobo.rollout.rollout_base.RolloutBase"><span class="pre">RolloutBase</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.safety_rollout_fn" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase.max_buffer">
-<span class="sig-name descname"><span class="pre">max_buffer</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.max_buffer" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">max_buffer</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.max_buffer" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase.max_cg_buffer">
-<span class="sig-name descname"><span class="pre">max_cg_buffer</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.max_cg_buffer" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">max_cg_buffer</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.max_cg_buffer" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase.compute_metrics">
-<span class="sig-name descname"><span class="pre">compute_metrics</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.compute_metrics" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">compute_metrics</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.compute_metrics" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase.interpolation_type">
-<span class="sig-name descname"><span class="pre">interpolation_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.util.trajectory.html#curobo.util.trajectory.InterpolateType" title="curobo.util.trajectory.InterpolateType"><span class="pre">InterpolateType</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.interpolation_type" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">interpolation_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.util.trajectory.html#curobo.util.trajectory.InterpolateType" title="curobo.util.trajectory.InterpolateType"><span class="pre">InterpolateType</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.interpolation_type" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase.interpolation_steps">
-<span class="sig-name descname"><span class="pre">interpolation_steps</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.interpolation_steps" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">interpolation_steps</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.interpolation_steps" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase.seed">
-<span class="sig-name descname"><span class="pre">seed</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.seed" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">seed</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.seed" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase.use_cuda_graph_mask_samples">
-<span class="sig-name descname"><span class="pre">use_cuda_graph_mask_samples</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.use_cuda_graph_mask_samples" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">use_cuda_graph_mask_samples</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.use_cuda_graph_mask_samples" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase.distance_weight">
-<span class="sig-name descname"><span class="pre">distance_weight</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.distance_weight" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">distance_weight</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.distance_weight" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.graph.graph_base.GraphPlanBase.bias_node">
-<span class="sig-name descname"><span class="pre">bias_node</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.bias_node" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">bias_node</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></em><a class="headerlink" href="#curobo.graph.graph_base.GraphPlanBase.bias_node" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1520,12 +1578,10 @@
       
     </aside>
   </div>
-</div><script src="../_static/jquery.js?v=5d32c60e"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="../_static/documentation_options.js?v=916ae6f7"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
+</div><script src="../_static/documentation_options.js?v=7f4d31ca"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../_static/scripts/furo.js?v=32e29ea5"></script>
+    <script src="../_static/scripts/furo.js?v=4e2eecee"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
     </body>
