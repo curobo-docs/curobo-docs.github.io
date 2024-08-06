@@ -320,6 +320,7 @@
         <article role="main" id="furo-main-content">
           <section id="module-curobo.geom.sphere_fit">
 <span id="curobo-geom-sphere-fit-module"></span><h1>curobo.geom.sphere_fit module<a class="headerlink" href="#module-curobo.geom.sphere_fit" title="Link to this heading">¶</a></h1>
+<p>Approximate mesh geometry with spheres.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="curobo.geom.sphere_fit.SphereFitType">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SphereFitType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sphere_fit.SphereFitType" title="Link to this definition">¶</a></dt>
@@ -369,8 +370,21 @@ along with surface sampled positions</p>
 <dd><em class="sig-param"><span class="n"><span class="pre">sphere_radius</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sphere_fit.sample_even_fit_mesh" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.12)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><span class="pre">array</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.12)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#curobo.geom.sphere_fit.sample_even_fit_mesh" title="Link to this definition">¶</a></dt>
+<dd><p>Sample even points on the surface of the mesh and return them with the given radius.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mesh</strong> – Mesh to sample points from.</p></li>
+<li><p><strong>n_spheres</strong> – Number of spheres to sample.</p></li>
+<li><p><strong>sphere_radius</strong> – Sphere radius.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Tuple of points and radius.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="curobo.geom.sphere_fit.get_voxel_pitch">
@@ -381,8 +395,23 @@ along with surface sampled positions</p>
 <dd><em class="sig-param"><span class="n"><span class="pre">n_cubes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sphere_fit.get_voxel_pitch" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></span></span><a class="headerlink" href="#curobo.geom.sphere_fit.get_voxel_pitch" title="Link to this definition">¶</a></dt>
+<dd><p>Get the pitch of the voxel grid based on the mesh and number of cubes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mesh</strong> – Mesh to get the pitch from.</p></li>
+<li><p><strong>n_cubes</strong> – Number of voxels to fit.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Pitch of the voxel grid.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="curobo.geom.sphere_fit.voxel_fit_surface_mesh">
@@ -395,8 +424,22 @@ along with surface sampled positions</p>
 <dd><em class="sig-param"><span class="n"><span class="pre">voxelize_method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'ray'</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sphere_fit.voxel_fit_surface_mesh" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.12)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><span class="pre">array</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.12)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#curobo.geom.sphere_fit.voxel_fit_surface_mesh" title="Link to this definition">¶</a></dt>
+<dd><p>Get voxel grid from mesh and fit spheres to the surface.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mesh</strong> – Input mesh.</p></li>
+<li><p><strong>n_spheres</strong> – Number of spheres to fit.</p></li>
+<li><p><strong>sphere_radius</strong> – Radius of the spheres.</p></li>
+<li><p><strong>voxelize_method</strong> – TriMesh Voxelization method. Defaults to “ray”.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Tuple of sphere positions and sphere radius.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="curobo.geom.sphere_fit.get_voxelgrid_from_mesh">
@@ -408,8 +451,24 @@ along with surface sampled positions</p>
 <dd><em class="sig-param"><span class="n"><span class="pre">voxelize_method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'ray'</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sphere_fit.get_voxelgrid_from_mesh" title="Link to this definition">¶</a></dt>
+<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.12)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><span class="pre">array</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">array</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#curobo.geom.sphere_fit.get_voxelgrid_from_mesh" title="Link to this definition">¶</a></dt>
 <dd><p>Get voxel grid from mesh using <a class="reference external" href="https://trimesh.org/trimesh.voxel.creation.html#trimesh.voxel.creation.voxelize" title="(in trimesh)"><code class="xref py py-func docutils literal notranslate"><span class="pre">trimesh.voxel.creation.voxelize</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mesh</strong> – Input mesh.</p></li>
+<li><p><strong>n_spheres</strong> – Number of voxels to fit.</p></li>
+<li><p><strong>voxelize_method</strong> – Voxelize method. Defaults to “ray”.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>Tuple of occupied voxels and side of voxels (length of cube). Returns [None, None] if</dt><dd><p>voxelization fails.</p>
+</dd>
+</dl>
+</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -423,8 +482,52 @@ along with surface sampled positions</p>
 <dd><em class="sig-param"><span class="n"><span class="pre">voxelize_method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'ray'</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sphere_fit.voxel_fit_mesh" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.12)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><span class="pre">array</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.12)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#curobo.geom.sphere_fit.voxel_fit_mesh" title="Link to this definition">¶</a></dt>
+<dd><p>Voxelize mesh, fit spheres to volume and near surface. Return the fitted spheres.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mesh</strong> – Input mesh.</p></li>
+<li><p><strong>n_spheres</strong> – Number of spheres to fit.</p></li>
+<li><p><strong>surface_sphere_radius</strong> – Radius of the spheres on the surface. This radius will be added
+to points on the surface of the mesh, causing the spheres to inflate the mesh volume
+by this amount.</p></li>
+<li><p><strong>voxelize_method</strong> – Voxelization method to use, select from
+<a class="reference external" href="https://trimesh.org/trimesh.voxel.creation.html#trimesh.voxel.creation.voxelize" title="(in trimesh)"><code class="xref py py-func docutils literal notranslate"><span class="pre">trimesh.voxel.creation.voxelize</span></code></a>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Tuple of sphere positions and their radius.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="curobo.geom.sphere_fit.voxel_fit_volume_inside_mesh">
+<span class="sig-name descname"><span class="pre">voxel_fit_volume_inside_mesh</span></span><span class="sig-paren">(</span>
+
+<dl>
+<dd><em class="sig-param"><span class="n"><span class="pre">mesh</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://trimesh.org/trimesh.base.html#trimesh.base.Trimesh" title="(in trimesh)"><span class="pre">Trimesh</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">n_spheres</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">voxelize_method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'ray'</span></span></em>,</dd>
+</dl>
+
+<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.12)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.0)"><span class="pre">ndarray</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">array</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#curobo.geom.sphere_fit.voxel_fit_volume_inside_mesh" title="Link to this definition">¶</a></dt>
+<dd><p>Voxelize mesh, fit spheres to volume. Return the fitted spheres.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mesh</strong> – Input mesh.</p></li>
+<li><p><strong>n_spheres</strong> – Number of spheres to fit.</p></li>
+<li><p><strong>voxelize_method</strong> – Voxelization method to use, select from
+<a class="reference external" href="https://trimesh.org/trimesh.voxel.creation.html#trimesh.voxel.creation.voxelize" title="(in trimesh)"><code class="xref py py-func docutils literal notranslate"><span class="pre">trimesh.voxel.creation.voxelize</span></code></a>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Tuple of sphere positions and their radius.</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="curobo.geom.sphere_fit.voxel_fit_volume_sample_surface_mesh">
@@ -437,21 +540,25 @@ along with surface sampled positions</p>
 <dd><em class="sig-param"><span class="n"><span class="pre">voxelize_method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'ray'</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sphere_fit.voxel_fit_volume_sample_surface_mesh" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="curobo.geom.sphere_fit.voxel_fit_volume_inside_mesh">
-<span class="sig-name descname"><span class="pre">voxel_fit_volume_inside_mesh</span></span><span class="sig-paren">(</span>
-
-<dl>
-<dd><em class="sig-param"><span class="n"><span class="pre">mesh</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://trimesh.org/trimesh.base.html#trimesh.base.Trimesh" title="(in trimesh)"><span class="pre">Trimesh</span></a></span></em>,</dd>
-<dd><em class="sig-param"><span class="n"><span class="pre">n_spheres</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span></em>,</dd>
-<dd><em class="sig-param"><span class="n"><span class="pre">voxelize_method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'ray'</span></span></em>,</dd>
+<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.12)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.0)"><span class="pre">ndarray</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">array</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#curobo.geom.sphere_fit.voxel_fit_volume_sample_surface_mesh" title="Link to this definition">¶</a></dt>
+<dd><p>Voxelize mesh, fit spheres to volume, and sample surface for points.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mesh</strong> – Input mesh.</p></li>
+<li><p><strong>n_spheres</strong> – Number of spheres to fit.</p></li>
+<li><p><strong>surface_sphere_radius</strong> – Radius of the spheres on the surface. This radius will be added
+to points on the surface of the mesh, causing the spheres to inflate the mesh volume
+by this amount.</p></li>
+<li><p><strong>voxelize_method</strong> – Voxelization method to use, select from
+<a class="reference external" href="https://trimesh.org/trimesh.voxel.creation.html#trimesh.voxel.creation.voxelize" title="(in trimesh)"><code class="xref py py-func docutils literal notranslate"><span class="pre">trimesh.voxel.creation.voxelize</span></code></a>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Tuple of sphere positions and their radius.</p>
+</dd>
 </dl>
-
-<span class="sig-paren">)</span><a class="headerlink" href="#curobo.geom.sphere_fit.voxel_fit_volume_inside_mesh" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="curobo.geom.sphere_fit.fit_spheres_to_mesh">
@@ -465,20 +572,23 @@ along with surface sampled positions</p>
 <dd><em class="sig-param"><span class="n"><span class="pre">voxelize_method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'ray'</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.12)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.0)"><span class="pre">ndarray</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.12)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#curobo.geom.sphere_fit.fit_spheres_to_mesh" title="Link to this definition">¶</a></dt>
+<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.12)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.0)"><span class="pre">ndarray</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">array</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#curobo.geom.sphere_fit.fit_spheres_to_mesh" title="Link to this definition">¶</a></dt>
 <dd><p>Approximate a mesh with spheres. See <a class="reference internal" href="../get_started/2c_world_collision.html#attach-object-note"><span class="std std-ref">Geometry Approximation to Spheres</span></a> for more details.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>mesh</strong> – Input trimesh</p></li>
-<li><p><strong>n_spheres</strong> – _description_</p></li>
-<li><p><strong>surface_sphere_radius</strong> – _description_. Defaults to 0.01.</p></li>
-<li><p><strong>fit_type</strong> – _description_. Defaults to SphereFitType.VOXEL_VOLUME_SAMPLE_SURFACE.</p></li>
-<li><p><strong>voxelize_method</strong> – _description_. Defaults to “ray”.</p></li>
+<li><p><strong>mesh</strong> – Input mesh.</p></li>
+<li><p><strong>n_spheres</strong> – Number of spheres to fit.</p></li>
+<li><p><strong>surface_sphere_radius</strong> – Radius of the spheres on the surface. This radius will be added
+to points on the surface of the mesh, causing the spheres to inflate the mesh volume
+by this amount.</p></li>
+<li><p><strong>fit_type</strong> – Sphere fit type, select from <a class="reference internal" href="#curobo.geom.sphere_fit.SphereFitType" title="curobo.geom.sphere_fit.SphereFitType"><code class="xref py py-class docutils literal notranslate"><span class="pre">SphereFitType</span></code></a>.</p></li>
+<li><p><strong>voxelize_method</strong> – Voxelization method to use, select from
+<a class="reference external" href="https://trimesh.org/trimesh.voxel.creation.html#trimesh.voxel.creation.voxelize" title="(in trimesh)"><code class="xref py py-func docutils literal notranslate"><span class="pre">trimesh.voxel.creation.voxelize</span></code></a>.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>_description_</p>
+<dd class="field-even"><p>Tuple of spehre positions and their radius.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -542,8 +652,8 @@ along with surface sampled positions</p>
 <li><a class="reference internal" href="#curobo.geom.sphere_fit.voxel_fit_surface_mesh"><code class="docutils literal notranslate"><span class="pre">voxel_fit_surface_mesh</span></code></a></li>
 <li><a class="reference internal" href="#curobo.geom.sphere_fit.get_voxelgrid_from_mesh"><code class="docutils literal notranslate"><span class="pre">get_voxelgrid_from_mesh</span></code></a></li>
 <li><a class="reference internal" href="#curobo.geom.sphere_fit.voxel_fit_mesh"><code class="docutils literal notranslate"><span class="pre">voxel_fit_mesh</span></code></a></li>
-<li><a class="reference internal" href="#curobo.geom.sphere_fit.voxel_fit_volume_sample_surface_mesh"><code class="docutils literal notranslate"><span class="pre">voxel_fit_volume_sample_surface_mesh</span></code></a></li>
 <li><a class="reference internal" href="#curobo.geom.sphere_fit.voxel_fit_volume_inside_mesh"><code class="docutils literal notranslate"><span class="pre">voxel_fit_volume_inside_mesh</span></code></a></li>
+<li><a class="reference internal" href="#curobo.geom.sphere_fit.voxel_fit_volume_sample_surface_mesh"><code class="docutils literal notranslate"><span class="pre">voxel_fit_volume_sample_surface_mesh</span></code></a></li>
 <li><a class="reference internal" href="#curobo.geom.sphere_fit.fit_spheres_to_mesh"><code class="docutils literal notranslate"><span class="pre">fit_spheres_to_mesh</span></code></a></li>
 </ul>
 </li>
@@ -556,7 +666,7 @@ along with surface sampled positions</p>
       
     </aside>
   </div>
-</div><script src="../_static/documentation_options.js?v=7f4d31ca"></script>
+</div><script src="../_static/documentation_options.js?v=be0a8237"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/furo.js?v=4e2eecee"></script>

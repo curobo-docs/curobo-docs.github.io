@@ -408,6 +408,7 @@ recommended for real robots.</p>
 <dd><em class="sig-param"><span class="n"><span class="pre">use_mppi</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>,</dd>
 <dd><em class="sig-param"><span class="n"><span class="pre">particle_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'particle_mpc.yml'</span></span></em>,</dd>
 <dd><em class="sig-param"><span class="n"><span class="pre">override_particle_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">project_pose_to_goal_frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>,</dd>
 </dl>
 
 <span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolverConfig.load_from_robot_config" title="Link to this definition">¶</a></dt>
@@ -435,7 +436,7 @@ trajectory taken by the end-effector across the horizon.</p></li>
 <li><p><strong>use_cuda_graph_full_step</strong> – Capture full step in MPC as a single CUDA graph. This is
 experimental and might not work reliably.</p></li>
 <li><p><strong>sync_cuda_time</strong> – Synchronize CUDA device with host using
-<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.cuda.synchronize.html#torch.cuda.synchronize" title="(in PyTorch v2.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.cuda.synchronize</span></code></a> before calculating compute time.</p></li>
+<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.cuda.synchronize.html#torch.cuda.synchronize" title="(in PyTorch v2.4)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.cuda.synchronize</span></code></a> before calculating compute time.</p></li>
 <li><p><strong>collision_cache</strong> – Cache of obstacles to create to load obstacles between planning calls.
 An example: <code class="docutils literal notranslate"><span class="pre">{&quot;obb&quot;:</span> <span class="pre">10,</span> <span class="pre">&quot;mesh&quot;:</span> <span class="pre">10}</span></code>, to create a cache of 10 cuboids and 10
 meshes.</p></li>
@@ -458,6 +459,9 @@ time for a single step.</p></li>
 <li><p><strong>particle_file</strong> – Particle based MPC config file.</p></li>
 <li><p><strong>override_particle_file</strong> – Optional config file for overriding the parameters in the
 particle based MPC config file.</p></li>
+<li><p><strong>project_pose_to_goal_frame</strong> – Project pose to goal frame when calculating distance
+between reached and goal pose. Use this to constrain motion to specific axes
+either in the global frame or the goal frame.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -821,6 +825,61 @@ created during initialization of <a class="reference internal" href="#curobo.wra
 <dd><p>Get rollouts for debugging.</p>
 </dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolver.update_pose_cost_metric">
+<span class="sig-name descname"><span class="pre">update_pose_cost_metric</span></span><span class="sig-paren">(</span>
+
+<dl>
+<dd><em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.rollout.cost.pose_cost.html#curobo.rollout.cost.pose_cost.PoseCostMetric" title="curobo.rollout.cost.pose_cost.PoseCostMetric"><span class="pre">PoseCostMetric</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">start_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><span class="pre">JointState</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">goal_pose</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.types.math.html#curobo.types.math.Pose" title="curobo.types.math.Pose"><span class="pre">Pose</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">check_validity</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>,</dd>
+</dl>
+
+<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver.update_pose_cost_metric" title="Link to this definition">¶</a></dt>
+<dd><p>Update the pose cost metric.</p>
+<p>Only supports for the main end-effector. Does not support for multiple links that are
+specified with <cite>link_poses</cite> in planning methods.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>metric</strong> – Type and parameters for pose constraint to add.</p></li>
+<li><p><strong>start_state</strong> – Start joint state for the constraint.</p></li>
+<li><p><strong>goal_pose</strong> – Goal pose for the constraint.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>True if the constraint can be added, False otherwise.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolver.compute_kinematics">
+<span class="sig-name descname"><span class="pre">compute_kinematics</span></span><span class="sig-paren">(</span>
+
+<dl>
+<dd><em class="sig-param"><span class="n"><span class="pre">state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><span class="pre">JointState</span></a></span></em>,</dd>
+</dl>
+
+<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="curobo.rollout.dynamics_model.kinematic_model.html#curobo.rollout.dynamics_model.kinematic_model.KinematicModelState" title="curobo.rollout.dynamics_model.kinematic_model.KinematicModelState"><span class="pre">KinematicModelState</span></a></span></span><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver.compute_kinematics" title="Link to this definition">¶</a></dt>
+<dd><p>Compute kinematics for a given joint state.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>state</strong> – Joint state of the robot. Only <code class="xref py py-attr docutils literal notranslate"><span class="pre">JointState.position</span></code> is used.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Kinematic state of the robot.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="curobo.rollout.dynamics_model.kinematic_model.html#curobo.rollout.dynamics_model.kinematic_model.KinematicModelState" title="curobo.rollout.dynamics_model.kinematic_model.KinematicModelState">KinematicModelState</a></p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py property">
 <dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolver.joint_names">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">joint_names</span></span><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver.joint_names" title="Link to this definition">¶</a></dt>
@@ -843,6 +902,12 @@ created during initialization of <a class="reference internal" href="#curobo.wra
 <dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolver.world_collision">
 <em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">world_collision</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldCollision" title="curobo.geom.sdf.world.WorldCollision"><span class="pre">WorldCollision</span></a></em><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver.world_collision" title="Link to this definition">¶</a></dt>
 <dd><p>Get the world collision checker.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.mpc.MpcSolver.project_pose_to_goal_frame">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">project_pose_to_goal_frame</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></em><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver.project_pose_to_goal_frame" title="Link to this definition">¶</a></dt>
+<dd><p>Check if the pose cost metric is projected to goal frame.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1034,6 +1099,7 @@ uses the solution from the previous step.</p></li>
 <dd><em class="sig-param"><span class="n"><span class="pre">use_mppi</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>,</dd>
 <dd><em class="sig-param"><span class="n"><span class="pre">particle_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'particle_mpc.yml'</span></span></em>,</dd>
 <dd><em class="sig-param"><span class="n"><span class="pre">override_particle_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">project_pose_to_goal_frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>,</dd>
 </dl>
 
 <span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.mpc.MpcSolver.load_from_robot_config" title="Link to this definition">¶</a></dt>
@@ -1061,7 +1127,7 @@ trajectory taken by the end-effector across the horizon.</p></li>
 <li><p><strong>use_cuda_graph_full_step</strong> – Capture full step in MPC as a single CUDA graph. This is
 experimental and might not work reliably.</p></li>
 <li><p><strong>sync_cuda_time</strong> – Synchronize CUDA device with host using
-<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.cuda.synchronize.html#torch.cuda.synchronize" title="(in PyTorch v2.3)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.cuda.synchronize</span></code></a> before calculating compute time.</p></li>
+<a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.cuda.synchronize.html#torch.cuda.synchronize" title="(in PyTorch v2.4)"><code class="xref py py-func docutils literal notranslate"><span class="pre">torch.cuda.synchronize</span></code></a> before calculating compute time.</p></li>
 <li><p><strong>collision_cache</strong> – Cache of obstacles to create to load obstacles between planning calls.
 An example: <code class="docutils literal notranslate"><span class="pre">{&quot;obb&quot;:</span> <span class="pre">10,</span> <span class="pre">&quot;mesh&quot;:</span> <span class="pre">10}</span></code>, to create a cache of 10 cuboids and 10
 meshes.</p></li>
@@ -1084,6 +1150,9 @@ time for a single step.</p></li>
 <li><p><strong>particle_file</strong> – Particle based MPC config file.</p></li>
 <li><p><strong>override_particle_file</strong> – Optional config file for overriding the parameters in the
 particle based MPC config file.</p></li>
+<li><p><strong>project_pose_to_goal_frame</strong> – Project pose to goal frame when calculating distance
+between reached and goal pose. Use this to constrain motion to specific axes
+either in the global frame or the goal frame.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -1193,10 +1262,13 @@ particle based MPC config file.</p></li>
 <li><a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver.get_active_js"><code class="docutils literal notranslate"><span class="pre">MpcSolver.get_active_js</span></code></a></li>
 <li><a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver.update_world"><code class="docutils literal notranslate"><span class="pre">MpcSolver.update_world</span></code></a></li>
 <li><a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver.get_visual_rollouts"><code class="docutils literal notranslate"><span class="pre">MpcSolver.get_visual_rollouts</span></code></a></li>
+<li><a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver.update_pose_cost_metric"><code class="docutils literal notranslate"><span class="pre">MpcSolver.update_pose_cost_metric</span></code></a></li>
+<li><a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver.compute_kinematics"><code class="docutils literal notranslate"><span class="pre">MpcSolver.compute_kinematics</span></code></a></li>
 <li><a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver.joint_names"><code class="docutils literal notranslate"><span class="pre">MpcSolver.joint_names</span></code></a></li>
 <li><a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver.collision_cache"><code class="docutils literal notranslate"><span class="pre">MpcSolver.collision_cache</span></code></a></li>
 <li><a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver.kinematics"><code class="docutils literal notranslate"><span class="pre">MpcSolver.kinematics</span></code></a></li>
 <li><a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver.world_collision"><code class="docutils literal notranslate"><span class="pre">MpcSolver.world_collision</span></code></a></li>
+<li><a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver.project_pose_to_goal_frame"><code class="docutils literal notranslate"><span class="pre">MpcSolver.project_pose_to_goal_frame</span></code></a></li>
 <li><a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver._step_once"><code class="docutils literal notranslate"><span class="pre">MpcSolver._step_once</span></code></a></li>
 <li><a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver._update_solve_state_and_goal_buffer"><code class="docutils literal notranslate"><span class="pre">MpcSolver._update_solve_state_and_goal_buffer</span></code></a></li>
 <li><a class="reference internal" href="#curobo.wrap.reacher.mpc.MpcSolver._update_batch_size"><code class="docutils literal notranslate"><span class="pre">MpcSolver._update_batch_size</span></code></a></li>
@@ -1221,7 +1293,7 @@ particle based MPC config file.</p></li>
       
     </aside>
   </div>
-</div><script src="../_static/documentation_options.js?v=7f4d31ca"></script>
+</div><script src="../_static/documentation_options.js?v=be0a8237"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/furo.js?v=4e2eecee"></script>

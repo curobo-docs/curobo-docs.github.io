@@ -212,7 +212,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
         <div class="visually-hidden">Toggle table of contents sidebar</div>
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
@@ -312,7 +312,7 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
             <div class="visually-hidden">Toggle table of contents sidebar</div>
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
@@ -320,6 +320,116 @@
         <article role="main" id="furo-main-content">
           <section id="module-curobo.geom.cv">
 <span id="curobo-geom-cv-module"></span><h1>curobo.geom.cv module<a class="headerlink" href="#module-curobo.geom.cv" title="Link to this heading">¶</a></h1>
+<p>Computer Vision functions, including projection between depth and pointclouds.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="curobo.geom.cv.project_depth_to_pointcloud">
+<span class="sig-name descname"><span class="pre">project_depth_to_pointcloud</span></span><span class="sig-paren">(</span>
+
+<dl>
+<dd><em class="sig-param"><span class="n"><span class="pre">depth_image</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">intrinsics_matrix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></span></em>,</dd>
+</dl>
+
+<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></span></span><a class="headerlink" href="#curobo.geom.cv.project_depth_to_pointcloud" title="Link to this definition">¶</a></dt>
+<dd><p>Projects depth image to point cloud.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>depth_image</strong> – torch tensor of shape (b, h, w).
+intrinsics array: torch tensor for intrinsics matrix of shape (b, 3, 3).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>torch tensor of shape (b, h, w, 3)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="curobo.geom.cv.get_projection_rays">
+<span class="sig-name descname"><span class="pre">get_projection_rays</span></span><span class="sig-paren">(</span>
+
+<dl>
+<dd><em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">intrinsics_matrix</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">depth_to_meter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.001</span></span></em>,</dd>
+</dl>
+
+<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></span></span><a class="headerlink" href="#curobo.geom.cv.get_projection_rays" title="Link to this definition">¶</a></dt>
+<dd><p>Get projection rays for a image size and batch of intrinsics matrices.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>height</strong> – Height of the images.</p></li>
+<li><p><strong>width</strong> – Width of the images.</p></li>
+<li><p><strong>intrinsics_matrix</strong> – Batch of intrinsics matrices of shape (b, 3, 3).</p></li>
+<li><p><strong>depth_to_meter</strong> – Scaling factor to convert depth to meters.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Projection rays of shape (b, height * width, 3).</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)">torch.Tensor</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="curobo.geom.cv.project_pointcloud_to_depth">
+<span class="sig-name descname"><span class="pre">project_pointcloud_to_depth</span></span><span class="sig-paren">(</span>
+
+<dl>
+<dd><em class="sig-param"><span class="n"><span class="pre">pointcloud</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">output_image</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></span></em>,</dd>
+</dl>
+
+<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></span></span><a class="headerlink" href="#curobo.geom.cv.project_pointcloud_to_depth" title="Link to this definition">¶</a></dt>
+<dd><p>Projects pointcloud to depth image based on indices.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pointcloud</strong> – PointCloud of shape (b, h, w, 3).</p></li>
+<li><p><strong>output_image</strong> – Image of shape (b, h, w).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Depth image of shape (b, h, w).</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)">torch.Tensor</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="curobo.geom.cv.project_depth_using_rays">
+<span class="sig-name descname"><span class="pre">project_depth_using_rays</span></span><span class="sig-paren">(</span>
+
+<dl>
+<dd><em class="sig-param"><span class="n"><span class="pre">depth_image</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">rays</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">filter_origin</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">depth_threshold</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.01</span></span></em>,</dd>
+</dl>
+
+<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></span></span><a class="headerlink" href="#curobo.geom.cv.project_depth_using_rays" title="Link to this definition">¶</a></dt>
+<dd><p>Project depth image to pointcloud using projection rays.</p>
+<p>Projection rays can be calculated using <a class="reference internal" href="#curobo.geom.cv.get_projection_rays" title="curobo.geom.cv.get_projection_rays"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_projection_rays</span></code></a> function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>depth_image</strong> – Dpepth image of shape (b, h, w).</p></li>
+<li><p><strong>rays</strong> – Projection rays of shape (b, h * w, 3).</p></li>
+<li><p><strong>filter_origin</strong> – Remove points with depth less than depth_threshold.</p></li>
+<li><p><strong>depth_threshold</strong> – Threshold to filter points.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Pointcloud of shape (b, h * w, 3).</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
         </article>
@@ -353,13 +463,35 @@
         
       </footer>
     </div>
-    <aside class="toc-drawer no-toc">
+    <aside class="toc-drawer">
       
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">curobo.geom.cv module</a><ul>
+<li><a class="reference internal" href="#curobo.geom.cv.project_depth_to_pointcloud"><code class="docutils literal notranslate"><span class="pre">project_depth_to_pointcloud</span></code></a></li>
+<li><a class="reference internal" href="#curobo.geom.cv.get_projection_rays"><code class="docutils literal notranslate"><span class="pre">get_projection_rays</span></code></a></li>
+<li><a class="reference internal" href="#curobo.geom.cv.project_pointcloud_to_depth"><code class="docutils literal notranslate"><span class="pre">project_pointcloud_to_depth</span></code></a></li>
+<li><a class="reference internal" href="#curobo.geom.cv.project_depth_using_rays"><code class="docutils literal notranslate"><span class="pre">project_depth_using_rays</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
       
       
     </aside>
   </div>
-</div><script src="../_static/documentation_options.js?v=7f4d31ca"></script>
+</div><script src="../_static/documentation_options.js?v=be0a8237"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/furo.js?v=4e2eecee"></script>

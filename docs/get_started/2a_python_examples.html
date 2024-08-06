@@ -588,12 +588,6 @@ example is below,</p>
 <span class="n">motion_gen</span> <span class="o">=</span> <span class="n">MotionGen</span><span class="p">(</span><span class="n">motion_gen_config</span><span class="p">)</span>
 <span class="n">motion_gen</span><span class="o">.</span><span class="n">warmup</span><span class="p">()</span>
 
-<span class="n">retract_cfg</span> <span class="o">=</span> <span class="n">motion_gen</span><span class="o">.</span><span class="n">get_retract_config</span><span class="p">()</span>
-
-<span class="n">state</span> <span class="o">=</span> <span class="n">motion_gen</span><span class="o">.</span><span class="n">rollout_fn</span><span class="o">.</span><span class="n">compute_kinematics</span><span class="p">(</span>
-    <span class="n">JointState</span><span class="o">.</span><span class="n">from_position</span><span class="p">(</span><span class="n">retract_cfg</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
-<span class="p">)</span>
-
 <span class="n">goal_pose</span> <span class="o">=</span> <span class="n">Pose</span><span class="o">.</span><span class="n">from_list</span><span class="p">([</span><span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>  <span class="c1"># x, y, z, qw, qx, qy, qz</span>
 <span class="n">start_state</span> <span class="o">=</span> <span class="n">JointState</span><span class="o">.</span><span class="n">from_position</span><span class="p">(</span>
     <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span><span class="o">.</span><span class="n">cuda</span><span class="p">(),</span>
@@ -812,7 +806,7 @@ trajectories.</p>
       
     </aside>
   </div>
-</div><script src="../_static/documentation_options.js?v=7f4d31ca"></script>
+</div><script src="../_static/documentation_options.js?v=be0a8237"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/furo.js?v=4e2eecee"></script>

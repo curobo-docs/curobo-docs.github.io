@@ -320,7 +320,9 @@
         <article role="main" id="furo-main-content">
           <section id="module-curobo.curobolib">
 <span id="curobo-curobolib-package"></span><h1>curobo.curobolib package<a class="headerlink" href="#module-curobo.curobolib" title="Link to this heading">¶</a></h1>
-<p>CuRoboLib Module.</p>
+<p>cuRoboLib module contains CUDA implementations (kernels) of robotics algorithms, wrapped in
+C++, and compiled with PyTorch for use in Python.</p>
+<p>All implementations are in <code class="docutils literal notranslate"><span class="pre">.cu</span></code> files in <code class="docutils literal notranslate"><span class="pre">cpp</span></code> sub-directory.</p>
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">¶</a></h2>
 <div class="toctree-wrapper compound">
@@ -411,6 +413,8 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="curobo.curobolib.geom.html#curobo.curobolib.geom.get_pose_distance"><code class="docutils literal notranslate"><span class="pre">get_pose_distance</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="curobo.curobolib.geom.html#curobo.curobolib.geom.get_pose_distance_backward"><code class="docutils literal notranslate"><span class="pre">get_pose_distance_backward</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.curobolib.geom.html#curobo.curobolib.geom.backward_PoseError_jit"><code class="docutils literal notranslate"><span class="pre">backward_PoseError_jit</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.curobolib.geom.html#curobo.curobolib.geom.backward_full_PoseError_jit"><code class="docutils literal notranslate"><span class="pre">backward_full_PoseError_jit</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="curobo.curobolib.geom.html#curobo.curobolib.geom.PoseErrorDistance"><code class="docutils literal notranslate"><span class="pre">PoseErrorDistance</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="curobo.curobolib.geom.html#curobo.curobolib.geom.PoseErrorDistance.forward"><code class="docutils literal notranslate"><span class="pre">PoseErrorDistance.forward</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.curobolib.geom.html#curobo.curobolib.geom.PoseErrorDistance.backward"><code class="docutils literal notranslate"><span class="pre">PoseErrorDistance.backward</span></code></a></li>
@@ -798,12 +802,7 @@
 <li class="toctree-l2"><a class="reference internal" href="curobo.curobolib.tensor_step_cu.html#curobo.curobolib.tensor_step_cu.step_position_backward2"><code class="docutils literal notranslate"><span class="pre">step_position_backward2</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="curobo.curobolib.util_file.html">curobo.curobolib.util_file module</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="curobo.curobolib.util_file.html#curobo.curobolib.util_file.get_cpp_path"><code class="docutils literal notranslate"><span class="pre">get_cpp_path</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="curobo.curobolib.util_file.html#curobo.curobolib.util_file.join_path"><code class="docutils literal notranslate"><span class="pre">join_path</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="curobo.curobolib.util_file.html#curobo.curobolib.util_file.add_cpp_path"><code class="docutils literal notranslate"><span class="pre">add_cpp_path</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="curobo.curobolib.util_file.html">curobo.curobolib.util_file module</a></li>
 </ul>
 </div>
 </section>
@@ -865,7 +864,7 @@
       
     </aside>
   </div>
-</div><script src="../_static/documentation_options.js?v=7f4d31ca"></script>
+</div><script src="../_static/documentation_options.js?v=be0a8237"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/furo.js?v=4e2eecee"></script>

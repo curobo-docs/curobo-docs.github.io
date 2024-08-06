@@ -325,8 +325,8 @@
 <span class="sig-name descname"><span class="pre">check_tensor_shapes</span></span><span class="sig-paren">(</span>
 
 <dl>
-<dd><em class="sig-param"><span class="n"><span class="pre">new_tensor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></span></em>,</dd>
-<dd><em class="sig-param"><span class="n"><span class="pre">mem_tensor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">new_tensor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">mem_tensor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></span></em>,</dd>
 </dl>
 
 <span class="sig-paren">)</span><a class="headerlink" href="#curobo.util.tensor_util.check_tensor_shapes" title="Link to this definition">¶</a></dt>
@@ -337,8 +337,8 @@
 <span class="sig-name descname"><span class="pre">copy_tensor</span></span><span class="sig-paren">(</span>
 
 <dl>
-<dd><em class="sig-param"><span class="n"><span class="pre">new_tensor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></span></em>,</dd>
-<dd><em class="sig-param"><span class="n"><span class="pre">mem_tensor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">new_tensor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">mem_tensor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></span></em>,</dd>
 </dl>
 
 <span class="sig-paren">)</span><a class="headerlink" href="#curobo.util.tensor_util.copy_tensor" title="Link to this definition">¶</a></dt>
@@ -351,7 +351,7 @@
 TODO: Rename this to clone_if_not_none</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>x</strong> (<a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><em>torch.Tensor</em></a>) – _description_</p>
+<dd class="field-odd"><p><strong>x</strong> (<a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><em>torch.Tensor</em></a>) – _description_</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>_description_</p>
@@ -368,7 +368,7 @@ TODO: Rename this to clone_if_not_none</p>
 <dd><p>Clones x if it’s not None.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>x</strong> (<a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><em>torch.Tensor</em></a>) – _description_</p>
+<dd class="field-odd"><p><strong>x</strong> (<a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><em>torch.Tensor</em></a>) – _description_</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>_description_</p>
@@ -380,8 +380,53 @@ TODO: Rename this to clone_if_not_none</p>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="curobo.util.tensor_util.cat_sum">
+<span class="sig-name descname"><span class="pre">cat_sum</span></span><span class="sig-paren">(</span>
+
+<dl>
+<dd><em class="sig-param"><span class="n"><span class="pre">tensor_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.12)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a><span class="p"><span class="pre">]</span></span></span></em>,</dd>
+</dl>
+
+<span class="sig-paren">)</span><a class="headerlink" href="#curobo.util.tensor_util.cat_sum" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="curobo.util.tensor_util.cat_sum_horizon">
+<span class="sig-name descname"><span class="pre">cat_sum_horizon</span></span><span class="sig-paren">(</span>
+
+<dl>
+<dd><em class="sig-param"><span class="n"><span class="pre">tensor_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.12)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a><span class="p"><span class="pre">]</span></span></span></em>,</dd>
+</dl>
+
+<span class="sig-paren">)</span><a class="headerlink" href="#curobo.util.tensor_util.cat_sum_horizon" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="curobo.util.tensor_util.cat_max">
+<span class="sig-name descname"><span class="pre">cat_max</span></span><span class="sig-paren">(</span>
+
+<dl>
+<dd><em class="sig-param"><span class="n"><span class="pre">tensor_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.12)"><span class="pre">List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a><span class="p"><span class="pre">]</span></span></span></em>,</dd>
+</dl>
+
+<span class="sig-paren">)</span><a class="headerlink" href="#curobo.util.tensor_util.cat_max" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="curobo.util.tensor_util.tensor_repeat_seeds">
 <span class="sig-name descname"><span class="pre">tensor_repeat_seeds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_seeds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#curobo.util.tensor_util.tensor_repeat_seeds" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="curobo.util.tensor_util.fd_tensor">
+<span class="sig-name descname"><span class="pre">fd_tensor</span></span><span class="sig-paren">(</span>
+
+<dl>
+<dd><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></span></em>,</dd>
+</dl>
+
+<span class="sig-paren">)</span><a class="headerlink" href="#curobo.util.tensor_util.fd_tensor" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </section>
@@ -434,7 +479,11 @@ TODO: Rename this to clone_if_not_none</p>
 <li><a class="reference internal" href="#curobo.util.tensor_util.copy_tensor"><code class="docutils literal notranslate"><span class="pre">copy_tensor</span></code></a></li>
 <li><a class="reference internal" href="#curobo.util.tensor_util.copy_if_not_none"><code class="docutils literal notranslate"><span class="pre">copy_if_not_none</span></code></a></li>
 <li><a class="reference internal" href="#curobo.util.tensor_util.clone_if_not_none"><code class="docutils literal notranslate"><span class="pre">clone_if_not_none</span></code></a></li>
+<li><a class="reference internal" href="#curobo.util.tensor_util.cat_sum"><code class="docutils literal notranslate"><span class="pre">cat_sum</span></code></a></li>
+<li><a class="reference internal" href="#curobo.util.tensor_util.cat_sum_horizon"><code class="docutils literal notranslate"><span class="pre">cat_sum_horizon</span></code></a></li>
+<li><a class="reference internal" href="#curobo.util.tensor_util.cat_max"><code class="docutils literal notranslate"><span class="pre">cat_max</span></code></a></li>
 <li><a class="reference internal" href="#curobo.util.tensor_util.tensor_repeat_seeds"><code class="docutils literal notranslate"><span class="pre">tensor_repeat_seeds</span></code></a></li>
+<li><a class="reference internal" href="#curobo.util.tensor_util.fd_tensor"><code class="docutils literal notranslate"><span class="pre">fd_tensor</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -446,7 +495,7 @@ TODO: Rename this to clone_if_not_none</p>
       
     </aside>
   </div>
-</div><script src="../_static/documentation_options.js?v=7f4d31ca"></script>
+</div><script src="../_static/documentation_options.js?v=be0a8237"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/furo.js?v=4e2eecee"></script>

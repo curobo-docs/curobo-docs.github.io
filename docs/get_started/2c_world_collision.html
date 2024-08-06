@@ -324,15 +324,17 @@
 <h2>World Representation<a class="headerlink" href="#world-representation" title="Link to this heading">¶</a></h2>
 <p>cuRobo represents the world with an instance of <a class="reference internal" href="../_api/curobo.geom.types.html#curobo.geom.types.WorldConfig" title="curobo.geom.types.WorldConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">curobo.geom.types.WorldConfig</span></code></a> which
 can store world objects as primitives, meshes, and depth images using nvblox or voxelization.
-cuRobo has GPU accelerated functions for collision queries with cuboids, meshes, and nvblox maps.
-Other primitive types can be approximated to a cuboid or a mesh using helper functions described
-later in this page. An overview of the world representation and collision checkers is illustrated below.</p>
-<div class="graphviz"><object data="../_images/graphviz-07b75092966862ec2382ae5aada993b949151a29.svg" type="image/svg+xml" class="graphviz">
+cuRobo has GPU accelerated functions for collision queries with cuboids, meshes, nvblox maps, and
+euclidean signed distance voxel grids. Other primitive types can be approximated to a cuboid or a
+mesh using helper functions described later in this page. An overview of the world representation
+and collision checkers is illustrated below.</p>
+<div class="graphviz"><object data="../_images/graphviz-1d9ef029890c958af719051367634ffbc13e1855.svg" type="image/svg+xml" class="graphviz">
 <p class="warning">digraph {
 edge [color = &quot;#2B4162&quot;; fontsize=10];
 node [shape=&quot;box&quot;, style=&quot;rounded, filled&quot;, fontsize=12, color=&quot;#cccccc&quot;]
 &quot;Cuboid[]&quot; [color=&quot;#76b900&quot;, fontcolor=&quot;#FFFFFF&quot;]
 &quot;Mesh[]&quot; [color=&quot;#76b900&quot;, fontcolor=&quot;#FFFFFF&quot;]
+&quot;VoxelGrid[]&quot; [color=&quot;#76b900&quot;, fontcolor=&quot;#FFFFFF&quot;]
 
 &quot;BloxMap[]&quot; [color=&quot;#76b900&quot;, fontcolor=&quot;#FFFFFF&quot;]
 &quot;WorldConfig&quot; [color=&quot;#76b900&quot;, fontcolor=&quot;#FFFFFF&quot;]
@@ -342,18 +344,24 @@ node [shape=&quot;box&quot;, style=&quot;rounded, filled&quot;, fontsize=12, col
 &quot;WorldConfig&quot; -&gt; &quot;Sphere[]&quot;;
 &quot;WorldConfig&quot; -&gt; &quot;Cylinder[]&quot;;
 &quot;WorldConfig&quot; -&gt; &quot;Capsule[]&quot;;
+&quot;WorldConfig&quot; -&gt; &quot;VoxelGrid[]&quot;;
 &quot;Cuboid[]&quot; -&gt; &quot;WorldCollision&quot;;
 &quot;Mesh[]&quot; -&gt; WorldMeshCollision;
 &quot;BloxMap[]&quot; -&gt; WorldBloxCollision;
+&quot;VoxelGrid[]&quot; -&gt; WorldVoxelCollision;
 subgraph cluster_collision{
 label=&quot;Collision Checker&quot;;
 &quot;WorldCollision&quot; [label=&quot;WorldPrimitiveCollision&quot;, color=&quot;#76b900&quot;, fontcolor=&quot;#FFFFFF&quot;]
 &quot;WorldMeshCollision&quot; [color=&quot;#76b900&quot;, fontcolor=&quot;#FFFFFF&quot;]
 &quot;WorldBloxCollision&quot; [color=&quot;#76b900&quot;, fontcolor=&quot;#FFFFFF&quot;]
+&quot;WorldVoxelCollision&quot; [color=&quot;#76b900&quot;, fontcolor=&quot;#FFFFFF&quot;]
 &quot;WorldCollision&quot; -&gt; &quot;WorldMeshCollision&quot; [label=&quot;inheritance&quot;, style=&quot;dashed&quot;,
 color=&quot;#76b900&quot;];
 &quot;WorldMeshCollision&quot; -&gt; &quot;WorldBloxCollision&quot; [label=&quot;inheritance&quot;, style=&quot;dashed&quot;,
 color=&quot;#76b900&quot;];
+&quot;WorldMeshCollision&quot; -&gt; &quot;WorldVoxelCollision&quot; [label=&quot;inheritance&quot;, style=&quot;dashed&quot;,
+color=&quot;#76b900&quot;];
+
 
 }
 
@@ -463,16 +471,23 @@ objects to cuboids when possible to save compute time.</p>
 </section>
 <section id="world-collision-checkers">
 <h2>World Collision Checkers<a class="headerlink" href="#world-collision-checkers" title="Link to this heading">¶</a></h2>
-<p>There are three collision checkers available in cuRobo, all starting from an abstract base class
+<p>There are four collision checkers available in cuRobo, all starting from an abstract base class
 <a class="reference internal" href="../_api/curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldCollision" title="curobo.geom.sdf.world.WorldCollision"><code class="xref py py-class docutils literal notranslate"><span class="pre">curobo.geom.sdf.world.WorldCollision</span></code></a>.  The cuboid collision checker is in
 <a class="reference internal" href="../_api/curobo.geom.sdf.world.html#curobo.geom.sdf.world.WorldPrimitiveCollision" title="curobo.geom.sdf.world.WorldPrimitiveCollision"><code class="xref py py-class docutils literal notranslate"><span class="pre">curobo.geom.sdf.world.WorldPrimitiveCollision</span></code></a> which uses custom CUDA kernels to compute
 collision and signed distance between query spheres and world cuboids. The mesh collision checker is
 in <a class="reference internal" href="../_api/curobo.geom.sdf.world_mesh.html#curobo.geom.sdf.world_mesh.WorldMeshCollision" title="curobo.geom.sdf.world_mesh.WorldMeshCollision"><code class="xref py py-class docutils literal notranslate"><span class="pre">curobo.geom.sdf.world_mesh.WorldMeshCollision</span></code></a>, which uses a BVH traversal method to find
 the closest point on a mesh given query spheres leveraging implementations available in <a class="reference external" href="https://developer.nvidia.com/warp-python">NVIDIA Warp</a>. cuRobo also provides a nvblox based collision checker
 in <a class="reference internal" href="../_api/curobo.geom.sdf.world_blox.html#curobo.geom.sdf.world_blox.WorldBloxCollision" title="curobo.geom.sdf.world_blox.WorldBloxCollision"><code class="xref py py-class docutils literal notranslate"><span class="pre">curobo.geom.sdf.world_blox.WorldBloxCollision</span></code></a> that can compute collisions with a list of
-nvblox map instances that integrate camera depth images. cuRobo leverages python inheritance to
-combine collision checkers, where the nvblox collision checker inherits from the mesh collision
-checker and the mesh collision checker inherits from the cuboid collision checker.</p>
+nvblox map instances that integrate camera depth images.</p>
+<p>cuRobo also provides a voxel grid based
+collision checker in <a class="reference internal" href="../_api/curobo.geom.sdf.world_voxel.html#curobo.geom.sdf.world_voxel.WorldVoxelCollision" title="curobo.geom.sdf.world_voxel.WorldVoxelCollision"><code class="xref py py-class docutils literal notranslate"><span class="pre">curobo.geom.sdf.world_voxel.WorldVoxelCollision</span></code></a> that can compute
+collisions with respect to voxel grids that contain signed distance in each voxel. These voxel
+grids can be filled with ESDF from other collision checkers to further speed up collision checking.
+An example is provided in <cite>benchmarks/curobo_voxel_benchmark.py</cite> that stores a ESDF grid from
+a world represented by cuboids.</p>
+<p>cuRobo leverages python inheritance to combine collision checkers, where the nvblox collision
+checker inherits from the mesh collision checker and the mesh collision checker inherits from the
+cuboid collision checker.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>cuRobo does not provide mesh to mesh collision queries. Instead, collision checking is performed
@@ -897,7 +912,7 @@ below,</p>
       
     </aside>
   </div>
-</div><script src="../_static/documentation_options.js?v=7f4d31ca"></script>
+</div><script src="../_static/documentation_options.js?v=be0a8237"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/furo.js?v=4e2eecee"></script>

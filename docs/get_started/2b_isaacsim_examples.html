@@ -435,7 +435,9 @@ obstacles as shown below.</p>
 <p class="admonition-title">Note</p>
 <p>Motion generation only generates motions when the robot is static. cuRobo has an experimental
 mode to optimize from non-static states. You can try this by passing <code class="docutils literal notranslate"><span class="pre">--reactive</span></code> to
-<code class="docutils literal notranslate"><span class="pre">motion_gen_reacher.py</span></code></p>
+<code class="docutils literal notranslate"><span class="pre">motion_gen_reacher.py</span></code>. This mode will have lower success than the static mode as now the
+optimization has to account for the robot’s current velocity and acceleration. The weights have
+also not been tuned for <code class="docutils literal notranslate"><span class="pre">reactive</span></code> mode.</p>
 </div>
 </section>
 <section id="reachability-using-batched-collision-free-inverse-kinematics">
@@ -497,6 +499,11 @@ leverages trajectory optimization to obtain more optimal trajectories.</p>
 One example task is reaching a target pose for a second link in addition to the end-effector. This can be leveraged
 to reach target poses in a dual arm setting, with the dual arms modeled as a single robot in cuRobo.</p>
 <p>Run <code class="docutils literal notranslate"><span class="pre">omni_python</span> <span class="pre">examples/isaac_sim/multi_arm_reacher.py</span> <span class="pre">--robot</span> <span class="pre">dual_ur10e.yml</span></code> to start the dual-arm demo as shown below. Motion generation for the two universal robots UR10e robots to reach their respective colored cubes is triggered when the red cube stops moving. Moving the non-red cube will not trigger motion generation, instead only set the pose for that the specific link has to reach in the next trigger of motion generation.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Multi-Arm motion planning is experimental and does not work as well as single arm planning. There are open research questions on
+how to solve multi-arm planning and cuRobo’s current implementation is only meant to be a starting point for research in this area.</p>
+</div>
 <p>
 <video controls="True" loop="False" muted="True" preload="auto" width="100%"><source src="../videos/dual_ur_reacher_clip.mp4" type="video/mp4"></video>
 </p><p>Next read about cuRobo’s world representation in <a class="reference internal" href="2c_world_collision.html#world-collision"><span class="std std-ref">Collision World Representation</span></a>.</p>
@@ -583,7 +590,7 @@ to reach target poses in a dual arm setting, with the dual arms modeled as a sin
       
     </aside>
   </div>
-</div><script src="../_static/documentation_options.js?v=7f4d31ca"></script>
+</div><script src="../_static/documentation_options.js?v=be0a8237"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/furo.js?v=4e2eecee"></script>

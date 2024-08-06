@@ -326,10 +326,10 @@
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">TrajEvaluatorConfig</span></span><span class="sig-paren">(</span>
 
 <dl>
-<dd><em class="sig-param"><span class="n"><span class="pre">max_acc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></span></em>,</dd>
-<dd><em class="sig-param"><span class="n"><span class="pre">max_jerk</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></span></em>,</dd>
-<dd><em class="sig-param"><span class="n"><span class="pre">min_dt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></span></em>,</dd>
-<dd><em class="sig-param"><span class="n"><span class="pre">max_dt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">max_acc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">max_jerk</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">min_dt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">max_dt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></span></em>,</dd>
 <dd><em class="sig-param"><span class="n"><span class="pre">cost_weight</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.01</span></span></em>,</dd>
 </dl>
 
@@ -338,26 +338,26 @@
 <p>Configurable Parameters for Trajectory Evaluator.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.wrap.reacher.evaluator.TrajEvaluatorConfig.max_acc">
-<span class="sig-name descname"><span class="pre">max_acc</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></em><a class="headerlink" href="#curobo.wrap.reacher.evaluator.TrajEvaluatorConfig.max_acc" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">max_acc</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></em><a class="headerlink" href="#curobo.wrap.reacher.evaluator.TrajEvaluatorConfig.max_acc" title="Link to this definition">¶</a></dt>
 <dd><p>Maximum acceleration for each joint.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.wrap.reacher.evaluator.TrajEvaluatorConfig.max_jerk">
-<span class="sig-name descname"><span class="pre">max_jerk</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></em><a class="headerlink" href="#curobo.wrap.reacher.evaluator.TrajEvaluatorConfig.max_jerk" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">max_jerk</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></em><a class="headerlink" href="#curobo.wrap.reacher.evaluator.TrajEvaluatorConfig.max_jerk" title="Link to this definition">¶</a></dt>
 <dd><p>Maximum jerk for each joint.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.wrap.reacher.evaluator.TrajEvaluatorConfig.min_dt">
-<span class="sig-name descname"><span class="pre">min_dt</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></em><a class="headerlink" href="#curobo.wrap.reacher.evaluator.TrajEvaluatorConfig.min_dt" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">min_dt</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></em><a class="headerlink" href="#curobo.wrap.reacher.evaluator.TrajEvaluatorConfig.min_dt" title="Link to this definition">¶</a></dt>
 <dd><p>Minimum allowed time step for trajectory. Trajectories with time step less than this
 value will be rejected.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.wrap.reacher.evaluator.TrajEvaluatorConfig.max_dt">
-<span class="sig-name descname"><span class="pre">max_dt</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></em><a class="headerlink" href="#curobo.wrap.reacher.evaluator.TrajEvaluatorConfig.max_dt" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">max_dt</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></em><a class="headerlink" href="#curobo.wrap.reacher.evaluator.TrajEvaluatorConfig.max_dt" title="Link to this definition">¶</a></dt>
 <dd><p>Maximum allowed time step for trajectory. Trajectories with time step greater than this
 value will be rejected.</p>
 </dd></dl>
@@ -407,6 +407,184 @@ value will be rejected.</p>
 
 </dd></dl>
 
+<dl class="py function">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.evaluator.compute_path_length">
+<span class="sig-name descname"><span class="pre">compute_path_length</span></span><span class="sig-paren">(</span>
+
+<dl>
+<dd><em class="sig-param"><span class="n"><span class="pre">vel</span></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">traj_dt</span></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">cspace_distance_weight</span></span></em>,</dd>
+</dl>
+
+<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></span></span><a class="headerlink" href="#curobo.wrap.reacher.evaluator.compute_path_length" title="Link to this definition">¶</a></dt>
+<dd><p>JIT compatible function to compute path length.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vel</strong> – joint space velocity tensor of shape (batch, horizon, dof).</p></li>
+<li><p><strong>traj_dt</strong> – dt of trajectory tensor of shape (batch, horizon) or (1, horizon) or (1, 1).</p></li>
+<li><p><strong>cspace_distance_weight</strong> – weight tensor of shape (dof).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>path length tensor of shape (batch).</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)">torch.Tensor</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.evaluator.compute_path_length_cost">
+<span class="sig-name descname"><span class="pre">compute_path_length_cost</span></span><span class="sig-paren">(</span>
+
+<dl>
+<dd><em class="sig-param"><span class="n"><span class="pre">vel</span></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">cspace_distance_weight</span></span></em>,</dd>
+</dl>
+
+<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></span></span><a class="headerlink" href="#curobo.wrap.reacher.evaluator.compute_path_length_cost" title="Link to this definition">¶</a></dt>
+<dd><p>JIT compatible function to compute path length cost without considering time step.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vel</strong> – joint space velocity tensor of shape (batch, horizon, dof).</p></li>
+<li><p><strong>cspace_distance_weight</strong> – weight tensor of shape (dof).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>path length cost tensor of shape (batch).</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)">torch.Tensor</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.evaluator.smooth_cost">
+<span class="sig-name descname"><span class="pre">smooth_cost</span></span><span class="sig-paren">(</span>
+
+<dl>
+<dd><em class="sig-param"><span class="n"><span class="pre">abs_acc</span></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">abs_jerk</span></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">opt_dt</span></span></em>,</dd>
+</dl>
+
+<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></span></span><a class="headerlink" href="#curobo.wrap.reacher.evaluator.smooth_cost" title="Link to this definition">¶</a></dt>
+<dd><p>JIT compatible function to compute smoothness cost.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>abs_acc</strong> – absolute acceleration tensor of shape (batch, horizon, dof).</p></li>
+<li><p><strong>abs_jerk</strong> – absolute jerk tensor of shape (batch, horizon, dof).</p></li>
+<li><p><strong>opt_dt</strong> – optimal time step tensor of shape (batch).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>smoothness cost tensor of shape (batch).</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)">torch.Tensor</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.evaluator.compute_smoothness">
+<span class="sig-name descname"><span class="pre">compute_smoothness</span></span><span class="sig-paren">(</span>
+
+<dl>
+<dd><em class="sig-param"><span class="n"><span class="pre">vel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">acc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">jerk</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">max_vel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">max_acc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">max_jerk</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">traj_dt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">min_dt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">max_dt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">epsilon</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">1e-06</span></span></em>,</dd>
+</dl>
+
+<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.12)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#curobo.wrap.reacher.evaluator.compute_smoothness" title="Link to this definition">¶</a></dt>
+<dd><p>JIT compatible function to compute smoothness.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vel</strong> – joint space velocity tensor of shape (batch, horizon, dof).</p></li>
+<li><p><strong>acc</strong> – joint space acceleration tensor of shape (batch, horizon, dof).</p></li>
+<li><p><strong>jerk</strong> – joint space jerk tensor of shape (batch, horizon, dof).</p></li>
+<li><p><strong>max_vel</strong> – maximum velocity limits, used to find scaling factor for dt that pushes at least
+one joint to its limit, taking into account acceleration and jerk limits.</p></li>
+<li><p><strong>max_acc</strong> – maximum acceleration limits, used to find scaling factor for dt that pushes at least
+one joint to its limit, taking into account velocity and jerk limits.</p></li>
+<li><p><strong>max_jerk</strong> – maximum jerk limits, used to find scaling factor for dt that pushes at least
+one joint to its limit, taking into account velocity and acceleration limits.</p></li>
+<li><p><strong>traj_dt</strong> – dt of trajectory tensor of shape (batch, horizon) or (1, horizon)</p></li>
+<li><p><strong>min_dt</strong> – minimum delta time allowed between steps/waypoints in a trajectory.</p></li>
+<li><p><strong>max_dt</strong> – maximum delta time allowed between steps/waypoints in a trajectory.</p></li>
+<li><p><strong>epsilon</strong> – relaxes evaluation of velocity, acceleration, and jerk limits to allow for
+numerical errors.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>success label tensor of shape (batch) and</dt><dd><p>smoothness cost tensor of shape (batch)</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tuple[<a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)">torch.Tensor</a>, <a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)">torch.Tensor</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="curobo.wrap.reacher.evaluator.compute_smoothness_opt_dt">
+<span class="sig-name descname"><span class="pre">compute_smoothness_opt_dt</span></span><span class="sig-paren">(</span>
+
+<dl>
+<dd><em class="sig-param"><span class="n"><span class="pre">vel</span></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">acc</span></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">jerk</span></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">max_vel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">max_acc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">max_jerk</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">opt_dt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></span></em>,</dd>
+</dl>
+
+<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.12)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#curobo.wrap.reacher.evaluator.compute_smoothness_opt_dt" title="Link to this definition">¶</a></dt>
+<dd><p>JIT compatible function to compute smoothness with pre-computed optimal time step.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vel</strong> – joint space velocity tensor of shape (batch, horizon, dof), not used in this
+implementation.</p></li>
+<li><p><strong>acc</strong> – joint space acceleration tensor of shape (batch, horizon, dof).</p></li>
+<li><p><strong>jerk</strong> – joint space jerk tensor of shape (batch, horizon, dof).</p></li>
+<li><p><strong>max_vel</strong> – maximum velocity limit, not used in this implementation.</p></li>
+<li><p><strong>max_acc</strong> – maximum acceleration limit, used to reject trajectories.</p></li>
+<li><p><strong>max_jerk</strong> – maximum jerk limit, used to reject trajectories.</p></li>
+<li><p><strong>opt_dt</strong> – optimal time step tensor of shape (batch).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>success label tensor of shape (batch) and</dt><dd><p>smoothness cost tensor of shape (batch).</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tuple[<a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)">torch.Tensor</a>, <a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)">torch.Tensor</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py class">
 <dt class="sig sig-object py" id="curobo.wrap.reacher.evaluator.TrajEvaluator">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">TrajEvaluator</span></span><span class="sig-paren">(</span>
@@ -430,8 +608,8 @@ value will be rejected.</p>
 
 <dl>
 <dd><em class="sig-param"><span class="n"><span class="pre">js</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><span class="pre">JointState</span></a></span></em>,</dd>
-<dd><em class="sig-param"><span class="n"><span class="pre">traj_dt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></span></em>,</dd>
-<dd><em class="sig-param"><span class="n"><span class="pre">cspace_distance_weight</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">traj_dt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">cspace_distance_weight</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></span></em>,</dd>
 </dl>
 
 <span class="sig-paren">)</span><a class="headerlink" href="#curobo.wrap.reacher.evaluator.TrajEvaluator._compute_path_length" title="Link to this definition">¶</a></dt>
@@ -448,7 +626,7 @@ value will be rejected.</p>
 <dd class="field-even"><p>path length tensor of shape (batch).</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)">torch.Tensor</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)">torch.Tensor</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -459,11 +637,11 @@ value will be rejected.</p>
 
 <dl>
 <dd><em class="sig-param"><span class="n"><span class="pre">js</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><span class="pre">JointState</span></a></span></em>,</dd>
-<dd><em class="sig-param"><span class="n"><span class="pre">traj_dt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></span></em>,</dd>
-<dd><em class="sig-param"><span class="n"><span class="pre">max_vel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">traj_dt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">max_vel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.12)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#curobo.wrap.reacher.evaluator.TrajEvaluator._check_smoothness" title="Link to this definition">¶</a></dt>
+<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.12)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#curobo.wrap.reacher.evaluator.TrajEvaluator._check_smoothness" title="Link to this definition">¶</a></dt>
 <dd><p>Check smoothness of trajectory.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -482,7 +660,7 @@ least one joint to its limit, taking into account acceleration and jerk limits.<
 </p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Tuple[<a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)">torch.Tensor</a>, <a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)">torch.Tensor</a>]</p>
+<dd class="field-odd"><p>Tuple[<a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)">torch.Tensor</a>, <a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)">torch.Tensor</a>]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -493,12 +671,12 @@ least one joint to its limit, taking into account acceleration and jerk limits.<
 
 <dl>
 <dd><em class="sig-param"><span class="n"><span class="pre">js</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><span class="pre">JointState</span></a></span></em>,</dd>
-<dd><em class="sig-param"><span class="n"><span class="pre">traj_dt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></span></em>,</dd>
-<dd><em class="sig-param"><span class="n"><span class="pre">cspace_distance_weight</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></span></em>,</dd>
-<dd><em class="sig-param"><span class="n"><span class="pre">max_vel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">traj_dt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">cspace_distance_weight</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">max_vel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.12)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#curobo.wrap.reacher.evaluator.TrajEvaluator.evaluate" title="Link to this definition">¶</a></dt>
+<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.12)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#curobo.wrap.reacher.evaluator.TrajEvaluator.evaluate" title="Link to this definition">¶</a></dt>
 <dd><p>Evaluate trajectory based on smoothness and path length.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -520,7 +698,7 @@ cost_weight * smoothness cost).</p>
 </p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Tuple[<a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)">torch.Tensor</a>, <a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)">torch.Tensor</a>]</p>
+<dd class="field-odd"><p>Tuple[<a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)">torch.Tensor</a>, <a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)">torch.Tensor</a>]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -531,12 +709,12 @@ cost_weight * smoothness cost).</p>
 
 <dl>
 <dd><em class="sig-param"><span class="n"><span class="pre">js</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><span class="pre">JointState</span></a></span></em>,</dd>
-<dd><em class="sig-param"><span class="n"><span class="pre">opt_dt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></span></em>,</dd>
-<dd><em class="sig-param"><span class="n"><span class="pre">cspace_distance_weight</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></span></em>,</dd>
-<dd><em class="sig-param"><span class="n"><span class="pre">max_vel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">opt_dt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">cspace_distance_weight</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">max_vel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.12)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#curobo.wrap.reacher.evaluator.TrajEvaluator.evaluate_interpolated_smootheness" title="Link to this definition">¶</a></dt>
+<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.12)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#curobo.wrap.reacher.evaluator.TrajEvaluator.evaluate_interpolated_smootheness" title="Link to this definition">¶</a></dt>
 <dd><p>Evaluate trajectory based on smoothness and path length with pre-computed optimal dt.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -557,7 +735,7 @@ cost_weight * smoothness cost).</p>
 </p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Tuple[<a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)">torch.Tensor</a>, <a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)">torch.Tensor</a>]</p>
+<dd class="field-odd"><p>Tuple[<a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)">torch.Tensor</a>, <a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)">torch.Tensor</a>]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -568,13 +746,13 @@ cost_weight * smoothness cost).</p>
 
 <dl>
 <dd><em class="sig-param"><span class="n"><span class="pre">js</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="curobo.types.state.html#curobo.types.state.JointState" title="curobo.types.state.JointState"><span class="pre">JointState</span></a></span></em>,</dd>
-<dd><em class="sig-param"><span class="n"><span class="pre">traj_dt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></span></em>,</dd>
-<dd><em class="sig-param"><span class="n"><span class="pre">cspace_distance_weight</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></span></em>,</dd>
-<dd><em class="sig-param"><span class="n"><span class="pre">max_vel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">traj_dt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">cspace_distance_weight</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">max_vel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></span></em>,</dd>
 <dd><em class="sig-param"><span class="n"><span class="pre">skip_last_tstep</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>,</dd>
 </dl>
 
-<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.12)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#curobo.wrap.reacher.evaluator.TrajEvaluator.evaluate_from_position" title="Link to this definition">¶</a></dt>
+<span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.12)"><span class="pre">Tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#curobo.wrap.reacher.evaluator.TrajEvaluator.evaluate_from_position" title="Link to this definition">¶</a></dt>
 <dd><p>Evaluate trajectory by first computing velocity, acceleration and jerk from position.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -596,7 +774,7 @@ cost_weight * smoothness cost).</p>
 </p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Tuple[<a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)">torch.Tensor</a>, <a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)">torch.Tensor</a>]</p>
+<dd class="field-odd"><p>Tuple[<a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)">torch.Tensor</a>, <a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)">torch.Tensor</a>]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -646,26 +824,26 @@ cost_weight * smoothness cost).</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.wrap.reacher.evaluator.TrajEvaluator.max_acc">
-<span class="sig-name descname"><span class="pre">max_acc</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></em><a class="headerlink" href="#curobo.wrap.reacher.evaluator.TrajEvaluator.max_acc" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">max_acc</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></em><a class="headerlink" href="#curobo.wrap.reacher.evaluator.TrajEvaluator.max_acc" title="Link to this definition">¶</a></dt>
 <dd><p>Maximum acceleration for each joint.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.wrap.reacher.evaluator.TrajEvaluator.max_jerk">
-<span class="sig-name descname"><span class="pre">max_jerk</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></em><a class="headerlink" href="#curobo.wrap.reacher.evaluator.TrajEvaluator.max_jerk" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">max_jerk</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></em><a class="headerlink" href="#curobo.wrap.reacher.evaluator.TrajEvaluator.max_jerk" title="Link to this definition">¶</a></dt>
 <dd><p>Maximum jerk for each joint.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.wrap.reacher.evaluator.TrajEvaluator.min_dt">
-<span class="sig-name descname"><span class="pre">min_dt</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></em><a class="headerlink" href="#curobo.wrap.reacher.evaluator.TrajEvaluator.min_dt" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">min_dt</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></em><a class="headerlink" href="#curobo.wrap.reacher.evaluator.TrajEvaluator.min_dt" title="Link to this definition">¶</a></dt>
 <dd><p>Minimum allowed time step for trajectory. Trajectories with time step less than this
 value will be rejected.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="curobo.wrap.reacher.evaluator.TrajEvaluator.max_dt">
-<span class="sig-name descname"><span class="pre">max_dt</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.3)"><span class="pre">Tensor</span></a></em><a class="headerlink" href="#curobo.wrap.reacher.evaluator.TrajEvaluator.max_dt" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">max_dt</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></em><a class="headerlink" href="#curobo.wrap.reacher.evaluator.TrajEvaluator.max_dt" title="Link to this definition">¶</a></dt>
 <dd><p>Maximum allowed time step for trajectory. Trajectories with time step greater than this
 value will be rejected.</p>
 </dd></dl>
@@ -727,6 +905,11 @@ value will be rejected.</p>
 <li><a class="reference internal" href="#curobo.wrap.reacher.evaluator.TrajEvaluatorConfig.from_basic"><code class="docutils literal notranslate"><span class="pre">TrajEvaluatorConfig.from_basic</span></code></a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#curobo.wrap.reacher.evaluator.compute_path_length"><code class="docutils literal notranslate"><span class="pre">compute_path_length</span></code></a></li>
+<li><a class="reference internal" href="#curobo.wrap.reacher.evaluator.compute_path_length_cost"><code class="docutils literal notranslate"><span class="pre">compute_path_length_cost</span></code></a></li>
+<li><a class="reference internal" href="#curobo.wrap.reacher.evaluator.smooth_cost"><code class="docutils literal notranslate"><span class="pre">smooth_cost</span></code></a></li>
+<li><a class="reference internal" href="#curobo.wrap.reacher.evaluator.compute_smoothness"><code class="docutils literal notranslate"><span class="pre">compute_smoothness</span></code></a></li>
+<li><a class="reference internal" href="#curobo.wrap.reacher.evaluator.compute_smoothness_opt_dt"><code class="docutils literal notranslate"><span class="pre">compute_smoothness_opt_dt</span></code></a></li>
 <li><a class="reference internal" href="#curobo.wrap.reacher.evaluator.TrajEvaluator"><code class="docutils literal notranslate"><span class="pre">TrajEvaluator</span></code></a><ul>
 <li><a class="reference internal" href="#curobo.wrap.reacher.evaluator.TrajEvaluator._compute_path_length"><code class="docutils literal notranslate"><span class="pre">TrajEvaluator._compute_path_length</span></code></a></li>
 <li><a class="reference internal" href="#curobo.wrap.reacher.evaluator.TrajEvaluator._check_smoothness"><code class="docutils literal notranslate"><span class="pre">TrajEvaluator._check_smoothness</span></code></a></li>
@@ -752,7 +935,7 @@ value will be rejected.</p>
       
     </aside>
   </div>
-</div><script src="../_static/documentation_options.js?v=7f4d31ca"></script>
+</div><script src="../_static/documentation_options.js?v=be0a8237"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/furo.js?v=4e2eecee"></script>
