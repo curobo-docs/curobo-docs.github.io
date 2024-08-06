@@ -335,7 +335,7 @@
 <dd><em class="sig-param"><span class="n"><span class="pre">filter_coeffs:</span> <span class="pre">Optional[List[float]]</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></span></em>,</dd>
 <dd><em class="sig-param"><span class="n"><span class="pre">n_knots:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">3</span></span></em>,</dd>
 <dd><em class="sig-param"><span class="n"><span class="pre">scale_tril:</span> <span class="pre">Optional[float]</span> <span class="pre">=</span> <span class="pre">None</span></span></em>,</dd>
-<dd><em class="sig-param"><span class="n"><span class="pre">covariance_matrix:</span> <span class="pre">Optional[&lt;built-in</span> <span class="pre">method</span> <span class="pre">tensor</span> <span class="pre">of</span> <span class="pre">type</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7f508dd8dfe0&gt;]</span> <span class="pre">=</span> <span class="pre">None</span></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">covariance_matrix:</span> <span class="pre">Optional[&lt;built-in</span> <span class="pre">method</span> <span class="pre">tensor</span> <span class="pre">of</span> <span class="pre">type</span> <span class="pre">object</span> <span class="pre">at</span> <span class="pre">0x7f2f1478dfe0&gt;]</span> <span class="pre">=</span> <span class="pre">None</span></span></em>,</dd>
 <dd><em class="sig-param"><span class="n"><span class="pre">sample_method:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'halton'</span></span></em>,</dd>
 <dd><em class="sig-param"><span class="n"><span class="pre">cov_mode:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'vel'</span></span></em>,</dd>
 <dd><em class="sig-param"><span class="n"><span class="pre">sine_period:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">2</span></span></em>,</dd>
@@ -1242,6 +1242,50 @@
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="curobo.util.sample_lib.bound_samples">
+<span class="sig-name descname"><span class="pre">bound_samples</span></span><span class="sig-paren">(</span>
+
+<dl>
+<dd><em class="sig-param"><span class="n"><span class="pre">samples</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">range_b</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">low_bounds</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></span></em>,</dd>
+</dl>
+
+<span class="sig-paren">)</span><a class="headerlink" href="#curobo.util.sample_lib.bound_samples" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="curobo.util.sample_lib.gaussian_transform">
+<span class="sig-name descname"><span class="pre">gaussian_transform</span></span><span class="sig-paren">(</span>
+
+<dl>
+<dd><em class="sig-param"><span class="n"><span class="pre">uniform_samples</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">proj_mat</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">i_mat</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><span class="pre">Tensor</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">std_dev</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></span></em>,</dd>
+</dl>
+
+<span class="sig-paren">)</span><a class="headerlink" href="#curobo.util.sample_lib.gaussian_transform" title="Link to this definition">¶</a></dt>
+<dd><p>Compute a guassian transform of uniform samples.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>uniform_samples</strong> (<a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><em>torch.Tensor</em></a>) – uniform samples in the range [0,1].</p></li>
+<li><p><strong>proj_mat</strong> (<a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><em>torch.Tensor</em></a>) – _description_</p></li>
+<li><p><strong>i_mat</strong> (<a class="reference external" href="https://pytorch.org/docs/stable/tensors.html#torch.Tensor" title="(in PyTorch v2.4)"><em>torch.Tensor</em></a>) – _description_</p></li>
+<li><p><strong>variance</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – _description_</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>_description_</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>_type_</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="curobo.util.sample_lib.generate_noise">
 <span class="sig-name descname"><span class="pre">generate_noise</span></span><span class="sig-paren">(</span>
 
@@ -1560,6 +1604,8 @@
 <li><a class="reference internal" href="#curobo.util.sample_lib.HaltonGenerator.get_gaussian_samples"><code class="docutils literal notranslate"><span class="pre">HaltonGenerator.get_gaussian_samples</span></code></a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#curobo.util.sample_lib.bound_samples"><code class="docutils literal notranslate"><span class="pre">bound_samples</span></code></a></li>
+<li><a class="reference internal" href="#curobo.util.sample_lib.gaussian_transform"><code class="docutils literal notranslate"><span class="pre">gaussian_transform</span></code></a></li>
 <li><a class="reference internal" href="#curobo.util.sample_lib.generate_noise"><code class="docutils literal notranslate"><span class="pre">generate_noise</span></code></a></li>
 <li><a class="reference internal" href="#curobo.util.sample_lib.generate_noise_np"><code class="docutils literal notranslate"><span class="pre">generate_noise_np</span></code></a></li>
 <li><a class="reference internal" href="#curobo.util.sample_lib.generate_prime_numbers"><code class="docutils literal notranslate"><span class="pre">generate_prime_numbers</span></code></a></li>
@@ -1579,7 +1625,7 @@
       
     </aside>
   </div>
-</div><script src="../_static/documentation_options.js?v=7f4d31ca"></script>
+</div><script src="../_static/documentation_options.js?v=be0a8237"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/furo.js?v=4e2eecee"></script>

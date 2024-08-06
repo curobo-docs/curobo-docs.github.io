@@ -320,10 +320,10 @@
         <article role="main" id="furo-main-content">
           <section id="module-curobo.geom">
 <span id="curobo-geom-package"></span><h1>curobo.geom package<a class="headerlink" href="#module-curobo.geom" title="Link to this heading">¶</a></h1>
-<p>This module contains code for geometric processing such as pointcloud processing, analytic signed
-distance computation for the environment, and also signed distance computation between robot and the
-environment. These functions can be used for robot self collision checking and also for robot
-environment collision checking.</p>
+<p>This module contains functions for geometric processing such as pointcloud processing, analytic
+signed distance computation for the environment, and also signed distance computation between robot
+and the environment. These functions can be used for robot self collision checking and also for
+robot environment collision checking.</p>
 <section id="subpackages">
 <h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading">¶</a></h2>
 <div class="toctree-wrapper compound">
@@ -380,7 +380,13 @@ environment collision checking.</p>
 <h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="curobo.geom.cv.html">curobo.geom.cv module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="curobo.geom.cv.html">curobo.geom.cv module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="curobo.geom.cv.html#curobo.geom.cv.project_depth_to_pointcloud"><code class="docutils literal notranslate"><span class="pre">project_depth_to_pointcloud</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.geom.cv.html#curobo.geom.cv.get_projection_rays"><code class="docutils literal notranslate"><span class="pre">get_projection_rays</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.geom.cv.html#curobo.geom.cv.project_pointcloud_to_depth"><code class="docutils literal notranslate"><span class="pre">project_pointcloud_to_depth</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.geom.cv.html#curobo.geom.cv.project_depth_using_rays"><code class="docutils literal notranslate"><span class="pre">project_depth_using_rays</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="curobo.geom.sphere_fit.html">curobo.geom.sphere_fit module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="curobo.geom.sphere_fit.html#curobo.geom.sphere_fit.SphereFitType"><code class="docutils literal notranslate"><span class="pre">SphereFitType</span></code></a><ul>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.sphere_fit.html#curobo.geom.sphere_fit.SphereFitType.SAMPLE_SURFACE"><code class="docutils literal notranslate"><span class="pre">SphereFitType.SAMPLE_SURFACE</span></code></a></li>
@@ -395,14 +401,16 @@ environment collision checking.</p>
 <li class="toctree-l2"><a class="reference internal" href="curobo.geom.sphere_fit.html#curobo.geom.sphere_fit.voxel_fit_surface_mesh"><code class="docutils literal notranslate"><span class="pre">voxel_fit_surface_mesh</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="curobo.geom.sphere_fit.html#curobo.geom.sphere_fit.get_voxelgrid_from_mesh"><code class="docutils literal notranslate"><span class="pre">get_voxelgrid_from_mesh</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="curobo.geom.sphere_fit.html#curobo.geom.sphere_fit.voxel_fit_mesh"><code class="docutils literal notranslate"><span class="pre">voxel_fit_mesh</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="curobo.geom.sphere_fit.html#curobo.geom.sphere_fit.voxel_fit_volume_sample_surface_mesh"><code class="docutils literal notranslate"><span class="pre">voxel_fit_volume_sample_surface_mesh</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="curobo.geom.sphere_fit.html#curobo.geom.sphere_fit.voxel_fit_volume_inside_mesh"><code class="docutils literal notranslate"><span class="pre">voxel_fit_volume_inside_mesh</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.geom.sphere_fit.html#curobo.geom.sphere_fit.voxel_fit_volume_sample_surface_mesh"><code class="docutils literal notranslate"><span class="pre">voxel_fit_volume_sample_surface_mesh</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="curobo.geom.sphere_fit.html#curobo.geom.sphere_fit.fit_spheres_to_mesh"><code class="docutils literal notranslate"><span class="pre">fit_spheres_to_mesh</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="curobo.geom.transform.html">curobo.geom.transform module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="curobo.geom.transform.html#curobo.geom.transform.transform_points"><code class="docutils literal notranslate"><span class="pre">transform_points</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="curobo.geom.transform.html#curobo.geom.transform.batch_transform_points"><code class="docutils literal notranslate"><span class="pre">batch_transform_points</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.geom.transform.html#curobo.geom.transform.get_inv_transform"><code class="docutils literal notranslate"><span class="pre">get_inv_transform</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.geom.transform.html#curobo.geom.transform.transform_point_inverse"><code class="docutils literal notranslate"><span class="pre">transform_point_inverse</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="curobo.geom.transform.html#curobo.geom.transform.matrix_to_quaternion"><code class="docutils literal notranslate"><span class="pre">matrix_to_quaternion</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="curobo.geom.transform.html#curobo.geom.transform.cuda_matrix_to_quaternion"><code class="docutils literal notranslate"><span class="pre">cuda_matrix_to_quaternion</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="curobo.geom.transform.html#curobo.geom.transform.quaternion_to_matrix"><code class="docutils literal notranslate"><span class="pre">quaternion_to_matrix</span></code></a></li>
@@ -862,8 +870,8 @@ environment collision checking.</p>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.PointCloud.get_trimesh_mesh"><code class="docutils literal notranslate"><span class="pre">PointCloud.get_trimesh_mesh</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.PointCloud.get_mesh_data"><code class="docutils literal notranslate"><span class="pre">PointCloud.get_mesh_data</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.PointCloud.from_camera_observation"><code class="docutils literal notranslate"><span class="pre">PointCloud.from_camera_observation</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.PointCloud.get_bounding_spheres"><code class="docutils literal notranslate"><span class="pre">PointCloud.get_bounding_spheres</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.PointCloud.color"><code class="docutils literal notranslate"><span class="pre">PointCloud.color</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.PointCloud.get_bounding_spheres"><code class="docutils literal notranslate"><span class="pre">PointCloud.get_bounding_spheres</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.PointCloud.get_cuboid"><code class="docutils literal notranslate"><span class="pre">PointCloud.get_cuboid</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.PointCloud.get_mesh"><code class="docutils literal notranslate"><span class="pre">PointCloud.get_mesh</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="curobo.geom.types.html#curobo.geom.types.PointCloud.get_sphere"><code class="docutils literal notranslate"><span class="pre">PointCloud.get_sphere</span></code></a></li>
@@ -1007,7 +1015,7 @@ environment collision checking.</p>
       
     </aside>
   </div>
-</div><script src="../_static/documentation_options.js?v=7f4d31ca"></script>
+</div><script src="../_static/documentation_options.js?v=be0a8237"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/furo.js?v=4e2eecee"></script>

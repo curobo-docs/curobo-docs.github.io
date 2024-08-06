@@ -450,6 +450,8 @@
 <li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_es.html#curobo.opt.particle.parallel_es.ParallelES.store_rollouts"><code class="docutils literal notranslate"><span class="pre">ParallelES.store_rollouts</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.opt.particle.parallel_es.html#curobo.opt.particle.parallel_es.calc_exp"><code class="docutils literal notranslate"><span class="pre">calc_exp</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.opt.particle.parallel_es.html#curobo.opt.particle.parallel_es.compute_es_mean"><code class="docutils literal notranslate"><span class="pre">compute_es_mean</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html">curobo.opt.particle.parallel_mppi module</a><ul>
@@ -588,6 +590,13 @@
 <li class="toctree-l3"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.ParallelMPPI.store_rollouts"><code class="docutils literal notranslate"><span class="pre">ParallelMPPI.store_rollouts</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.jit_calculate_exp_util"><code class="docutils literal notranslate"><span class="pre">jit_calculate_exp_util</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.jit_calculate_exp_util_from_costs"><code class="docutils literal notranslate"><span class="pre">jit_calculate_exp_util_from_costs</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.jit_compute_total_cost"><code class="docutils literal notranslate"><span class="pre">jit_compute_total_cost</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.jit_diag_a_cov_update"><code class="docutils literal notranslate"><span class="pre">jit_diag_a_cov_update</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.jit_blend_cov"><code class="docutils literal notranslate"><span class="pre">jit_blend_cov</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.jit_blend_mean"><code class="docutils literal notranslate"><span class="pre">jit_blend_mean</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.opt.particle.parallel_mppi.html#curobo.opt.particle.parallel_mppi.jit_mean_cov_diag_a"><code class="docutils literal notranslate"><span class="pre">jit_mean_cov_diag_a</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="curobo.opt.particle.particle_opt_base.html">curobo.opt.particle.particle_opt_base module</a><ul>
@@ -686,6 +695,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="curobo.opt.particle.particle_opt_utils.html#curobo.opt.particle.particle_opt_utils.scale_ctrl"><code class="docutils literal notranslate"><span class="pre">scale_ctrl</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="curobo.opt.particle.particle_opt_utils.html#curobo.opt.particle.particle_opt_utils.get_stomp_cov"><code class="docutils literal notranslate"><span class="pre">get_stomp_cov</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="curobo.opt.particle.particle_opt_utils.html#curobo.opt.particle.particle_opt_utils.get_stomp_cov_jit"><code class="docutils literal notranslate"><span class="pre">get_stomp_cov_jit</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="curobo.opt.particle.particle_opt_utils.html#curobo.opt.particle.particle_opt_utils.gaussian_logprob"><code class="docutils literal notranslate"><span class="pre">gaussian_logprob</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="curobo.opt.particle.particle_opt_utils.html#curobo.opt.particle.particle_opt_utils.gaussian_logprobgrad"><code class="docutils literal notranslate"><span class="pre">gaussian_logprobgrad</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="curobo.opt.particle.particle_opt_utils.html#curobo.opt.particle.particle_opt_utils.gaussian_entropy"><code class="docutils literal notranslate"><span class="pre">gaussian_entropy</span></code></a></li>
@@ -757,7 +767,7 @@
       
     </aside>
   </div>
-</div><script src="../_static/documentation_options.js?v=7f4d31ca"></script>
+</div><script src="../_static/documentation_options.js?v=be0a8237"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/furo.js?v=4e2eecee"></script>

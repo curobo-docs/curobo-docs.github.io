@@ -380,6 +380,20 @@ More info here: <a class="reference external" href="https://github.com/ros-indus
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="curobo.opt.particle.particle_opt_utils.get_stomp_cov_jit">
+<span class="sig-name descname"><span class="pre">get_stomp_cov_jit</span></span><span class="sig-paren">(</span>
+
+<dl>
+<dd><em class="sig-param"><span class="n"><span class="pre">horizon</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">d_action</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">cov_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'acc'</span></span></em>,</dd>
+<dd><em class="sig-param"><span class="n"><span class="pre">device</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://pytorch.org/docs/stable/tensor_attributes.html#torch.device" title="(in PyTorch v2.4)"><span class="pre">device</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">device(type='cuda',</span> <span class="pre">index=0)</span></span></em>,</dd>
+</dl>
+
+<span class="sig-paren">)</span><a class="headerlink" href="#curobo.opt.particle.particle_opt_utils.get_stomp_cov_jit" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="curobo.opt.particle.particle_opt_utils.gaussian_logprob">
 <span class="sig-name descname"><span class="pre">gaussian_logprob</span></span><span class="sig-paren">(</span>
 
@@ -531,6 +545,7 @@ KL(p||q) = E_{p}[log(p) - log(q)]</p>
 </li>
 <li><a class="reference internal" href="#curobo.opt.particle.particle_opt_utils.scale_ctrl"><code class="docutils literal notranslate"><span class="pre">scale_ctrl</span></code></a></li>
 <li><a class="reference internal" href="#curobo.opt.particle.particle_opt_utils.get_stomp_cov"><code class="docutils literal notranslate"><span class="pre">get_stomp_cov</span></code></a></li>
+<li><a class="reference internal" href="#curobo.opt.particle.particle_opt_utils.get_stomp_cov_jit"><code class="docutils literal notranslate"><span class="pre">get_stomp_cov_jit</span></code></a></li>
 <li><a class="reference internal" href="#curobo.opt.particle.particle_opt_utils.gaussian_logprob"><code class="docutils literal notranslate"><span class="pre">gaussian_logprob</span></code></a></li>
 <li><a class="reference internal" href="#curobo.opt.particle.particle_opt_utils.gaussian_logprobgrad"><code class="docutils literal notranslate"><span class="pre">gaussian_logprobgrad</span></code></a></li>
 <li><a class="reference internal" href="#curobo.opt.particle.particle_opt_utils.gaussian_entropy"><code class="docutils literal notranslate"><span class="pre">gaussian_entropy</span></code></a></li>
@@ -550,7 +565,7 @@ KL(p||q) = E_{p}[log(p) - log(q)]</p>
       
     </aside>
   </div>
-</div><script src="../_static/documentation_options.js?v=7f4d31ca"></script>
+</div><script src="../_static/documentation_options.js?v=be0a8237"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/furo.js?v=4e2eecee"></script>
