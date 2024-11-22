@@ -5,13 +5,13 @@
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Using with Depth Camera" href="2d_nvblox_demo.html" /><link rel="prev" title="Using with Isaac Sim" href="2b_isaacsim_examples.html" />
 
-    <!-- Generated with Sphinx 7.3.7 and Furo 2024.05.06 -->
+    <!-- Generated with Sphinx 8.1.3 and Furo 2024.08.06 -->
         <title>Collision World Representation - cuRobo</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=387cc868" />
-    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=fd3f3429" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=354aac6f" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=36a5483c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=302659d7" />
     <link rel="stylesheet" type="text/css" href="../_static/custom_furo.css?v=a13d9812" />
     
     
@@ -109,19 +109,6 @@
       <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
     </svg>
   </symbol>
-  <symbol id="svg-sun-half" viewBox="0 0 24 24">
-    <title>Auto light/dark mode</title>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
-      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-      <circle cx="12" cy="12" r="9" />
-      <path d="M13 12h5" />
-      <path d="M13 15h4" />
-      <path d="M13 18h1" />
-      <path d="M13 9h4" />
-      <path d="M13 6h1" />
-    </svg>
-  </symbol>
   <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
     <title>Auto light/dark, in light mode</title>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -162,7 +149,7 @@
       <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
       <path d="M13.5 6.5l4 4" />
       <path d="M20 21l2 -2l-2 -2" />
-      <path d="M17 17l-2 2l2 2" /
+      <path d="M17 17l-2 2l2 2" />
     </svg>
   </symbol>
   <symbol id="svg-eye" viewBox="0 0 24 24">
@@ -436,7 +423,8 @@ to a file,</p>
 </pre></div>
 </div>
 <figure class="align-default" id="id2">
-<a class="reference internal image-reference" href="../_images/world_representation.png"><img alt="../_images/world_representation.png" src="../_images/world_representation.png" style="width: 690px;" /></a>
+<a class="reference internal image-reference" href="../_images/world_representation.png"><img alt="../_images/world_representation.png" src="../_images/world_representation.png" style="width: 690px;" />
+</a>
 <figcaption>
 <p><span class="caption-text">Five object types that are available in cuRobo’s WorldConfig are visualized, with Cuboid, Mesh,
 Capsule, Cylinder, and Sphere from left to right.</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
@@ -452,7 +440,8 @@ can be approximated to cuboids using <a class="reference internal" href="../_api
 </pre></div>
 </div>
 <figure class="align-default" id="id3">
-<a class="reference internal image-reference" href="../_images/world_approximation.png"><img alt="../_images/world_approximation.png" src="../_images/world_approximation.png" style="width: 690px;" /></a>
+<a class="reference internal image-reference" href="../_images/world_approximation.png"><img alt="../_images/world_approximation.png" src="../_images/world_approximation.png" style="width: 690px;" />
+</a>
 <figcaption>
 <p><span class="caption-text">cuboid approximation of different object types are visulaized in the bottom row.</span><a class="headerlink" href="#id3" title="Link to this image">¶</a></p>
 </figcaption>
@@ -770,7 +759,8 @@ equation where <span class="math notranslate nohighlight">\(d\)</span> is the si
 d + 0.5 \eta &amp; d &gt; 0
 \end{cases}\end{split}\]</div>
 </div>
-<a class="reference internal image-reference" href="../_images/cost_barrier.svg"><img alt="../_images/cost_barrier.svg" class="align-center" src="../_images/cost_barrier.svg" width="500" /></a>
+<a class="reference internal image-reference" href="../_images/cost_barrier.svg"><img alt="../_images/cost_barrier.svg" class="align-center" src="../_images/cost_barrier.svg" style="width: 500px;" />
+</a>
 <p>The second parameter we use is the speed metric, which was also introduced in <a class="reference external" href="https://www.nathanratliff.com/thesis-research/chomp">CHOMP</a>. While
 in CHOMP, the speed metric was used with a discrete collision checker, cuRobo implements a continuous collision checker to account for thin obstacles.
 The speed metric is combined with this continuous collision checker to avoid obstacles in trajectory optimization. We show below the benefit of using the speed metric on a trajectory optimization problem. The left robot uses speed metric to push itself away from a thin wall while the right robot which does not have speed metric tries to rush through the collision as a way to reduce the overall cost incurred during trajectory
@@ -821,7 +811,8 @@ surface sampling to approximate a geometry. In short,</p>
 <p>The effect of each fit type on YCB objects is visualized
 below,</p>
 <figure class="align-default" id="id6">
-<a class="reference internal image-reference" href="../_images/sphere_approx.png"><img alt="../_images/sphere_approx.png" src="../_images/sphere_approx.png" style="width: 690px;" /></a>
+<a class="reference internal image-reference" href="../_images/sphere_approx.png"><img alt="../_images/sphere_approx.png" src="../_images/sphere_approx.png" style="width: 690px;" />
+</a>
 <figcaption>
 <p><span class="caption-text">From left to right: SAMPLE_SURFACE,  VOXEL_VOLUME_SAMPLE_SURFACE, Mesh, VOXEL_SURFACE, VOXEL_VOLUME_INSIDE, VOXEL_VOLUME.</span><a class="headerlink" href="#id6" title="Link to this image">¶</a></p>
 </figcaption>
@@ -912,10 +903,10 @@ below,</p>
       
     </aside>
   </div>
-</div><script src="../_static/documentation_options.js?v=be0a8237"></script>
-    <script src="../_static/doctools.js?v=9a2dae69"></script>
+</div><script src="../_static/documentation_options.js?v=674563c9"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="../_static/scripts/furo.js?v=4e2eecee"></script>
+    <script src="../_static/scripts/furo.js?v=5fa4622c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"Macros": {"T": ["{\\textsf{T}}", 0], "abs": ["{\\left\\lvert#1\\right\\rvert}", 1], "norm": ["{\\left\\lVert#1\\right\\rVert}", 1], "det": ["{\\left\\lvert#1\\right\\rvert}", 1], "innerprod": ["{\\left\\langle#1,#2\\right\\rangle}", 2], "vector": ["{[#1_1,\\ldots,#1_{#2}]}", 2], "N": "{\\mathbb{N}}", "Z": "{\\mathbb{Z}}", "R": "{\\mathbb{R}}", "C": "{\\mathbb{C}}", "Im": ["{\\mathcal{R}(#1)}", 1], "Ker": ["{\\mathcal{N}(#1)}", 1], "Tr": "{\\text{Tr}}", "pd": ["{\\frac{\\partial{#1}}{\\partial{#2}}}", 2], "E": ["{\\mathbf{E}\\left[#1\\right]}", 1], "V": ["{\\mathbf{V}\\left[#1\\right]}", 1], "U": "{\\mathcal{U}}", "half": "{\\frac{1}{2}}", "ceil": ["{\\left \\lceil{#1}\\right \\rceil}", 1], "floor": ["{\\left \\lfloor{#1}\\right \\rfloor}", 1]}}})</script>
