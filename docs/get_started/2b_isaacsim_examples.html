@@ -55,7 +55,7 @@
       }
     }
   }
-</style></head>
+</style><script>document.addEventListener("DOMContentLoaded",function(){var b=document.createElement("div");b.innerHTML='You are viewing legacy docs for cuRobo <b>v0.7.6</b>. cuRobo is now open source (Apache 2.0). <a href="https://nvlabs.github.io/curobo" style="color:#fff;text-decoration:underline;">See the latest docs</a> with significantly new features.';b.style.cssText="position:fixed;top:0;left:0;right:0;z-index:9999;padding:8px 16px;background:#d32f2f;color:#fff;text-align:center;font-size:14px;font-family:sans-serif;";document.body.style.marginTop="36px";document.body.insertBefore(b,document.body.firstChild);});</script></head>
   <body>
     
     <script>
@@ -390,7 +390,7 @@ we only test on the YCB objects available from the assets browser under <code cl
 objects. You can then drag and drop YCB objects into the current scene and cuRobo will read these
 obstacles into it’s world representation for collision avoidance.</p>
 <p>
-<video autoplay="False" controls="True" loop="False" muted="True" preload="auto" width="100%"><source src="../videos/is_add_obs.mp4" type="video/mp4"></video>
+<video autoplay="False" controls="True" loop="False" muted="True" preload="auto" width="100%"><source src="../videos/is_add_obs.webm" type="video/webm"></video>
 </p><div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>cuRobo only updates the world every 300 simulation steps, so you need to wait for the terminal
@@ -404,7 +404,7 @@ You can drag and drop meshes in this tutorial to check collisions between the gr
 will have a blue color when near obstacles and then turn to red when in collision. A red vector indicates the gradient
 for the signed distance.</p>
 <p>
-<video autoplay="True" loop="True" muted="True" preload="auto" width="100%"><source src="../videos/collision_vector_prim.mp4" type="video/mp4"></video>
+<video autoplay="True" loop="True" muted="True" preload="auto" width="100%"><source src="../videos/collision_vector_prim.webm" type="video/webm"></video>
 </p></section>
 <section id="motion-generation">
 <span id="isaac-motion-generation"></span><h2>Motion Generation<a class="headerlink" href="#motion-generation" title="Link to this heading">¶</a></h2>
@@ -413,12 +413,12 @@ load the Franka Panda robot and a red cube similar to the UI above. Click the Pl
 move the red cube. Once the red cube stops moving, a motion generation request is triggered and the
 robot will move to the red cube as shown in the gif below.</p>
 <p>
-<video autoplay="True" loop="True" muted="True" preload="auto" width="100%"><source src="../videos/motion_reacher_clip_no_obs.mp4" type="video/mp4"></video>
+<video autoplay="True" loop="True" muted="True" preload="auto" width="100%"><source src="../videos/motion_reacher_clip_no_obs.webm" type="video/webm"></video>
 </p><p>Add obstacles following <a class="reference internal" href="#basics-isaacsim"><span class="std std-ref">Isaac Sim Basics</span></a> and wait for a few seconds for cuRobo to update it’s
 world representation. Then moving the cube will generate motions for the Franka that avoid the
 obstacles as shown below.</p>
 <p>
-<video autoplay="True" loop="True" muted="True" preload="auto" width="100%"><source src="../videos/motion_reacher_obs.mp4" type="video/mp4"></video>
+<video autoplay="True" loop="True" muted="True" preload="auto" width="100%"><source src="../videos/motion_reacher_obs.webm" type="video/webm"></video>
 </p><div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Motion generation only generates motions when the robot is static. cuRobo has an experimental
@@ -437,12 +437,12 @@ compute IK solutions for all positions in the grid (with the orientation read fr
 We color the position as green if it has an IK solution and red if there is no IK solution.</p>
 <p>Run <code class="docutils literal notranslate"><span class="pre">examples/isaac_sim/ik_reachability.py</span> <span class="pre">--robot</span> <span class="pre">franka.yml</span></code> to launch the reachability demo.</p>
 <p>
-<video autoplay="True" loop="True" muted="True" preload="auto" width="100%"><source src="../videos/ik_no_obs_clip.mp4" type="video/mp4"></video>
+<video autoplay="True" loop="True" muted="True" preload="auto" width="100%"><source src="../videos/ik_no_obs_clip.webm" type="video/webm"></video>
 </p><p>We can also compute collision-aware reachability by passing the world representation to cuRobo’s
 IKsolver. In the provided example, obstacles can be added to reachability analysis by drag and drop,
 similar to the motion generation example.</p>
 <p>
-<video autoplay="True" loop="True" muted="True" preload="auto" width="100%"><source src="../videos/ik_obs_clip.mp4" type="video/mp4"></video>
+<video autoplay="True" loop="True" muted="True" preload="auto" width="100%"><source src="../videos/ik_obs_clip.webm" type="video/webm"></video>
 </p><p>In the above video, we see that the IK solutions are not in collision with the objects. We only return
 one solution per grid position. Look at <a class="reference internal" href="../_api/curobo.wrap.reacher.ik_solver.html#curobo.wrap.reacher.ik_solver.IKSolver" title="curobo.wrap.reacher.ik_solver.IKSolver"><code class="xref py py-class docutils literal notranslate"><span class="pre">curobo.wrap.reacher.ik_solver.IKSolver</span></code></a> for more details,
 including how to return many solutions per query pose.</p>
@@ -458,16 +458,16 @@ Starting the mpc example with <code class="docutils literal notranslate"><span c
 launch the below demo. The robot will reactively try to reach the target pose given by the red cube. The
 green trail of points visualize the end-effector’s position from the many parallel rollouts.</p>
 <p>
-<video autoplay="True" loop="True" muted="True" preload="auto" width="100%"><source src="../videos/mpc_no_obs.mp4" type="video/mp4"></video>
+<video autoplay="True" loop="True" muted="True" preload="auto" width="100%"><source src="../videos/mpc_no_obs.webm" type="video/webm"></video>
 </p><p>This demo also provides collision avoidance through the drag and drop interface. However, MPC is a local method and as such can get
 stuck in local minima behind large obstacles. In the below video, you can see the Franka Panda getting stuck behind the blue pitcher for a
 few seconds. Since MPPI works by sampling many trajectories in parallel, it finds a path after few seconds of exploration and moves
 around the pitcher.</p>
 <p>
-<video autoplay="True" loop="True" muted="True" preload="auto" width="100%"><source src="../videos/mpc_clip.mp4" type="video/mp4"></video>
+<video autoplay="True" loop="True" muted="True" preload="auto" width="100%"><source src="../videos/mpc_clip.webm" type="video/webm"></video>
 </p><p>In addition to obstacle avoidance, using MPC can provide self-collision avoidance as shown below.</p>
 <p>
-<video autoplay="True" loop="True" muted="True" preload="auto" width="100%"><source src="../videos/mpc_self_clip.mp4" type="video/mp4"></video>
+<video autoplay="True" loop="True" muted="True" preload="auto" width="100%"><source src="../videos/mpc_self_clip.webm" type="video/webm"></video>
 </p><div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>cuRobo’s MPC framework is experimental and does not provide safety guarantees as the MPC optimizes
@@ -493,7 +493,7 @@ to reach target poses in a dual arm setting, with the dual arms modeled as a sin
 how to solve multi-arm planning and cuRobo’s current implementation is only meant to be a starting point for research in this area.</p>
 </div>
 <p>
-<video controls="True" loop="False" muted="True" preload="auto" width="100%"><source src="../videos/dual_ur_reacher_clip.mp4" type="video/mp4"></video>
+<video controls="True" loop="False" muted="True" preload="auto" width="100%"><source src="../videos/dual_ur_reacher_clip.webm" type="video/webm"></video>
 </p><p>Next read about cuRobo’s world representation in <a class="reference internal" href="2c_world_collision.html#world-collision"><span class="std std-ref">Collision World Representation</span></a>.</p>
 </section>
 </section>
