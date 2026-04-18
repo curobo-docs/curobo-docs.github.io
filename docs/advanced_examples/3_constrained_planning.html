@@ -55,7 +55,7 @@
       }
     }
   }
-</style></head>
+</style><script>document.addEventListener("DOMContentLoaded",function(){var b=document.createElement("div");b.innerHTML='You are viewing legacy docs for cuRobo <b>v0.7.6</b>. cuRobo is now open source (Apache 2.0). <a href="https://nvlabs.github.io/curobo" style="color:#fff;text-decoration:underline;">See the latest docs</a> with significantly new features.';b.style.cssText="position:fixed;top:0;left:0;right:0;z-index:9999;padding:8px 16px;background:#d32f2f;color:#fff;text-align:center;font-size:14px;font-family:sans-serif;";document.body.style.marginTop="36px";document.body.insertBefore(b,document.body.firstChild);});</script></head>
   <body>
     
     <script>
@@ -318,24 +318,24 @@ by adding pose cost across timesteps during trajectory optimization. User can pa
 motions. Once Isaac Sim loads, click play and the robot will start moving between the two cubes.</p>
 <p>For the first few sequences, the robot will move with no constraints on motion axes as seen below,</p>
 <p>
-<video autoplay="True" loop="True" muted="True" preload="auto" width="100%"><source src="../videos/constraint_free.mp4" type="video/mp4"></video>
+<video autoplay="True" loop="True" muted="True" preload="auto" width="100%"><source src="../videos/constraint_free.webm" type="video/webm"></video>
 </p><p>Then we set <code class="docutils literal notranslate"><span class="pre">hold_vec_weight=[0,0,0,0,1,0]</span></code> to restrict robot moving along the y-axis. Here the
 axis is with respect to the goal frame. The plane of motion is shown in red as below.</p>
 <p>
-<video autoplay="True" loop="True" muted="True" preload="auto" width="100%"><source src="../videos/constraint_plane.mp4" type="video/mp4"></video>
+<video autoplay="True" loop="True" muted="True" preload="auto" width="100%"><source src="../videos/constraint_plane.webm" type="video/webm"></video>
 </p><p>We then lock the orientation as well by setting <code class="docutils literal notranslate"><span class="pre">hold_vec_weight=[1,1,1,0,1,0]</span></code>, which turns the
 plane green. Now the robot will have an upright orientation throughout it’s motion.</p>
 <p>
-<video autoplay="True" loop="True" muted="True" preload="auto" width="100%"><source src="../videos/constraint_plane_orient.mp4" type="video/mp4"></video>
+<video autoplay="True" loop="True" muted="True" preload="auto" width="100%"><source src="../videos/constraint_plane_orient.webm" type="video/webm"></video>
 </p><p>We constrain the linear axis further by setting <code class="docutils literal notranslate"><span class="pre">hold_vec_weight=[0,0,0,1,1,0]</span></code> which penalizes
 motions across x axis as well. A red line is visible in the demo now to highlight the line of
 motion.</p>
 <p>
-<video autoplay="True" loop="True" muted="True" preload="auto" width="100%"><source src="../../videos/constraint_line.mp4" type="video/mp4"></video>
+<video autoplay="True" loop="True" muted="True" preload="auto" width="100%"><source src="../../videos/constraint_line.webm" type="video/webm"></video>
 </p><p>Finally, we add orientation constraint as well by setting <code class="docutils literal notranslate"><span class="pre">hold_vec_weight=[1,1,1,1,1,0]</span></code>. The
 line now changes green highlighting that the orientation is also locked.</p>
 <p>
-<video autoplay="True" loop="True" muted="True" preload="auto" width="100%"><source src="../videos/constraint_line_orient.mp4" type="video/mp4"></video>
+<video autoplay="True" loop="True" muted="True" preload="auto" width="100%"><source src="../videos/constraint_line_orient.webm" type="video/webm"></video>
 </p><div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The script will automatically go through these sequences and repeat until closed.</p>
@@ -364,7 +364,7 @@ stopping at the offset.</p>
 <code class="docutils literal notranslate"><span class="pre">omni_python</span> <span class="pre">examples/isaac_sim/simple_stacking.py</span> <span class="pre">--constrain_grasp_approach</span></code>. This will show
 the behavior as below.</p>
 <p>
-<video autoplay="True" loop="True" muted="True" preload="auto" width="100%"><source src="../videos/cube_stacking_approach.mp4" type="video/mp4"></video>
+<video autoplay="True" loop="True" muted="True" preload="auto" width="100%"><source src="../videos/cube_stacking_approach.webm" type="video/webm"></video>
 </p></section>
 </section>
 

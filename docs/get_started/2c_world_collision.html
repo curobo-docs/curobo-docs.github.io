@@ -55,7 +55,7 @@
       }
     }
   }
-</style></head>
+</style><script>document.addEventListener("DOMContentLoaded",function(){var b=document.createElement("div");b.innerHTML='You are viewing legacy docs for cuRobo <b>v0.7.6</b>. cuRobo is now open source (Apache 2.0). <a href="https://nvlabs.github.io/curobo" style="color:#fff;text-decoration:underline;">See the latest docs</a> with significantly new features.';b.style.cssText="position:fixed;top:0;left:0;right:0;z-index:9999;padding:8px 16px;background:#d32f2f;color:#fff;text-align:center;font-size:14px;font-family:sans-serif;";document.body.style.marginTop="36px";document.body.insertBefore(b,document.body.firstChild);});</script></head>
   <body>
     
     <script>
@@ -354,7 +354,7 @@ color=&quot;#76b900&quot;];
 
 }</p></object></div>
 <p>
-<video autoplay="True" loop="True" muted="True" preload="auto" width="100%"><source src="../videos/collision_demo.mp4" type="video/mp4"></video>
+<video autoplay="True" loop="True" muted="True" preload="auto" width="100%"><source src="../videos/collision_demo.webm" type="video/webm"></video>
 </p><p>We will look at some examples in python. First, we will load a world that contains one object of
 each type,</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">curobo.geom.types</span> <span class="kn">import</span> <span class="n">WorldConfig</span><span class="p">,</span> <span class="n">Cuboid</span><span class="p">,</span> <span class="n">Mesh</span><span class="p">,</span> <span class="n">Capsule</span><span class="p">,</span> <span class="n">Cylinder</span><span class="p">,</span> <span class="n">Sphere</span>
@@ -766,7 +766,7 @@ in CHOMP, the speed metric was used with a discrete collision checker, cuRobo im
 The speed metric is combined with this continuous collision checker to avoid obstacles in trajectory optimization. We show below the benefit of using the speed metric on a trajectory optimization problem. The left robot uses speed metric to push itself away from a thin wall while the right robot which does not have speed metric tries to rush through the collision as a way to reduce the overall cost incurred during trajectory
 optimization.</p>
 <p>
-<video autoplay="True" loop="True" muted="True" preload="auto" width="100%"><source src="../videos/sweep.mp4" type="video/mp4"></video>
+<video autoplay="True" loop="True" muted="True" preload="auto" width="100%"><source src="../videos/sweep.webm" type="video/webm"></video>
 </p></section>
 </section>
 <section id="geometry-approximation-to-spheres">

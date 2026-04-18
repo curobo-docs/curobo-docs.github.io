@@ -55,7 +55,7 @@
       }
     }
   }
-</style></head>
+</style><script>document.addEventListener("DOMContentLoaded",function(){var b=document.createElement("div");b.innerHTML='You are viewing legacy docs for cuRobo <b>v0.7.6</b>. cuRobo is now open source (Apache 2.0). <a href="https://nvlabs.github.io/curobo" style="color:#fff;text-decoration:underline;">See the latest docs</a> with significantly new features.';b.style.cssText="position:fixed;top:0;left:0;right:0;z-index:9999;padding:8px 16px;background:#d32f2f;color:#fff;text-align:center;font-size:14px;font-family:sans-serif;";document.body.style.marginTop="36px";document.body.insertBefore(b,document.body.firstChild);});</script></head>
   <body>
     
     <script>
@@ -535,7 +535,7 @@ duplicate to build your robot configuration file. The template is displayed belo
 <li><p>Launch Isaac Utils -&gt; Lula Robot Description Editor and follow the video below:</p></li>
 </ol>
 <p>
-<video controls="True" loop="False" preload="auto" width="100%"><source src="../../videos/sphere_generation_tutorial.mp4" type="video/mp4"></video>
+<video controls="True" loop="False" preload="auto" width="100%"><source src="../../videos/sphere_generation_tutorial.webm" type="video/webm"></video>
 </p><ol class="arabic simple" start="5">
 <li><p>Once you have the yaml file, copy the <code class="docutils literal notranslate"><span class="pre">collision_spheres:</span></code> section into your <code class="docutils literal notranslate"><span class="pre">ur5e.yml</span></code> file. Remove <code class="docutils literal notranslate"><span class="pre">-</span></code> before each link name as the generated configuration file treats it as a list while cuRobo requires it to be a dictionary.</p></li>
 <li><p>Add the name of all links that you want to perform collision checking to <code class="docutils literal notranslate"><span class="pre">collision_link_names</span></code>.</p></li>
